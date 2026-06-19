@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>农用动力素使用方法速查手册 · 聚宇能</title>
+<style>
+  :root {
+    --green: #2d7d3a;
+    --green-light: #e8f5e9;
+    --green-mid: #4caf50;
+    --yellow: #f9a825;
+    --yellow-light: #fffde7;
+    --brown: #795548;
+    --blue: #1976d2;
+    --blue-light: #e3f2fd;
+    --orange: #e65100;
+    --orange-light: #fff3e0;
+    --purple: #7b1fa2;
+    --purple-light: #f3e5f5;
+    --teal: #00695c;
+    --teal-light: #e0f2f1;
+    --pink: #c2185b;
+    --pink-light: #fce4ec;
+    --gray: #546e7a;
+    --gray-light: #f5f7f8;
+    --white: #ffffff;
+    --border: #dde3e7;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    background: #f0f4f0;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  /* ===== 顶部 Banner ===== */
+  header {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+    color: white;
+    padding: 28px 24px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.25);
+  }
+  header h1 { font-size: 24px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  header p { font-size: 13px; opacity: 0.85; margin-bottom: 14px; }
+  .search-bar {
+    display: flex;
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255,255,255,0.4);
+  }
+  .search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    font-size: 15px;
+    color: white;
+    caret-color: white;
+  }
+  .search-bar input::placeholder { color: rgba(255,255,255,0.6); }
+  .search-bar button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 0 14px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background 0.2s;
+  }
+  .search-bar button:hover { background: rgba(255,255,255,0.35); }
+  #clearBtn { display: none; }
+
+  /* ===== 主体布局 ===== */
+  .container { display: flex; max-width: 1280px; margin: 0 auto; padding: 20px 16px; gap: 20px; }
+
+  /* ===== 左侧分类导航 ===== */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 130px;
+    height: fit-content;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+  .sidebar-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .sidebar-title { background: var(--green); color: white; padding: 12px 16px; font-size: 14px; font-weight: 600; letter-spacing: 1px; }
+  .cat-group { border-bottom: 1px solid var(--border); }
+  .cat-group:last-child { border-bottom: none; }
+  .cat-group-label {
+    padding: 8px 14px 5px;
+    font-size: 11px;
+    color: var(--gray);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fafbfa;
+  }
+  .cat-item {
+    padding: 7px 14px 7px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #444;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-left: 3px solid transparent;
+  }
+  .cat-item:hover { background: var(--green-light); color: var(--green); }
+  .cat-item.active { background: var(--green-light); color: var(--green); font-weight: 600; border-left-color: var(--green); }
+  .cat-item .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .count-badge { margin-left: auto; background: var(--gray-light); color: var(--gray); font-size: 11px; padding: 1px 6px; border-radius: 10px; }
+  .cat-item.active .count-badge { background: #c8e6c9; color: var(--green); }
+
+  /* ===== 右侧内容 ===== */
+  .main { flex: 1; min-width: 0; }
+
+  /* 统计栏 */
+  .stats-bar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .stat-chip {
+    background: white;
+    border-radius: 8px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .stat-chip strong { font-size: 18px; }
+  .stat-chip.fruit strong { color: #e64a19; }
+  .stat-chip.grain strong { color: #f9a825; }
+  .stat-chip.veg strong { color: #2d7d3a; }
+  .stat-chip.greenhouse strong { color: #1976d2; }
+  .stat-chip.herb strong { color: #7b1fa2; }
+  .stat-chip.flower strong { color: #c2185b; }
+
+  /* 作物卡片网格 */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 16px; }
+
+  .crop-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .crop-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.13); transform: translateY(-2px); }
+  .crop-card.open { border-color: var(--green); }
+
+  .card-header {
+    padding: 13px 15px 9px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .crop-icon { font-size: 26px; line-height: 1; }
+  .crop-name { font-size: 16px; font-weight: 700; color: #222; }
+  .crop-cat { font-size: 11px; color: var(--gray); margin-top: 2px; }
+  .card-tag { margin-left: auto; font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+  .tag-fruit    { background: #fbe9e7; color: #e64a19; }
+  .tag-grain    { background: #fff8e1; color: #f57f17; }
+  .tag-veg      { background: #e8f5e9; color: #2e7d32; }
+  .tag-greenhouse { background: #e3f2fd; color: #1565c0; }
+  .tag-herb     { background: #f3e5f5; color: #6a1b9a; }
+  .tag-flower   { background: #fce4ec; color: #ad1457; }
+
+  .card-preview {
+    padding: 0 15px 12px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    border-top: 1px dashed var(--border);
+    padding-top: 9px;
+  }
+  .card-expand {
+    text-align: center;
+    padding: 6px;
+    font-size: 12px;
+    color: var(--green);
+    background: var(--green-light);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* 详情面板 */
+  .detail-panel { display: none; padding: 14px; border-top: 1px solid var(--border); background: #fafbfa; }
+  .detail-panel.show { display: block; }
+
+  /* 阶段表格模式（大棚/菊花用） */
+  .phase-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .phase-table th {
+    background: var(--green);
+    color: white;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .phase-table td { padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .phase-table tr:last-child td { border-bottom: none; }
+  .phase-table tr:nth-child(even) td { background: #f8faf8; }
+
+  .phase-block {
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--green-mid);
+    padding: 9px 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .phase-block.black  { border-left-color: #4e342e; }
+  .phase-block.yellow { border-left-color: var(--yellow); }
+  .phase-block.both   { border-left-color: var(--blue); }
+  .phase-block.warn   { border-left-color: #ef5350; background: #fff5f5; }
+  .phase-block.hehe-black { border-left-color: #333; background: #f9f9f9; }
+  .phase-block.hehe-gold  { border-left-color: #ffc107; }
+
+  .phase-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .phase-title .pill { font-size: 11px; padding: 1px 8px; border-radius: 10px; font-weight: 600; }
+  .pill-black  { background: #4e342e; color: white; }
+  .pill-yellow { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+  .pill-both   { background: #e3f2fd; color: #1565c0; }
+  .pill-warn   { background: #ffebee; color: #c62828; }
+  .pill-hehe-black { background: #333; color: white; }
+  .pill-hehe-gold  { background: #fff8e1; color: #e65100; border: 1px solid #ffcc02; }
+
+  .phase-text { font-size: 13px; color: #555; line-height: 1.9; }
+  .phase-text .dosage {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #1b5e20;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .phase-text .dosage.d-black { background: #efebe9; color: #4e342e; }
+  .phase-text .dosage.d-hehe  { background: #e8eaf6; color: #283593; }
+
+  /* 无结果 */
+  .no-result { text-align: center; padding: 60px 20px; color: var(--gray); display: none; }
+  .no-result .emoji { font-size: 48px; margin-bottom: 12px; }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .container { flex-direction: column; padding: 12px; }
+    .sidebar { width: 100%; position: static; max-height: none; }
+    .grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 20px; }
+    .stats-bar { gap: 8px; }
+  }
+
+  /* 通用说明卡 */
+  .general-card {
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    border-left: 5px solid var(--green);
+  }
+  .general-card h3 { font-size: 14px; color: var(--green); margin-bottom: 8px; font-weight: 700; }
+  .general-card ul { padding-left: 18px; font-size: 13px; color: #555; line-height: 2; }
+
+  /* 搜索高亮 */
+  mark { background: #fff176; color: inherit; border-radius: 2px; padding: 0 2px; }
+
+  /* 产品类型徽章 */
+  .product-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .pb-black  { background: #4e342e; color: white; }
+  .pb-yellow { background: #ffe57f; color: #5d4037; }
+  .pb-hb     { background: #263238; color: white; }
+  .pb-hg     { background: #ffd54f; color: #4a3000; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌿 农用动力素使用方法速查手册</h1>
+  <p>聚宇能 · 涵盖果树、粮食、蔬菜、大棚作物、中药材、花卉共 6 大品类 38+ 种作物</p>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="搜索作物名称，如：苹果、槟榔、麦门冬、食用菊…"
+      oninput="doSearch(this.value)"
+      onkeydown="if(event.key==='Escape'){clearSearch();}">
+    <button onclick="clearSearch()" id="clearBtn" title="清空">✕</button>
+    <button onclick="doSearch(document.getElementById('searchInput').value)">🔍</button>
+  </div>
+</header>
+
+<div class="container">
+  <!-- 左侧导航 -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">📋 作物分类导航</div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🔎 全部</div>
+        <div class="cat-item active" onclick="filterCat('all',this)"><span class="dot"></span>全部作物<span class="count-badge">38</span></div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🍎 果树类</div>
+        <div class="cat-item" onclick="filterCat('cat-果树',this)"><span class="dot"></span>全部果树<span class="count-badge">13</span></div>
+        <div class="cat-item" onclick="filterCat('sub-柑橘',this)"><span class="dot"></span>柑橘 / 橙子</div>
+        <div class="cat-item" onclick="filterCat('sub-苹果',this)"><span class="dot"></span>苹果</div>
+        <div class="cat-item" onclick="filterCat('sub-葡萄',this)"><span class="dot"></span>葡萄</div>
+        <div class="cat-item" onclick="filterCat('sub-槟榔',this)"><span class="dot"></span>槟榔</div>
+        <div class="cat-item" onclick="filterCat('sub-果树其他',this)"><span class="dot"></span>其他果树</div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🌾 粮食类</div>
+        <div class="cat-item" onclick="filterCat('cat-粮食',this)"><span class="dot"></span>全部粮食<span class="count-badge">8</span></div>
+        <div class="cat-item" onclick="filterCat('sub-水稻',this)"><span class="dot"></span>水稻</div>
+        <div class="cat-item" onclick="filterCat('sub-小麦',this)"><span class="dot"></span>小麦</div>
+        <div class="cat-item" onclick="filterCat('sub-玉米',this)"><span class="dot"></span>玉米</div>
+        <div class="cat-item" onclick="filterCat('sub-粮食其他',this)"><span class="dot"></span>其他粮食</div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🥦 蔬菜类</div>
+        <div class="cat-item" onclick="filterCat('cat-蔬菜',this)"><span class="dot"></span>全部蔬菜<span class="count-badge">13</span></div>
+        <div class="cat-item" onclick="filterCat('sub-番茄',this)"><span class="dot"></span>番茄</div>
+        <div class="cat-item" onclick="filterCat('sub-黄瓜',this)"><span class="dot"></span>黄瓜</div>
+        <div class="cat-item" onclick="filterCat('sub-草莓',this)"><span class="dot"></span>草莓</div>
+        <div class="cat-item" onclick="filterCat('sub-蔬菜其他',this)"><span class="dot"></span>其他蔬菜</div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🏠 大棚作物</div>
+        <div class="cat-item" onclick="filterCat('cat-大棚',this)"><span class="dot"></span>全部大棚<span class="count-badge">5</span></div>
+        <div class="cat-item" onclick="filterCat('sub-大棚小麦',this)"><span class="dot"></span>小麦（大棚）</div>
+        <div class="cat-item" onclick="filterCat('sub-大棚水稻',this)"><span class="dot"></span>水稻（大棚）</div>
+        <div class="cat-item" onclick="filterCat('sub-大棚玉米',this)"><span class="dot"></span>玉米（大棚）</div>
+        <div class="cat-item" onclick="filterCat('sub-大棚其他',this)"><span class="dot"></span>大豆/花生</div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🌿 中药材</div>
+        <div class="cat-item" onclick="filterCat('cat-中药',this)"><span class="dot"></span>全部中药材<span class="count-badge">1</span></div>
+        <div class="cat-item" onclick="filterCat('sub-麦门冬',this)"><span class="dot"></span>麦门冬</div>
+      </div>
+
+      <div class="cat-group">
+        <div class="cat-group-label">🌸 花卉</div>
+        <div class="cat-item" onclick="filterCat('cat-花卉',this)"><span class="dot"></span>全部花卉<span class="count-badge">1</span></div>
+        <div class="cat-item" onclick="filterCat('sub-食用菊',this)"><span class="dot"></span>小榄食用菊</div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- 右侧内容 -->
+  <main class="main">
+    <div class="stats-bar">
+      <div class="stat-chip fruit"><strong>13</strong>果树类</div>
+      <div class="stat-chip grain"><strong>8</strong>粮食类</div>
+      <div class="stat-chip veg"><strong>13</strong>蔬菜类</div>
+      <div class="stat-chip greenhouse"><strong>5</strong>大棚作物</div>
+      <div class="stat-chip herb"><strong>1</strong>中药材</div>
+      <div class="stat-chip flower"><strong>1</strong>花卉</div>
+    </div>
+
+    <!-- 通用使用说明 -->
+    <div class="general-card">
+      <h3>⚙️ 通用使用规则</h3>
+      <ul>
+        <li><b>聚宇能系列</b>：<b>黑金液</b>（灌根）/ <b>黄金液</b>（叶面喷施），各 2.5L/桶，1桶约用1亩全程</li>
+        <li><b>禾下系列（大棚）</b>：<b>禾下乌金</b>（灌根/浇灌）/ <b>禾下谷金</b>（叶面喷施）</li>
+        <li>灌根：先浇水再施药或施药后即浇水；叶面喷：早晚喷施，打到叶片流水为止，以叶背为主</li>
+        <li>混合其他水肥时先调配，如有沉淀则不能混配；避免与吡唑类、铜制剂等碱性农药混用</li>
+        <li>稀释说明：稀释 1:300 = 1份原液兑300份水；遵循二次稀释原则，现配现用</li>
+        <li>高温天气：上午10时前 / 下午4时后（夏季6时后）喷施，喷后2-4小时内遇雨不影响效果</li>
+      </ul>
+    </div>
+
+    <div class="grid" id="cropGrid"></div>
+    <div class="no-result" id="noResult">
+      <div class="emoji">🔍</div>
+      <div>没有找到匹配的作物，请换个关键词试试？</div>
+    </div>
+  </main>
+</div>
+
+<script>
+// =============================================================
+// 作物数据库
+// =============================================================
+const crops = [
+
+  // ===========================  果树类  ===========================
+  {
+    id: 1, name: "柑橘（橙子）", icon: "🍊", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-柑橘"],
+    product: "黑金液 + 黄金液",
+    summary: "基施灌根+萌芽期叶喷+开花坐果期追喷，全程黄金液 3-5 次",
+    phases: [
+      { title: "基肥施用期（种植前）", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300，灌根施于根系周围，施后浇水",
+        "定植后一周：黑金液 1.25 kg/亩 稀释 1:300 灌根",
+        "黄金液 1 kg/亩，稀释 1:300-500，叶面喷施"
+      ]},
+      { title: "花前期（开花前）", type: "yellow", steps: ["黄金液 1-2 次，1 kg/亩/次，稀释 1:300-500 叶面喷施"] },
+      { title: "坐果期", type: "yellow", steps: ["黄金液 1 kg/亩，稀释同上"] },
+      { title: "膨果期（果实膨大至成熟）", type: "yellow", steps: ["黄金液 1-2 次，每次 1 kg/亩，稀释同上"] },
+      { title: "⚠️ 注意事项", type: "warn", steps: ["每次使用间隔 10-15 天，全程黄金液使用 3-5 次", "高糖水果可适当增加黄金液用量"] }
+    ]
+  },
+
+  {
+    id: 2, name: "葡萄", icon: "🍇", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-葡萄"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前基施+抽穗前叶喷+坐果后灌根+每次摘果后追施",
+    phases: [
+      { title: "种植前基施", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根施于根系周围"] },
+      { title: "抽穗前（花前）", type: "yellow", steps: ["黄金液 1 kg/亩/次，1-2 次，间隔 10 天，稀释 1:300 叶面喷施"] },
+      { title: "坐果后（头水后）", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根浇施"] },
+      { title: "膨果期 / 成熟期", type: "yellow", steps: ["黄金液 1 kg/亩，稀释同上"] },
+      { title: "每次采摘后追施", type: "both", steps: ["黄金液 0.5 kg/亩，稀释 1:300 叶喷"] },
+      { title: "⚠️ 注意事项", type: "warn", steps: ["基施阶段：黑金液 3 kg + 黄金液 4-5 kg / 亩"] }
+    ]
+  },
+
+  {
+    id: 3, name: "苹果", icon: "🍎", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-苹果"],
+    product: "黑金液 + 黄金液",
+    summary: "萌芽期+幼果期叶喷，高产管理增加坐果期、膨果期用量",
+    phases: [
+      { title: "普通管理", type: "yellow", steps: [
+        "落叶清园后灌根：黑金液 2-3 kg/亩，稀释 1:300",
+        "萌芽期叶喷：黄金液 1 kg/亩，稀释 1:300-500",
+        "幼果期叶喷：黄金液 1 kg/亩，稀释 1:300-500"
+      ]},
+      { title: "高产管理（优质高产）", type: "both", steps: [
+        "落叶清园+坐果后+增穗期灌根：黑金液 5 kg/亩，分 3 次，稀释 1:300",
+        "萌芽期和花前叶喷：黄金液 1 kg/亩/次，稀释 1:300-500",
+        "膨果至着色前叶喷 3-5 次：黄金液 1 kg/亩/次，间隔 10 天，稀释 1:300-500",
+        "着色转色前停施；坐果后 3-5 天追施黄金液 1 kg/亩 叶喷"
+      ]}
+    ]
+  },
+
+  {
+    id: 4, name: "槟榔", icon: "🌴", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-槟榔"],
+    product: "黑金液 + 黄金液",
+    summary: "催花期、保花保果期、膨果期灌根+叶喷，采果前20-30天额外叶喷",
+    phases: [
+      { title: "1-2月催花期 / 3-4月保花保果 / 7-8月膨果期（灌根）", type: "black", steps: [
+        "黑金动力素 2 kg/亩/次，稀释 300 倍以上，滴灌或浇灌根部",
+        "可与有机肥、复合肥、水溶肥混配使用"
+      ]},
+      { title: "1-2月催花 / 3-4月保花保果 / 7-8月膨果 / 10-11月采果前20-30天（叶喷）", type: "yellow", steps: [
+        "黄金动力素 500 g/次/亩，稀释 100-150 倍",
+        "无人机或背壶叶面喷施"
+      ]},
+      { title: "⚠️ 注意事项", type: "warn", steps: [
+        "高温炎热天气注意避开高温时段喷施",
+        "叶喷以叶片背面为主，打到叶片流滴水珠为止"
+      ]}
+    ]
+  },
+
+  {
+    id: 5, name: "芒果", icon: "🥭", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法，高温高湿注意少量多次",
+    phases: [
+      { title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法", "高温高湿天气注意适当减少用量"] }
+    ]
+  },
+
+  {
+    id: 6, name: "香蕉", icon: "🍌", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 7, name: "荔枝", icon: "🍒", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 8, name: "龙眼", icon: "🫐", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 9, name: "猕猴桃", icon: "🥝", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 10, name: "枇杷", icon: "🍑", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 11, name: "百香果", icon: "🍈", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 12, name: "火龙果", icon: "🍉", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  {
+    id: 13, name: "木瓜", icon: "🍐", cat: "果树", tag: "tag-fruit", label: "果树类",
+    subkeys: ["sub-果树其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照柑橘（橙子）使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照柑橘（橙子）使用方法"] }]
+  },
+
+  // ===========================  粮食类（聚宇能）  ===========================
+  {
+    id: 14, name: "小麦", icon: "🌾", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-小麦"],
+    product: "黑金液 + 黄金液",
+    summary: "浸种+种植前灌根+分蘖期+扬花期叶喷，促根壮穗",
+    phases: [
+      { title: "浸种（播种前）", type: "black", steps: ["黑金液浸种：水 1L + 黑金液 0.5 ml，浸种几分钟，无需冲洗"] },
+      { title: "种植前基施", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300，灌根至根系周围饱和"] },
+      { title: "分蘖 / 起身 / 拔节 / 孕穗期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200，叶面喷施，共 2 次"] },
+      { title: "扬花期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200，叶面喷施"] },
+      { title: "灌浆期（高产优质）", type: "both", steps: ["增加黄金液喷施次数，促进灌浆，增加千粒重"] }
+    ]
+  },
+
+  {
+    id: 15, name: "水稻", icon: "🌾", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-水稻"],
+    product: "黑金液 + 黄金液",
+    summary: "苗期基施+插秧后7-10天追施+返青至孕穗各期叶喷",
+    phases: [
+      { title: "苗期移栽前（育苗）", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "返青分蘖期（插秧后 7-10 天）", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "拔节期", type: "black", steps: ["黑金液 1.25 kg/亩 + 黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "孕穗期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] },
+      { title: "扬花灌浆期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] }
+    ]
+  },
+
+  {
+    id: 16, name: "玉米", icon: "🌽", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-玉米"],
+    product: "黑金液 + 黄金液",
+    summary: "播种时灌根+苗期+拔节+大喇叭口期追施，促根防倒伏",
+    phases: [
+      { title: "播种时（基施）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根施于播种穴旁"] },
+      { title: "拔节期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "大喇叭口期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] },
+      { title: "越夏灌浆期", type: "both", steps: ["黑金液 1.25 kg/亩 + 黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] }
+    ]
+  },
+
+  {
+    id: 17, name: "大豆", icon: "🫘", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-粮食其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前灌根+始花期+开花期+鼓粒期各期追施",
+    phases: [
+      { title: "种植前（基施）", type: "black", steps: [
+        "黑金液 2.5 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "始花期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "开花期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "鼓粒期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] }
+    ]
+  },
+
+  {
+    id: 18, name: "花生", icon: "🥜", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-粮食其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前灌根+苗期+开花下针期+荚果期各期追施",
+    phases: [
+      { title: "种植前（基施）", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "苗期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "开花下针期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] },
+      { title: "荚果期", type: "both", steps: ["黑金液 1.25 kg/亩 + 黄金液 0.8 kg/亩，稀释 1:150-200 叶面喷施"] }
+    ]
+  },
+
+  {
+    id: 19, name: "高粱", icon: "🌾", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-粮食其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照花生使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照花生使用方法，各生育期用量相同"] }]
+  },
+
+  {
+    id: 20, name: "谷子", icon: "🌾", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-粮食其他"],
+    product: "黑金液 + 黄金液",
+    summary: "参照花生使用方法",
+    phases: [{ title: "使用方法", type: "both", steps: ["参照花生使用方法"] }]
+  },
+
+  {
+    id: 21, name: "甘薯（红薯）", icon: "🍠", cat: "粮食", tag: "tag-grain", label: "粮食类",
+    subkeys: ["sub-粮食其他"],
+    product: "黑金液 + 黄金液",
+    summary: "苗期出苗15天灌根+30-40cm时叶喷+开花期叶喷，促薯块膨大",
+    phases: [
+      { title: "苗期（出苗 15 天）", type: "black", steps: [
+        "黑金液 2.5 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "茎叶生长期（茎长 30-40 cm）", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200 叶面喷施"] },
+      { title: "开花期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200 叶面喷施"] }
+    ]
+  },
+
+  // ===========================  蔬菜类  ===========================
+  {
+    id: 22, name: "番茄", icon: "🍅", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-番茄"],
+    product: "黑金液 + 黄金液",
+    summary: "育苗床基施+定植后多期灌根+每穗花期前后叶喷，高产增甜",
+    phases: [
+      { title: "育苗床（播前 1 天）", type: "black", steps: ["黑金液 2 kg/亩，稀释 1:300 灌沟灌根"] },
+      { title: "定植时（移栽前 1 天）", type: "yellow", steps: ["黄金液 1 L/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "定植后 10 天", type: "yellow", steps: ["黄金液 0.5 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "定植后 23 天（第一穗花期）", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300，喷浇至根系周围"] },
+      { title: "定植后 25 天", type: "yellow", steps: ["黄金液 0.5 kg/亩，稀释 1:150-200 叶面喷施"] },
+      { title: "定植后 46 天（第二穗花期）", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根"] },
+      { title: "定植后 48 / 69 / 71 / 86 / 94 天", type: "yellow", steps: ["黄金液 0.5 kg/亩，稀释 1:150-200 叶面喷施"] },
+      { title: "⚠️ 注意事项", type: "warn", steps: ["全程黑金 + 黄金液合计不少于 5 kg/亩"] }
+    ]
+  },
+
+  {
+    id: 23, name: "黄瓜", icon: "🥒", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-黄瓜"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前基施+定植后灌根+花前叶喷+坐果期+每批采收后追施",
+    phases: [
+      { title: "种植前（定植前）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根"] },
+      { title: "定植后（第一水后）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根"] },
+      { title: "开花前", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "坐果期及后续", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释同上"] },
+      { title: "每批采收后 5 天追施", type: "both", steps: ["灌根：黑金液 1 kg/亩，稀释 1:300", "叶喷：黄金液 1 kg/亩，稀释 1:200"] }
+    ]
+  },
+
+  {
+    id: 24, name: "辣椒", icon: "🌶️", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前基施+定植后灌根+花前叶喷+坐果期+每批采收后追施",
+    phases: [
+      { title: "种植前", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根"] },
+      { title: "定植后（第一水后）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根"] },
+      { title: "开花前", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:300 叶面喷施"] },
+      { title: "坐果期及后续", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释同上"] },
+      { title: "每批采收后 5 天追施", type: "both", steps: ["灌根：黑金液 1 kg/亩，稀释 1:300", "叶喷：黄金液 1 kg/亩，稀释 1:200-300"] }
+    ]
+  },
+
+  {
+    id: 25, name: "茄子", icon: "🍆", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前基施+定植后灌根+花前叶喷+全程3次坐果期追施",
+    phases: [
+      { title: "种植前", type: "black", steps: [
+        "黑金液 2.5 kg/亩，稀释 1:300 灌根",
+        "黄金液 1 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "花前", type: "yellow", steps: ["黄金液 1 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "坐果期（全程 3 次）", type: "yellow", steps: ["黄金液 1 kg/亩/次，间隔 10-15 天"] },
+      { title: "每次坐果后每隔 5 天", type: "both", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 1 kg/亩，稀释 1:200-300 叶喷"] }
+    ]
+  },
+
+  {
+    id: 26, name: "韭菜", icon: "🌿", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "催芽后灌根+定植后灌根+定植20天叶喷，每次刈割后追施",
+    phases: [
+      { title: "催芽育苗床", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300 浸泡 10-15 分钟",
+        "黄金液 0.5 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "定植时", type: "black", steps: [
+        "黑金液 1.25 kg/亩，稀释 1:300 灌根",
+        "黄金液 1 kg/亩，稀释 1:300 叶面喷施"
+      ]},
+      { title: "定植后 20 天", type: "yellow", steps: ["黄金液 1 kg/亩，稀释同上"] },
+      { title: "每次刈割后追施", type: "both", steps: ["黄金液 0.5-1 kg/亩，稀释 1:200-300，间隔 7-10 天"] }
+    ]
+  },
+
+  {
+    id: 27, name: "芹菜", icon: "🥬", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前灌根+幼苗期灌根叶喷+收获前每15天一次叶喷",
+    phases: [
+      { title: "种植前", type: "black", steps: [
+        "黑金液 1 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "幼苗期", type: "black", steps: [
+        "黑金液 1 kg/亩，稀释 1:300 灌根",
+        "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"
+      ]},
+      { title: "收获前（每 15 天一次）", type: "yellow", steps: ["黄金液 2-3 次，每次 0.8 kg/亩，稀释同上"] }
+    ]
+  },
+
+  {
+    id: 28, name: "菠菜", icon: "🥬", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前灌根+幼苗期灌根叶喷+收获前每15天叶喷",
+    phases: [
+      { title: "种植前", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "幼苗期", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "收获前（每 15 天一次）", type: "yellow", steps: ["黄金液 2-3 次，每次 0.8 kg/亩，稀释同上"] }
+    ]
+  },
+
+  {
+    id: 29, name: "白菜", icon: "🥬", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前灌根+苗期追施+莲座期叶喷",
+    phases: [
+      { title: "播种 / 种植前", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根", "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "苗期", type: "black", steps: ["黑金液 1.25 kg/亩 + 黄金液 0.8 kg/亩，稀释 1:300"] },
+      { title: "莲座期及后续", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释同上"] }
+    ]
+  },
+
+  {
+    id: 30, name: "莴苣", icon: "🥗", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "播种前灌根+定植时灌根叶喷+追肥期+结球期叶喷",
+    phases: [
+      { title: "灌根期（播种前）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根", "黄金液 0.5 kg/亩，稀释 1:300 叶面喷施"] },
+      { title: "定植时（4-5 片真叶）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根", "黄金液 0.5 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "追肥期 / 结球期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300"] }
+    ]
+  },
+
+  {
+    id: 31, name: "丝瓜 / 苦瓜", icon: "🥒", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "种后灌根+展叶期灌根叶喷+追肥期+采收前5天追施",
+    phases: [
+      { title: "种后", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根"] },
+      { title: "展叶时期", type: "both", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根", "黄金液 0.5 kg/亩，稀释 1:300 叶面喷施"] },
+      { title: "追肥期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释同上"] },
+      { title: "采收前 5 天", type: "yellow", steps: ["黄金液 0.4 kg/亩，稀释同上"] }
+    ]
+  },
+
+  {
+    id: 32, name: "葱", icon: "🧅", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "起垄前灌根+定植叶喷+叶片展开前后追施+鳞茎封叶期叶喷",
+    phases: [
+      { title: "起垄时（种植前）", type: "black", steps: ["黑金液 0.8 kg/亩，稀释 1:300 灌根"] },
+      { title: "定植期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "叶片展开前", type: "both", steps: ["黑金液 0.8 kg/亩，稀释 1:300 灌根", "黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "叶片展开期", type: "black", steps: ["黑金液 0.8 kg/亩，稀释 1:300 灌施"] },
+      { title: "鳞茎封叶期", type: "yellow", steps: ["黄金液 0.8 kg/亩，稀释 1:200-300 叶面喷施"] }
+    ]
+  },
+
+  {
+    id: 33, name: "草莓", icon: "🍓", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-草莓"],
+    product: "黑金液 + 黄金液",
+    summary: "种植前基施+定植后灌根+花前叶喷+坐果期全程3次+每次坐果后追施",
+    phases: [
+      { title: "种植前", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300，灌根施于高畦沟内"] },
+      { title: "定植后（第一水后）", type: "black", steps: ["黑金液 1.25 kg/亩，稀释 1:300 灌根", "黄金液 1 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "花前", type: "yellow", steps: ["黄金液 1 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "坐果期（全程 3 次）", type: "yellow", steps: ["黄金液 1 kg/亩/次，间隔 10-15 天"] },
+      { title: "每次坐果后每隔 5 天", type: "both", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 0.5-1 kg/亩，稀释 1:200-300 叶喷"] }
+    ]
+  },
+
+  {
+    id: 34, name: "大蒜", icon: "🧄", cat: "蔬菜", tag: "tag-veg", label: "蔬菜类",
+    subkeys: ["sub-蔬菜其他"],
+    product: "黑金液 + 黄金液",
+    summary: "播种灌根+苗期叶喷+蒜薹膨大期追施+鳞茎膨大期灌根",
+    phases: [
+      { title: "播种时", type: "black", steps: ["黑金液 2 kg/亩，稀释 1:300 灌根施于沟内"] },
+      { title: "苗期", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 1-1.5 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "蒜薹膨大", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根", "黄金液 1-1.5 kg/亩，稀释 1:200-300 叶面喷施"] },
+      { title: "鳞茎膨大期", type: "black", steps: ["黑金液 1 kg/亩，稀释 1:300 灌根"] }
+    ]
+  },
+
+  // ===========================  大棚作物（禾下系列）  ===========================
+  {
+    id: 35, name: "小麦（大棚）", icon: "🌾", cat: "大棚", tag: "tag-greenhouse", label: "大棚作物",
+    subkeys: ["sub-大棚小麦"],
+    product: "禾下乌金 + 禾下谷金",
+    summary: "返青水/分蘖期灌根+分蘖拔节/抽穗/灌浆期叶喷",
+    phases: [
+      { title: "开春返青水 / 分蘖期（灌根）", type: "hehe-black", steps: [
+        "禾下乌金动力素 1 kg/亩，稀释 1:300",
+        "方法：随水浇灌或喷灌"
+      ]},
+      { title: "分蘖拔节 / 抽穗 / 灌浆期（叶喷）", type: "hehe-gold", steps: [
+        "禾下谷金动力素 100 g/亩/次（1 kg 喷 10 亩），稀释 1:100",
+        "重要生育期各施用一次"
+      ]}
+    ]
+  },
+
+  {
+    id: 36, name: "水稻（大棚）", icon: "🌾", cat: "大棚", tag: "tag-greenhouse", label: "大棚作物",
+    subkeys: ["sub-大棚水稻"],
+    product: "禾下乌金 + 禾下谷金",
+    summary: "浸种+育秧盘叶喷+整地灌根+移栽后灌根+关键期叶喷",
+    phases: [
+      { title: "浸种（可选）", type: "hehe-black", steps: ["禾下乌金动力素 0.5 ml / 斤种子 + 1.2 斤水，浸种后取出，无需冲洗"] },
+      { title: "苗期育秧盘（2 次，间隔 12-15 天）", type: "hehe-gold", steps: ["禾下谷金动力素 0.05 kg/亩/次，稀释 1:500 喷洒"] },
+      { title: "整地时 / 秧苗移栽前（灌根）", type: "hehe-black", steps: ["禾下乌金动力素 1 kg/亩，稀释 1:300"] },
+      { title: "秧苗移栽后 7-10 天（灌根）", type: "hehe-black", steps: ["禾下乌金动力素 1 kg/亩，稀释 1:300"] },
+      { title: "分蘖拔节 / 抽穗 / 灌浆期（叶喷）", type: "hehe-gold", steps: ["禾下谷金动力素 100 g/亩/次，稀释 1:100"] }
+    ]
+  },
+
+  {
+    id: 37, name: "玉米（大棚）", icon: "🌽", cat: "大棚", tag: "tag-greenhouse", label: "大棚作物",
+    subkeys: ["sub-大棚玉米"],
+    product: "禾下乌金 + 禾下谷金",
+    summary: "苗期3-5片叶灌根+3-5片叶/大喇叭口/灌浆期叶喷",
+    phases: [
+      { title: "苗期（3-5 片叶，灌根）", type: "hehe-black", steps: ["禾下乌金动力素 2 kg/亩，稀释 1:300，随水灌溉或喷施于根部土层"] },
+      { title: "3-5 片叶 / 大喇叭口期 / 灌浆期（叶喷）", type: "hehe-gold", steps: ["禾下谷金动力素 100 g/亩/次，稀释 1:100"] }
+    ]
+  },
+
+  {
+    id: 38, name: "大豆（大棚）", icon: "🫘", cat: "大棚", tag: "tag-greenhouse", label: "大棚作物",
+    subkeys: ["sub-大棚其他"],
+    product: "禾下乌金 + 禾下谷金",
+    summary: "苗期真叶三片灌根+3-5片叶/始花期/结荚期叶喷",
+    phases: [
+      { title: "苗期（真叶三片，灌根）", type: "hehe-black", steps: ["禾下乌金动力素 1 kg/亩，稀释 1:300，随水灌溉或喷施根部土层"] },
+      { title: "3-5 片叶 / 始花期 / 结荚期（叶喷）", type: "hehe-gold", steps: ["禾下谷金动力素 100 g/亩/次，稀释 1:100"] }
+    ]
+  },
+
+  {
+    id: 39, name: "花生（大棚）", icon: "🥜", cat: "大棚", tag: "tag-greenhouse", label: "大棚作物",
+    subkeys: ["sub-大棚其他"],
+    product: "禾下乌金 + 禾下谷金",
+    summary: "缓苗期/开花期灌根+出苗至始花/开花下针/结荚期叶喷",
+    phases: [
+      { title: "缓苗期 / 开花期（灌根）", type: "hehe-black", steps: ["禾下乌金动力素 1 kg/亩，稀释 1:300 滴灌灌根"] },
+      { title: "出苗至始花 / 开花下针 / 结荚期（叶喷）", type: "hehe-gold", steps: ["禾下谷金动力素 100 g/亩/次，稀释 1:100"] }
+    ]
+  },
+
+  // ===========================  中药材  ===========================
+  {
+    id: 40, name: "麦门冬（麦冬）", icon: "🌱", cat: "中药", tag: "tag-herb", label: "中药材",
+    subkeys: ["sub-麦门冬"],
+    product: "黑金液 + 黄金液",
+    summary: "全程黑金5kg+黄金1-2kg，修复土壤降重金属+叶喷促代谢减农残",
+    phases: [
+      { title: "播种 / 移栽前（土壤基础改良）", type: "black", steps: [
+        "黑金动力素 1.25-2.5 kg/亩，稀释 1:300",
+        "均匀喷洒土壤表面，或结合整地随水冲施",
+        "目的：抑制有害病菌，活化土壤，钝化重金属"
+      ]},
+      { title: "苗期与生长前期", type: "both", steps: [
+        "定植缓苗一周：黑金液灌根，1.25 kg/亩，稀释 1:300",
+        "间隔约 15 天后，黄金液叶喷：100 g/背壶（30-40 斤水），每亩 2-3 次",
+        "苗期稀释 1:200-300"
+      ]},
+      { title: "块根膨大期与生长中后期", type: "yellow", steps: [
+        "黄金液 500 g/亩，叶面喷施（核心）",
+        "块根开始形成和迅速膨大期各喷施一次，间隔 10-15 天",
+        "中后期稀释 1:150-200，能增强叶片功能，促进代谢产物向块根运输",
+        "若土壤贫瘠：追施黑金液 1 kg/亩 灌根（稀释 1:300）"
+      ]},
+      { title: "每次采收后（多年生追施）", type: "both", steps: [
+        "黑金液 1 kg/亩，稀释 1:300 灌根",
+        "黄金液 200-500 g/亩，叶面喷施",
+        "目的：帮助植株恢复，为下一生长周期打基础"
+      ]},
+      { title: "⚠️ 注意事项", type: "warn", steps: [
+        "全程遵循「先用黑金，再用黄金，交替使用」原则",
+        "苗期叶喷稀释 1:200-300；中后期稀释 1:150-200；灌根统一 1:300",
+        "建议全程使用黑金 5 kg + 黄金 1-2 kg/亩"
+      ]}
+    ]
+  },
+
+  // ===========================  花卉  ===========================
+  {
+    id: 41, name: "小榄食用菊", icon: "🌼", cat: "花卉", tag: "tag-flower", label: "花卉种植",
+    subkeys: ["sub-食用菊"],
+    product: "黑金液 + 黄金液",
+    summary: "6个月全程方案：育苗→定植→营养生长→现蕾→开花采收，全程黑金5kg+黄金1.75kg/亩",
+    phases: [
+      { title: "第1个月：育苗 / 整地期", type: "both", steps: [
+        "育苗时：黑金液 50 g / 背壶（30-40 斤水），稀释 1:300 喷苗床 → 抑制土传病菌",
+        "发芽两叶一心期：黄金液 50 g / 背壶，稀释 1:300 叶喷 → 提高存活率",
+        "整地时（结合基肥）：黑金液 1 kg/亩，浇灌或滴灌，稀释 1:300 → 活化土壤",
+        "本月合计：黑金 ≈1.05 kg，黄金 ≈0.05 kg"
+      ]},
+      { title: "第2个月：定植与缓苗期", type: "both", steps: [
+        "定植后 7-10 天（缓苗后）：黑金液 2 kg/亩，稀释 1:300 灌根 → 养根壮根",
+        "同次：黄金液 100 g/背壶 × 每亩 2 次，稀释 1:200-300 叶喷 → 促进叶片生长",
+        "本月合计：黑金 2 kg，黄金 0.2 kg"
+      ]},
+      { title: "第3个月：营养生长期（摘心）", type: "both", steps: [
+        "第一次摘心后 3-5 天：黄金液 100 g/背壶 × 每亩 2 次，稀释 1:200-300 叶喷 → 促侧芽萌发",
+        "新枝长到 5-6 片叶时进行第二次摘心",
+        "第二次摘心后：黑金液 1 kg/亩 灌根 + 黄金液 100 g/背壶 × 每亩 2-3 次叶喷，稀释 1:200-300",
+        "本月合计：黑金 1 kg，黄金 0.5 kg"
+      ]},
+      { title: "第4个月：花芽分化与现蕾期", type: "yellow", steps: [
+        "现蕾初期（第一次疏蕾后）：黄金液 100 g/背壶 × 每亩 2-3 次，稀释 1:150-200 → 促花蕾发育",
+        "花蕾膨大期（第二次疏蕾后，花蕾尚未显色时）：黄金液 100 g/背壶 × 每亩 2-3 次，稀释 1:150-200",
+        "⚠️ 这是禁药期前最后一次叶面喷施，务必喷透、喷匀！",
+        "本月合计：黄金 0.5 kg"
+      ]},
+      { title: "第5个月：现蕾至开花前（禁止施用）", type: "warn", steps: [
+        "本月不进行任何喷施或灌根",
+        "让植株集中营养供给花蕾，确保食品安全"
+      ]},
+      { title: "第6个月：开花采收期及采后管理", type: "both", steps: [
+        "每批花采完后 5-7 天（修剪后）：黑金液 1 kg/亩，稀释 1:300 灌根 → 快速修复根系",
+        "同次：黄金液 100 g/背壶 × 每亩 2-3 次，稀释 1:150-200 叶喷 → 叶片恢复功能",
+        "间隔 10-15 天（下批花现蕾前）：黄金液 100 g/背壶 × 每亩 2-3 次，稀释 1:200-300 → 促新一轮花芽分化",
+        "本月合计（每茬）：黑金 1 kg，黄金 0.5 kg"
+      ]},
+      { title: "📊 全程用量汇总（一亩地）", type: "both", steps: [
+        "全程 6 个月：黑金液合计约 5 kg，黄金液合计约 1.75 kg",
+        "若一年种植两茬，总用量翻倍",
+        "稀释用水必须清洁，不能用受污染的鱼塘水"
+      ]}
+    ]
+  }
+];
+
+// =============================================================
+// 渲染工具函数
+// =============================================================
+let currentFilter = 'all';
+let currentSearch = '';
+
+function typeClass(type) {
+  const map = { black: 'black', yellow: 'yellow', both: 'both', warn: 'warn', 'hehe-black': 'hehe-black', 'hehe-gold': 'hehe-gold' };
+  return map[type] || '';
+}
+function pillClass(type) {
+  const map = { black: 'pill-black', yellow: 'pill-yellow', both: 'pill-both', warn: 'pill-warn', 'hehe-black': 'pill-hehe-black', 'hehe-gold': 'pill-hehe-gold' };
+  return map[type] || '';
+}
+function pillLabel(type) {
+  const map = { black: '黑金液', yellow: '黄金液', both: '黑+黄金液', warn: '注意', 'hehe-black': '禾下乌金', 'hehe-gold': '禾下谷金' };
+  return map[type] || '';
+}
+
+function esc(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function highlight(text, kw) {
+  if (!kw) return text;
+  const safeKw = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${safeKw})`, 'gi'), '<mark>$1</mark>');
+}
+
+function formatDosage(s) {
+  return s
+    .replace(/(禾下乌金动力素)/g, '<span class="dosage d-hehe">$1</span>')
+    .replace(/(禾下谷金动力素)/g, '<span class="dosage">$1</span>')
+    .replace(/(黑金[动力素液]*)/g, '<span class="dosage d-black">$1</span>')
+    .replace(/(黄金[动力素液]*)/g, '<span class="dosage">$1</span>')
+    .replace(/(\d[\d.,]*\s*(?:kg|g|L|ml|升|克|公斤|斤|两|倍)[\/亩每次]?)/gi, '<span class="dosage">$1</span>');
+}
+
+function renderCard(crop, kw) {
+  const stepsHtml = crop.phases.map(p => `
+    <div class="phase-block ${typeClass(p.type)}">
+      <div class="phase-title">
+        ${highlight(esc(p.title), kw)}
+        <span class="pill ${pillClass(p.type)}">${pillLabel(p.type)}</span>
+      </div>
+      <div class="phase-text">
+        ${p.steps.map(s => `• ${formatDosage(highlight(esc(s), kw))}<br>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="crop-card" id="card-${crop.id}" onclick="toggleCard(${crop.id})">
+      <div class="card-header">
+        <span class="crop-icon">${crop.icon}</span>
+        <div>
+          <div class="crop-name">${highlight(esc(crop.name), kw)}</div>
+          <div class="crop-cat">${crop.label} &nbsp;·&nbsp; <span style="font-size:11px;color:#888;">${crop.product}</span></div>
+        </div>
+        <span class="card-tag ${crop.tag}">${crop.label}</span>
+      </div>
+      <div class="card-preview">${highlight(esc(crop.summary), kw)}</div>
+      <div class="card-expand" id="expand-${crop.id}">▼ 展开详细用法</div>
+      <div class="detail-panel" id="detail-${crop.id}">
+        ${stepsHtml}
+      </div>
+    </div>
+  `;
+}
+
+function toggleCard(id) {
+  const panel = document.getElementById(`detail-${id}`);
+  const card  = document.getElementById(`card-${id}`);
+  const btn   = document.getElementById(`expand-${id}`);
+  if (panel.classList.toggle('show')) {
+    card.classList.add('open');
+    btn.textContent = '▲ 收起';
+  } else {
+    card.classList.remove('open');
+    btn.textContent = '▼ 展开详细用法';
+  }
+}
+
+function filterCat(cat, el) {
+  currentFilter = cat;
+  document.getElementById('searchInput').value = '';
+  currentSearch = '';
+  document.getElementById('clearBtn').style.display = 'none';
+  document.querySelectorAll('.cat-item').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid();
+}
+
+function doSearch(val) {
+  currentSearch = val.trim();
+  if (currentSearch) {
+    currentFilter = 'all';
+    document.querySelectorAll('.cat-item').forEach(e => e.classList.remove('active'));
+    document.querySelector(".cat-item[onclick*=\"'all'\"]").classList.add('active');
+  }
+  document.getElementById('clearBtn').style.display = currentSearch ? 'block' : 'none';
+  renderGrid();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  doSearch('');
+}
+
+function matchesCat(crop) {
+  if (currentFilter === 'all') return true;
+
+  // 大类筛选
+  if (currentFilter === 'cat-果树')    return crop.cat === '果树';
+  if (currentFilter === 'cat-粮食')    return crop.cat === '粮食';
+  if (currentFilter === 'cat-蔬菜')    return crop.cat === '蔬菜';
+  if (currentFilter === 'cat-大棚')    return crop.cat === '大棚';
+  if (currentFilter === 'cat-中药')    return crop.cat === '中药';
+  if (currentFilter === 'cat-花卉')    return crop.cat === '花卉';
+
+  // 子类筛选（通过 subkeys 字段精准匹配）
+  if (currentFilter.startsWith('sub-')) return crop.subkeys && crop.subkeys.includes(currentFilter);
+
+  return crop.cat === currentFilter;
+}
+
+function matchesSearch(crop) {
+  if (!currentSearch) return true;
+  const kw = currentSearch.toLowerCase();
+  return (
+    crop.name.toLowerCase().includes(kw) ||
+    crop.summary.toLowerCase().includes(kw) ||
+    crop.label.toLowerCase().includes(kw) ||
+    (crop.product && crop.product.toLowerCase().includes(kw)) ||
+    crop.phases.some(p =>
+      p.title.toLowerCase().includes(kw) ||
+      p.steps.some(s => s.toLowerCase().includes(kw))
+    )
+  );
+}
+
+function renderGrid() {
+  const grid     = document.getElementById('cropGrid');
+  const noResult = document.getElementById('noResult');
+  const filtered = crops.filter(c => matchesCat(c) && matchesSearch(c));
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    noResult.style.display = 'block';
+  } else {
+    noResult.style.display = 'none';
+    grid.innerHTML = filtered.map(c => renderCard(c, currentSearch)).join('');
+  }
+}
+
+renderGrid();
+</script>
+</body>
+</html>
