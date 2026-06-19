@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>中科云脉 | 科技赋能中医，构建全生命周期健康管理生态</title>
+<style>
+:root{--gold:#c9a84c;--gold-l:#e8d4a0;--gold-d:#8b6914;--ink:#0d1b2a;--ink2:#162a42;--blue:#1e4d7b;--green:#1a6b45;--bg:#f5f7fa;--card:#fff;--text:#2d2d2d;--muted:#6b6b6b;--border:#e0d8c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a1628 0%,#0d3b5c 40%,#0a1628 100%);color:#fff;padding:90px 40px 70px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(201,168,76,.15),transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-tag{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:5px 24px;border-radius:20px;font-size:12px;letter-spacing:4px;margin-bottom:28px;position:relative}
+.hero h1{font-size:clamp(30px,5.5vw,54px);font-weight:800;letter-spacing:3px;line-height:1.25;position:relative;margin-bottom:12px}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.6);letter-spacing:2px;margin-bottom:40px;position:relative}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;position:relative}
+.hero-stat{text-align:center}
+.hero-stat .val{display:block;font-size:32px;font-weight:800;color:var(--gold)}
+.hero-stat .lbl{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:2px;margin-top:2px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,27,42,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,168,76,.2)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px}
+.nav-logo{color:var(--gold);font-weight:800;font-size:18px;letter-spacing:2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:13px;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+section{padding:64px 0 48px;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+
+.sec-label{font-size:11px;letter-spacing:3px;color:var(--gold-d);text-transform:uppercase;margin-bottom:6px}
+.sec-title{font-size:28px;font-weight:800;color:var(--ink);margin-bottom:32px;position:relative;padding-left:18px}
+.sec-title::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:5px;background:var(--gold);border-radius:3px}
+
+/* CARDS */
+.grid{display:grid;gap:20px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.card-icon.gold{background:rgba(201,168,76,.12)}
+.card-icon.blue{background:rgba(30,77,123,.1)}
+.card-icon.green{background:rgba(26,107,69,.1)}
+.card-icon.purple{background:rgba(102,126,234,.1)}
+.card h3{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.card p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* HIGHLIGHT */
+.hl-box{background:linear-gradient(135deg,#0a1628 0%,#0d3b5c 100%);border-radius:16px;padding:36px 40px;color:#fff;margin-bottom:32px}
+.hl-box h3{color:var(--gold);font-size:20px;margin-bottom:12px}
+.hl-box p{color:rgba(255,255,255,.78);font-size:15px;line-height:1.85}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{background:var(--ink);color:#fff;padding:14px 18px;text-align:left;font-weight:600;white-space:nowrap}
+tbody tr:nth-child(even){background:#f7f5f0}
+tbody td{padding:13px 18px;border-bottom:1px solid var(--border);vertical-align:top}
+.tag{display:inline-block;background:#f0ebe0;color:var(--gold-d);border:1px solid var(--gold-l);padding:2px 12px;border-radius:20px;font-size:12px}
+.tag.green{background:#e8f4ee;color:#1a6b45;border-color:#a8d5be}
+.tag.blue{background:#e8f0f8;color:#1e4d7b;border-color:#a0bfdb}
+.tag.red{background:#fceaea;color:#a03030;border-color:#e0aaaa}
+
+/* BARS */
+.bars{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.bar-row{display:flex;align-items:center;gap:14px}
+.bar-label{width:140px;font-size:13px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;background:#f0ebe0;border-radius:8px;height:32px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:12px;color:#fff;font-size:12px;font-weight:600;background:linear-gradient(90deg,var(--gold-d),var(--gold));transition:width 1s}
+
+/* CHAIN */
+.chain{display:flex;align-items:stretch;gap:0;margin-bottom:20px;flex-wrap:wrap}
+.chain-step{flex:1;min-width:180px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;position:relative;text-align:center}
+.chain-step:not(:last-child){margin-right:28px}
+.chain-step:not(:last-child)::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--gold);font-weight:700}
+.chain-step .cs-num{width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin:0 auto 12px}
+.chain-step h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.chain-step p{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:36px}
+.timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--gold-d))}
+.tl-item{position:relative;margin-bottom:32px}
+.tl-item::before{content:"";position:absolute;left:-28px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 3px var(--gold)}
+.tl-item .phase{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold-d);margin-bottom:5px}
+.tl-item h4{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.tl-item p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+.swot-cell{padding:26px 28px}
+.swot-cell h4{font-size:13px;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.swot-cell ul{padding-left:18px;list-style:none}
+.swot-cell ul li{font-size:13.5px;margin-bottom:8px;line-height:1.65;padding-left:14px;position:relative}
+.swot-cell ul li::before{content:"●";position:absolute;left:0;font-size:8px;top:6px}
+.swot-cell.s{background:#e8f4ee}.swot-cell.s h4{color:#1a6b45}
+.swot-cell.w{background:#fceaea}.swot-cell.w h4{color:#a03030}
+.swot-cell.o{background:#e8f0f8}.swot-cell.o h4{color:#1e4d7b}
+.swot-cell.t{background:#fef5e8}.swot-cell.t h4{color:#8b5e14}
+@media(max-width:640px){.swot-grid{grid-template-columns:1fr}.chain{flex-direction:column}.chain-step{margin-right:0!important;margin-bottom:28px}.chain-step:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-22px;left:50%;transform:translateX(-50%)}}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;text-align:center;transition:transform .2s}
+.team-card:hover{transform:translateY(-4px)}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:0 auto 16px}
+.team-card h3{font-size:17px;font-weight:700;margin-bottom:4px;color:var(--ink)}
+.team-card .role{font-size:12px;color:var(--gold-d);margin-bottom:12px;letter-spacing:1px}
+.team-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* PARTNER */
+.partner-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start}
+.partner-card .p-icon{width:44px;height:44px;border-radius:10px;background:rgba(30,77,123,.1);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.partner-card h3{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.partner-card p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* DATA CARDS */
+.data-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.data-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center}
+.data-card .d-val{font-size:30px;font-weight:800;color:var(--gold-d);margin-bottom:4px}
+.data-card .d-lbl{font-size:13px;color:var(--muted)}
+.data-card .d-sub{font-size:11px;color:#aaa;margin-top:6px}
+
+/* PROFIT */
+.profit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px}
+.profit-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden}
+.profit-card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold)}
+.profit-card .pct{font-size:28px;font-weight:800;color:var(--gold-d)}
+.profit-card .ttl{font-size:15px;font-weight:700;margin:6px 0 8px;color:var(--ink)}
+.profit-card .desc{font-size:13px;color:var(--muted);line-height:1.65}
+.profit-card .margin{font-size:12px;color:var(--green);margin-top:6px;font-weight:600}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 20px;font-size:14px;line-height:2}
+footer strong{color:var(--gold)}
+
+/* COOPERATION */
+.coop-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px;transition:transform .2s}
+.coop-card:hover{transform:translateY(-3px)}
+.coop-card .c-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+.coop-card h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--ink)}
+.coop-card p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* TRACEABILITY */
+.trace-chain{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin-bottom:20px}
+.trace-step{flex:1;min-width:160px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;text-align:center;position:relative}
+.trace-step:not(:last-child){margin-right:24px}
+.trace-step:not(:last-child)::after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:18px;font-weight:700}
+.trace-step .ts-icon{font-size:28px;margin-bottom:10px}
+.trace-step h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.trace-step p{font-size:12px;color:var(--muted);line-height:1.6}
+@media(max-width:640px){.trace-chain{flex-direction:column}.trace-step{margin-right:0!important;margin-bottom:24px}.trace-step:not(:last-child)::after{content:"↓";right:50%;left:50%;top:auto;bottom:-18px;transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-tag">ENTERPRISE PROFILE · 2026</div>
+<h1>中科云脉 <span>·</span> 科技赋能中医</h1>
+<p class="hero-sub">由科技农业到科技中医 · 全产业链应用 · 从土壤到人体的健康闭环</p>
+<div class="hero-stats">
+<div class="hero-stat"><span class="val">15万亿</span><span class="lbl">大健康市场</span></div>
+<div class="hero-stat"><span class="val">1:86</span><span class="lbl">投产比峰值</span></div>
+<div class="hero-stat"><span class="val">20+</span><span class="lbl">覆盖国家</span></div>
+<div class="hero-stat"><span class="val">4阶段</span><span class="lbl">战略落地</span></div>
+</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<div class="nav-logo">中科云脉</div>
+<ul class="nav-links">
+<li><a href="#overview">概览</a></li>
+<li><a href="#team">团队</a></li>
+<li><a href="#agri">科技农业</a></li>
+<li><a href="#tcm">科技中医</a></li>
+<li><a href="#chain">全产业链</a></li>
+<li><a href="#market">市场分析</a></li>
+<li><a href="#plan">发展规划</a></li>
+<li><a href="#business">商业模式</a></li>
+<li><a href="#risk">风险评估</a></li>
+</ul>
+</div></nav>
+
+<div class="container">
+
+<!-- 01 概览 -->
+<section id="overview">
+<div class="sec-label">01 · OVERVIEW</div>
+<h2 class="sec-title">公司概览：使命、愿景与核心定位</h2>
+<div class="hl-box">
+<h3>核心使命</h3>
+<p>以科技赋能中医，构建全生命周期健康管理生态。公司致力于成为<strong style="color:#e8d4a0">科技中医全产业链应用</strong>的创新型企业，助力中国中医科技化，推动中医药现代化与国际化发展，让每个人都能通过中医获得健康生活。</p>
+</div>
+<div class="grid grid-3">
+<div class="card"><div class="card-icon gold">🎯</div><h3>公司定位</h3><p>致力于科技中医全产业链应用的<strong>创新型企业</strong>，精准卡位科技农业与科技中医两大黄金赛道。</p></div>
+<div class="card"><div class="card-icon blue">🌐</div><h3>战略愿景</h3><p>助力中国中医科技化，推动中医药现代化与国际化发展，打造世界级主动健康科技企业。</p></div>
+<div class="card"><div class="card-icon green">🔄</div><h3>业务主线</h3><p>科技农业（农用动力素）→ 科技中医（智能健康管理），形成"从土壤到人体"的独特健康闭环。</p></div>
+</div>
+</section>
+
+<!-- 02 团队 -->
+<section id="team">
+<div class="sec-label">02 · CORE TEAM & PARTNERS</div>
+<h2 class="sec-title">核心专家团队与战略合作伙伴</h2>
+<div class="team-grid" style="margin-bottom:32px">
+<div class="team-card"><div class="team-avatar">金</div><h3>金日光 教授</h3><div class="role">首席科学家</div><p>北京化工大学终身教授<br>第四统计力学首创者<br>生命动力元素理论提出者<br>理论获 IUPAC 国际认证</p></div>
+<div class="team-card"><div class="team-avatar">方</div><h3>方厉远 院长</h3><div class="role">农用动力素研发者</div><p>北京聚宇能研究院院长<br>农用动力素核心技术发明人<br>深耕生态农业与土壤改良<br>多年产业化落地经验</p></div>
+<div class="team-card"><div class="team-avatar">徐</div><h3>徐毅 院长</h3><div class="role">数字化战略负责人</div><p>中科院浙江数字内容研究院院长<br>人工智能与数字化领域专家<br>主导智慧农业与AI健康管理<br>技术架构设计</p></div>
+</div>
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">战略合作伙伴</h3>
+<div class="grid grid-3">
+<div class="partner-card"><div class="p-icon">🔬</div><div><h3>中国科学院自动化研究所</h3><p>智能自动化与信息处理核心研究机构，6名院士领衔，提供紫东太初多模态大模型等前沿技术支持。</p></div></div>
+<div class="partner-card"><div class="p-icon">📡</div><div><h3>台湾人工智能产业协会</h3><p>整合半导体、5G、物联网等产业优势，构建产业生态联盟，推动技术出海与国际化布局。</p></div></div>
+<div class="partner-card"><div class="p-icon">🌿</div><div><h3>广东省中药研究所</h3><p>CMA、CNAS双认证，保存南药资源1200余种，提供从种植到研发的全产业链专业服务。</p></div></div>
+</div>
+</section>
+
+<!-- 03 科技农业 -->
+<section id="agri">
+<div class="sec-label">03 · TECH AGRICULTURE</div>
+<h2 class="sec-title">科技农业：农用动力素与智慧农业</h2>
+<div class="hl-box">
+<h3>科学理论依据</h3>
+<p>基于金日光教授首创的<strong style="color:#e8d4a0">第四统计力学（群子理论）</strong>，成功解读《黄帝内经》核心奥秘。从天然矿石中提取5+11种矿物质元素，其d轨道孤对电子能聚焦中微子能量，为作物生长提供强大动力。理论获IUPAC国际认证，为中医药现代化和生态农业发展奠定坚实科学基础。</p>
+</div>
+<div class="grid grid-3" style="margin-bottom:32px">
+<div class="card"><div class="card-icon gold">⚛️</div><h3>生命动力元素原理</h3><p>从天然矿石中提取5+11种矿物质元素，d轨道孤对电子聚焦中微子能量，为作物生长提供强大动力源。</p></div>
+<div class="card"><div class="card-icon blue">💨</div><h3>生态氧与自由基作用</h3><p>产生强氧化性生态氧和羟基自由基，有效杀灭病菌害虫，分解农药残留，实现绿色防控。</p></div>
+<div class="card"><div class="card-icon green">💧</div><h3>小分子水结构</h3><p>形成短链小分子水，大幅提升作物对养分的吸收效率，促进根系发育，增强作物抗逆性。</p></div>
+</div>
+
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">四大核心功效</h3>
+<div class="grid grid-4" style="margin-bottom:32px">
+<div class="card" style="text-align:center"><h3 style="color:var(--green)">🌱 土壤改良</h3><p>有效改良盐碱地、酸化地等退化耕地，提升土壤健康水平</p></div>
+<div class="card" style="text-align:center"><h3 style="color:var(--green)">🐛 减少病虫害</h3><p>显著减少化肥农药使用，降低重金属吸收，减少环境污染</p></div>
+<div class="card" style="text-align:center"><h3 style="color:var(--green)">🧪 分解农残</h3><p>有效降解农药残留，从源头保障食品安全</p></div>
+<div class="card" style="text-align:center"><h3 style="color:var(--green)">📈 增产增质</h3><p>提升产量品质，培育富硒等功能性农产品</p></div>
+</div>
+
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">实证数据与成功案例</h3>
+<div class="data-row">
+<div class="data-card"><div class="d-val">1:86</div><div class="d-lbl">信阳阳光玫瑰投产比</div><div class="d-sub">投入500元/亩 → 增收43,000元/亩</div></div>
+<div class="data-card"><div class="d-val">1:64</div><div class="d-lbl">昆山翠冠梨投产比</div><div class="d-sub">投入300元/亩，收购价提高50%</div></div>
+<div class="data-card"><div class="d-val">+14.4%</div><div class="d-lbl">彩椒增产效果</div><div class="d-sub">北京大兴农科所试验</div></div>
+<div class="data-card"><div class="d-val">+26%</div><div class="d-lbl">生菜增产</div><div class="d-sub">提前4-5天采收</div></div>
+</div>
+<div class="hl-box" style="background:linear-gradient(135deg,#1a4d2e,#2d7a52)">
+<h3 style="color:#a8d5be">江苏农垦临海农场 · 连续两年改良</h3>
+<p>水稻亩产从 <strong style="color:#fff">606斤</strong> 提升至 <strong style="color:#fff">984斤</strong>，氯离子含量降幅达 <strong style="color:#fff">96%</strong>，充分证明农用动力素在土壤改良与增产增质方面的卓越效果。</p>
+</div>
+
+<h3 style="margin:32px 0 18px;color:var(--ink);font-size:17px">智慧农业：感知层与平台层</h3>
+<div class="grid grid-2">
+<div class="card"><div class="card-icon blue">📡</div><h3>感知层：全域数据采集</h3><p>土壤传感器实时监测温湿度与养分；虫情测报灯全天候病虫害监测预警；气象监测设备采集风速光照等环境数据；无人机巡检大面积农田生长态势。</p></div>
+<div class="card"><div class="card-icon purple">🧠</div><h3>平台层：智慧农业大脑</h3><p>数算引擎处理海量农业数据；大模型引擎基于AI深度分析与知识推理；智能决策提供病虫害预警与作物长势预测；精准调度实现水肥一体化自动化灌溉。</p></div>
+</div>
+
+<h3 style="margin:32px 0 18px;color:var(--ink);font-size:17px">电子溯源标签：全链路质量追溯</h3>
+<div class="trace-chain">
+<div class="trace-step"><div class="ts-icon">🌱</div><h4>源头种植</h4><p>记录种植地环境数据、种植方法及生长周期，确保源头信息真实可查</p></div>
+<div class="trace-step"><div class="ts-icon">🏭</div><h4>精细加工</h4><p>全程监控加工流程，实时上传检测报告与营养成分数据，标准化管理</p></div>
+<div class="trace-step"><div class="ts-icon">📱</div><h4>扫码即查</h4><p>消费者扫描二维码，获取产品全生命周期信息，从田间到餐桌全程可追溯</p></div>
+</div>
+
+<h3 style="margin:32px 0 18px;color:var(--ink);font-size:17px">农业文旅 + 康养：产业融合发展</h3>
+<div class="grid grid-2">
+<div class="card"><div class="card-icon gold">🎓</div><h3>农业文旅体验升级</h3><p>科技农业课堂、药食同源种植观光带、节庆活动，让游客体验农耕乐趣，学习生态种植知识。</p></div>
+<div class="card"><div class="card-icon green">💆</div><h3>康养服务深度落地</h3><p>药膳工坊、田园康养套餐，基于溯源数据的个性化健康建议，实现农文旅康养融合发展。2026年计划建成2-3个示范项目。</p></div>
+</div>
+</section>
+
+<!-- 04 科技中医 -->
+<section id="tcm">
+<div class="sec-label">04 · TECH TCM</div>
+<h2 class="sec-title">科技中医：PHCS经络道与AI健康顾问</h2>
+<div class="grid grid-2" style="margin-bottom:32px">
+<div class="card"><div class="card-icon gold">📡</div><h3>PHCS经络道健康管理系统</h3><p>历经数十年迭代：1982年秦值仪诞生 → 2020年蓝牙版发布。采用先进电磁感应技术，<strong>无电压、无电流、无辐射</strong>，30秒完成体质测评，精密度较传统设备提升<strong>40倍</strong>。全球累积十万+专业用户，覆盖20余个国家。</p></div>
+<div class="card"><div class="card-icon blue">🤖</div><h3>AI健康顾问系统</h3><p>集成中科院自动化所<strong>紫东太初多模态大模型</strong>，深度理解中医理论。智能解读检测数据，生成个性化调理方案，新增饮食调理、运动指导、健康产品推荐等模块，支持Web、APP、小程序多端覆盖。</p></div>
+</div>
+
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">多场景应用落地</h3>
+<div class="grid grid-4">
+<div class="card"><div class="card-icon green">🏥</div><h3>中医诊所</h3><p>辅助诊疗决策，提升服务效率与质量</p></div>
+<div class="card"><div class="card-icon purple">💆</div><h3>养生理疗机构</h3><p>智能化体质辨识与个性化调理方案</p></div>
+<div class="card"><div class="card-icon gold">📦</div><h3>健康产品机构</h3><p>赋能产品研发与健康数据采集分析</p></div>
+<div class="card"><div class="card-icon blue">👤</div><h3>终端消费用户</h3><p>便捷的个人健康管理与居家养生指导</p></div>
+</div>
+
+<div class="hl-box" style="margin-top:32px">
+<h3>人才培养与国际认证</h3>
+<p><strong style="color:#e8d4a0">AI国际健康管理师认证</strong>：联合国内顶级医疗与AI机构，打造权威培训体系，培养兼具健康管理专业知识与AI应用能力的复合型人才。<br><strong style="color:#e8d4a0">AI中医诊断国际标准</strong>：推动中医诊断标准化和国际化，联合跨领域专家委员会构建科学评估体系，争取完成团体标准制定。</p>
+</div>
+</section>
+
+<!-- 05 全产业链 -->
+<section id="chain">
+<div class="sec-label">05 · FULL VALUE CHAIN</div>
+<h2 class="sec-title">全产业链整合：从土壤到人体的健康闭环</h2>
+<div class="chain">
+<div class="chain-step"><div class="cs-num">1</div><h4>土壤改良与智慧种植</h4><p>利用现代生物技术改良土壤，实现精准化、智能化种植，确保原材料纯净与高效。</p></div>
+<div class="chain-step"><div class="cs-num">2</div><h4>产品加工与品质保障</h4><p>先进工艺深加工，建立全流程质量追溯体系，确保每一份产品符合高标准。</p></div>
+<div class="chain-step"><div class="cs-num">3</div><h4>中医检测与个性化调理</h4><p>融合现代科技与传统中医，提供精准体质检测，定制专属调理方案。</p></div>
+<div class="chain-step"><div class="cs-num">4</div><h4>康养服务与健康提升</h4><p>全方位康养服务体系，从内而外提升健康水平与生活品质。</p></div>
+</div>
+<div class="hl-box" style="background:linear-gradient(135deg,#1a4d2e,#0d3b5c)">
+<h3 style="color:#a8d5be">闭环协同效应</h3>
+<p>上游种植为下游提供高品质药食同源原料，溯源数据保障品质；下游健康检测为上游产品推广提供精准需求导向，形成"种植-消费"的需求反馈机制。全链路数据互通，实现从土壤数据到健康数据的一体化管理，推动公司从<strong style="color:#fff">"产品供应商"向"全生命周期健康管理服务商"</strong>转型。</p>
+</div>
+</section>
+
+<!-- 06 市场分析 -->
+<section id="market">
+<div class="sec-label">06 · MARKET OPPORTUNITY</div>
+<h2 class="sec-title">市场机遇：双赛道共振，万亿红利待取</h2>
+<div class="data-row" style="margin-bottom:32px">
+<div class="data-card"><div class="d-val">15万亿</div><div class="d-lbl">2026年大健康市场</div><div class="d-sub">年复合增长率超10%</div></div>
+<div class="data-card"><div class="d-val">1.1万亿</div><div class="d-lbl">中药全产业链市场</div><div class="d-sub">药食同源突破4500亿</div></div>
+<div class="data-card"><div class="d-val">4200亿</div><div class="d-lbl">中国现代农业规模</div><div class="d-sub">占全球35%（美元）</div></div>
+<div class="data-card"><div class="d-val">89亿</div><div class="d-lbl">2030年中医药出口</div><div class="d-sub">传播至196个国家</div></div>
+</div>
+
+<div class="grid grid-2" style="margin-bottom:32px">
+<div class="card"><div class="card-icon green">🌾</div><h3>科技农业：政策护航 + 需求升级</h3><p>国家"乡村振兴""健康中国2030""双碳"战略深度叠加。全球现代农业2024年达1.2万亿美元，年均复合增长8.5%。功能性农产品2025年全球2800亿美元，富硒等营养强化型产品需求增速超20%。全球土壤退化严峻——菠菜铁含量从4.3mg降至0.18mg，粮食作物维生素矿物质损失60%-90%，农用动力素精准解决行业核心痛点。</p></div>
+<div class="card"><div class="card-icon blue">🌿</div><h3>科技中医：传统复兴 + 技术赋能</h3><p>中医药已传播至196个国家和地区，2030年出口额预计89亿美元。2026年大健康市场突破15万亿，智能医疗器械与居家健康管理赛道增速超15%。居民健康意识从"治疗为主"转向"预防为先"，居家慢病管理设备互联生态覆盖率预计2026年达40%，为PHCS经络道与AI健康顾问推广奠定市场基础。</p></div>
+</div>
+
+<div class="hl-box">
+<h3>战略契机：双赛道协同，构建独特竞争壁垒</h3>
+<p>中科云脉是行业内少数同时布局科技农业与科技中医的企业，两大板块形成"上游原料品质把控 - 下游健康服务落地"的协同效应，构建从土壤到人体的完整健康价值链，形成<strong style="color:#e8d4a0">差异化竞争优势，难以被单一领域竞争对手复制</strong>。</p>
+</div>
+</section>
+
+<!-- 07 发展规划 -->
+<section id="plan">
+<div class="sec-label">07 · ROADMAP</div>
+<h2 class="sec-title">发展规划：四阶段落地路径（2026-2029+）</h2>
+<div class="timeline">
+<div class="tl-item"><div class="phase">PHASE 1 · 2026年 6-12月</div><h4>实验期 — 验证技术可行性与商业模式</h4><p>完成5-10亩实验田改良与种植；部署物联网与溯源系统；输出实验数据报告，验证技术可行性与商业价值。</p></div>
+<div class="tl-item"><div class="phase">PHASE 2 · 2027年 1-12月</div><h4>示范期 — 形成标准化模式并初步盈利</h4><p>扩大种植规模至50-100亩；实现溯源标签全覆盖；建成2-3个农文旅康养示范项目，树立行业标杆。</p></div>
+<div class="tl-item"><div class="phase">PHASE 3 · 2028年 1-12月</div><h4>推广期 — 规模化推广与市场扩张</h4><p>向3-5个乡镇推广技术与模式；培育10-15家合作社；拓展B端客户300家以上，扩大市场覆盖。</p></div>
+<div class="tl-item"><div class="phase">PHASE 4 · 2029年及以后</div><h4>集群期 — 打造完整产业链生态</h4><p>形成种植-加工-文旅-康养全链条；培育地方特色品牌；启动国际化布局，打造产业集群效应。</p></div>
+</div>
+
+<h3 style="margin:16px 0 18px;color:var(--ink);font-size:17px">多维效益分析</h3>
+<div class="grid grid-4">
+<div class="card"><div class="card-icon gold">💰</div><h3>经济效益</h3><p>产业提质增效，上下游深度融合，实现可持续增长</p></div>
+<div class="card"><div class="card-icon blue">👥</div><h3>社会效益</h3><p>带动区域就业，加强人才培育，改善民生福祉</p></div>
+<div class="card"><div class="card-icon green">🌿</div><h3>生态效益</h3><p>保护耕地资源，推行绿色低碳生产，协同发展</p></div>
+<div class="card"><div class="card-icon purple">📋</div><h3>监管效益</h3><p>数字化手段提升监管效率，全流程可追溯保障安全</p></div>
+</div>
+</section>
+
+<!-- 08 商业模式与盈利 -->
+<section id="business">
+<div class="sec-label">08 · BUSINESS MODEL</div>
+<h2 class="sec-title">商业模式：全产业链闭环，多元盈利矩阵</h2>
+<div class="hl-box" style="margin-bottom:32px">
+<h3>价值链条层层递增</h3>
+<p><strong style="color:#e8d4a0">上游</strong>：农用动力素改良土壤，培育高品质药食同源作物，获取产品销售与技术服务收入 → <strong style="color:#e8d4a0">中游</strong>：产品加工与电子溯源标签，提升附加值，获取加工利润与品牌溢价 → <strong style="color:#e8d4a0">下游</strong>：中医检测与个性化调理，获取设备销售、系统服务费与健康管理收入 → <strong style="color:#e8d4a0">延伸</strong>：农业文旅与康养服务，获取体验经济收入，形成多元盈利矩阵。</p>
+</div>
+
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">四大盈利板块（2026年预计）</h3>
+<div class="profit-grid">
+<div class="profit-card"><div class="pct">60%</div><div class="ttl">产品销售</div><div class="desc">农用动力素、PHCS经络道设备、药食同源加工产品等</div><div class="margin">毛利率 30%-45%</div></div>
+<div class="profit-card"><div class="pct">20%</div><div class="ttl">技术服务</div><div class="desc">智慧农业解决方案、中医检测技术支持、溯源系统部署</div><div class="margin">毛利率 40%+</div></div>
+<div class="profit-card"><div class="pct">15%</div><div class="ttl">健康服务</div><div class="desc">AI健康顾问会员费、个性化调理方案、康养体验服务</div><div class="margin">毛利率 50%+</div></div>
+<div class="profit-card"><div class="pct">5%</div><div class="ttl">生态合作</div><div class="desc">战略合作伙伴分成、品牌授权、技术许可等</div><div class="margin">随生态规模持续提升</div></div>
+</div>
+
+<h3 style="margin-bottom:18px;color:var(--ink);font-size:17px">股东价值回报规划</h3>
+<div class="grid grid-3">
+<div class="card"><div class="card-icon gold">💵</div><h3>分红回报</h3><p>实现盈利后，按不低于当年净利润<strong>30%</strong>比例现金分红，与股东共享经营成果。</p></div>
+<div class="card"><div class="card-icon blue">📈</div><h3>股权增值</h3><p>通过业务规模化扩张与盈利能力提升，推动公司估值持续增长，创造丰厚股权增值收益。</p></div>
+<div class="card"><div class="card-icon green">🤝</div><h3>资源协同</h3><p>欢迎股东发挥资源优势，参与公司业务合作与生态建设，实现股东与公司共赢发展。</p></div>
+</div>
+</section>
+
+<!-- 09 风险评估 -->
+<section id="risk">
+<div class="sec-label">09 · RISK ASSESSMENT</div>
+<h2 class="sec-title">风险评估与应对策略</h2>
+<div class="table-wrap" style="margin-bottom:32px">
+<table>
+<thead><tr><th>风险类别</th><th>具体风险</th><th>影响程度</th></tr></thead>
+<tbody>
+<tr><td><strong>技术风险</strong></td><td>核心技术迭代不及预期，或面临专利侵权风险</td><td><span class="tag" style="background:#fef5e8;color:#8b5e14;border-color:#e8d4a0">中等</span></td></tr>
+<tr><td><strong>市场风险</strong></td><td>市场竞争加剧，产品推广速度不及预期</td><td><span class="tag" style="background:#fef5e8;color:#8b5e14;border-color:#e8d4a0">中等</span></td></tr>
+<tr><td><strong>政策风险</strong></td><td>农业、医疗健康领域政策发生不利变化</td><td><span class="tag green">较低</span></td></tr>
+<tr><td><strong>合作风险</strong></td><td>战略合作伙伴关系不稳定，影响业务推进</td><td><span class="tag green">较低</span></td></tr>
+<tr><td><strong>运营风险</strong></td><td>规模化扩张后，管理效率与服务质量下降</td><td><span class="tag" style="background:#fef5e8;color:#8b5e14;border-color:#e8d4a0">中等</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="grid grid-2">
+<div class="card"><div class="card-icon blue">🔧</div><h3>技术与市场风险应对</h3><p>每年不低于营收<strong>15%</strong>用于研发投入；完善专利布局，构建核心技术专利池；强化品牌建设与市场教育，制定灵活市场策略，快速响应变化。</p></div>
+<div class="card"><div class="card-icon green">🛡️</div><h3>政策与合作风险应对</h3><p>密切关注政策动态，建立政策预警机制；积极参与行业标准制定；选择价值观一致、实力匹配的合作伙伴，签订详细协议明确权责。</p></div>
+</div>
+</section>
+
+<!-- 10 合作模式 -->
+<section id="coop">
+<div class="sec-label">10 · COOPERATION</div>
+<h2 class="sec-title">合作模式：多元化合作生态</h2>
+<p style="margin-bottom:24px;color:var(--muted);font-size:15px">秉持开放共赢理念，面向农业、科研和资本领域，打造多元化合作模式，共同推动产业发展。</p>
+<div class="grid grid-3" style="margin-bottom:32px">
+<div class="coop-card"><div class="c-icon" style="background:rgba(26,107,69,.1)">🚜</div><h3>农业产业合作</h3><p>携手农场基地、合作社及农资企业，共建高标准农业示范基地，推广先进种植技术。2026年计划新增合作农场100家以上，种植面积覆盖5000亩。</p></div>
+<div class="coop-card"><div class="c-icon" style="background:rgba(30,77,123,.1)">🔬</div><h3>科研技术协同</h3><p>联合高校与科研院所，开展前沿技术攻关，加速科研成果转化，提升产业科技含量。与中科院自动化所等深度合作持续技术迭代。</p></div>
+<div class="coop-card"><div class="c-icon" style="background:rgba(201,168,76,.12)">💼</div><h3>资本生态共建</h3><p>引入战略投资机构，优化资源配置，构建可持续发展的产业资本生态圈。合理分配研发、市场推广、产能建设资金。</p></div>
+</div>
+
+<div class="hl-box">
+<h3>未来展望：打造世界级主动健康科技企业</h3>
+<p><strong style="color:#e8d4a0">深耕现代农业</strong> — 持续利用前沿科技赋能传统农业升级，构建可持续发展的生态农业体系。<br><strong style="color:#e8d4a0">布局大健康产业</strong> — 致力打造主动健康科技体系，用科技守护国民健康，提升生活品质。<br><strong style="color:#e8d4a0">科技创新愿景</strong> — 以科技创新为长期愿景，不断突破技术边界，力争3-5年内成为全球领先的主动健康科技企业。</p>
+</div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+<strong>北京中科云脉健康科技有限公司</strong><br>
+科技农业 · 科技中医 · 全产业链应用<br>
+科技赋能中医，构建全生命周期健康管理生态<br>
+<span style="font-size:12px;color:rgba(255,255,255,.3)">© 2026 北京中科云脉健康科技有限公司</span>
+</footer>
+
+</body>
+</html>
