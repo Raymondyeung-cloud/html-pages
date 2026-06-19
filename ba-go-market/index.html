@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA+GO 生命动力液 · 双市场准入法规分析报告 V2.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2c5282;
+            --accent: #c05621;
+            --success: #276749;
+            --warning: #b7791f;
+            --danger: #9b2c2c;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --gold: #C9A961;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* Version Badge */
+        .version-badge {
+            position: fixed;
+            top: 15px; right: 15px;
+            background: var(--accent);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff;
+            padding: 50px 30px 40px;
+            text-align: center;
+        }
+        .header-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 4px 16px;
+            border-radius: 16px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle { font-size: 15px; opacity: 0.85; }
+        .header-meta { margin-top: 20px; font-size: 13px; opacity: 0.7; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
+
+        /* What's New Banner */
+        .whats-new {
+            background: linear-gradient(90deg, #fff8e1, #fff3c4);
+            border: 1px solid #f6d743;
+            border-radius: 10px;
+            padding: 18px 25px;
+            margin: -25px auto 30px;
+            max-width: 1040px;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .whats-new h3 {
+            color: var(--warning);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        .whats-new ul { list-style: none; padding-left: 0; }
+        .whats-new li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .whats-new li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 10px;
+        }
+
+        /* Section */
+        section { padding: 45px 0; }
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .section-num {
+            background: var(--primary);
+            color: #fff;
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 18px;
+            margin-right: 15px; flex-shrink: 0;
+        }
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 22px; font-weight: 700; color: var(--primary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+        }
+        .card h3 {
+            font-size: 17px; color: var(--primary);
+            margin-bottom: 15px; padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .card p, .card li { font-size: 14px; line-height: 1.9; }
+
+        /* Entity Map */
+        .entity-map {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        @media (max-width: 768px) { .entity-map { grid-template-columns: 1fr; } }
+        .entity-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .entity-header {
+            padding: 15px 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+        .entity-header.beijing { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+        .entity-header.macau-prod { background: linear-gradient(135deg, #006e4e, #00875a); }
+        .entity-header.macau-brand { background: linear-gradient(135deg, #1a365d, #2c5282); }
+        .entity-body {
+            padding: 20px;
+            background: #fff;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .entity-role {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .entity-role.supervisor { background: #fee; color: #c53030; }
+        .entity-role.producer { background: #f0fff4; color: #276749; }
+        .entity-role.brand { background: #ebf8ff; color: #2c5282; }
+
+        /* Info Table */
+        .info-table {
+            width: 100%; border-collapse: collapse;
+            margin: 15px 0; font-size: 14px;
+        }
+        .info-table th {
+            background: var(--primary); color: #fff;
+            padding: 12px 16px; text-align: left;
+            font-weight: 500; font-size: 13px;
+        }
+        .info-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .info-table tr:nth-child(even) td { background: #f9fafb; }
+        .info-table .label-col {
+            font-weight: 600; color: var(--primary);
+            white-space: nowrap; width: 180px;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 15px 0;
+            font-size: 13px; line-height: 1.8;
+        }
+        .alert-danger { background: #fff5f5; border-left: 4px solid var(--danger); color: #742a2a; }
+        .alert-warning { background: #fffbeb; border-left: 4px solid var(--warning); color: #744210; }
+        .alert-info { background: #ebf8ff; border-left: 4px solid var(--primary); color: #2a4365; }
+        .alert-success { background: #f0fff4; border-left: 4px solid var(--success); color: #22543d; }
+        .alert-box strong { font-weight: 700; }
+
+        /* Qualification Checklist */
+        .qual-check {
+            list-style: none;
+        }
+        .qual-check li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .qual-check li:last-child { border-bottom: none; }
+        .qual-check li::before {
+            position: absolute;
+            left: 0; top: 12px;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; color: #fff;
+        }
+        .qual-check li.ok::before { content: '✓'; background: var(--success); }
+        .qual-check li.warn::before { content: '!'; background: var(--warning); }
+        .qual-check li.fail::before { content: '✗'; background: var(--danger); }
+        .qual-check li .qual-status {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .qual-check li.ok .qual-status { background: #f0fff4; color: var(--success); }
+        .qual-check li.warn .qual-status { background: #fffbeb; color: var(--warning); }
+        .qual-check li.fail .qual-status { background: #fff5f5; color: var(--danger); }
+
+        /* Path Comparison */
+        .path-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .path-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .path-card-header {
+            padding: 15px 20px;
+            color: #fff; font-weight: 700; font-size: 14px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .path-card-header.green { background: var(--success); }
+        .path-card-header.yellow { background: var(--warning); }
+        .path-card-header.red { background: var(--danger); }
+        .path-card-header.blue { background: var(--primary); }
+        .path-difficulty {
+            font-size: 11px;
+            background: rgba(255,255,255,0.25);
+            padding: 2px 10px; border-radius: 10px;
+        }
+        .path-card-body {
+            padding: 20px; background: #fff;
+            font-size: 13px; line-height: 1.8;
+        }
+        .path-card-body ul { list-style: none; }
+        .path-card-body li {
+            padding: 5px 0 5px 20px; position: relative;
+        }
+        .path-card-body li::before {
+            content: '▸'; position: absolute; left: 0; color: var(--primary);
+        }
+        .path-card-body .highlight-red { color: var(--danger); font-weight: 600; }
+        .path-card-body .highlight-green { color: var(--success); font-weight: 600; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+        .timeline::before {
+            content: ''; position: absolute;
+            left: 10px; top: 0; bottom: 0;
+            width: 2px; background: var(--border);
+        }
+        .timeline-item { position: relative; padding-bottom: 25px; }
+        .timeline-item::before {
+            content: ''; position: absolute;
+            left: -24px; top: 5px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .timeline-item h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
+        .timeline-item p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+        /* Summary Banner */
+        .summary-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff; border-radius: 12px;
+            padding: 30px 35px; margin-top: 30px;
+        }
+        .summary-banner h3 {
+            font-size: 18px; margin-bottom: 15px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        .summary-banner p { font-size: 14px; opacity: 0.9; line-height: 1.9; }
+
+        footer {
+            text-align: center; padding: 30px 20px;
+            font-size: 12px; color: var(--text-light);
+            background: #fff; border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="version-badge">V2.0 · 基於三方主體資訊更新</div>
+
+<!-- Header -->
+<div class="header">
+    <div class="header-tag">REGULATORY ANALYSIS · 法規合規分析 V2.0</div>
+    <h1>BA+GO 生命動力液 · 雙市場准入法規分析報告</h1>
+    <div class="subtitle">基於三方主體資訊的精準路徑分析 · 澳門 × 中國大陸</div>
+    <div class="header-meta">報告日期：2026年6月17日 · 版本：V2.0（更新版）</div>
+</div>
+
+<div class="container">
+
+<!-- What's New -->
+<div class="whats-new">
+    <h3>🔄 V2.0 版本更新要點（基於新確認的三方主體資訊）</h3>
+    <ul>
+        <li>明確<strong>監製方</strong>：北京群子生命動力技術研究所（中國大陸主體）</li>
+        <li>明確<strong>生產商</strong>：澳門澳研康保健食品廠（澳門本地生產企業）</li>
+        <li>明確<strong>製造商/品牌方</strong>：澳門活力藥業有限公司（澳門本地藥企）</li>
+        <li>新增對<strong>主體資質匹配度</strong>的逐一核查（藥品GMP vs 保健食品生產資質）</li>
+        <li>引入 <strong>MAH制度</strong>分析北京研究所的角色可能性</li>
+        <li>結合 <strong>2026年5月15日施行</strong>的新版《藥品管理法實施條例》</li>
+    </ul>
+</div>
+
+<!-- Section 1: Entity Analysis -->
+<section>
+    <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">三方主體資訊與角色定位</div>
+    </div>
+
+    <div class="entity-map">
+        <div class="entity-card">
+            <div class="entity-header beijing">🇨🇳 監製方 · 北京</div>
+            <div class="entity-body">
+                <span class="entity-role supervisor">監製 SUPERVISION</span><br>
+                <strong>北京群子生命動力技術研究所</strong><br><br>
+                📍 所在地：中國北京市<br>
+                🎓 創辦人：金日光教授<br>
+                🔬 職能：配方研發、技術源頭、品質監督<br>
+                📋 性質：研發機構（研究所）<br><br>
+                <em style="color:var(--text-light); font-size:12px;">大陸主體，掌握核心技術與專利</em>
+            </div>
+        </div>
+
+        <div class="entity-card">
+            <div class="entity-header macau-prod">🇲🇴 生產商 · 澳門</div>
+            <div class="entity-body">
+                <span class="entity-role producer">生產 PRODUCTION</span><br>
+                <strong>澳門澳研康保健食品廠</strong><br><br>
+                📍 所在地：中國澳門<br>
+                🏭 職能：產品生產製造<br>
+                ⚠️ 名稱含「保健食品廠」<br>
+                📋 需核查：是否持有「中藥製造准照」<br><br>
+                <em style="color:var(--danger); font-size:12px;">⚠️ 資質核查關鍵點</em>
+            </div>
+        </div>
+
+        <div class="entity-card">
+            <div class="entity-header macau-brand">🇲🇴 製造商/品牌方 · 澳門</div>
+            <div class="entity-body">
+                <span class="entity-role brand">品牌 BRAND</span><br>
+                <strong>澳門活力藥業有限公司</strong><br><br>
+                📍 所在地：中國澳門<br>
+                💊 職能：品牌持有、市場運營、委託製造<br>
+                📋 性質：藥業公司（可能持藥牌）<br><br>
+                <em style="color:var(--primary); font-size:12px;">澳門本地企業，符合簡化註冊主體條件</em>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🔗 三方協作關係圖</h3>
+        <div style="text-align: center; padding: 20px; background: #f7fafc; border-radius: 10px; font-size: 14px; line-height: 2.2;">
+            <strong style="color: #b91c1c;">北京群子研究所</strong>（技術源頭/監製）<br>
+            ↓ 提供配方與專利技術<br>
+            <strong style="color: #2c5282;">澳門活力藥業</strong>（品牌持有/委託方）<br>
+            ↓ 委託生產<br>
+            <strong style="color: #00875a;">澳門澳研康保健食品廠</strong>（實際生產）<br>
+            ↓ 產出<br>
+            <strong style="color: var(--gold);">BA+GO 生命動力液</strong>（成品）
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: Qualification Check -->
+<section>
+    <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">主體資質合規核查</div>
+    </div>
+
+    <div class="card">
+        <h3>🔍 澳門市場註冊 — 主體資質逐項核查</h3>
+        <p style="margin-bottom: 15px; color: var(--text-light);">基於澳門《中醫藥事活動及中成藥註冊法》(2022) 及 ISAF 監管要求</p>
+        <ul class="qual-check">
+            <li class="warn">
+                <strong>「中藥製造准照」（PS-2134）持有情況</strong>
+                <span class="qual-status">需核查</span><br>
+                <span style="font-size:13px; color:var(--text-light);">澳門澳研康保健食品廠名稱含「保健食品廠」，需確認是否持有ISAF核發的「中藥製造准照」（PS-2134）及GMP證書。若僅持有保健食品生產資質，則<strong>無法作為藥品生產企業</strong>進行註冊。</span>
+            </li>
+            <li class="warn">
+                <strong>委託製造許可（PS-2134n）</strong>
+                <span class="qual-status">需辦理</span><br>
+                <span style="font-size:13px; color:var(--text-light);">若活力藥業為品牌持有方、澳研康為受託生產方，需依《中藥藥事活動及中成藥註冊法》第十一條，向ISAF申請<strong>中藥委託製造許可</strong>。費用：澳門元550元（含10%印花稅）。</span>
+            </li>
+            <li class="ok">
+                <strong>澳門本地企業持有</strong>
+                <span class="qual-status">符合</span><br>
+                <span style="font-size:13px; color:var(--text-light);">活力藥業有限公司為澳門本地登記企業，符合2025年第7號公告「港澳特區本地登記的生產企業持有」的要求（需確認其登記性質為「生產企業」）。</span>
+            </li>
+            <li class="warn">
+                <strong>「藥物產品出入口及批發商號」准照</strong>
+                <span class="qual-status">需確認</span><br>
+                <span style="font-size:13px; color:var(--text-light);">負責產品進出口和批發的實體需持有此准照。需確認活力藥業或澳研康是否已持有。</span>
+            </li>
+            <li class="fail">
+                <strong>「使用15年以上」條件</strong>
+                <span class="qual-status">待評估</span><br>
+                <span style="font-size:13px; color:var(--text-light);">專利號 ZL 02 1 30825.X（2002年申請）顯示技術已有20餘年歷史，但需證明<strong>產品在澳門本地使用15年以上</strong>，而非僅技術存在15年。這是大陸簡化註冊路徑的關鍵門檻。</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>🔍 中國大陸註冊 — 主體資質逐項核查</h3>
+        <p style="margin-bottom: 15px; color: var(--text-light);">基於《藥品管理法》(2019修訂)、2026年新版《藥品管理法實施條例》、MAH制度</p>
+        <ul class="qual-check">
+            <li class="ok">
+                <strong>北京研究所作為境內技術源頭</strong>
+                <span class="qual-status">優勢</span><br>
+                <span style="font-size:13px; color:var(--text-light);">北京群子生命動力技術研究所作為研發機構，在MAH制度下<strong>理論上可成為藥品上市許可持有人</strong>。但對於進口藥品/港澳簡化註冊，申請人須為澳門企業，研究所可作為技術提供方參與。</span>
+            </li>
+            <li class="warn">
+                <strong>境內代理人指定</strong>
+                <span class="qual-status">需辦理</span><br>
+                <span style="font-size:13px; color:var(--text-light);">進口藥品註冊需指定中國境內代理人。北京研究所天然適合擔任此角色，可簡化代理安排。</span>
+            </li>
+            <li class="warn">
+                <strong>港澳簡化註冊的申請人資格</strong>
+                <span class="qual-status">關鍵</span><br>
+                <span style="font-size:13px; color:var(--text-light);">2025年第7號公告要求申請人為「港澳特區本地登記的生產企業持有」。需確認：<strong>澳門活力藥業是否被認定為「生產企業」</strong>，還是僅為品牌運營公司。若活力藥業不具備生產企業資格，需由澳研康廠作為申請人（但需先解決藥品GMP資質問題）。</span>
+            </li>
+            <li class="warn">
+                <strong>委託生產的內地認可</strong>
+                <span class="qual-status">需確認</span><br>
+                <span style="font-size:13px; color:var(--text-light);">2025年第7號公告提及：經簡化註冊上市的品種涉及委託生產的，按《支持港澳藥品上市許可持有人在大灣區內地9市生產藥品實施方案》辦理。活力藥業委託澳研康生產的模式需符合此規定。</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Section 3: Macau Market Path -->
+<section>
+    <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">澳門市場准入路徑（精準版）</div>
+    </div>
+
+    <div class="card">
+        <h3>🇲🇴 澳門藥物註冊核心條件</h3>
+        <table class="info-table">
+            <thead>
+                <tr><th>核查項目</th><th>要求</th><th>現狀匹配</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="label-col">主管部門</td>
+                    <td>澳門藥物監督管理局（ISAF）</td>
+                    <td>✓ 明確</td>
+                </tr>
+                <tr>
+                    <td class="label-col">法規依據</td>
+                    <td>《中醫藥事活動及中成藥註冊法》(2022)<br>第11/2021號法律</td>
+                    <td>✓ 適用</td>
+                </tr>
+                <tr>
+                    <td class="label-col">產品分類</td>
+                    <td>中成藥（因含治療性功效宣稱）</td>
+                    <td>✓ 需走藥品路徑</td>
+                </tr>
+                <tr>
+                    <td class="label-col">申請人</td>
+                    <td>澳門本地登記的生產企業或持牌藥企</td>
+                    <td>⚠️ 活力藥業/澳研康需確認資格</td>
+                </tr>
+                <tr>
+                    <td class="label-col">生產資質</td>
+                    <td>「中藥製造准照」（PS-2134）+ GMP證書</td>
+                    <td>❌ 澳研康「保健食品廠」需核查</td>
+                </tr>
+                <tr>
+                    <td class="label-col">委託關係</td>
+                    <td>需辦理「中藥委託製造許可」（PS-2134n）</td>
+                    <td>⚠️ 需新辦</td>
+                </tr>
+                <tr>
+                    <td class="label-col">技術資料</td>
+                    <td>藥學+藥理毒理+臨床資料（可引用FDA註冊資料）</td>
+                    <td>✓ FDA註冊可加速</td>
+                </tr>
+                <tr>
+                    <td class="label-col">加速路徑</td>
+                    <td>澳門認可NMPA/FDA/EMA已批准藥品</td>
+                    <td>✓ FDA註冊可利用</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-danger">
+            <strong>🚨 最關鍵的待核查事項：</strong>「澳門澳研康保健食品廠」的名稱暗示其可能僅持有保健食品生產資質，而非藥品GMP資質。若如此，產品無法以藥品類別在澳門註冊。必須立即向ISAF查詢該廠是否持有<strong>PS-2134中藥製造准照</strong>。
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ 兩種可能的情況：</strong><br>
+            <strong>情況一：</strong>若澳研康已持有中藥製造准照 → 可直接申請藥品註冊，流程順暢<br>
+            <strong>情況二：</strong>若澳研康僅有保健食品生產資質 → 需要么：①該廠升級取得藥品GMP資質；②更換至有資質的藥品生產企業；③產品降級為保健食品（但需刪除治療性功效宣稱）
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📝 澳門註冊行動步驟</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>第一步：主體資質核查與補齊（1-3個月）</h4>
+                <p>① 向ISAF查詢澳研康廠是否持有PS-2134中藥製造准照<br>② 確認活力藥業的企業登記性質（生產企業 vs 貿易公司）<br>③ 若需補齊，辦理中藥委託製造許可（PS-2134n）</p>
+            </div>
+            <div class="timeline-item">
+                <h4>第二步：技術資料整理（2-4個月）</h4>
+                <p>① 整理FDA註冊全套資料作為核心支持文件<br>② 準備發明專利ZL 02 1 30825.X的技術說明<br>③ 補充澳門本地人用經驗資料（若有）</p>
+            </div>
+            <div class="timeline-item">
+                <h4>第三步：向ISAF遞交註冊申請</h4>
+                <p>提交中成藥註冊申請表及全部技術資料，利用FDA已註冊的加速路徑</p>
+            </div>
+            <div class="timeline-item">
+                <h4>第四步：技術審評與GMP核查（6-12個月）</h4>
+                <p>ISAF進行藥學、藥理毒理、臨床資料審評；對生產場地進行GMP符合性檢查</p>
+            </div>
+            <div class="timeline-item">
+                <h4>第五步：獲批上市</h4>
+                <p>取得澳門藥物註冊證書，產品可在澳門合法銷售</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 15px; font-weight: 600; color: var(--primary);">
+            預估總週期：12-18個月（若資質齊備）｜18-30個月（若需補辦資質）
+        </p>
+    </div>
+</section>
+
+<!-- Section 4: Mainland China Path -->
+<section>
+    <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">中國大陸市場准入路徑（精準版）</div>
+    </div>
+
+    <div class="path-comparison">
+        <div class="path-card">
+            <div class="path-card-header green">
+                <span>路徑A：港澳中成藥簡化註冊</span>
+                <span class="path-difficulty">最優 · 有條件</span>
+            </div>
+            <div class="path-card-body">
+                <p style="margin-bottom:10px;"><strong>法規：</strong>2025年第7號公告</p>
+                <p style="margin-bottom:10px;"><strong>四項必須條件：</strong></p>
+                <ul>
+                    <li>① 澳門本地登記生產企業持有 <span class="highlight-green">✓ 活力藥業</span></li>
+                    <li>② 經ISAF批准上市 <span class="highlight-red">需先完成澳門註冊</span></li>
+                    <li>③ 在澳門使用15年以上 <span class="highlight-red">⚠️ 關鍵門檻</span></li>
+                    <li>④ GMP + 傳統口服中成藥 <span class="highlight-red">需核查</span></li>
+                </ul>
+                <div class="alert alert-info" style="margin-top:12px; padding: 12px;">
+                    <strong>15年使用年限分析：</strong><br>
+                    專利2002年申請（24年前），但需證明的是<strong>產品在澳門本地銷售使用15年</strong>。若BA+GO為近年才在澳門上市的新產品，此路徑<strong>暫不適用</strong>，需等到累計使用滿15年後再申請。
+                </div>
+                <p style="margin-top:10px;"><strong>審評時限：</strong>80個工作日</p>
+                <p><strong>優勢：</strong>可復用港澳註冊資料+人用經驗資料</p>
+            </div>
+        </div>
+
+        <div class="path-card">
+            <div class="path-card-header blue">
+                <span>路徑B：進口藥品常規註冊</span>
+                <span class="path-difficulty">穩妥 · 週期長</span>
+            </div>
+            <div class="path-card-body">
+                <p style="margin-bottom:10px;"><strong>法規：</strong>《藥品註冊管理辦法》+ 2026新版《藥品管理法實施條例》</p>
+                <p style="margin-bottom:10px;"><strong>核心條件：</strong></p>
+                <ul>
+                    <li>已在生產國（澳門）獲上市許可</li>
+                    <li>完整藥學+藥理毒理+臨床試驗資料</li>
+                    <li>通過CDE審評</li>
+                    <li>境外生產現場核查</li>
+                    <li>指定境內代理人</li>
+                </ul>
+                <p style="margin-top:10px;"><strong>北京研究所的優勢角色：</strong></p>
+                <ul>
+                    <li class="highlight-green">可擔任境內代理人</li>
+                    <li class="highlight-green">作為技術資料提供方</li>
+                    <li class="highlight-green">配合臨床試驗中國橋接試驗</li>
+                </ul>
+                <p style="margin-top:10px;"><strong>審評時限：</strong>200個工作日+（不含臨床）</p>
+                <p><strong>預估總週期：</strong>3-5年（含臨床試驗）</p>
+            </div>
+        </div>
+
+        <div class="path-card">
+            <div class="path-card-header yellow">
+                <span>路徑C：MAH制度下委託生產</span>
+                <span class="path-difficulty">創新 · 需政策突破</span>
+            </div>
+            <div class="path-card-body">
+                <p style="margin-bottom:10px;"><strong>法規：</strong>《藥品管理法》MAH制度 + 《支持港澳藥品上市許可持有人在大灣區內地9市生產藥品實施方案》</p>
+                <p style="margin-bottom:10px;"><strong>思路：</strong></p>
+                <ul>
+                    <li>澳門活力藥業作為MAH持有藥品批文</li>
+                    <li>在大灣區內地9市委託生產</li>
+                    <li>需先完成路徑A或B取得藥品註冊</li>
+                </ul>
+                <div class="alert alert-warning" style="margin-top:12px; padding: 12px;">
+                    <strong>注意：</strong>此路徑是路徑A/B的<strong>後續延伸</strong>，不是獨立路徑。即在取得藥品註冊後，可利用大灣區政策在內地委託生產，降低物流成本。
+                </div>
+            </div>
+        </div>
+
+        <div class="path-card">
+            <div class="path-card-header red">
+                <span>路徑D：保健食品 / 跨境電商</span>
+                <span class="path-difficulty">不可行 / 僅過渡</span>
+            </div>
+            <div class="path-card-body">
+                <p style="margin-bottom:10px;"><strong>保健食品路徑：</strong></p>
+                <ul>
+                    <li class="highlight-red">「基因調控」不在24種功能目錄</li>
+                    <li class="highlight-red">「細胞修復」為治療性宣稱</li>
+                    <li class="highlight-red">《廣告法》第18條禁止</li>
+                </ul>
+                <p style="margin-top:10px;"><strong>跨境電商路徑：</strong></p>
+                <ul>
+                    <li>僅作過渡測試市場</li>
+                    <li class="highlight-red">不可宣稱藥品功效</li>
+                    <li>受正面清單限制</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 5: Key Risks -->
+<section>
+    <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">基於主體資訊的風險提示</div>
+    </div>
+
+    <div class="card">
+        <h3>⚠️ 新增風險點（V2.0）</h3>
+
+        <div class="alert alert-danger">
+            <strong>風險一：生產商資質不匹配（最高風險）</strong><br>
+            「澳門澳研康保健食品廠」名稱中的「保健食品」字樣，強烈暗示其可能僅持有保健食品生產資質。若該廠<strong>未持有PS-2134中藥製造准照及GMP證書</strong>，則產品無法以藥品類別在澳門註冊，後續大陸註冊也無從談起。<br>
+            <strong>應對：</strong>立即向ISAF查詢該廠資質狀況；若資質不足，評估升級或更換生產企業的可行性。
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>風險二：「製造商」與「生產商」的法律界定</strong><br>
+            產品標示中「製造商：澳門活力藥業」「生產商：澳門澳研康」的關係，在藥品監管語境下需明確：誰是<strong>藥品上市許可持有人（MAH）</strong>？誰是<strong>受託生產企業</strong>？這直接影響註冊申請人的認定。<br>
+            <strong>應對：</strong>建議以活力藥業為MAH/申請人，澳研康為受託生產方，辦理PS-2134n委託製造許可。
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>風險三：北京研究所的角色邊界</strong><br>
+            北京群子研究所作為中國大陸主體，在港澳簡化註冊中<strong>不能作為申請人</strong>（申請人須為澳門企業）。但在進口藥品常規註冊中，可作為境內代理人或技術提供方。<br>
+            <strong>應對：</strong>明確三方在註冊中的法律角色分工，簽訂技術授權協議。
+        </div>
+
+        <div class="alert alert-info">
+            <strong>風險四：15年使用年限的舉證難度</strong><br>
+            專利2002年申請不代表產品2002年在澳門上市。需提供<strong>澳門本地銷售記錄、處方記錄、進口記錄</strong>等證據鏈，證明連續使用15年。若產品為近年才在澳門推出，此路徑短期內不可行。<br>
+            <strong>應對：</strong>收集整理澳門本地銷售使用歷史證據；若不足15年，先行走進口藥品常規註冊。
+        </div>
+
+        <div class="alert alert-danger">
+            <strong>風險五：功效宣稱違規（持續風險）</strong><br>
+            在取得藥品註冊前，以任何形式在中國大陸宣稱「基因調控」「細胞修復」功效，均屬違法。2025年市場監管總局正在嚴查此類行為。<br>
+            <strong>應對：</strong>在大陸市場的所有宣傳物料（含社交媒體）必須嚴格審查，註冊完成前不得宣稱藥品功效。
+        </div>
+    </div>
+</section>
+
+<!-- Section 6: Action Plan -->
+<section>
+    <div class="section-header">
+        <div class="section-num">6</div>
+        <div class="section-title">優化行動計劃</div>
+    </div>
+
+    <div class="card">
+        <h3>🗓️ 分階段實施建議（基於三方主體）</h3>
+        <table class="info-table">
+            <thead>
+                <tr>
+                    <th style="width:15%;">階段</th>
+                    <th style="width:20%;">目標</th>
+                    <th>關鍵行動（含主體分工）</th>
+                    <th style="width:15%;">預估週期</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>第零階段</strong><br>資質核查</td>
+                    <td>摸清主體資質底數</td>
+                    <td>
+                        ① 向ISAF查詢澳研康廠是否持有PS-2134中藥製造准照【<strong>澳研康</strong>】<br>
+                        ② 確認活力藥業企業登記性質【<strong>活力藥業</strong>】<br>
+                        ③ 整理北京研究所專利與技術資料清單【<strong>北京研究所</strong>】<br>
+                        ④ 收集澳門本地15年使用歷史證據【<strong>三方協同</strong>】
+                    </td>
+                    <td>1-2個月</td>
+                </tr>
+                <tr>
+                    <td><strong>第一階段</strong><br>資質補齊</td>
+                    <td>達到藥品註冊的主體資質要求</td>
+                    <td>
+                        ① 若澳研康無藥品GMP → 升級或更換生產企業【<strong>澳研康/活力藥業</strong>】<br>
+                        ② 辦理中藥委託製造許可PS-2134n【<strong>活力藥業→澳研康</strong>】<br>
+                        ③ 確認「出入口及批發商號」准照【<strong>活力藥業</strong>】
+                    </td>
+                    <td>3-6個月</td>
+                </tr>
+                <tr>
+                    <td><strong>第二階段</strong><br>澳門註冊</td>
+                    <td>取得澳門藥品上市許可</td>
+                    <td>
+                        ① 以活力藥業為申請人向ISAF遞交註冊【<strong>活力藥業</strong>】<br>
+                        ② 引用FDA註冊資料+北京研究所技術資料【<strong>北京研究所</strong>提供】<br>
+                        ③ 配合ISAF技術審評與GMP核查【<strong>澳研康</strong>】
+                    </td>
+                    <td>12-18個月</td>
+                </tr>
+                <tr>
+                    <td><strong>第三階段</strong><br>大陸准入</td>
+                    <td>取得NMPA藥品註冊證書</td>
+                    <td>
+                        ① 評估15年使用條件 → 滿足則走路徑A簡化註冊【<strong>活力藥業為申請人</strong>】<br>
+                        ② 不滿足則走路徑B常規進口註冊【<strong>北京研究所為境內代理人</strong>】<br>
+                        ③ 委託專業藥品註冊代理機構
+                    </td>
+                    <td>路徑A：6個月<br>路徑B：3-5年</td>
+                </tr>
+                <tr>
+                    <td><strong>過渡方案</strong><br>跨境電商</td>
+                    <td>測試大陸市場</td>
+                    <td>
+                        ① 確認正面清單匹配性【<strong>活力藥業</strong>】<br>
+                        ② 對接跨境電商平台<br>
+                        ③ <strong>嚴控宣傳內容</strong>，不得宣稱藥品功效
+                    </td>
+                    <td>3-6個月</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Summary -->
+<div class="summary-banner">
+    <h3>📌 V2.0 核心結論</h3>
+    <p>
+        <strong>最關鍵的待核查事項：</strong>立即確認「澳門澳研康保健食品廠」是否持有藥品級別的「中藥製造准照」（PS-2134）。這是決定整個註冊路徑可行性的<strong>前置條件</strong>。若僅有保健食品資質，全部藥品註冊路徑都將受阻。
+    </p>
+    <p style="margin-top:12px;">
+        <strong>三方主體的最優角色配置：</strong>
+        澳門活力藥業（品牌方/MAH/註冊申請人）→ 澳門澳研康（受託生產方，需藥品GMP資質）→ 北京群子研究所（技術源頭/境內代理人/資料提供方）。
+    </p>
+    <p style="margin-top:12px;">
+        <strong>推薦優先路徑：</strong>先完成澳門藥品註冊（利用FDA資料加速），再評估15年使用條件決定大陸走簡化路徑還是常規路徑。北京研究所在大陸註冊階段發揮境內代理人優勢。
+    </p>
+    <p style="margin-top:12px; opacity:0.8; font-size:13px;">
+        建議立即聘請澳門本地藥品註冊顧問+中國大陸註冊代理機構，啟動第零階段資質核查工作。
+    </p>
+</div>
+
+</div>
+
+<footer>
+    <p>本報告 V2.0 基於產品三方主體資訊更新 · 基於公開法規資訊整理 · 僅供決策參考 · 不構成法律意見</p>
+    <p style="margin-top:5px;">BA+GO 雙市場准入法規分析報告 V2.0 · 2026年6月17日 · 引用法規截至2026年6月</p>
+</footer>
+
+</body>
+</html>
