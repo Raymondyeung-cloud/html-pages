@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中药宠物产品电商运营计划书</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --border: #e0e0e0;
+    --accent: #1D9E75;
+    --accent-light: #EAF3DE;
+    --accent2: #534AB7;
+    --accent2-light: #EEEDFE;
+    --warn: #BA7517;
+    --warn-light: #FAEEDA;
+    --danger: #D85A30;
+    --danger-light: #FAECE7;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%);
+    color: #fff;
+    padding: 48px 32px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .header h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+  .header .meta {
+    opacity: 0.9;
+    font-size: 13px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .toc h2 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .toc ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 24px;
+  }
+  .toc li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .toc li a:hover { color: var(--accent); }
+
+  /* Section */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent-light);
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+  .section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: var(--text-secondary);
+  }
+  .section p {
+    margin: 0 0 12px;
+    color: var(--text-secondary);
+  }
+
+  /* Metric cards */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .metric-card {
+    background: #f7f7f7;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-card .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .metric-card .value {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .metric-card.up .value { color: var(--accent); }
+  .metric-card.purple .value { color: var(--accent2); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0 20px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: #f7f7f7;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 12px;
+    text-transform: none;
+  }
+  tr:hover td { background: #fafafa; }
+  td { color: var(--text-secondary); }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-green { background: var(--accent-light); color: #3B6D11; }
+  .tag-yellow { background: var(--warn-light); color: #854F0B; }
+  .tag-red { background: var(--danger-light); color: #993C1D; }
+  .tag-blue { background: #E6F1FB; color: #185FA5; }
+  .tag-purple { background: var(--accent2-light); color: #534AB7; }
+
+  /* Platform cards */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .platform-card {
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .platform-card .name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .platform-card .role {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .platform-card .note {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Alert */
+  .alert {
+    background: var(--danger-light);
+    border-left: 4px solid var(--danger);
+    padding: 14px 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #712B13;
+  }
+  .alert strong { color: #993C1D; }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .checklist li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .checklist li::before {
+    content: "\2610";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+  }
+
+  /* Chart container */
+  .chart-wrap {
+    position: relative;
+    height: 280px;
+    margin: 20px 0;
+  }
+  .chart-wrap.large {
+    height: 340px;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px 16px;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  .timeline .phase {
+    font-weight: 600;
+    color: var(--accent);
+    text-align: right;
+  }
+  .timeline .desc {
+    color: var(--text-secondary);
+    border-left: 2px solid var(--border);
+    padding-left: 14px;
+  }
+
+  /* ROI waterfall */
+  .waterfall {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .waterfall .bar {
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 80px;
+  }
+  .waterfall .arrow {
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .toc ul { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 22px; }
+    .section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>中药宠物产品电商运营计划书</h1>
+    <div class="meta">
+      <span>赛道：中药宠物食品 / 保健品</span>
+      <span>目标平台：天猫 / 淘宝 / 京东 / 拼多多 / 抖音</span>
+      <span>编制日期：2026年6月7日</span>
+    </div>
+    <span class="badge">WorkBuddy 中国电商运营专家</span>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>目录</h2>
+    <ul>
+      <li><a href="#s1">一、市场机会分析</a></li>
+      <li><a href="#s2">二、选品策略建议</a></li>
+      <li><a href="#s3">三、合规与资质准备</a></li>
+      <li><a href="#s4">四、多平台运营策略</a></li>
+      <li><a href="#s5">五、营销推广计划</a></li>
+      <li><a href="#s6">六、供应链与财务规划</a></li>
+      <li><a href="#s7">七、关键里程碑</a></li>
+      <li><a href="#s8">八、风险预警与应对</a></li>
+      <li><a href="#s9">九、核心成功要素</a></li>
+    </ul>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section" id="s1">
+    <h2>一、市场机会分析</h2>
+
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="label">宠物经济总规模</div>
+        <div class="value">3000亿+</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">宠物食品市场</div>
+        <div class="value">1668亿</div>
+      </div>
+      <div class="metric-card up">
+        <div class="label">保健品增速</div>
+        <div class="value">+15.73%</div>
+      </div>
+      <div class="metric-card purple">
+        <div class="label">00后养宠占比</div>
+        <div class="value">25.6%</div>
+      </div>
+    </div>
+
+    <h3>1.1 宏观市场数据</h3>
+    <table>
+      <tr><th>指标</th><th>数据</th><th>来源 / 年份</th></tr>
+      <tr><td>中国宠物经济总规模</td><td>突破3000亿元</td><td>2024年</td></tr>
+      <tr><td>宠物食品市场规模</td><td>1668亿元（+7.54%）</td><td>2024年</td></tr>
+      <tr><td>宠物保健品市场规模</td><td>126.50亿元（+15.73%）</td><td>2024年</td></tr>
+      <tr><td>宠物药品市场规模预测</td><td>预计2029年超350亿元</td><td>行业预测</td></tr>
+      <tr><td>中药宠物食品增速</td><td>显著高于行业平均</td><td>新兴赛道</td></tr>
+    </table>
+    <p><strong>关键洞察：</strong>宠物保健品增速（15.73%）是宠物食品整体增速（7.54%）的<strong>2倍以上</strong>，说明"养宠精细化"趋势正在加速。中药宠物产品作为保健品中的新兴细分，正处于<strong>从0到1的黄金窗口期</strong>。</p>
+
+    <h3>1.2 消费者画像</h3>
+    <table>
+      <tr><th>维度</th><th>特征</th><th>运营启示</th></tr>
+      <tr><td>年龄结构</td><td>90后占41.2%，00后占25.6%且快速增长</td><td>内容营销和社交传播至关重要</td></tr>
+      <tr><td>消费心理</td><td>"毛孩子养生"、拟人化养宠</td><td>产品定位要强调"科学养护"而非"治病"</td></tr>
+      <tr><td>信息渠道</td><td>小红书种草、抖音短视频、知乎科普</td><td>必须布局内容种草+直播转化</td></tr>
+      <tr><td>价格敏感度</td><td>一线城市低，下沉市场高</td><td>多平台差异化定价和SKU配置</td></tr>
+    </table>
+
+    <h3>1.3 赛道竞争格局</h3>
+    <p><strong>现状判断：蓝海市场，尚未形成绝对头部</strong></p>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>传统宠物保健品品牌（麦德氏、卫仕、红狗）以西药/进口成分为主</li>
+      <li>中药宠物产品目前以<strong>功能性处方粮</strong>和<strong>肠胃调理类</strong>为主，占约25%</li>
+      <li>主要中药成分：黄芪、茯苓、山药、党参、厚朴、车前子、蔓越莓等</li>
+      <li><strong>机会点：</strong>中药宠物产品尚未出现国民级品牌，品牌心智空白</li>
+    </ul>
+
+    <div class="chart-wrap large">
+      <canvas id="marketChart" role="img" aria-label="宠物细分市场增速对比"></canvas>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section" id="s2">
+    <h2>二、选品策略建议</h2>
+
+    <h3>2.1 选品矩阵（引流款 + 利润款 + 形象款）</h3>
+    <h4>第一梯队：立即切入（低风险、高需求验证）</h4>
+    <table>
+      <tr><th>品类</th><th>核心成分</th><th>目标场景</th><th>预估客单价</th><th>优先级</th></tr>
+      <tr><td><strong>肠胃调理冻干/零食</strong></td><td>黄芪、山药、茯苓、党参</td><td>软便、消化不良、肠道菌群平衡</td><td>¥39-79</td><td><span class="tag tag-green">立即切入</span></td></tr>
+      <tr><td><strong>泌尿道养护零食</strong></td><td>车前子、蔓越莓</td><td>猫咪泌尿道保健、预防结石</td><td>¥49-89</td><td><span class="tag tag-green">立即切入</span></td></tr>
+      <tr><td><strong>免疫力提升营养膏</strong></td><td>黄芪多糖、灵芝孢子粉</td><td>术后恢复、老年宠物、换季体弱</td><td>¥59-129</td><td><span class="tag tag-yellow">3个月内</span></td></tr>
+    </table>
+    <p><strong>推荐理由：</strong>肠胃调理是中药宠物食品中<strong>占比最高（25%）</strong>的成熟品类，市场教育成本低；泌尿道问题是猫主人最大痛点之一，复购率高；这三个品类面向几乎所有猫犬，受众面最广。</p>
+
+    <h4>第二梯队：3-6个月内上线（差异化竞争）</h4>
+    <table>
+      <tr><th>品类</th><th>核心成分</th><th>目标场景</th><th>预估客单价</th><th>优先级</th></tr>
+      <tr><td>美毛护肤软磷脂</td><td>当归、何首乌、亚麻籽油</td><td>掉毛、皮屑、毛发干枯</td><td>¥49-99</td><td><span class="tag tag-yellow">3个月内</span></td></tr>
+      <tr><td>关节养护咀嚼片</td><td>骨碎补、杜仲、软骨素</td><td>老年犬、大型犬关节保健</td><td>¥69-149</td><td><span class="tag tag-yellow">3个月内</span></td></tr>
+      <tr><td>情绪舒缓喷雾/零食</td><td>酸枣仁、佛手、缬草</td><td>分离焦虑、应激反应</td><td>¥59-109</td><td><span class="tag tag-red">6个月内</span></td></tr>
+    </table>
+
+    <h4>第三梯队：6-12个月探索（高毛利、品牌调性）</h4>
+    <table>
+      <tr><th>品类</th><th>核心成分</th><th>目标场景</th><th>预估客单价</th><th>优先级</th></tr>
+      <tr><td>中药药浴包/洗护</td><td>苦参、黄柏、艾叶</td><td>皮肤病、日常养护</td><td>¥39-79</td><td><span class="tag tag-red">6个月内</span></td></tr>
+      <tr><td>中老年宠物滋补膏方</td><td>人参（少量）、枸杞、黄精</td><td>7岁以上宠物抗衰保健</td><td>¥99-199</td><td><span class="tag tag-red">6个月内</span></td></tr>
+      <tr><td>节气养生礼盒</td><td>应季中药组合</td><td>端午、中秋、春节礼赠</td><td>¥129-299</td><td><span class="tag tag-red">12个月内</span></td></tr>
+    </table>
+
+    <h3>2.2 产品形态建议</h3>
+    <table>
+      <tr><th>形态</th><th>优势</th><th>适合品类</th><th>平台适配</th></tr>
+      <tr><td><strong>冻干零食</strong></td><td>适口性好、易喂、单价低</td><td>肠胃调理、泌尿道、美毛</td><td>全平台</td></tr>
+      <tr><td><strong>营养膏/化毛膏</strong></td><td>喂食方便、吸收率高</td><td>免疫力、关节、滋补</td><td>天猫/京东/抖音</td></tr>
+      <tr><td><strong>咀嚼片/胶囊</strong></td><td>剂量精准、专业感强</td><td>关节、免疫力</td><td>天猫/京东</td></tr>
+      <tr><td><strong>功能性主粮</strong></td><td>客单价高、粘性强</td><td>肠胃调理（处方粮方向）</td><td>天猫/京东</td></tr>
+      <tr><td><strong>礼盒装</strong></td><td>溢价空间大、适合送礼</td><td>滋补膏方、节气组合</td><td>天猫/抖音</td></tr>
+    </table>
+    <p><strong>初期建议：</strong>以<strong>冻干零食+营养膏</strong>切入，这两个形态用户接受度最高、试错成本最低。</p>
+
+    <h3>2.3 包装设计建议</h3>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li><strong>视觉风格：</strong>国潮风+宠物可爱风结合，避免"药味"过重</li>
+      <li><strong>核心元素：</strong>中药材手绘插画 + 萌宠IP形象</li>
+      <li><strong>色彩策略：</strong>不同功效用不同主色（肠胃=绿色、泌尿=蓝色、美毛=金色）</li>
+      <li><strong>文案重点：</strong>突出"药食同源""古法新制""0化学添加"，弱化"中药"药感</li>
+    </ul>
+
+    <div class="chart-wrap">
+      <canvas id="productRadar" role="img" aria-label="选品多维度评估雷达图"></canvas>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section" id="s3">
+    <h2>三、合规与资质准备</h2>
+
+    <div class="alert">
+      <strong>重要提醒：</strong>2025年农业农村部开展"规范兽药使用专项整治"，监管全面升级，合规是生死线！
+    </div>
+
+    <h3>3.1 关键法规红线</h3>
+    <table>
+      <tr><th>产品类别</th><th>所需资质</th><th>说明</th></tr>
+      <tr><td>宠物药品（治疗用途）</td><td>兽药经营许可证</td><td>最严格，不建议初期切入</td></tr>
+      <tr><td>宠物饲料/零食</td><td>饲料生产许可证 + 产品批准文号</td><td>适用于有"治疗宣称"的产品</td></tr>
+      <tr><td>宠物保健品（营养补充）</td><td>按食品/保健品备案</td><td>宣称"调理""养护"可规避兽药监管</td></tr>
+      <tr><td>进口产品</td><td>进口饲料登记证</td><td>如涉及进口原料需额外申请</td></tr>
+    </table>
+
+    <h3>3.2 合规策略建议</h3>
+    <p><strong>核心原则：走"宠物营养补充品"路线，避免"兽药"红线</strong></p>
+    <ol style="color:#555; font-size:13px; padding-left:20px;">
+      <li><strong>产品定位：</strong>统一宣称"宠物营养补充品""日常养护"，严禁使用"治疗""治愈""药效"等医疗用语</li>
+      <li><strong>宣传口径：</strong>
+        <br><span style="color:#1D9E75;">可用：</span>"肠胃调理""日常养护""体质改善""免疫力支持"
+        <br><span style="color:#D85A30;">禁用：</span>"治疗腹泻""治愈皮肤病""药效显著"
+      </li>
+      <li><strong>成分备案：</strong>使用《饲料原料目录》和《饲料添加剂品种目录》中已批准的115种可饲用中药植物</li>
+      <li><strong>标签规范：</strong>必须标注"本产品不得替代兽药治疗"免责声明</li>
+    </ol>
+
+    <h3>3.3 初期最低资质清单</h3>
+    <ul class="checklist">
+      <li>营业执照（经营范围含宠物食品/饲料销售）</li>
+      <li>商标注册证（建议注册35类+31类）</li>
+      <li>产品质检报告（第三方检测机构）</li>
+      <li>如自有生产：饲料生产许可证</li>
+      <li>如委托生产：委托加工协议 + 生产商资质</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section" id="s4">
+    <h2>四、多平台运营策略</h2>
+
+    <h3>4.1 平台定位与差异化</h3>
+    <table>
+      <tr><th>平台</th><th>定位</th><th>目标客群</th><th>核心策略</th><th>预估ROI</th></tr>
+      <tr><td><strong>天猫</strong></td><td>品牌旗舰店</td><td>一二线城市、25-35岁女性</td><td>品牌建设+高客单转化</td><td>1:3 ~ 1:5</td></tr>
+      <tr><td><strong>淘宝</strong></td><td>销量承接+长尾流量</td><td>价格敏感型、搜索型用户</td><td>爆款打造+搜索优化</td><td>1:2.5 ~ 1:4</td></tr>
+      <tr><td><strong>京东</strong></td><td>品质信任型用户</td><td>男性用户偏多、注重物流</td><td>标品布局+京东物流</td><td>1:2 ~ 1:3.5</td></tr>
+      <tr><td><strong>拼多多</strong></td><td>下沉市场+价格带覆盖</td><td>三四线城市、价格敏感</td><td>低价引流款+团购裂变</td><td>1:1.5 ~ 1:2.5</td></tr>
+      <tr><td><strong>抖音</strong></td><td>内容种草+直播转化</td><td>年轻用户、冲动消费</td><td>短视频+自播+达播</td><td>1:2 ~ 1:4</td></tr>
+    </table>
+
+    <div class="platform-grid">
+      <div class="platform-card" style="background:#EEEDFE; border-color:#CECBF6;">
+        <div class="name" style="color:#534AB7;">天猫</div>
+        <div class="role">品牌主阵地</div>
+        <div class="note">高客单 / 品牌心智</div>
+      </div>
+      <div class="platform-card" style="background:#E6F1FB; border-color:#B5D4F4;">
+        <div class="name" style="color:#185FA5;">淘宝</div>
+        <div class="role">流量放大器</div>
+        <div class="note">搜索优化 / 长尾承接</div>
+      </div>
+      <div class="platform-card" style="background:#E1F5EE; border-color:#9FE1CB;">
+        <div class="name" style="color:#0F6E56;">抖音</div>
+        <div class="role">增长引擎</div>
+        <div class="note">直播+内容 / 爆发增长</div>
+      </div>
+      <div class="platform-card" style="background:#FAECE7; border-color:#F5C4B3;">
+        <div class="name" style="color:#993C1D;">京东</div>
+        <div class="role">品质信任</div>
+        <div class="note">物流+标品 / 专业背书</div>
+      </div>
+      <div class="platform-card" style="background:#FBEAF0; border-color:#F4C0D1;">
+        <div class="name" style="color:#993556;">拼多多</div>
+        <div class="role">下沉放量</div>
+        <div class="note">极致性价比 / 冲量</div>
+      </div>
+    </div>
+
+    <h3>4.2 各平台执行要点</h3>
+
+    <h4>天猫（品牌主阵地）</h4>
+    <p><strong>店铺类型：</strong>天猫专营店或旗舰店（如有商标）</p>
+    <p><strong>Listing策略：</strong></p>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li><strong>标题公式：</strong>[品牌名]宠物肠胃调理冻干 黄芪山药益生菌 猫咪狗狗软便养护零食</li>
+      <li><strong>主图策略：</strong>第1张白底产品图 → 第2张核心卖点大字报 → 第3张成分解析图 → 第4张喂食场景图 → 第5张销量/认证背书</li>
+      <li><strong>详情页结构：</strong>痛点引入（3秒钩子）→ 中药成分科普 → 产品展示 → 喂食指南 → 用户好评 → 品牌故事</li>
+    </ul>
+    <p><strong>价格策略：</strong></p>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>肠胃调理冻干（50g）：定价¥59，活动价¥39（买2送1）</li>
+      <li>营养膏（120g）：定价¥89，活动价¥69</li>
+      <li>组合套餐：肠胃+泌尿两件套¥99（比单买省¥49）</li>
+    </ul>
+    <p><strong>广告预算分配：</strong></p>
+    <div class="chart-wrap" style="height:220px;">
+      <canvas id="adBudgetChart" role="img" aria-label="天猫广告预算分配"></canvas>
+    </div>
+
+    <h4>淘宝（流量放大器）</h4>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>推出"试用装"规格（15g，¥9.9包邮），专门用于引流</li>
+      <li>大包装规格（200g，¥99）仅在淘宝C店销售，与天猫形成价格区隔</li>
+      <li>淘宝适合测试新品：上新周期比天猫快，试错成本低</li>
+    </ul>
+
+    <h4>京东（品质背书）</h4>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>优先申请京东POP店铺，争取"京东物流"标</li>
+      <li>详情页强调成分检测报告、生产资质、原料溯源</li>
+      <li>京东用户更看重"专业感"，详情页多放成分数据和实验验证</li>
+    </ul>
+
+    <h4>拼多多（下沉放量）</h4>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>专供拼多多渠道：推出"基础版"包装（简装、小规格）</li>
+      <li>肠胃调理冻干（30g）：定价¥19.9，百亿补贴后¥14.9</li>
+      <li>以量换排名，获取平台免费流量扶持</li>
+    </ul>
+
+    <h4>抖音（增长引擎）</h4>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li><strong>内容矩阵：</strong>官方账号日更宠物知识科普 + 产品使用场景；达人合作种草视频；每日自播2-4小时</li>
+      <li><strong>直播话术重点：</strong>强调"药食同源"概念，把宠物养生和人的养生类比；现场展示真实中药材原料；设置直播间专属福利</li>
+    </ul>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section" id="s5">
+    <h2>五、营销推广计划</h2>
+
+    <h3>5.1 内容种草策略</h3>
+    <h4>小红书（女性养宠用户核心阵地）</h4>
+    <table>
+      <tr><th>内容类型</th><th>发布频率</th><th>示例标题</th></tr>
+      <tr><td>宠物肠胃问题科普</td><td>每周2篇</td><td>"猫咪软便不要慌！中医铲屎官的自用调理方案"</td></tr>
+      <tr><td>产品测评/开箱</td><td>每周3篇</td><td>"挖到宝了！这个中药冻干我家猫居然抢着吃"</td></tr>
+      <tr><td>喂食日常vlog</td><td>每周2篇</td><td>"95后养生女孩的养猫日常——今天给主子补补气"</td></tr>
+      <tr><td>用户UGC转发</td><td>持续</td><td>转发真实用户的好评截图和猫咪反馈</td></tr>
+    </table>
+
+    <h4>抖音（流量爆发平台）</h4>
+    <table>
+      <tr><th>内容类型</th><th>时长</th><th>发布频率</th></tr>
+      <tr><td>宠物知识短科普</td><td>15-30秒</td><td>每日1条</td></tr>
+      <tr><td>产品展示+喂食</td><td>30-60秒</td><td>每日1条</td></tr>
+      <tr><td>直播间切片</td><td>1-3分钟</td><td>每场直播后剪辑3-5条</td></tr>
+      <tr><td>达人合作视频</td><td>30-60秒</td><td>每周3-5条</td></tr>
+    </table>
+
+    <h3>5.2 KOL合作策略</h3>
+    <table>
+      <tr><th>层级</th><th>粉丝量</th><th>合作方式</th><th>预算/人</th><th>月度数量</th></tr>
+      <tr><td>头部</td><td>100万+</td><td>品牌代言/专场直播</td><td>¥3-10万</td><td>1-2个/季度</td></tr>
+      <tr><td>腰部</td><td>10-100万</td><td>视频种草+直播带货</td><td>¥5000-3万</td><td>4-6个/月</td></tr>
+      <tr><td>尾部/KOC</td><td>1-10万</td><td>产品置换+佣金</td><td>¥500-2000</td><td>20-30个/月</td></tr>
+    </table>
+    <p><strong>选号标准：</strong>粉丝画像女性占比>70%，24-35岁为主；内容调性科学养宠、拒绝焦虑、温和亲切；互动数据点赞率>3%，评论互动真实。</p>
+
+    <h3>5.3 大促节奏规划</h3>
+    <table>
+      <tr><th>节点</th><th>时间</th><th>核心动作</th><th>目标</th></tr>
+      <tr><td>618大促</td><td>5月预售-6月18日</td><td>全平台促销+直播马拉松+达人矩阵</td><td>首月GMV破50万</td></tr>
+      <tr><td>双11</td><td>10月预售-11月11日</td><td>会员预售+定金膨胀+跨店满减</td><td>GMV破200万</td></tr>
+      <tr><td>双12</td><td>12月</td><td>清仓+年货节预热</td><td>承接双11余热</td></tr>
+      <tr><td>年货节</td><td>1月</td><td>礼盒装主推+春节礼赠场景</td><td>高客单转化</td></tr>
+    </table>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section" id="s6">
+    <h2>六、供应链与财务规划</h2>
+
+    <h3>6.1 供应链建议</h3>
+    <p><strong>初期模式：轻资产OEM代工</strong></p>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>寻找有饲料生产许可证的代工厂（山东、河北、浙江宠物食品产业带集中）</li>
+      <li>委托加工协议必须明确：配方保密、质量标准、交付周期</li>
+      <li>首批建议每SKU备货3000-5000件，测试市场反应</li>
+    </ul>
+    <p><strong>关键质控点：</strong></p>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>原料采购：要求供应商提供中药材的农残、重金属检测报告</li>
+      <li>生产过程：现场驻厂QC或第三方验厂</li>
+      <li>成品检测：每批次送检第三方，检测微生物、黄曲霉毒素、营养指标</li>
+    </ul>
+
+    <h3>6.2 初期投入预算（首3个月）</h3>
+    <table>
+      <tr><th>项目</th><th>金额（万元）</th><th>说明</th></tr>
+      <tr><td>产品研发+首批库存</td><td>8-12</td><td>3-5个SKU，每SKU 3000件</td></tr>
+      <tr><td>平台入驻+保证金</td><td>3-5</td><td>天猫5万、京东3万、抖音2万</td></tr>
+      <tr><td>包装设计+拍摄</td><td>2-3</td><td>包装、主图、详情页、短视频素材</td></tr>
+      <tr><td>广告推广</td><td>5-8</td><td>首月测试，第二月放量</td></tr>
+      <tr><td>KOL合作</td><td>3-5</td><td>以腰尾部达人为主</td></tr>
+      <tr><td>直播设备+场地</td><td>1-2</td><td>基础绿幕+灯光+手机/相机</td></tr>
+      <tr><td>人力成本</td><td>3-4</td><td>运营1人+客服1人+主播1人</td></tr>
+      <tr><td><strong>合计</strong></td><td><strong>25-39万</strong></td><td><strong>保守启动预算</strong></td></tr>
+    </table>
+
+    <h3>6.3 盈利模型预估（稳定期）</h3>
+    <div class="waterfall">
+      <div class="bar" style="background:#EAF3DE; color:#3B6D11;">平均客单价<br>¥65</div>
+      <div class="arrow">→</div>
+      <div class="bar" style="background:#EAF3DE; color:#3B6D11;">毛利率<br>55-65%</div>
+      <div class="arrow">→</div>
+      <div class="bar" style="background:#FAEEDA; color:#854F0B;">平台扣点+物流<br>15-20%</div>
+      <div class="arrow">→</div>
+      <div class="bar" style="background:#FAEEDA; color:#854F0B;">广告费率<br>20-25%</div>
+      <div class="arrow">→</div>
+      <div class="bar" style="background:#E6F1FB; color:#185FA5;">退货率<br>&lt;5%</div>
+      <div class="arrow">=</div>
+      <div class="bar" style="background:#EEEDFE; color:#534AB7;"><strong>净利率</strong><br><strong>15-25%</strong></div>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section" id="s7">
+    <h2>七、关键里程碑与执行时间表</h2>
+
+    <h3>7.1 0-3个月：冷启动期</h3>
+    <div class="timeline">
+      <div class="phase">W1-W2</div>
+      <div class="desc">确定代工厂、锁定首批3个SKU配方 → <strong>产出：样品确认</strong></div>
+      <div class="phase">W3-W4</div>
+      <div class="desc">包装设计、商标注册、平台入驻申请 → <strong>产出：设计稿+入驻资料</strong></div>
+      <div class="phase">W5-W6</div>
+      <div class="desc">首批生产、内容素材拍摄 → <strong>产出：库存到位+素材库</strong></div>
+      <div class="phase">W7-W8</div>
+      <div class="desc">店铺装修、listing上架、广告账户搭建 → <strong>产出：全平台上架</strong></div>
+      <div class="phase">W9-W12</div>
+      <div class="desc">小规模投放测试、内容种草启动、首场直播 → <strong>产出：数据模型验证</strong></div>
+    </div>
+
+    <h3>7.2 4-6个月：放量期</h3>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>根据测试数据，确定1-2个主推爆款</li>
+      <li>广告预算提升至月5-8万，ROI目标1:3</li>
+      <li>小红书+抖音内容矩阵成型，日更内容稳定</li>
+      <li><strong>月均GMV目标：30-50万</strong></li>
+    </ul>
+
+    <h3>7.3 7-12个月：品牌化期</h3>
+    <ul style="color:#555; font-size:13px; padding-left:20px;">
+      <li>推出第二梯队产品（美毛、关节、情绪舒缓）</li>
+      <li>建立私域流量池（微信社群+会员体系）</li>
+      <li>考虑天猫小黑盒、京东新品日等平台资源位</li>
+      <li><strong>月均GMV目标：80-150万</strong></li>
+    </ul>
+
+    <div class="chart-wrap large">
+      <canvas id="gmvChart" role="img" aria-label="GMV增长预测"></canvas>
+    </div>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="section" id="s8">
+    <h2>八、风险预警与应对</h2>
+    <table>
+      <tr><th>风险类型</th><th>风险描述</th><th>应对措施</th></tr>
+      <tr>
+        <td><span class="tag tag-red">合规风险</span></td>
+        <td>宣传用语踩线，被平台下架或处罚</td>
+        <td>所有文案经法务/合规审核，禁用医疗用语</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-yellow">库存风险</span></td>
+        <td>首批备货过多滞销</td>
+        <td>小批量多批次生产，首批每SKU不超5000件</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-yellow">同质化风险</span></td>
+        <td>竞品快速跟进</td>
+        <td>持续创新配方，建立品牌IP和私域护城河</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-yellow">价格战风险</span></td>
+        <td>大品牌入局打价格战</td>
+        <td>不走低价路线，强调"中药配方""国潮品牌"差异化</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">供应链风险</span></td>
+        <td>代工厂质量问题</td>
+        <td>签约2家备选代工厂，定期验厂</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="section" id="s9">
+    <h2>九、核心成功要素</h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top:8px;">
+      <div style="background:#EAF3DE; border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-weight:600; color:#3B6D11; margin-bottom:6px;">1. 选品要准</div>
+        <div style="font-size:13px; color:#555;">先打"肠胃调理"这个已验证的最大细分，再逐步扩展</div>
+      </div>
+      <div style="background:#FAECE7; border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-weight:600; color:#993C1D; margin-bottom:6px;">2. 合规第一</div>
+        <div style="font-size:13px; color:#555;">绝不碰兽药红线，走"营养补充品"安全路线</div>
+      </div>
+      <div style="background:#E6F1FB; border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-weight:600; color:#185FA5; margin-bottom:6px;">3. 内容为王</div>
+        <div style="font-size:13px; color:#555;">中药宠物产品需要教育市场，内容种草是核心驱动力</div>
+      </div>
+      <div style="background:#EEEDFE; border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-weight:600; color:#534AB7; margin-bottom:6px;">4. 多平台协同</div>
+        <div style="font-size:13px; color:#555;">天猫做品牌、抖音做增长、拼多多做放量、京东做信任</div>
+      </div>
+      <div style="background:#FBEAF0; border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-weight:600; color:#993556; margin-bottom:6px;">5. 快速迭代</div>
+        <div style="font-size:13px; color:#555;">前3个月小步快跑，根据数据反馈快速调整产品和策略</div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%); color:#fff; border-radius:var(--radius); padding:24px 28px; margin-top:24px;">
+      <p style="margin:0 0 10px; font-size:15px; font-weight:600;">阿布的判断</p>
+      <p style="margin:0; font-size:13px; line-height:1.8; opacity:0.95;">
+        中药宠物产品是<strong>2026年最值得切入的宠物赛道细分之一</strong>。市场处于早期，竞争不激烈，消费者教育成本低（"人吃中药养生"的认知可直接迁移），且契合国潮文化趋势。
+      </p>
+      <p style="margin:10px 0 0; font-size:13px; line-height:1.8; opacity:0.95;">
+        <strong>建议立即启动，抢占品类心智第一的位置。</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    本计划由 WorkBuddy 中国电商运营专家编制 | 2026年6月7日
+  </div>
+</div>
+
+<script>
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif";
+Chart.defaults.color = '#555555';
+Chart.defaults.scale.grid.color = '#f0f0f0';
+
+// Market growth chart
+new Chart(document.getElementById('marketChart'), {
+  type: 'bar',
+  data: {
+    labels: ['宠物食品整体', '宠物保健品', '宠物药品', '中药宠物食品'],
+    datasets: [{
+      label: '市场规模（亿元）',
+      data: [1668, 126.5, 350, 45],
+      backgroundColor: ['#B4B2A9', '#1D9E75', '#534AB7', '#D85A30'],
+      borderRadius: 6,
+      barPercentage: 0.6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '宠物各细分市场规模对比（2024年，亿元）', font: { size: 13, weight: '500' }, color: '#1a1a1a', padding: { bottom: 16 } }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Product radar chart
+new Chart(document.getElementById('productRadar'), {
+  type: 'radar',
+  data: {
+    labels: ['市场需求', '竞争强度', '利润空间', '生产难度', '合规风险'],
+    datasets: [
+      {
+        label: '肠胃调理',
+        data: [90, 50, 70, 40, 30],
+        borderColor: '#1D9E75',
+        backgroundColor: 'rgba(29, 158, 117, 0.15)',
+        pointBackgroundColor: '#1D9E75',
+        borderWidth: 2
+      },
+      {
+        label: '泌尿道养护',
+        data: [85, 40, 75, 40, 30],
+        borderColor: '#534AB7',
+        backgroundColor: 'rgba(83, 74, 183, 0.15)',
+        pointBackgroundColor: '#534AB7',
+        borderWidth: 2
+      },
+      {
+        label: '免疫力提升',
+        data: [75, 55, 65, 50, 35],
+        borderColor: '#BA7517',
+        backgroundColor: 'rgba(186, 117, 23, 0.15)',
+        pointBackgroundColor: '#BA7517',
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } },
+      title: { display: true, text: '核心品类多维度评估雷达图', font: { size: 13, weight: '500' }, color: '#1a1a1a', padding: { bottom: 8 } }
+    },
+    scales: {
+      r: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { stepSize: 20, backdropColor: 'transparent' },
+        grid: { color: '#e8e8e8' },
+        angleLines: { color: '#e8e8e8' },
+        pointLabels: { font: { size: 12 } }
+      }
+    }
+  }
+});
+
+// Ad budget pie
+new Chart(document.getElementById('adBudgetChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['直通车 40%', '万相台 35%', '超级推荐 25%'],
+    datasets: [{
+      data: [40, 35, 25],
+      backgroundColor: ['#1D9E75', '#534AB7', '#378ADD'],
+      borderWidth: 0,
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '60%',
+    plugins: {
+      legend: { position: 'right', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle', font: { size: 12 } } },
+      title: { display: true, text: '天猫广告预算分配建议', font: { size: 13, weight: '500' }, color: '#1a1a1a', padding: { bottom: 8 } }
+    }
+  }
+});
+
+// GMV forecast
+new Chart(document.getElementById('gmvChart'), {
+  type: 'line',
+  data: {
+    labels: ['第1月', '第2月', '第3月', '第4月', '第5月', '第6月', '第7月', '第8月', '第9月', '第10月', '第11月', '第12月'],
+    datasets: [{
+      label: 'GMV（万元）',
+      data: [8, 12, 18, 28, 38, 48, 65, 85, 100, 120, 140, 150],
+      borderColor: '#1D9E75',
+      backgroundColor: 'rgba(29, 158, 117, 0.08)',
+      fill: true,
+      tension: 0.4,
+      pointRadius: 4,
+      pointBackgroundColor: '#1D9E75',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '12个月GMV增长预测（万元/月）', font: { size: 13, weight: '500' }, color: '#1a1a1a', padding: { bottom: 16 } }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
