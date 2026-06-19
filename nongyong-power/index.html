@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>农用动力素 · 详细介绍 | 中科云脉</title>
+<style>
+:root{--gold:#c9a84c;--gold-l:#e8d4a0;--gold-d:#8b6914;--ink:#0d1b2a;--ink2:#162a42;--blue:#1e4d7b;--green:#1a6b45;--red:#a03030;--bg:#f5f7fa;--card:#fff;--text:#2d2d2d;--muted:#6b6b6b;--border:#e0d8c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden;font-size:15px}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#0a1628 0%,#0d3b5c 40%,#1a4d2e 100%);color:#fff;padding:80px 40px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 30% 0%,rgba(201,168,76,.18),transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:5px 22px;border-radius:20px;font-size:12px;letter-spacing:4px;margin-bottom:24px;position:relative}
+.hero h1{font-size:clamp(28px,5vw,50px);font-weight:800;letter-spacing:2px;line-height:1.3;position:relative;margin-bottom:16px}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.55);letter-spacing:1px;margin-bottom:36px;position:relative}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;position:relative}
+.hero-stat{text-align:center;min-width:100px}
+.hero-stat .val{display:block;font-size:30px;font-weight:800;color:var(--gold);line-height:1.2}
+.hero-stat .lbl{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-top:4px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,27,42,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,168,76,.15)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;overflow-x:auto}
+.nav-logo{color:var(--gold);font-weight:800;font-size:16px;letter-spacing:2px;white-space:nowrap}
+.nav-links{display:flex;gap:16px;list-style:none;padding-left:20px}
+.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;white-space:nowrap;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+section{padding:56px 0 40px;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+
+.sec-label{font-size:11px;letter-spacing:3px;color:var(--gold-d);text-transform:uppercase;margin-bottom:6px;font-weight:600}
+.sec-title{font-size:26px;font-weight:800;color:var(--ink);margin-bottom:28px;position:relative;padding-left:16px}
+.sec-title::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:4px;background:var(--gold);border-radius:3px}
+
+/* THEORY CARDS */
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:28px}
+.theory-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.theory-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.theory-card .tc-num{position:absolute;top:16px;right:20px;font-size:48px;font-weight:900;color:rgba(201,168,76,.08);line-height:1}
+.theory-card h3{font-size:17px;font-weight:700;margin-bottom:12px;color:var(--ink);display:flex;align-items:center;gap:10px}
+.theory-card h3 .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.theory-card h3 .icon.gold{background:rgba(201,168,76,.12)}
+.theory-card h3 .icon.blue{background:rgba(30,77,123,.1)}
+.theory-card h3 .icon.green{background:rgba(26,107,69,.1)}
+.theory-card p{font-size:14px;color:var(--muted);line-height:1.85}
+
+/* ELEMENT TABLE */
+.ele-table{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:28px}
+.ele-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;transition:border-color .2s}
+.ele-item:hover{border-color:var(--gold)}
+.ele-item .sym{font-size:22px;font-weight:800;color:var(--gold-d);margin-bottom:4px}
+.ele-item .name{font-size:12px;color:var(--muted);margin-bottom:6px}
+.ele-item .tag{display:inline-block;font-size:10px;padding:2px 10px;border-radius:20px}
+.ele-item .tag.yang{background:#fceaea;color:#a03030;border:1px solid #e0aaaa}
+.ele-item .tag.yin{background:#e8f0f8;color:#1e4d7b;border:1px solid #a0bfdb}
+
+/* MECHANISM */
+.mech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.mech-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0;overflow:hidden;transition:transform .2s}
+.mech-card:hover{transform:translateY(-3px)}
+.mech-card .mc-head{padding:20px 24px 16px;border-bottom:1px solid var(--border)}
+.mech-card .mc-head h3{font-size:16px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px}
+.mech-card .mc-head .num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0}
+.mech-card .mc-body{padding:16px 24px 22px;font-size:14px;color:var(--muted);line-height:1.85}
+
+/* DATA TABLE */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin-bottom:28px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{background:var(--ink);color:#fff;padding:12px 16px;text-align:center;font-weight:600;white-space:nowrap;font-size:12px}
+tbody td{padding:11px 16px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle}
+tbody tr:nth-child(even){background:#f7f5f0}
+.ratio{font-weight:800;color:var(--gold-d);font-size:14px}
+
+/* CASE CARDS */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:28px}
+.case-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:transform .2s}
+.case-card:hover{transform:translateY(-3px)}
+.case-card .cc-loc{font-size:11px;color:var(--gold-d);letter-spacing:1px;margin-bottom:6px;font-weight:600}
+.case-card h3{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--ink)}
+.case-card .cc-data{display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.case-card .cc-d{text-align:center}
+.case-card .cc-d .dv{font-size:22px;font-weight:800;color:var(--gold-d)}
+.case-card .cc-d .dl{font-size:11px;color:var(--muted)}
+.case-card p{font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* SOIL DATA */
+.soil-table{display:grid;grid-template-columns:120px repeat(2,1fr);gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;font-size:13.5px}
+.soil-table .st-head{background:var(--ink);color:#fff;padding:10px 14px;font-weight:600;font-size:12px;text-align:center}
+.soil-table .st-label{background:#f7f5f0;padding:10px 14px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--border)}
+.soil-table .st-cell{padding:10px 14px;text-align:center;border-bottom:1px solid var(--border);background:var(--card)}
+.soil-table .st-cell.before{color:var(--red)}
+.soil-table .st-cell.after{color:var(--green);font-weight:700}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:36px;margin-bottom:28px}
+.timeline::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--gold-d))}
+.tl-item{position:relative;margin-bottom:28px}
+.tl-item::before{content:"";position:absolute;left:-25px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 3px var(--gold)}
+.tl-item .tl-year{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold-d);margin-bottom:4px}
+.tl-item h4{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.tl-item p{font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* CERT */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.cert-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.cert-item .ci-icon{font-size:32px;margin-bottom:10px}
+.cert-item .ci-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.cert-item .ci-desc{font-size:12px;color:var(--muted)}
+
+/* HIGHLIGHT BOX */
+.hl{background:linear-gradient(135deg,#0a1628,#0d3b5c);border-radius:14px;padding:28px 32px;color:#fff;margin-bottom:28px}
+.hl h3{color:var(--gold);font-size:17px;margin-bottom:10px}
+.hl p{color:rgba(255,255,255,.75);font-size:14px;line-height:1.85}
+
+/* USAGE */
+.usage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:28px}
+.usage-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative}
+.usage-card .uc-stage{position:absolute;top:-10px;left:16px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:2px 12px;border-radius:20px}
+.usage-card h4{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--ink);margin-top:6px}
+.usage-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:40px 20px;font-size:13px;line-height:2}
+footer strong{color:var(--gold)}
+
+@media(max-width:640px){
+  .hero{padding:50px 20px 40px}
+  .hero-stats{gap:20px}
+  .hero-stat .val{font-size:24px}
+  .nav-inner{height:auto;padding:10px 16px;flex-wrap:wrap}
+  .nav-links{gap:10px;font-size:11px}
+  .theory-grid,.mech-grid,.case-grid{grid-template-columns:1fr}
+  .ele-table{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">农用生态动力素 · 详细介绍</div>
+  <h1>农用动力素<br><span>科技赋能农业的革命性创新</span></h1>
+  <p class="hero-sub">基于《黄帝内经》智慧与第四统计力学 · 由金日光教授独创 · 国土资源部鉴定：国内外首创、世界领先水平</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="val">20+</span><span class="lbl">生命相关元素</span></div>
+    <div class="hero-stat"><span class="val">1998</span><span class="lbl">研发起始年</span></div>
+    <div class="hero-stat"><span class="val">1:86</span><span class="lbl">最高投产比</span></div>
+    <div class="hero-stat"><span class="val">全国</span><span class="lbl">多省市验证</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+  <div class="nav-logo">农用动力素</div>
+  <ul class="nav-links">
+    <li><a href="#theory">科学原理</a></li>
+    <li><a href="#elements">生命元素</a></li>
+    <li><a href="#mechanism">作用机理</a></li>
+    <li><a href="#effects">四大功效</a></li>
+    <li><a href="#data">实证数据</a></li>
+    <li><a href="#experiments">实验汇总</a></li>
+    <li><a href="#usage">使用方法</a></li>
+    <li><a href="#cert">权威认证</a></li>
+  </ul>
+</div></nav>
+
+<div class="container">
+
+<!-- 01 科学原理 -->
+<section id="theory">
+  <div class="sec-label">01 · SCIENTIFIC THEORY</div>
+  <h2 class="sec-title">科学原理：生命动力元素的能量转化体系</h2>
+  
+  <div class="hl">
+    <h3>研发背景</h3>
+    <p>上世纪80年代，国家多学科首席科学家<strong style="color:#e8d4a0">金日光教授</strong>听从钱学森先生的劝导，通过国家重点课题研究生命动力元素。钱老希望用"当代科学语境"解读《黄帝内经》——包括高能粒子物理学、量子化学、基因遗传学、催化反应动力学、第四统计力学等前沿学科。经过数十年研究，金日光教授创立了<strong style="color:#e8d4a0">第四统计力学（群子理论）</strong>，成功解读了《黄帝内经》中关于生命动力的核心奥秘，并以此为基础研发出农用动力素。</p>
+  </div>
+
+  <div class="theory-grid">
+    <div class="theory-card">
+      <div class="tc-num">01</div>
+      <h3><span class="icon gold">⚛️</span> d轨道孤对电子</h3>
+      <p>所有生命动力元素的外层d轨道均含1-5个<strong>孤对电子</strong>（非成对电子）。量子化学理论表明：电子对在加速运动时正反加速度相互抵消，无法辐射能量；而<strong>孤电子受中微子撞击加速时，会向外释放电磁能</strong>，为作物生化反应提供"非化学能动力"，其能量密度是ATP的数十倍。</p>
+    </div>
+    <div class="theory-card">
+      <div class="tc-num">02</div>
+      <h3><span class="icon blue">💧</span> 正八面水络合离子</h3>
+      <p>生命动力元素需与水分子形成"水络合离子"才能激活。在交变强磁场与超声纵波处理下，金属离子与6-12个水分子结合，形成<strong>双金字塔叠加的正八面液晶结构</strong>。这种结构的晶格常数与中微子波长高度匹配，可像"透镜"一样聚焦宇宙中无处不在的中微子，实现"无损耗捕获"。</p>
+    </div>
+    <div class="theory-card">
+      <div class="tc-num">03</div>
+      <h3><span class="icon green">🌌</span> 中微子能量转化</h3>
+      <p>宇宙空间充斥着中微子（太阳及恒星核聚变产物），其能量密度极高但难以利用。正八面水络合离子通过"共振效应"使中微子减速并释放能量，该能量被d轨道孤电子吸收后，可加速其运动并<strong>降低作物生化反应的活化能30%-50%</strong>，从而大幅提升反应效率。</p>
+    </div>
+  </div>
+
+  <div class="hl" style="background:linear-gradient(135deg,#1a4d2e,#0d3b5c)">
+    <h3 style="color:#a8d5be">《黄帝内经》的超前科学解读</h3>
+    <p>《黄帝内经》提出的"阴阳精""通天气"理论，强调生命活动依赖"精微物质"与宇宙能量的协同作用。金日光团队通过群子论计算发现，以Zn²⁺为界（氧化电位+0.76V），生命动力元素可分为：<br><br>
+    <strong style="color:#fff">阳精元素</strong>（氧化电位＞+0.76V）：催化合成含-OH基团的"热性生物分子"，增强作物的"流动性能力"（如养分运输、细胞分裂）。<br>
+    <strong style="color:#fff">阴精元素</strong>（氧化电位＜+0.76V）：催化合成含-N=基团的"寒性生物分子"，增强作物的"凝固性能力"（如细胞壁构建、抗逆性）。<br><br>
+    这种"阴阳平衡"与人体血液中元素氧化电位分布高度一致，使得生命动力素可像"作物血液"一样，精准匹配作物对"阴阳精微"的需求。</p>
+  </div>
+</section>
+
+<!-- 02 生命动力元素 -->
+<section id="elements">
+  <div class="sec-label">02 · LIFE POWER ELEMENTS</div>
+  <h2 class="sec-title">5+11生命动力元素体系</h2>
+  <p style="color:var(--muted);margin-bottom:24px;max-width:800px">农用动力素从天然无毒非共晶矿石中，采取高新流变技术抽溶，经交变强磁场驱动的超声纵波场处理，提取出富含20余种矿物质元素的含水络合离子浓缩液。以下为核心生命动力元素：</p>
+  
+  <div style="margin-bottom:16px;font-size:13px;font-weight:700;color:var(--gold-d)">🌅 阳精元素（高氧化电位，催化热性分子合成）</div>
+  <div class="ele-table" style="margin-bottom:24px">
+    <div class="ele-item"><div class="sym">Sc</div><div class="name">钪</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Ti</div><div class="name">钛</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">V</div><div class="name">钒</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Cr</div><div class="name">铬</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Mn</div><div class="name">锰</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Fe</div><div class="name">铁</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Co</div><div class="name">钴</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Cu</div><div class="name">铜</div><div class="tag yang">阳精</div></div>
+    <div class="ele-item"><div class="sym">Zn</div><div class="name">锌</div><div class="tag yang">边界</div></div>
+  </div>
+
+  <div style="margin-bottom:16px;font-size:13px;font-weight:700;color:var(--blue)">🌙 阴精元素（低氧化电位，催化寒性分子合成）</div>
+  <div class="ele-table">
+    <div class="ele-item"><div class="sym">Mg</div><div class="name">镁</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">Ca</div><div class="name">钙</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">K</div><div class="name">钾</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">Sr</div><div class="name">锶</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">Ni</div><div class="name">镍</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">Mo</div><div class="name">钼</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">Se</div><div class="name">硒</div><div class="tag yin">阴精</div></div>
+    <div class="ele-item"><div class="sym">B</div><div class="name">硼</div><div class="tag yin">阴精</div></div>
+  </div>
+</section>
+
+<!-- 03 作用机理 -->
+<section id="mechanism">
+  <div class="sec-label">03 · MECHANISM OF ACTION</div>
+  <h2 class="sec-title">三大作用机理：从催化到传输的全链路赋能</h2>
+  
+  <div class="mech-grid">
+    <div class="mech-card">
+      <div class="mc-head"><h3><span class="num">1</span> 阴阳精协同催化</h3></div>
+      <div class="mc-body">
+        <p>农用动力素中Cu、Fe、Mn、Zn、B、Mo等微量元素的含量与比例，恰好匹配作物最深层次生化反应的"催化中心需求"：</p>
+        <ul style="margin-top:10px;padding-left:18px;line-height:1.9">
+          <li><strong>Fe与Cu</strong>：参与光合电子传递链，提升光反应效率</li>
+          <li><strong>Mn</strong>：光合放氧复合体（OEC）核心成分，促进水的光解</li>
+          <li><strong>Zn与Mo</strong>：Zn是碳酸酐酶辅酶，Mo是固氮酶关键成分</li>
+          <li><strong>B</strong>：促进花粉管萌发与细胞壁果胶合成，减少落花落果</li>
+        </ul>
+        <p style="margin-top:10px">这些元素的协同作用，使作物生化反应速率提升<strong style="color:var(--gold-d)">20%-40%</strong>。</p>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mc-head"><h3><span class="num">2</span> 生态氧与羟基自由基</h3></div>
+      <div class="mc-body">
+        <p>动力素中富含Cu、Fe、Mn、Zn等可价变元素离子，在稀释和喷洒过程中，会产生具有强烈氧化作用的<strong>生态氧[O]和羟基自由基[·OH]</strong>：</p>
+        <ul style="margin-top:10px;padding-left:18px;line-height:1.9">
+          <li><strong>·OH</strong>：氧化电位高达2.80V，是自然界最强氧化剂之一，可破坏病原菌细胞膜，降解农药分子</li>
+          <li><strong>[O]</strong>：抑制害虫幼体呼吸酶活性，减少害虫取食与繁殖</li>
+          <li>对有益生物（蜜蜂、蚯蚓）无毒性——因其体内含超氧化物歧化酶SOD</li>
+        </ul>
+        <p style="margin-top:10px">这一机制可使农药使用次数减少<strong style="color:var(--gold-d)">50%-70%</strong>，且无化学残留风险。</p>
+      </div>
+    </div>
+    <div class="mech-card">
+      <div class="mc-head"><h3><span class="num">3</span> 短链水分子传输</h3></div>
+      <div class="mc-body">
+        <p>传统灌溉水多为"长链线团凝聚水"（20-30个水分子聚合），其流体力学半径大（＞10nm），难以通过作物细胞膜（孔径约2-5nm）。</p>
+        <p style="margin-top:10px">动力素经高能处理后，可将水分子链打断，形成<strong>以金属离子为中心的短链小分子水</strong>（6-12个水分子，半径＜3nm）：</p>
+        <ul style="margin-top:10px;padding-left:18px;line-height:1.9">
+          <li><strong>高渗透性</strong>：提升水分吸收效率40%-60%，缓解作物"生理干旱"</li>
+          <li><strong>养分载体</strong>：金属离子-水分子络合物形成"水化液晶层"，将微量元素直接输送至细胞器</li>
+          <li><strong>促进光合</strong>：短链水分子参与光合水合反应，提升叶绿素合成量（生菜叶绿素含量增加26%）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 四大功效 -->
+<section id="effects">
+  <div class="sec-label">04 · FOUR MAJOR EFFECTS</div>
+  <h2 class="sec-title">四大核心功效：土壤改良 · 农残分解 · 病虫害防控 · 增产增质</h2>
+  
+  <!-- 功效1：土壤改良 -->
+  <h3 style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:18px">① 土壤改良：盐碱地的"生态修复剂"</h3>
+  <p style="color:var(--muted);margin-bottom:18px">盐碱地的核心问题是土壤中Cl⁻、Na⁺浓度过高，且缺乏K⁺、Ca²⁺等有益离子。生命动力素通过"常温冷核反应"实现离子转化。</p>
+  
+  <div style="margin-bottom:12px;font-size:14px;font-weight:700;color:var(--gold-d)">📊 江苏农垦临海农场 · 连续两年改良数据</div>
+  <div class="soil-table">
+    <div class="st-head">检测指标</div><div class="st-head">改良前</div><div class="st-head">改良后</div>
+    <div class="st-label">氯离子 Cl⁻ (mg/g)</div><div class="st-cell before">1.65</div><div class="st-cell after">0.067（↓96%）</div>
+    <div class="st-label">钠离子 Na⁺ (mg/g)</div><div class="st-cell before">3.35</div><div class="st-cell after">1.68（↓50%）</div>
+    <div class="st-label">钛 Ti (mg/g)</div><div class="st-cell before">0.72</div><div class="st-cell after">0.748（↑）</div>
+    <div class="st-label">钙 Ca (mg/g)</div><div class="st-cell before">8.275</div><div class="st-cell after">8.62（↑）</div>
+    <div class="st-label">锰 Mn (mg/g)</div><div class="st-cell before">0.0872</div><div class="st-cell after">0.0871</div>
+    <div class="st-label">锌 Zn (mg/g)</div><div class="st-cell before">0.0108</div><div class="st-cell after">0.0115（↑）</div>
+    <div class="st-label">锶 Sr (mg/g)</div><div class="st-cell before">0.0282</div><div class="st-cell after">0.0282</div>
+  </div>
+  <div class="hl" style="background:linear-gradient(135deg,#1a4d2e,#2d7a52);margin-bottom:28px">
+    <p><strong style="color:#a8d5be">改良结果：</strong>水稻亩产从 <span style="color:#fff;font-size:18px">606斤/亩</span> 提升至 <span style="color:#fff;font-size:18px">984斤/亩</span>（增幅62%）。吉林白城盐碱地施用30天后，土壤pH从10.2降至8.5，有机质含量从0.8%提升至1.5%。</p>
+  </div>
+
+  <!-- 功效2：农残分解 -->
+  <h3 style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:18px">② 农残分解：农产品的"安全卫士"</h3>
+  <p style="color:var(--muted);margin-bottom:18px">2022年青岛地区"蔬菜农残降解试验"显示，喷施生命动力素后，蔬菜中多种农药残留显著降低：</p>
+  <div class="table-wrap" style="margin-bottom:28px">
+    <table>
+      <thead><tr><th>农药类型</th><th>代表农药</th><th>使用前残留</th><th>使用后残留</th><th>降幅</th></tr></thead>
+      <tbody>
+        <tr><td>有机磷类</td><td>毒死蜱</td><td>检出</td><td>未检出（＜0.003mg/kg）</td><td style="color:var(--green);font-weight:700">完全降解</td></tr>
+        <tr><td>拟除虫菊酯类</td><td>氯氰菊酯</td><td>0.075 mg/kg</td><td>0.011 mg/kg</td><td style="color:var(--green);font-weight:700">85%</td></tr>
+        <tr><td>杀菌剂</td><td>多菌灵</td><td>检出</td><td>未检出（＜0.005mg/kg）</td><td style="color:var(--green);font-weight:700">完全降解</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 功效3+4：病虫害+增产 -->
+  <h3 style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:18px">③ 减少病虫害 + ④ 增产增质</h3>
+  <p style="color:var(--muted);margin-bottom:18px">生命动力素通过提升作物微量元素含量与能量供应，增强其抗逆性，同时通过·OH直接杀灭病原菌。以下是各地实测投产比数据：</p>
+  <div class="table-wrap" style="margin-bottom:28px">
+    <table>
+      <thead><tr><th>作物</th><th>投入(元/亩)</th><th>增产/品质效果</th><th>增收(元/亩)</th><th>投产比</th></tr></thead>
+      <tbody>
+        <tr><td>信阳阳光玫瑰</td><td>500</td><td>增产833kg/亩，含糖量18-22Brix</td><td class="ratio">43,000</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:86</td></tr>
+        <tr><td>昆山翠冠梨</td><td>300</td><td>收购价高出50%</td><td class="ratio">20,000</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:66</td></tr>
+        <tr><td>漳州红心柚</td><td>2,000</td><td>产量翻倍，收购价提高30%</td><td class="ratio">47,520</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:24</td></tr>
+        <tr><td>湖南石门辣椒</td><td>500</td><td>单果重从24.7g增至63.6g（↑157%）</td><td class="ratio">10,000</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:20</td></tr>
+        <tr><td>韭菜小白菜</td><td>100</td><td>增产显著</td><td class="ratio">1,875</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:19</td></tr>
+        <tr><td>山东马牙枣</td><td>500</td><td>坏果率从1/3降至0</td><td class="ratio">5,000</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:10</td></tr>
+        <tr><td>花椒</td><td>300</td><td>增产显著</td><td class="ratio">3,015</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:10</td></tr>
+        <tr><td>信阳生菜西兰花</td><td>300</td><td>增产500-1000斤/亩</td><td class="ratio">1,250-2,500</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:4-8</td></tr>
+        <tr><td>毛豆</td><td>300</td><td>增产278斤/亩</td><td class="ratio">1,251</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:4</td></tr>
+        <tr><td>莱阳大姜</td><td>1,000</td><td>增产6%，减少肥料800元/亩</td><td class="ratio">5,620</td><td style="color:var(--gold-d);font-weight:800;font-size:15px">1:6</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 05 全国实证 -->
+<section id="data">
+  <div class="sec-label">05 · NATIONAL EMPIRICAL DATA</div>
+  <h2 class="sec-title">全国多区域实证数据与优秀案例</h2>
+  
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="cc-loc">📍 北京市大兴区农科所</div>
+      <h3>彩椒 · 生菜 · 羽衣甘蓝</h3>
+      <div class="cc-data">
+        <div class="cc-d"><div class="dv">+14.4%</div><div class="dl">彩椒增产</div></div>
+        <div class="cc-d"><div class="dv">+26%</div><div class="dl">生菜增产</div></div>
+        <div class="cc-d"><div class="dv">+9.1%</div><div class="dl">羽衣甘蓝增产</div></div>
+      </div>
+      <p>彩椒提前4天达到采摘标准，生菜提前5天采收，叶绿素含量提升26%，商品果率从80%提升至95%。</p>
+    </div>
+    <div class="case-card">
+      <div class="cc-loc">📍 湖南石门县</div>
+      <h3>辣椒种植</h3>
+      <div class="cc-data">
+        <div class="cc-d"><div class="dv">+100%</div><div class="dl">产量增长</div></div>
+        <div class="cc-d"><div class="dv">+157%</div><div class="dl">单果重量增幅</div></div>
+      </div>
+      <p>不计算绿色无公害的增值空间，每亩田增收10,000元。辣椒素含量提升20%。</p>
+    </div>
+    <div class="case-card">
+      <div class="cc-loc">📍 山东大姜</div>
+      <h3>莱阳大姜增产试验</h3>
+      <div class="cc-data">
+        <div class="cc-d"><div class="dv">+6%</div><div class="dl">增产</div></div>
+        <div class="cc-d"><div class="dv">-800元</div><div class="dl">减少肥料</div></div>
+      </div>
+      <p>每亩施用黑金动力素7.5公斤+黄金动力素2.5公斤，投入680元/亩，增收5,400元/亩。姜黄素含量提升15%，保鲜期从3个月延长至6个月。</p>
+    </div>
+    <div class="case-card">
+      <div class="cc-loc">📍 吉林白城</div>
+      <h3>盐碱地改良</h3>
+      <div class="cc-data">
+        <div class="cc-d"><div class="dv">30天</div><div class="dl">土壤巨大改变</div></div>
+        <div class="cc-d"><div class="dv">pH 10.2→8.5</div><div class="dl">酸碱度改善</div></div>
+      </div>
+      <p>"富盐不毛之地，专门把氯原子破坏掉；富碱不毛之地，专门把钠原子破坏掉。生命动力液，只干有利于生命的事！"</p>
+    </div>
+  </div>
+
+  <div class="hl">
+    <h3>1998年全国多省市试验汇总</h3>
+    <p>1998年，委托全国农技服务中⼼及各地农技研究推广部门，在北京、⼴东、湖南、吉林、⿊⿰江等<strong>12个省市</strong>对粮⾖、蔬菜、果树等<strong>多个作物</strong>做了<strong>200多点次</strong>的⼩区、⼤区试验。结果汇总：<br><br>
+    · ⽔稻：平均增产8.6%，最高增产28.6%；秧苗施用能壮根健苗，防治⽴枯病效果达95%<br>
+    · ⼀⻨：平均增产7.4%，最高增产20.4%<br>
+    · 蔬菜：⻩⽠平均增产27.7%，最高增产57.0%；番茄平均增产19.8%，最高增产38.2%<br>
+    · 果树：苹果梨增产17%，糖度增加近1个百分点；脐橙平均增产20.6%</p>
+  </div>
+</section>
+
+<!-- 06 实验汇总 -->
+<section id="experiments">
+  <div class="sec-label">06 · EXPERIMENT SUMMARY</div>
+  <h2 class="sec-title">1997年北京大兴县田间试验详细汇总</h2>
+  <p style="color:var(--muted);margin-bottom:24px">1997年4-12月，北京大兴县⻓营乡⻄坊村进行了系统性田间试验，参加试验农户包括崔⽴华书记、孙⻓⻓队、张启昌、王万常等10余户。以下为各作物试验结果汇总：</p>
+  
+  <div class="table-wrap" style="margin-bottom:28px">
+    <table>
+      <thead><tr><th>作物</th><th>试验面积</th><th>主要功效</th><th>增产幅度</th><th>其他效果</th></tr></thead>
+      <tbody>
+        <tr><td>水稻</td><td>20亩</td><td>千粒重增加4%，分蘖率提升20-30%，抗倒伏</td><td style="color:var(--green);font-weight:700">显著</td><td>全程未使用任何农药</td></tr>
+        <tr><td>⼩⻨</td><td>200亩</td><td>千粒重增加4%，无瘪粒，抗病抑蚜</td><td style="color:var(--green);font-weight:700">显著</td><td>成熟提前3-5天，倒伏率为0</td></tr>
+        <tr><td>⽟⽶</td><td>4亩</td><td>头部无虚尖，籽粒饱满</td><td style="color:var(--green);font-weight:700">20-30%</td><td>成熟提前5-7天，不得病</td></tr>
+        <tr><td>冬⽠</td><td>2亩</td><td>死苗率从25-30%降至5%</td><td style="color:var(--green);font-weight:700">30%</td><td>缓秧快，坐果后单果重翻倍</td></tr>
+        <tr><td>西⽠</td><td>10亩</td><td>苗成活率100%（对照有20-30%死苗）</td><td style="color:var(--green);font-weight:700">约10%</td><td>抗重茬，催熟，提前5天成熟</td></tr>
+        <tr><td>⻩⽠</td><td>2亩</td><td>延长秧龄，提升盛果期</td><td style="color:var(--green);font-weight:700">10%+</td><td>已有枯萎病的⽤1周即去除</td></tr>
+        <tr><td>⽩菜</td><td>2亩</td><td>包心早，外叶少，心大</td><td style="color:var(--green);font-weight:700">10%+</td><td>提前5-7天上市，不得病虫害</td></tr>
+        <tr><td>西红柿</td><td>5亩</td><td>去除卷叶病、枯萎病，对农药中毒有解毒作用</td><td style="color:var(--green);font-weight:700">10-15%</td><td>果实均匀美观，口感甜美</td></tr>
+        <tr><td>⻓⽩菜</td><td>23亩</td><td>促进营养吸收，缓秧快</td><td style="color:var(--green);font-weight:700">20-25%</td><td>不得蚜虫，提前5天上市</td></tr>
+        <tr><td>花⽳</td><td>2亩</td><td>多为三粒果，籽粒饱满</td><td style="color:var(--green);font-weight:700">25-30%</td><td>死苗率从15%降至0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hl" style="background:linear-gradient(135deg,#1a4d2e,#0d3b5c)">
+    <h3 style="color:#a8d5be">试验结论（1997年北京大兴县）</h3>
+    <p>通过对各种农作物的对比试验，发现普遍作用如下：<br>
+    1. <strong>促进成熟</strong>：对所有农作物均可提前3到7天成熟<br>
+    2. <strong>增产</strong>：不同农作物增产比例不同，少则10%，多到30%<br>
+    3. <strong>抑制和消灭病虫害</strong>：从苗期开始使用的，均未使用农药，且苗壮、成活率高<br>
+    4. <strong>抗倒伏</strong>：水稻、⼩⻨表现为杆粗壮、叶厚、挺拔<br>
+    5. <strong>无任何毒副作用</strong>：且对人体健康有益，是适应21世纪大众无公害需要的绿色产品</p>
+  </div>
+</section>
+
+<!-- 07 使用方法 -->
+<section id="usage">
+  <div class="sec-label">07 · APPLICATION METHOD</div>
+  <h2 class="sec-title">使用方法：不同作物的施用方案</h2>
+  <p style="color:var(--muted);margin-bottom:24px">农用动力素有三种剂型：土壤改良剂（灌根肥）、叶面动力素（叶面喷施肥）、黑金/黄金动力素（特种肥）。根据不同作物生长期，制定差异化施用方案：</p>
+  
+  <div class="usage-grid">
+    <div class="usage-card">
+      <div class="uc-stage">苗期</div>
+      <h4>育苗/秧苗期</h4>
+      <p>100倍液，2公斤/亩<br>随水均匀灌溉或喷洒<br>间隔10-15天可重复使用</p>
+    </div>
+    <div class="usage-card">
+      <div class="uc-stage">定植期</div>
+      <h4>移栽定植后5天内</h4>
+      <p>100倍液，4-6公斤/亩<br>随水均匀灌溉<br>促进缓秧，提升成活率</p>
+    </div>
+    <div class="usage-card">
+      <div class="uc-stage">生长期</div>
+      <h4>分蘖/拔节/开花期</h4>
+      <p>100倍液，8-10公斤/亩<br>叶面喷洒或灌溉<br>促进光合作用，提升产量</p>
+    </div>
+    <div class="usage-card">
+      <div class="uc-stage">果实期</div>
+      <h4>坐果/灌浆期</h4>
+      <p>100倍液，8-16公斤/亩<br>根据作物调整用量<br>提升果实品质，延长保鲜期</p>
+    </div>
+  </div>
+
+  <div class="hl" style="margin-top:28px">
+    <h3>注意事项</h3>
+    <p>1. 土壤越贫瘠，增产效果越好<br>2. 在种植前对土壤进行喷洒或灌溉，可达到抑制病菌、提升地力、抗重茬的效果<br>3. 可与多数农药、肥料混合使用，但建议先小范围试验<br>4. 避免在强紫外线时段（中午12-14点）喷洒，选择清晨或傍晚效果更佳</p>
+  </div>
+</section>
+
+<!-- 08 权威认证 -->
+<section id="cert">
+  <div class="sec-label">08 · AUTHORITATIVE CERTIFICATION</div>
+  <h2 class="sec-title">权威认证与研究院背景</h2>
+  
+  <div class="timeline" style="margin-bottom:32px">
+    <div class="tl-item">
+      <div class="tl-year">1998年</div>
+      <h4>北京聚宇能自然科学研究院成立</h4>
+      <p>第一任院长金日光教授，依托北京化工大学强大科研基础建立，致力于生命动力元素与新型材料研究。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2001年</div>
+      <h4>国土资源部组织权威鉴定</h4>
+      <p>由张宗祜院士等14位跨学科专家参与鉴定，结论为："<strong>国内外首创、世界领先水平</strong>"，可广泛应用于农业、环保、医疗等领域。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">多年研发</div>
+      <h4>荣获多项国家级科技奖项</h4>
+      <p>先后获得<strong>三项国家科技进步奖、一项国家发明奖及二十多项省部级奖</strong>。核心技术专利号：ZL02130825.X（多功能型作物能活化和基因优化调控剂）。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">持续至今</div>
+      <h4>全国多省市持续验证推广</h4>
+      <p>研究院联合中国农业科学院，在安徽、四川、浙江、湖南、广西、江苏、山东、河南、甘肃等省份持续开展试验示范，累计试验点数千个。</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;font-size:15px;font-weight:700;color:var(--ink)">🏅 主要荣誉与认证</div>
+  <div class="cert-grid">
+    <div class="cert-item"><div class="ci-icon">🏆</div><div class="ci-label">国家科技进步奖</div><div class="ci-desc">三项</div></div>
+    <div class="cert-item"><div class="ci-icon">🔬</div><div class="ci-label">国家发明奖</div><div class="ci-desc">一项</div></div>
+    <div class="cert-item"><div class="ci-icon">📜</div><div class="ci-label">省部级奖项</div><div class="ci-desc">二十余项</div></div>
+    <div class="cert-item"><div class="ci-icon">🏛️</div><div class="ci-label">国土资源部鉴定</div><div class="ci-desc">国内外首创、世界领先</div></div>
+    <div class="cert-item"><div class="ci-icon">📋</div><div class="ci-label">发明专利</div><div class="ci-desc">ZL02130825.X</div></div>
+    <div class="cert-item"><div class="ci-icon">🧪</div><div class="ci-label">CMA/CNAS认可</div><div class="ci-desc">合作检测机构认证</div></div>
+  </div>
+</section>
+
+<!-- 09 意义与展望 -->
+<section>
+  <div class="sec-label">09 · SIGNIFICANCE & FUTURE</div>
+  <h2 class="sec-title">意义与展望：从农业应用 to 生态系统修复</h2>
+  
+  <div class="hl" style="background:linear-gradient(135deg,#0a1628,#1a4d2e)">
+    <h3>核心价值</h3>
+    <p>1. <strong>农业可持续发展</strong>：对农业良田的可持续发展具有广泛的使用价值和重要意义<br>
+    2. <strong>经济创收价值</strong>：在农业生产中具有极大的经济创收价值，投入产出比最高达1:86<br>
+    3. <strong>食品健康保障</strong>：为食品健康和安全提供更多价值和保障，农残降解至未检出水平<br>
+    4. <strong>市场前景广阔</strong>：需求广泛，市场空间巨大，利国利民，前景广大</p>
+  </div>
+
+  <div style="margin-top:28px">
+    <h3 style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:18px">应用场景延伸展望</h3>
+    <div class="theory-grid">
+      <div class="theory-card">
+        <h3><span class="icon gold">🐄</span> 畜牧养殖</h3>
+        <p>作为饲料添加剂，通过补充微量元素与提升动物能量代谢，增强畜禽免疫力，减少抗生素使用，改善肉蛋奶品质。</p>
+      </div>
+      <div class="theory-card">
+        <h3><span class="icon blue">🌿</span> 生态修复</h3>
+        <p>用于农药污染土壤、重金属污染水体的治理（如·OH降解重金属络合物），助力"土壤-水体"生态系统修复。</p>
+      </div>
+      <div class="theory-card">
+        <h3><span class="icon green">🍎</span> 食品加工</h3>
+        <p>作为食品保鲜剂（短链水分子延缓果蔬氧化）或营养强化剂（富硒食品生产），延伸"从田间到餐桌"的健康链条。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hl" style="margin-top:28px;background:linear-gradient(135deg,#2d7a52,#0d3b5c)">
+    <h3 style="color:#a8d5be">为全球提供中国方案</h3>
+    <p>农用生命动力素基于金日光教授"生命动力源元素"理论与《黄帝内经》中医智慧，通过"d轨道电子-水络合离子-中微子"的能量转化体系，为土壤-作物系统提供了"非化学能动力"。未来需通过深化理论验证、优化生产工艺、完善标准体系，推动其在农业可持续发展中的规模化应用，为<strong>全球"粮食安全-生态安全-健康安全"协同发展提供中国方案</strong>。</p>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <p><strong>农用动力素详细介绍</strong> · 基于北京聚宇能自然科学研究院提供资料整理</p>
+  <p>研发单位：北京聚宇能自然科学研究院 · 技术负责人：金日光教授 / 方厉远院长</p>
+  <p>© 2026 中科云脉 · 科技赋能中医，构建全生命周期健康管理生态</p>
+</footer>
+
+</body>
+</html>
