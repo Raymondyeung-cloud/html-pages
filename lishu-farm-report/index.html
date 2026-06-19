@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黎叔农场生产数据对比分析报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+  h1 { text-align: center; font-size: 28px; color: #1a5276; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #7f8c8d; font-size: 14px; margin-bottom: 35px; }
+  h2 { font-size: 22px; color: #2980b9; border-left: 4px solid #2980b9; padding-left: 12px; margin: 40px 0 20px; }
+  h3 { font-size: 17px; color: #34495e; margin: 20px 0 10px; }
+  .card { background: #fff; border-radius: 12px; padding: 25px 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .highlight-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 12px; padding: 25px 30px; margin-bottom: 25px; }
+  .highlight-box h3 { color: #fff; }
+  .highlight-box .metric { display: inline-block; margin-right: 30px; }
+  .highlight-box .metric .val { font-size: 28px; font-weight: bold; }
+  .highlight-box .metric .label { font-size: 12px; opacity: 0.85; }
+
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+  table th { background: #2980b9; color: #fff; padding: 10px 12px; text-align: center; font-weight: 500; }
+  table td { padding: 9px 12px; text-align: center; border-bottom: 1px solid #ecf0f1; }
+  table tr:nth-child(even) td { background: #f8f9fa; }
+  table tr:hover td { background: #eaf2f8; }
+  .better { color: #27ae60; font-weight: bold; }
+  .worse { color: #e74c3c; font-weight: bold; }
+
+  .chart-img { width: 100%; border-radius: 8px; margin: 15px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .insight { background: #fef9e7; border-left: 4px solid #f39c12; padding: 12px 18px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+  .danger { background: #fdedec; border-left: 4px solid #e74c3c; padding: 12px 18px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+  .good { background: #eafaf1; border-left: 4px solid #27ae60; padding: 12px 18px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 14px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+  .summary-item { background: #f0f3f7; border-radius: 10px; padding: 18px 15px; text-align: center; }
+  .summary-item .val { font-size: 26px; font-weight: bold; color: #2980b9; }
+  .summary-item .label { font-size: 12px; color: #7f8c8d; margin-top: 4px; }
+  .summary-item.warn .val { color: #e74c3c; }
+  .summary-item.ok .val { color: #27ae60; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+  .tag-a { background: #d4e6f1; color: #2471a3; }
+  .tag-b { background: #fadbd8; color: #c0392b; }
+
+  footer { text-align: center; color: #bdc3c7; font-size: 12px; margin-top: 40px; padding: 20px; }
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+<script src="https://beacon.cdn.qq.com/sdk/4.5.9/beacon_web.min.js"></script>
+<script>
+(function(){
+  try{
+    var beacon=new BeaconAction({
+      appkey:'0WEB06U85YBSLJNL',
+      versionCode:'1.0.0',
+      channelID:'share',
+      delay:1000,
+      sessionDuration:30*60*1000,
+      isOversea:false,
+      needReportRqdEvent:false
+    });
+    beacon.onDirectUserAction('preview_page_view',{
+      'url':location.href,
+      'referrer':document.referrer,
+      'title':document.title,
+      'sandbox_id':'e2c49217a9b942a1ab7deb96ec94ce41'
+    });
+  }catch(e){}
+})();
+</script></head>
+<body>
+<div class="container">
+
+<h1>黎叔农场生产数据对比分析报告</h1>
+<p class="subtitle">A组（4号棚·对照组） vs B组（5号棚·实验组） | 数据周期：2026年5月24日 - 6月16日</p>
+
+<!-- ===== 1. 报告概述 ===== -->
+<div class="card">
+<h2>一、报告概述</h2>
+<p>本报告对黎叔农场两个鸡群的生产数据进行全面对比分析：</p>
+<ul style="margin:10px 0 0 20px;">
+  <li><span class="tag tag-a">A组</span> <b>4号棚 · 对照组</b>：海兰灰品种，存栏规模较大（并群后约790羽），采用常规饲养管理</li>
+  <li><span class="tag tag-b">B组</span> <b>5号棚 · 实验组</b>：海兰灰品种，100羽实验鸡群，5/27转群入棚，采用实验性饲养方案</li>
+</ul>
+<div class="insight">
+  <b>关键背景：</b>A组在6月1日发生并群（存栏从565跳增至790），数据需分阶段解读。两群鸡日龄约625-645天（约89-92周龄），属产蛋后期老鸡。
+</div>
+</div>
+
+<!-- ===== 2. 核心指标总览 ===== -->
+<div class="highlight-box">
+<h3>核心指标速览</h3>
+<div style="display:flex; flex-wrap:wrap; gap:25px; margin-top:15px;">
+  <div class="metric"><div class="val">24.3%</div><div class="label">A组平均产蛋率</div></div>
+  <div class="metric"><div class="val">20.3%</div><div class="label">B组平均产蛋率</div></div>
+  <div class="metric"><div class="val">5.0%</div><div class="label">A组累计死淘率</div></div>
+  <div class="metric"><div class="val">5.0%</div><div class="label">B组累计死淘率</div></div>
+  <div class="metric"><div class="val">1.10</div><div class="label">A组料蛋比</div></div>
+  <div class="metric"><div class="val">0.42</div><div class="label">B组料蛋比</div></div>
+</div>
+</div>
+
+<!-- ===== 3. 详细对比表 ===== -->
+<div class="card">
+<h2>二、生产指标详细对比</h2>
+<table>
+  <thead>
+    <tr><th>指标</th><th><span class="tag tag-a">A组（对照）</span></th><th><span class="tag tag-b">B组（实验）</span></th><th>差异/结论</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>统计周期</td><td>5/24 - 6/16（24天）</td><td>5/27 - 6/16（21天）</td><td>—</td></tr>
+    <tr><td>期初存栏</td><td>186羽（逐步进鸡）</td><td>100羽</td><td>A组规模更大</td></tr>
+    <tr><td>期末存栏</td><td>724羽</td><td>96羽</td><td>—</td></tr>
+    <tr><td>累计死淘</td><td>114羽</td><td>5羽</td><td>—</td></tr>
+    <tr><td>累计死淘率（占期初）</td><td>61.3%</td><td>5.0%</td><td class="worse">A组死淘率远高于B组</td></tr>
+    <tr><td>日均死淘</td><td>4.75羽</td><td>0.24羽</td><td>—</td></tr>
+    <tr><td>累计产蛋</td><td>2,926枚</td><td>523枚</td><td>—</td></tr>
+    <tr><td>日均产蛋</td><td>121.9枚</td><td>24.9枚</td><td>—</td></tr>
+    <tr><td>平均产蛋率</td><td>24.3%</td><td>20.3%</td><td class="better">A组高4个百分点</td></tr>
+    <tr><td>峰值产蛋率</td><td>30.1%（5/26）</td><td>64.0%（5/28）</td><td class="better">B组峰值极高</td></tr>
+    <tr><td>产蛋率走势</td><td>先升后缓降</td><td>急速下滑</td><td class="danger">B组产蛋率断崖式下降</td></tr>
+    <tr><td>累计耗料</td><td>3,217斤</td><td>420斤</td><td>—</td></tr>
+    <tr><td>料蛋比（斤/枚）</td><td>1.10</td><td>0.80</td><td class="better">B组料蛋效率更优</td></tr>
+    <tr><td>只均日耗料</td><td>约0.20斤/羽/日</td><td>0.20斤/羽/日</td><td>基本一致</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== 4. 产蛋率分析 ===== -->
+<div class="card">
+<h2>三、产蛋率趋势分析</h2>
+<img src="chart_egg_rate.png" class="chart-img" alt="产蛋率对比趋势图">
+
+<h3>3.1 A组产蛋率走势</h3>
+<p>A组产蛋率呈现典型的<b>"先升后缓降"</b>走势：</p>
+<ul style="margin:5px 0 5px 20px;">
+  <li>5/24-5/26：快速上升期（30.1%→26.3%），存栏同步增长</li>
+  <li>5/27-5/31：波动期，日死亡偏高（日均5.4羽），产蛋率在18%-24%间波动</li>
+  <li>6/1并群后：产蛋率短暂调整至13.7%，随后稳定在19%-24%区间</li>
+  <li>6/7后进入持续下降通道：24.1%→8.1%</li>
+</ul>
+
+<h3>3.2 B组产蛋率走势</h3>
+<p>B组产蛋率呈现<b>"断崖式下跌"</b>的严峻态势：</p>
+<ul style="margin:5px 0 5px 20px;">
+  <li>5/28：峰值64%（转群应激后短暂反弹）</li>
+  <li>5/29-6/4：快速下滑 45%→22%（两周内跌去一半）</li>
+  <li>6/5-6/16：持续低迷 6%-26%，6/8仅6%，6/16仅4%</li>
+</ul>
+
+<div class="danger">
+  <b>严重警示：</b>B组产蛋率从5/28的64%暴跌至6/16的4%，降幅达93.75%，日均下降约2.9个百分点。这种断崖式下跌远超正常老龄鸡产蛋率下降速度（正常周降幅约0.5-1%），表明B组鸡群存在严重的健康或管理问题。
+</div>
+
+<img src="chart_eggs.png" class="chart-img" alt="每日产蛋数对比">
+</div>
+
+<!-- ===== 5. 死淘分析 ===== -->
+<div class="card">
+<h2>四、死淘情况对比</h2>
+<img src="chart_death.png" class="chart-img" alt="死淘数对比">
+
+<table>
+  <thead>
+    <tr><th>死淘指标</th><th><span class="tag tag-a">A组</span></th><th><span class="tag tag-b">B组</span></th></tr>
+  </thead>
+  <tbody>
+    <tr><td>累计死淘</td><td>114羽</td><td>5羽</td></tr>
+    <tr><td>日均死淘</td><td>4.75羽</td><td>0.24羽</td></tr>
+    <tr><td>日死淘率（日均/存栏）</td><td>约0.7%</td><td>约0.24%</td></tr>
+    <tr><td>死淘高峰</td><td>5/26(10羽)、5/27(10羽)、6/1(13羽)</td><td>6/12起零星出现</td></tr>
+    <tr><td>趋势</td><td>前期高→中期缓→后期再升</td><td>前16天零死亡，后期零星</td></tr>
+  </tbody>
+</table>
+
+<div class="insight">
+  <b>分析：</b>A组绝对死淘数远高于B组，但需结合存栏规模看。按比例换算，A组日均死淘率约0.7%，B组约0.24%，A组仍显著偏高。A组前期死淘高峰与进鸡、并群应激有关；B组前16天零死亡表现优异，但6/12后开始出现零星死淘，需持续关注。
+</div>
+</div>
+
+<!-- ===== 6. 存栏量 ===== -->
+<div class="card">
+<h2>五、存栏量动态</h2>
+<img src="chart_stock.png" class="chart-img" alt="存栏量趋势">
+
+<div class="two-col">
+<div>
+<h3>A组存栏变化</h3>
+<ul style="margin:5px 0 5px 15px; font-size:14px;">
+  <li>5/24-5/26：从186→581，持续进鸡扩群</li>
+  <li>5/27-5/31：581→553，自然死淘减少</li>
+  <li>6/1：553→790，<b>并群约237羽</b></li>
+  <li>6/2-6/16：790→724，日均减少4.4羽</li>
+</ul>
+</div>
+<div>
+<h3>B组存栏变化</h3>
+<ul style="margin:5px 0 5px 15px; font-size:14px;">
+  <li>5/27-6/11：稳定100羽（零死淘）</li>
+  <li>6/12-6/16：100→96，零星淘汰</li>
+  <li>存栏稳定性远优于A组</li>
+  <li>群体规模小，管理更精细</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 7. 体重分析 ===== -->
+<div class="card">
+<h2>六、体重与均匀度分析</h2>
+<img src="chart_weight.png" class="chart-img" alt="平均体重变化趋势">
+
+<table>
+  <thead>
+    <tr><th>称重日期</th><th><span class="tag tag-a">A组体重</span></th><th><span class="tag tag-b">B组体重</span></th><th>标准体重</th><th>A组达标率</th><th>B组达标率</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5/26-5/27</td>
+      <td>1,719g</td><td>1,982g</td><td>2,010g</td>
+      <td class="worse">85.5%</td><td class="better">98.6%</td>
+    </tr>
+    <tr>
+      <td>5/30</td>
+      <td>1,623g</td><td>1,813g</td><td>2,010g</td>
+      <td class="worse">80.7%</td><td class="better">90.2%</td>
+    </tr>
+    <tr>
+      <td>6/15</td>
+      <td>1,695g</td><td>1,661g</td><td>2,010g</td>
+      <td class="better">84.3%</td><td class="worse">82.6%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>体重变化趋势解读</h3>
+<div class="two-col">
+<div>
+  <p><b>B组（实验）：</b></p>
+  <ul style="margin:5px 0 5px 15px; font-size:14px;">
+    <li>5/27：1,982g → 6/15：1,661g</li>
+    <li>降幅321g（-16.2%）</li>
+    <li>与标准体重差距从28g扩大至349g</li>
+    <li>体重持续下滑，<b>趋势令人担忧</b></li>
+  </ul>
+</div>
+<div>
+  <p><b>A组（对照）：</b></p>
+  <ul style="margin:5px 0 5px 15px; font-size:14px;">
+    <li>5/26：1,719g → 6/15：1,695g</li>
+    <li>降幅仅24g（-1.4%）</li>
+    <li>与标准体重差距从291g微缩至315g</li>
+    <li>体重基本稳定，略有波动</li>
+  </ul>
+</div>
+</div>
+
+<img src="chart_uniformity.png" class="chart-img" alt="均匀度对比">
+
+<h3>均匀度对比</h3>
+<table>
+  <thead><tr><th>称重日期</th><th><span class="tag tag-a">A组</span></th><th><span class="tag tag-b">B组</span></th><th>差异</th></tr></thead>
+  <tbody>
+    <tr><td>5/26-5/27</td><td>78%</td><td>99%</td><td>B组高21个百分点</td></tr>
+    <tr><td>5/30</td><td>70%</td><td>100%</td><td>B组高30个百分点</td></tr>
+    <tr><td>6/15</td><td>60%</td><td>80%</td><td>B组高20个百分点</td></tr>
+  </tbody>
+</table>
+
+<div class="insight">
+  <b>关键发现：</b>B组均匀度始终优于A组，但两组均匀度均呈下降趋势。A组从78%降至60%，B组从99%降至80%。均匀度下降意味着群体内体重差异增大，通常与疾病、营养不均或管理问题相关。B组初始均匀度极高（99%-100%），说明实验组鸡群筛选较好，但后续均匀度下降速度也较快。
+</div>
+</div>
+
+<!-- ===== 8. 雷达图综合 ===== -->
+<div class="card">
+<h2>七、综合指标雷达图</h2>
+<p style="font-size:14px; color:#7f8c8d; margin-bottom:10px;">基于5个维度的综合评分对比（百分制，A组取并群后数据）</p>
+<img src="chart_radar.png" class="chart-img" style="max-width:600px; display:block; margin:0 auto;" alt="综合指标雷达图">
+
+<div class="two-col" style="margin-top:20px;">
+<div>
+  <h3>A组（对照）优势</h3>
+  <ul style="margin:5px 0 5px 15px; font-size:14px;">
+    <li class="better">产蛋率相对稳定，没有断崖式下跌</li>
+    <li class="better">体重基本维持，无显著下降</li>
+  </ul>
+</div>
+<div>
+  <h3>B组（实验）优势</h3>
+  <ul style="margin:5px 0 5px 15px; font-size:14px;">
+    <li class="better">死淘率极低（5% vs 61.3%）</li>
+    <li class="better">均匀度始终更优（80% vs 60%）</li>
+    <li class="better">料蛋效率更高（0.80 vs 1.10）</li>
+    <li class="better">体重达标率初始更高</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- ===== 9. 阶段性分析 ===== -->
+<div class="card">
+<h2>八、阶段性深度分析</h2>
+
+<h3>8.1 第一阶段：进鸡/转群期（5/24-5/31）</h3>
+<table>
+  <thead><tr><th>指标</th><th>A组</th><th>B组</th></tr></thead>
+  <tbody>
+    <tr><td>存栏变化</td><td>186→553（持续进鸡）</td><td>100→100（稳定）</td></tr>
+    <tr><td>累计死淘</td><td>41羽</td><td>0羽</td></tr>
+    <tr><td>日均产蛋率</td><td>22.3%</td><td>43.5%</td></tr>
+    <tr><td>日耗料/羽</td><td>0.20斤</td><td>0.20斤</td></tr>
+  </tbody>
+</table>
+<div class="good">
+  <b>B组本期表现优异：</b>产蛋率高达43.5%，零死亡，均匀度99%-100%。转群后初期虽有应激（5/27仅15%产蛋率），但迅速恢复至64%。
+</div>
+
+<h3>8.2 第二阶段：并群调整期（6/1-6/7）</h3>
+<table>
+  <thead><tr><th>指标</th><th>A组</th><th>B组</th></tr></thead>
+  <tbody>
+    <tr><td>存栏变化</td><td>790→760（并群+死淘）</td><td>100→100</td></tr>
+    <tr><td>累计死淘</td><td>42羽</td><td>0羽</td></tr>
+    <tr><td>日均产蛋率</td><td>22.1%</td><td>23.6%</td></tr>
+    <tr><td>日耗料/羽</td><td>0.20斤</td><td>0.20斤</td></tr>
+  </tbody>
+</table>
+<div class="insight">
+  <b>转折期：</b>此阶段两组产蛋率相近（~22-24%），B组产蛋率从31%快速滑落，A组并群后产蛋率在调整中波动。B组虽零死亡，但产蛋下滑势头已现。
+</div>
+
+<h3>8.3 第三阶段：衰退期（6/8-6/16）</h3>
+<table>
+  <thead><tr><th>指标</th><th>A组</th><th>B组</th></tr></thead>
+  <tbody>
+    <tr><td>存栏变化</td><td>756→724</td><td>100→96</td></tr>
+    <tr><td>累计死淘</td><td>31羽</td><td>5羽</td></tr>
+    <tr><td>日均产蛋率</td><td>13.8%</td><td>8.7%</td></tr>
+    <tr><td>日耗料/羽</td><td>0.20斤</td><td>0.20斤</td></tr>
+  </tbody>
+</table>
+<div class="danger">
+  <b>两群产蛋率均严重下滑，B组更为严峻：</b>B组产蛋率低至4%-12%，6/8仅6%，6/13-14仅4%。A组虽然也在下降，但仍维持8%-16%水平。此阶段两组均处于产蛋后期衰退状态，但B组衰退速度远超预期。
+</div>
+</div>
+
+<!-- ===== 10. 料蛋比分析 ===== -->
+<div class="card">
+<h2>九、饲料效率分析</h2>
+
+<div class="summary-grid">
+  <div class="summary-item"><div class="val">1.10</div><div class="label">A组料蛋比（斤/枚）</div></div>
+  <div class="summary-item ok"><div class="val">0.80</div><div class="label">B组料蛋比（斤/枚）</div></div>
+  <div class="summary-item"><div class="val">0.20</div><div class="label">A组只均日耗料(斤)</div></div>
+  <div class="summary-item"><div class="val">0.20</div><div class="label">B组只均日耗料(斤)</div></div>
+</div>
+
+<div class="insight">
+  <b>分析：</b>两组只均日耗料量相同（0.20斤/羽/日），说明饲料投喂标准一致。B组料蛋比0.80优于A组1.10，主要因为B组前期（5/28-5/31）产蛋效率极高，拉低了整体料蛋比。但到后期，B组产蛋极少而耗料不变，料蛋效率已严重恶化。
+</div>
+</div>
+
+<!-- ===== 11. 综合结论 ===== -->
+<div class="card">
+<h2>十、综合结论与建议</h2>
+
+<h3>总体评价</h3>
+<table>
+  <thead><tr><th>维度</th><th><span class="tag tag-a">A组（对照）</span></th><th><span class="tag tag-b">B组（实验）</span></th><th>优胜</th></tr></thead>
+  <tbody>
+    <tr><td>产蛋率稳定性</td><td>缓降，相对稳定</td><td>断崖式下跌</td><td class="better">A组</td></tr>
+    <tr><td>绝对产蛋量</td><td>2,926枚/24天</td><td>523枚/21天</td><td>—（规模不同）</td></tr>
+    <tr><td>死淘控制</td><td>偏高（日均4.75羽）</td><td>极优（日均0.24羽）</td><td class="better">B组</td></tr>
+    <tr><td>体重维持</td><td>稳定（-1.4%）</td><td>持续下降（-16.2%）</td><td class="better">A组</td></tr>
+    <tr><td>均匀度</td><td>下降至60%</td><td>下降至80%</td><td class="better">B组</td></tr>
+    <tr><td>料蛋效率</td><td>1.10 斤/枚</td><td>0.80 斤/枚</td><td class="better">B组（前期）</td></tr>
+  </tbody>
+</table>
+
+<h3>核心问题诊断</h3>
+<div class="danger">
+  <b>B组产蛋率断崖式下跌是最核心的问题。</b>从5/28的64%跌至6/16的4%，在20天内产蛋率几乎归零，这不是正常的产蛋后期衰退。可能原因包括：
+  <ol style="margin:8px 0 0 20px;">
+    <li><b>疾病因素：</b>传鼻、非典型新城疫等，B组6/4有传鼻疫苗接种记录，可能疫苗反应加重了应激</li>
+    <li><b>营养问题：</b>B组日耗料0.20斤/羽可能不足以维持100羽海兰灰产蛋需要，尤其转群后需要更多营养恢复</li>
+    <li><b>管理应激：</b>转群应激叠加疫苗应激，老鸡恢复能力差</li>
+    <li><b>环境因素：</b>5号棚条件（温度、通风、光照）可能存在不利因素</li>
+  </ol>
+</div>
+
+<h3>管理建议</h3>
+<div class="good">
+  <b>对B组（实验组）的紧急建议：</b>
+  <ol style="margin:8px 0 0 20px;">
+    <li>立即排查疾病因素：采集血样进行抗体检测，排除传鼻、新城疫等</li>
+    <li>增加营养供给：考虑提高日耗料至0.22-0.25斤/羽，或添加维生素、电解质</li>
+    <li>减轻应激：暂停不必要的疫苗接种和操作，保持环境安静</li>
+    <li>检查5号棚环境：温度、通风、光照时长和强度</li>
+    <li>持续监测体重：如果体重继续下降，考虑提前淘汰</li>
+  </ol>
+</div>
+
+<div class="insight">
+  <b>对A组（对照组）的建议：</b>
+  <ol style="margin:8px 0 0 20px;">
+    <li>死淘率偏高需关注：日均死淘4.75羽超出正常范围，需排查并群后的疾病传播</li>
+    <li>6/1并群后产蛋率波动正常，但后续持续下降需警惕</li>
+    <li>均匀度降至60%不理想，建议调整饲喂策略，关注弱鸡</li>
+    <li>考虑在产蛋率降至15%以下时评估经济效益，适时淘汰</li>
+  </ol>
+</div>
+
+<h3>经济效益提示</h3>
+<p>按当前饲料和鸡蛋价格，A组料蛋比1.10（即每产1枚蛋需1.10斤饲料），B组0.80。考虑老鸡处于产蛋后期，两组均已接近或超过经济饲养临界点。建议：</p>
+<ul style="margin:5px 0 5px 20px;">
+  <li>核算当前鸡蛋售价与饲料成本，判断继续饲养是否经济</li>
+  <li>B组产蛋率已降至4%，继续饲养的经济价值极低</li>
+  <li>A组产蛋率8%-16%，尚有一定产蛋能力，但需密切监控</li>
+</ul>
+</div>
+
+<footer>
+  黎叔农场生产数据对比分析报告 | 数据截止：2026年6月16日 | 报告生成日期：2026年6月17日
+</footer>
+
+</div>
+</body>
+</html>
