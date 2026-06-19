@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BA+GO 御鉴·动力生命源 — 产品调研报告</title>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8d4a0;
+      --gold-dark: #8b6914;
+      --ink: #1a1a2e;
+      --bg: #faf8f3;
+      --bg-card: #ffffff;
+      --text: #2d2d2d;
+      --text-muted: #6b6b6b;
+      --border: #e0d8c8;
+      --accent-blue: #1e4d7b;
+      --accent-green: #1a6b45;
+      --tag-bg: #f0ebe0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1e3a5f 45%, #0d1b2a 100%);
+      color: #fff;
+      padding: 80px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.18), transparent 70%);
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 4px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      line-height: 1.3;
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+      letter-spacing: 1px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .hero-meta-item {
+      text-align: center;
+    }
+    .hero-meta-item .val {
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-meta-item .lbl {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 28px;
+      position: relative;
+      padding-left: 16px;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 4px; bottom: 4px;
+      width: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* ─── CARDS GRID ─── */
+    .grid { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+    .card-icon.gold { background: rgba(201,168,76,0.12); }
+    .card-icon.blue { background: rgba(30,77,123,0.1); }
+    .card-icon.green { background: rgba(26,107,69,0.1); }
+    .card-icon.red { background: rgba(180,30,30,0.08); }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── HIGHLIGHT BOX ─── */
+    .highlight-box {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1e3a5f 100%);
+      border-radius: 14px;
+      padding: 32px 36px;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+    .highlight-box h3 { color: var(--gold); margin-bottom: 10px; font-size: 18px; }
+    .highlight-box p { color: rgba(255,255,255,0.8); font-size: 14px; }
+
+    /* ─── TABLE ─── */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead th {
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) { background: #f7f5f0; }
+    tbody td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-light);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    .tag.green { background: #e8f4ee; color: #1a6b45; border-color: #a8d5be; }
+    .tag.blue  { background: #e8f0f8; color: #1e4d7b; border-color: #a0bfdb; }
+    .tag.red   { background: #fceaea; color: #a03030; border-color: #e0aaaa; }
+
+    /* ─── INGREDIENT TABLE ─── */
+    .ingredient-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .ingredient-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .ingredient-card .name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .ingredient-card .en-name {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .ingredient-card .func {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .ingredient-card .evidence {
+      margin-top: 8px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── MARKET CHART ─── */
+    .market-bars { display: flex; flex-direction: column; gap: 12px; }
+    .bar-row { display: flex; align-items: center; gap: 12px; }
+    .bar-label { width: 120px; font-size: 13px; color: var(--text); text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; background: var(--tag-bg); border-radius: 6px; height: 28px; overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex; align-items: center; padding-left: 10px;
+      color: #fff; font-size: 12px; font-weight: 600;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+      transition: width 1s ease;
+    }
+    .bar-note { width: 80px; font-size: 12px; color: var(--text-muted); }
+
+    /* ─── COMPLIANCE GRID ─── */
+    .compliance-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .compliance-col { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .compliance-col .col-head {
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .compliance-col .col-head.macao { background: linear-gradient(90deg, #1a4d2e, #2d7a52); }
+    .compliance-col .col-head.mainland { background: linear-gradient(90deg, #1e3a5f, #2c5f9a); }
+    .compliance-col .col-body { padding: 20px; }
+    .compliance-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 13.5px;
+    }
+    .compliance-item .ci-icon { flex-shrink: 0; font-size: 16px; }
+    .compliance-item .ci-text { line-height: 1.6; color: var(--text); }
+    .compliance-item .ci-text strong { color: var(--ink); }
+
+    @media (max-width: 700px) {
+      .compliance-cols { grid-template-columns: 1fr; }
+      .hero-meta { gap: 20px; }
+    }
+
+    /* ─── SWOT ─── */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .swot-cell { padding: 24px 26px; }
+    .swot-cell h4 { font-size: 13px; font-weight: 700; letter-spacing: 2px; margin-bottom: 12px; }
+    .swot-cell ul { padding-left: 18px; }
+    .swot-cell ul li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.6; }
+    .swot-cell.s { background: #e8f4ee; }
+    .swot-cell.s h4 { color: #1a6b45; }
+    .swot-cell.w { background: #fceaea; }
+    .swot-cell.w h4 { color: #a03030; }
+    .swot-cell.o { background: #e8f0f8; }
+    .swot-cell.o h4 { color: #1e4d7b; }
+    .swot-cell.t { background: #fef5e8; }
+    .swot-cell.t h4 { color: #8b5e14; }
+
+    @media (max-width: 600px) {
+      .swot-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── STRATEGY ─── */
+    .strategy-timeline { position: relative; padding-left: 32px; }
+    .strategy-timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -26px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .timeline-item .phase {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+    .timeline-item p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 13px;
+      line-height: 2;
+    }
+    footer strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">PRODUCT RESEARCH REPORT</div>
+  <h1>BA+GO 御鉴·<span>动力生命源</span><br/>ENERGY CELL</h1>
+  <p class="hero-sub">多功能生物能激活剂 × 基因优化调节器 | 中国澳门 × 中国大陆 双市场布局</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="val">2</span>
+      <span class="lbl">核心产品</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">2</span>
+      <span class="lbl">目标市场</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">80/90</span>
+      <span class="lbl">后目标客群</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">2026</span>
+      <span class="lbl">调研年份</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 产品概述 -->
+  <section>
+    <div class="section-label">01 · OVERVIEW</div>
+    <h2 class="section-title">产品概述与供应链结构</h2>
+
+    <div class="highlight-box">
+      <h3>核心定位</h3>
+      <p>BA+GO 御鉴·动力生命源（ENERGY CELL）定位为<strong style="color:#e8d4a0">高端功能性健康食品</strong>，以"多功能生物能激活剂 + 基因优化调节器"为双核驱动，聚焦细胞能量、抗氧化衰老及基因表达调控等前沿健康科学领域，切入中高净值80后/90后健康消费市场。</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-icon gold">🏛️</div>
+        <h3>监制方</h3>
+        <p>北京群子生命动力技术研究所<br/>提供核心技术研发背书与配方专利支持</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">🏭</div>
+        <h3>生产方</h3>
+        <p>中国澳门澳研康保健食品厂<br/>具备GMP保健品生产资质，符合澳门食安标准</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">📋</div>
+        <h3>委托方</h3>
+        <p>中国澳门活力药业有限公司<br/>澳门本地合规主体，负责澳门市场销售及监管对接</p>
+      </div>
+      <div class="card">
+        <div class="card-icon red">🌏</div>
+        <h3>双市场布局</h3>
+        <p>中国澳门（本地销售）+ 中国大陆（跨境/准入）<br/>双线并行，优先澳门市场积累口碑</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 成分解析 -->
+  <section>
+    <div class="section-label">02 · INGREDIENT ANALYSIS</div>
+    <h2 class="section-title">核心成分解析</h2>
+
+    <div class="ingredient-grid">
+      <div class="ingredient-card">
+        <div class="name">辅酶Q10（泛醌）</div>
+        <div class="en-name">Coenzyme Q10 / Ubiquinone</div>
+        <div class="func">线粒体电子传递链核心组分，催化ATP合成，提升细胞能量利用效率；显著抗氧化，清除自由基，延缓细胞衰老。</div>
+        <div class="evidence">
+          <span class="tag green">临床验证</span>
+          <span class="tag blue">能量代谢</span>
+          <span class="tag">抗衰老</span>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <div class="name">NMN（β-烟酰胺单核苷酸）</div>
+        <div class="en-name">Nicotinamide Mononucleotide</div>
+        <div class="func">NAD⁺前体，提升细胞内NAD⁺水平，激活长寿蛋白Sirtuins，促进DNA修复，改善线粒体功能，延缓衰老进程。</div>
+        <div class="evidence">
+          <span class="tag green">前沿研究</span>
+          <span class="tag blue">基因调控</span>
+          <span class="tag">抗衰</span>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <div class="name">白藜芦醇</div>
+        <div class="en-name">Resveratrol</div>
+        <div class="func">天然多酚类化合物，激活SIRT1信号通路，具有多靶点抗氧化、抗炎、促进自噬功能，协同NMN增效。</div>
+        <div class="evidence">
+          <span class="tag green">临床研究</span>
+          <span class="tag">抗炎</span>
+          <span class="tag blue">协同增效</span>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <div class="name">虾青素</div>
+        <div class="en-name">Astaxanthin</div>
+        <div class="func">超强天然抗氧化剂，抗氧化能力为维生素E的550倍，保护细胞膜及DNA免受氧化损伤，改善皮肤弹性与眼部健康。</div>
+        <div class="evidence">
+          <span class="tag green">临床验证</span>
+          <span class="tag">皮肤健康</span>
+          <span class="tag blue">眼健康</span>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <div class="name">PQQ（吡咯喹啉醌）</div>
+        <div class="en-name">Pyrroloquinoline Quinone</div>
+        <div class="func">促进线粒体新生（Mitochondrial Biogenesis），提升细胞能量生产能力，改善认知功能与神经保护。</div>
+        <div class="evidence">
+          <span class="tag green">动物/人体研究</span>
+          <span class="tag blue">认知改善</span>
+          <span class="tag">能量提升</span>
+        </div>
+      </div>
+      <div class="ingredient-card">
+        <div class="name">人参皂苷Rg3/Rb1</div>
+        <div class="en-name">Ginsenoside Rg3/Rb1</div>
+        <div class="func">经典中医药食同源成分，现代研究证实具有免疫调节、抗疲劳、促进细胞活力及端粒保护作用，赋予产品传统背书。</div>
+        <div class="evidence">
+          <span class="tag green">传统验证</span>
+          <span class="tag">免疫调节</span>
+          <span class="tag blue">药食同源</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 市场分析 -->
+  <section>
+    <div class="section-label">03 · MARKET ANALYSIS</div>
+    <h2 class="section-title">目标市场分析</h2>
+
+    <div class="grid grid-2" style="margin-bottom:32px">
+      <div class="card">
+        <div class="card-icon blue">🌐</div>
+        <h3>中国大陆市场规模</h3>
+        <p>功能性保健食品市场规模 2025 年预计突破 <strong>6,000亿元</strong>，其中抗衰老/细胞能量类品类年增速超过 25%，是增长最快的细分赛道之一。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">🏙️</div>
+        <h3>中国澳门市场特点</h3>
+        <p>澳门保健品市场规模小但消费力极强，人均保健品支出居全球前列。旅游购物属性强，适合作为品牌形象高端化的<strong>首发市场</strong>。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:18px;color:var(--ink);font-size:16px">中国大陆细胞能量类产品消费增长趋势</h3>
+    <div class="market-bars">
+      <div class="bar-row">
+        <div class="bar-label">2021年</div>
+        <div class="bar-track"><div class="bar-fill" style="width:38%">682亿</div></div>
+        <div class="bar-note">基数年</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">2022年</div>
+        <div class="bar-track"><div class="bar-fill" style="width:47%">850亿</div></div>
+        <div class="bar-note">+24.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">2023年</div>
+        <div class="bar-track"><div class="bar-fill" style="width:58%">1,060亿</div></div>
+        <div class="bar-note">+24.7%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">2024年</div>
+        <div class="bar-track"><div class="bar-fill" style="width:70%">1,310亿</div></div>
+        <div class="bar-note">+23.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">2025E</div>
+        <div class="bar-track"><div class="bar-fill" style="width:85%">1,620亿</div></div>
+        <div class="bar-note">+23.7%</div>
+      </div>
+    </div>
+
+    <div style="margin-top:36px">
+      <h3 style="margin-bottom:18px;color:var(--ink);font-size:16px">主要竞品对标分析</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>品牌/产品</th>
+              <th>核心成分</th>
+              <th>目标客群</th>
+              <th>价格带</th>
+              <th>渠道</th>
+              <th>差异化</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sinclair NMN</strong></td>
+              <td>NMN</td>
+              <td>40-60岁</td>
+              <td>¥800-2,000/月</td>
+              <td>海淘/电商</td>
+              <td><span class="tag blue">学术背书</span></td>
+            </tr>
+            <tr>
+              <td><strong>华大基因·时光益</strong></td>
+              <td>NMN+NR</td>
+              <td>35-55岁</td>
+              <td>¥600-1,500/月</td>
+              <td>直销+电商</td>
+              <td><span class="tag blue">基因检测联动</span></td>
+            </tr>
+            <tr>
+              <td><strong>澳维纯</strong></td>
+              <td>CoQ10+虾青素</td>
+              <td>30-50岁</td>
+              <td>¥300-800/月</td>
+              <td>澳门药房+电商</td>
+              <td><span class="tag green">澳门产地</span></td>
+            </tr>
+            <tr>
+              <td><strong>TIMEBIOTIC</strong></td>
+              <td>多肽+干细胞因子</td>
+              <td>45-65岁</td>
+              <td>¥2,000-5,000/月</td>
+              <td>高端诊所</td>
+              <td><span class="tag">抗衰高端</span></td>
+            </tr>
+            <tr style="background:#fffbf0">
+              <td><strong>BA+GO ENERGY CELL</strong> ★</td>
+              <td>NMN+CoQ10+PQQ+人参皂苷</td>
+              <td>80/90后</td>
+              <td>¥800-2,500/月</td>
+              <td>澳门+大陆双线</td>
+              <td><span class="tag green">中西融合</span> <span class="tag blue">双市场</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 合规分析 -->
+  <section>
+    <div class="section-label">04 · REGULATORY COMPLIANCE</div>
+    <h2 class="section-title">双市场合规准入分析</h2>
+
+    <div class="compliance-cols">
+      <div class="compliance-col">
+        <div class="col-head macao">🌿 中国澳门市场</div>
+        <div class="col-body">
+          <div class="compliance-item">
+            <div class="ci-icon">📜</div>
+            <div class="ci-text"><strong>监管机构：</strong>澳门卫生局（SSM）+ 经济局，保健食品参照《食品安全法》及《保健食品管制法规》。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">✅</div>
+            <div class="ci-text"><strong>注册路径：</strong>通知制（低风险）或注册制（含特定功能声称），澳研康GMP资质已满足生产合规要求。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">🏷️</div>
+            <div class="ci-text"><strong>标签要求：</strong>须使用中文（繁体）及葡文双语标注；不得声称疾病预防/治疗功效；须标注净含量、成分、保质期、产地。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">⚡</div>
+            <div class="ci-text"><strong>准入优势：</strong>审批周期短（3-6个月），政策相对宽松，可作为品牌建设首发地，积累口碑后赋能大陆市场。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">⚠️</div>
+            <div class="ci-text"><strong>注意事项：</strong>NMN在澳门尚无明确独立分类，建议以"营养补充剂"类别申报，避免触发药品管制。</div>
+          </div>
+        </div>
+      </div>
+      <div class="compliance-col">
+        <div class="col-head mainland">🇨🇳 中国大陆市场</div>
+        <div class="col-body">
+          <div class="compliance-item">
+            <div class="ci-icon">📜</div>
+            <div class="ci-text"><strong>监管机构：</strong>国家市场监督管理总局（SAMR）/ 国家食品药品监督管理局（NMPA），适用《保健食品注册与备案管理办法》。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">🔄</div>
+            <div class="ci-text"><strong>注册路径：</strong>首次进口保健食品须进行<strong>注册</strong>（非备案），预计周期 18-36 个月；可同步启动跨境电商（9610/1210模式）作为过渡。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">⚠️</div>
+            <div class="ci-text"><strong>NMN合规重点：</strong>中国大陆目前NMN处于监管灰色地带，不在保健食品原料目录，建议关注2025年后新原料审批动向，或以"普通食品"形式进行跨境渠道试水。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">🛒</div>
+            <div class="ci-text"><strong>跨境电商路径：</strong>依托中国澳门产地，通过跨境电商综合试验区正面清单进行销售，享受简化监管政策。</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-icon">📋</div>
+            <div class="ci-text"><strong>功能声称：</strong>须严格使用NMPA批准的27种保健功能声称，"抗衰老"类尚未单独纳入目录，需以"抗氧化""增强免疫"等替代表述。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SWOT -->
+  <section>
+    <div class="section-label">05 · STRATEGIC ASSESSMENT</div>
+    <h2 class="section-title">SWOT 战略评估</h2>
+    <div class="swot-grid">
+      <div class="swot-cell s">
+        <h4>S — 优势 STRENGTHS</h4>
+        <ul>
+          <li>中西融合配方，人参皂苷赋予传统文化认同感</li>
+          <li>澳门产地赋予"港澳品质"溢价，利于高端定价</li>
+          <li>北京群子研究所提供专业技术背书</li>
+          <li>供应链闭环：研发（北京）→ 生产（澳门）→ 销售（双市场）</li>
+          <li>NMN+CoQ10+PQQ三重能量核心，配方差异化明显</li>
+        </ul>
+      </div>
+      <div class="swot-cell w">
+        <h4>W — 劣势 WEAKNESSES</h4>
+        <ul>
+          <li>品牌认知度尚处于建立阶段</li>
+          <li>NMN在大陆监管不明，存在合规障碍</li>
+          <li>大陆注册周期长（18-36个月），上市节奏较慢</li>
+          <li>高端定价对渠道建设能力要求高</li>
+          <li>产品功效验证临床数据有待积累</li>
+        </ul>
+      </div>
+      <div class="swot-cell o">
+        <h4>O — 机会 OPPORTUNITIES</h4>
+        <ul>
+          <li>80/90后健康消费升级趋势强劲</li>
+          <li>细胞能量/抗衰老赛道高速增长（年增25%+）</li>
+          <li>跨境电商政策持续利好澳门产品进入大陆</li>
+          <li>大陆NMN监管预期松动，先布局可享首发红利</li>
+          <li>澳门旅游经济回升，购物消费强劲</li>
+        </ul>
+      </div>
+      <div class="swot-cell t">
+        <h4>T — 威胁 THREATS</h4>
+        <ul>
+          <li>海外NMN品牌（Sinclair、Elysium等）竞争激烈</li>
+          <li>市场存在大量质量参差不齐的仿制品</li>
+          <li>消费者对"基因优化"声称认知度偏低</li>
+          <li>大陆监管趋严，合规成本持续上升</li>
+          <li>澳门市场体量有限，规模增长天花板明显</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 策略建议 -->
+  <section>
+    <div class="section-label">06 · STRATEGIC RECOMMENDATIONS</div>
+    <h2 class="section-title">市场推进策略建议</h2>
+
+    <div class="strategy-timeline">
+      <div class="timeline-item">
+        <div class="phase">PHASE 1 · 2026 Q2-Q3</div>
+        <h4>澳门合规落地 + 品牌建立</h4>
+        <p>完成澳门卫生局注册备案，统一双语包装设计，在澳门高端药房、酒店健康中心及免税渠道铺货。同步建立品牌官网及微信生态（公众号/小程序），积累第一批种子用户口碑。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">PHASE 2 · 2026 Q4 - 2027 Q1</div>
+        <h4>跨境电商试水大陆市场</h4>
+        <p>利用澳门产地优势，入驻天猫国际、京东国际及小红书跨境店，以"普通食品"形式试销；同步启动大陆保健食品注册申请，重点配方可拆分NMN独立走新原料申报路径。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">PHASE 3 · 2027 Q2-Q4</div>
+        <h4>KOL内容营销 + 私域沉淀</h4>
+        <p>与健康垂类KOL（医生、营养师、健身领域）开展内容共创，重点在小红书、抖音打造"科学抗衰"内容矩阵；建立企业微信私域社群，推行会员订阅制，提升LTV。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">PHASE 4 · 2028+</div>
+        <h4>大陆正式注册上市 + 渠道全面扩张</h4>
+        <p>完成NMPA保健食品注册，在大陆商超、连锁药房、高端健身会所及医疗机构全渠道铺开；探索与大健康体检/抗衰诊所合作，推进B2B企业健康福利渠道。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 结论 -->
+  <section>
+    <div class="section-label">07 · CONCLUSION</div>
+    <h2 class="section-title">研究结论</h2>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-icon gold">🎯</div>
+        <h3>市场机会评级</h3>
+        <p>细胞能量与抗衰老市场高速增长，80/90后健康消费升级需求强烈，整体市场机会评级：<strong>A级（高优先级）</strong>。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">⚖️</div>
+        <h3>合规可行性</h3>
+        <p>澳门市场合规路径清晰，可快速落地；大陆市场需通过跨境电商过渡，中长期等待NMN监管明朗后推进正式注册。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">💡</div>
+        <h3>核心竞争建议</h3>
+        <p>以<strong>中西融合科学叙事</strong>建立品牌壁垒，强化"澳门品质"溢价，构建订阅制会员体系，打造高黏性用户社区，实现差异化竞争。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>BA+GO 御鉴·动力生命源 产品调研报告</strong><br/>
+  监制：北京群子生命动力技术研究所 · 生产：中国澳门澳研康保健食品厂 · 委托：中国澳门活力药业有限公司<br/>
+  本报告由阿布（WorkBuddy AI）基于公开信息及项目资料整理生成 · 仅供内部决策参考 · 2026年6月
+</footer>
+
+</body>
+</html>
