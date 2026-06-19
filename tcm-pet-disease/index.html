@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猫狗主要慢性病与中医宠物药解决方案研究报告</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #2c2c2c;
+  background: #f5f4f0;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 50px 56px 70px;
+  background: #fff;
+  box-shadow: 0 0 40px rgba(0,0,0,.06);
+}
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #1a1a2e;
+  margin: 0 0 6px;
+  padding-bottom: 18px;
+  border-bottom: 3px double #2f5496;
+  letter-spacing: 2px;
+}
+h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2f5496;
+  margin: 36px 0 14px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #2f5496;
+}
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin: 24px 0 10px;
+}
+h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #444;
+  margin: 18px 0 7px;
+}
+p { margin: 0 0 10px; text-align: justify; }
+ul, ol { margin: 8px 0 12px 24px; }
+li { margin-bottom: 4px; }
+strong { color: #c0392b; font-weight: 700; }
+hr { border: none; border-top: 1px solid #ddd; margin: 22px 0; }
+.meta { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  table-layout: auto;
+}
+thead { background: #2f5496; }
+thead th {
+  color: #fff;
+  font-weight: 700;
+  padding: 9px 10px;
+  text-align: center;
+  border: 1px solid #1e3d6e;
+}
+tbody td {
+  padding: 7px 10px;
+  border: 1px solid #d0d7e3;
+  vertical-align: top;
+}
+tbody tr:nth-child(even) { background: #eef2f8; }
+tbody tr:nth-child(odd) { background: #fff; }
+tbody tr:hover { background: #dce6f5; }
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 18px auto;
+  height: 400px;
+}
+.chart-container-sm {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 18px auto;
+  height: 340px;
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+.kpi-card {
+  background: #f0f4fa;
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+  border: 1px solid #d0d7e3;
+}
+.kpi-label { font-size: 12px; color: #666; margin-bottom: 6px; }
+.kpi-value { font-size: 26px; font-weight: 700; color: #2f5496; }
+.kpi-value.red { color: #c0392b; }
+.kpi-value.green { color: #27ae60; }
+.kpi-value.orange { color: #e67e22; }
+.tag {
+  display: inline-block;
+  background: #eef2f8;
+  color: #2f5496;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.tag-blue { background: #d5e5f7; color: #185FA5; }
+.tag-green { background: #d5f5e3; color: #0F6E56; }
+.tag-red { background: #fadbd8; color: #A32D2D; }
+.tag-orange { background: #fdebd0; color: #854F0B; }
+.tag-purple { background: #E8E0F8; color: #3C3489; }
+.tag-coral { background: #FAECE7; color: #993C1D; }
+.insight-box {
+  background: #f8f6f0;
+  border-left: 4px solid #2f5496;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+}
+.insight-box strong { color: #c0392b; }
+.highlight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.highlight-card {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px;
+}
+.highlight-card h4 { margin-top: 0; color: #2f5496; }
+.highlight-card p { font-size: 13px; }
+@media print {
+  body { background: #fff; }
+  .page { box-shadow: none; padding: 20px 40px; max-width: 100%; }
+  table { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+}
+@media (max-width: 860px) {
+  .page { padding: 20px 16px; }
+  h1 { font-size: 20px; }
+  h2 { font-size: 17px; }
+  table { font-size: 11px; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .highlight-grid { grid-template-columns: 1fr; }
+  .chart-container { height: 320px; }
+  .chart-container-sm { height: 280px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>猫狗主要慢性病与中医宠物药解决方案研究报告</h1>
+<p class="meta">基于《2026年中国宠物中草药行业市场研究报告》数据分析 &nbsp;|&nbsp; 2026年6月</p>
+
+<!-- ========== 第一章 概览 ========== -->
+<h2>一、市场背景：宠物老龄化驱动千亿级刚需</h2>
+
+<p>中国宠物中草药市场正处于从导入期向成长期过渡的关键窗口。2025年市场总规模<strong>突破50亿元</strong>，近三年CAGR超<strong>25%</strong>。宠物老龄化是其中最强的刚性需求驱动——未来3年超<strong>3000万只</strong>宠物将迈入中老年阶段，每多一只老年宠物，年均新增医疗保健支出约1000—3000元。</p>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">2025年市场规模</div>
+    <div class="kpi-value green">50亿元</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">近三年CAGR</div>
+    <div class="kpi-value orange">>25%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">2028年预测</div>
+    <div class="kpi-value">100-150亿</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">3年新增老年宠物</div>
+    <div class="kpi-value red">3000万只</div>
+  </div>
+</div>
+
+<div class="chart-container-sm">
+  <canvas id="marketTrend" role="img" aria-label="宠物中草药各细分市场增长趋势堆叠柱状图">各细分市场增长趋势</canvas>
+</div>
+
+<div class="insight-box">
+  <strong>核心判断：</strong>宠物中草药渗透率目前仅15%—20%，与人用中药约30%的渗透率相比，翻倍即可带来百亿级增量。老龄化+天然养宠理念+政策红利（610号公告），三重驱动叠加，2028年有望突破100亿元。
+</div>
+
+<!-- ========== 第二章 慢性病发病率 ========== -->
+<h2>二、猫狗十大慢性病发病概况</h2>
+
+<p>宠物年龄增长后，慢性病呈现"多病共存"特征。根据兽医临床统计和行业报告交叉验证，老年犬猫主要慢性病发病率如下：</p>
+
+<div class="chart-container">
+  <canvas id="diseaseChart" role="img" aria-label="猫狗十大慢性病发病率对比水平柱状图">慢性病发病率对比</canvas>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">老年犬慢性肾病</div>
+    <div class="kpi-value red">~70%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">犬关节炎发病率</div>
+    <div class="kpi-value orange">~30%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">犬老年犬占比</div>
+    <div class="kpi-value">>25%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">猫数量 > 犬数量</div>
+    <div class="kpi-value green">连续4年</div>
+  </div>
+</div>
+
+<h3>犬猫慢性病差异</h3>
+<ul>
+  <li><strong>犬</strong>：肾病（"头号杀手"）、关节炎、皮肤病、心脏病、消化系统疾病更为高发</li>
+  <li><strong>猫</strong>：慢性肾病（10岁以上老猫高发）、泌尿系统（尤其公猫下泌尿道）、情绪应激、口腔疾病更为典型</li>
+  <li><strong>共通</strong>：免疫调节、肿瘤辅助治疗需求均随年龄显著上升</li>
+</ul>
+
+<!-- ========== 第三章 中医解决方案详细 ========== -->
+<h2>三、十大慢性病 × 中医宠物药解决方案</h2>
+
+<table>
+<thead>
+<tr>
+  <th>慢性病</th>
+  <th>发病率</th>
+  <th>中医疗则</th>
+  <th>核心药材/方剂</th>
+  <th>产品形态</th>
+  <th>市场阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>慢性肾病</strong></td>
+  <td>犬~70%<br>猫~40%</td>
+  <td>健脾补肾<br>利尿排石</td>
+  <td>茯苓、泽泻、车前子<br>熟地、山药、山茱萸</td>
+  <td>颗粒剂/口服液<br>处方药</td>
+  <td><span class="tag tag-red">蓝海中的蓝海</span><br>获批品种极少</td>
+</tr>
+<tr>
+  <td><strong>关节炎<br>（骨关节）</strong></td>
+  <td>犬~30%+<br>猫~10%</td>
+  <td>补肝肾<br>强筋骨、活血通络</td>
+  <td>杜仲、牛膝、骨碎补<br>+软骨素/氨基葡萄糖</td>
+  <td>保健品<br>含药冻干零食</td>
+  <td><span class="tag tag-green">成长期</span><br>最大保健品子品类</td>
+</tr>
+<tr>
+  <td><strong>心脏病</strong></td>
+  <td>犬~15%<br>猫~8%</td>
+  <td>益气养心<br>活血化瘀</td>
+  <td>丹参、三七<br>黄芪、炙甘草、麦冬</td>
+  <td>颗粒剂/片剂<br>中西结合</td>
+  <td><span class="tag tag-blue">早期</span><br>中西结合趋势</td>
+</tr>
+<tr>
+  <td><strong>皮肤病<br>（慢性）</strong></td>
+  <td>犬~25%<br>猫~20%</td>
+  <td>清热解毒<br>杀虫止痒、凉血</td>
+  <td>苦参、黄柏、金银花<br>紫草、百部、蛇床子</td>
+  <td>药浴/喷雾/膏剂<br>中药沐浴露</td>
+  <td><span class="tag tag-green">相对成熟</span><br>已有恩康唑溶液获批</td>
+</tr>
+<tr>
+  <td><strong>泌尿系统<br>疾病</strong></td>
+  <td>猫~15%<br>犬~8%</td>
+  <td>清热利湿<br>通淋排石</td>
+  <td>金钱草、海金沙<br>车前草、石韦、瞿麦</td>
+  <td>颗粒剂<br>处方粮添加剂</td>
+  <td><span class="tag tag-red">猫药蓝海</span><br>猫数 > 犬连续4年</td>
+</tr>
+<tr>
+  <td><strong>消化系统<br>疾病</strong></td>
+  <td>犬~20%<br>猫~15%</td>
+  <td>健脾消食<br>和胃化湿</td>
+  <td>山楂、麦芽、茯苓<br>藿香、白术、陈皮</td>
+  <td>口服液/膏剂<br>+益生菌复方</td>
+  <td><span class="tag tag-green">增长最快</span><br>保健品核心方向</td>
+</tr>
+<tr>
+  <td><strong>肿瘤/癌症</strong></td>
+  <td>犬~12%<br>猫~15%</td>
+  <td>扶正祛邪<br>益气解毒</td>
+  <td>黄芪多糖、灵芝孢子粉<br>香菇多糖、白花蛇舌草</td>
+  <td>免疫调节保健品<br>放化疗辅助</td>
+  <td><span class="tag tag-orange">高潜力</span><br>减毒增效方向</td>
+</tr>
+<tr>
+  <td><strong>糖尿病</strong></td>
+  <td>猫~8%<br>犬~5%</td>
+  <td>滋阴清热<br>益气生津</td>
+  <td>知母、黄精<br>枸杞、山药、葛根</td>
+  <td>颗粒剂<br>处方粮添加剂</td>
+  <td><span class="tag tag-blue">中长期方向</span><br>辅助控糖</td>
+</tr>
+<tr>
+  <td><strong>慢性呼吸道<br>疾病</strong></td>
+  <td>犬~10%<br>猫~12%</td>
+  <td>清热解毒<br>宣肺化痰</td>
+  <td>板蓝根、连翘、黄芩<br>双黄连、清瘟解毒口服液</td>
+  <td>口服液/颗粒剂</td>
+  <td><span class="tag tag-green">已有成熟获批</span><br>板青颗粒等</td>
+</tr>
+<tr>
+  <td><strong>情绪/焦虑<br>问题</strong></td>
+  <td>犬~18%<br>猫~22%</td>
+  <td>安神解郁<br>宁心定志</td>
+  <td>酸枣仁、远志<br>茯苓、合欢皮、百合</td>
+  <td>情绪舒缓产品<br>零食/滴剂</td>
+  <td><span class="tag tag-red">新兴蓝海</span><br>海正已推"舒欣宝"</td>
+</tr>
+</tbody>
+</table>
+
+<!-- ========== 第四章 中医治未病 ========== -->
+<h2>四、中医"治未病"与宠物全生命周期管理</h2>
+
+<p>中医"治未病"理念天然契合宠物健康管理——从预防到治疗到康复的完整闭环。报告明确指出，"治未病"理念驱动下，宠物中药应用场景正从"治疗"前移至"预防"，覆盖宠物全生命周期。</p>
+
+<div class="highlight-grid">
+  <div class="highlight-card">
+    <h4>治未病三层次</h4>
+    <p><span class="tag tag-green">未病先防</span>幼宠免疫增强、季节变换预防</p>
+    <p><span class="tag tag-orange">既病防变</span>早期干预、阻止病情恶化</p>
+    <p><span class="tag tag-purple">瘥后防复</span>术后康复、慢性病长期管理</p>
+  </div>
+  <div class="highlight-card">
+    <h4>宠物三阶段</h4>
+    <p><span class="tag tag-blue">幼宠期（0-1岁）</span>黄芪多糖、免疫增强</p>
+    <p><span class="tag tag-orange">成年期（1-7岁）</span>皮毛护理、肠胃调理、口腔健康</p>
+    <p><span class="tag tag-red">老年期（7岁+）</span>慢性病管理、术后康复、生活质量</p>
+  </div>
+</div>
+
+<div class="insight-box">
+  <strong>全生命周期逻辑：</strong>预防保健场景极大拓展了宠物中药的总可及市场范围。宠物寿命每延长一年，对应数千至数万元的持续消费——中药在"延长健康寿命"维度具备独特价值。
+</div>
+
+<!-- ========== 第五章 代表企业 ========== -->
+<h2>五、产业链关键玩家与竞争格局</h2>
+
+<table>
+<thead>
+<tr>
+  <th>企业</th>
+  <th>定位</th>
+  <th>核心宠物中药方向</th>
+  <th>竞争策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>瑞普生物</strong></td>
+  <td>全产业链龙头</td>
+  <td>中兽药制剂（多品类）、猫三联疫苗</td>
+  <td>技术驱动 + 并购整合</td>
+</tr>
+<tr>
+  <td><strong>回盛生物</strong></td>
+  <td>中兽药隐形冠军</td>
+  <td>板青颗粒、芪贞增免颗粒、恩康唑溶液</td>
+  <td>技术驱动（产学研联合）</td>
+</tr>
+<tr>
+  <td><strong>海正动保</strong></td>
+  <td>驱虫药第一品牌</td>
+  <td>驱虫药 + 情绪舒缓（舒欣宝）</td>
+  <td>渠道驱动 + 品类延伸</td>
+</tr>
+<tr>
+  <td><strong>中牧股份</strong></td>
+  <td>央企国家队</td>
+  <td>中兽药全品类（种植→制剂→销售）</td>
+  <td>资源驱动 + 后发追赶</td>
+</tr>
+<tr>
+  <td><strong>卫仕/红狗/麦德氏</strong></td>
+  <td>消费品品牌</td>
+  <td>中药保健品（关节/肠胃/皮毛）</td>
+  <td>品牌营销 + 社交电商</td>
+</tr>
+</tbody>
+</table>
+
+<p>行业整体处于<strong>高度分散</strong>的早期竞争阶段——中药药品领域尚无单一品牌市占率超15%，保健品和洗护领域前五大品牌CR5不足30%。分散格局意味着新进入者仍有较大空间，但也意味着品牌建设成本高、消费者教育周期长。</p>
+
+<!-- ========== 第六章 赛道研判 ========== -->
+<h2>六、赛道优先级与投资研判</h2>
+
+<h3>6.1 细分赛道矩阵</h3>
+
+<table>
+<thead>
+<tr>
+  <th>优先级</th>
+  <th>慢性病方向</th>
+  <th>中医解决方案</th>
+  <th>市场判断</th>
+  <th>核心逻辑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong style="color:#c0392b;">★★★</strong></td>
+  <td>慢性肾病</td>
+  <td>健脾补肾、利尿排石类中药</td>
+  <td>蓝海中的蓝海</td>
+  <td>犬"头号杀手"（70%患病率），获批品种极少，刚需极强</td>
+</tr>
+<tr>
+  <td><strong style="color:#c0392b;">★★★</strong></td>
+  <td>猫泌尿系统</td>
+  <td>清热利湿、通淋排石类中药</td>
+  <td>猫药蓝海</td>
+  <td>猫数>犬连续4年，公猫下泌尿道问题高发，方案稀缺</td>
+</tr>
+<tr>
+  <td><strong style="color:#c0392b;">★★★</strong></td>
+  <td>情绪/焦虑</td>
+  <td>安神解郁类中药（酸枣仁、远志）</td>
+  <td>新兴蓝海</td>
+  <td>全球趋势（Zesty Paws已入局），海正已推产品验证</td>
+</tr>
+<tr>
+  <td><strong style="color:#e67e22;">★★☆</strong></td>
+  <td>关节炎</td>
+  <td>壮骨类 + 软骨素/氨基葡萄糖复方</td>
+  <td>成长期（最大保健品子品类）</td>
+  <td>30%+发病率，消费频次高，已验证需求</td>
+</tr>
+<tr>
+  <td><strong style="color:#e67e22;">★★☆</strong></td>
+  <td>免疫调节/抗肿瘤</td>
+  <td>黄芪多糖、灵芝孢子粉、香菇多糖</td>
+  <td>高潜力</td>
+  <td>全生命周期需求 + 放化疗减毒增效，临床价值明确</td>
+</tr>
+<tr>
+  <td><strong style="color:#e67e22;">★★☆</strong></td>
+  <td>消化系统</td>
+  <td>健脾消食类 + 益生菌复方</td>
+  <td>增长最快保健品方向之一</td>
+  <td>消费最高频，"概念添加"合规化利好头部企业</td>
+</tr>
+<tr>
+  <td><strong style="color:#2f5496;">★☆☆</strong></td>
+  <td>皮肤病（慢性）</td>
+  <td>清热解毒、杀虫止痒类中药</td>
+  <td>相对成熟</td>
+  <td>已有获批产品（恩康唑溶液），竞争已起</td>
+</tr>
+<tr>
+  <td><strong style="color:#2f5496;">★☆☆</strong></td>
+  <td>慢性呼吸道</td>
+  <td>清热解毒类（板青颗粒等）</td>
+  <td>已有成熟获批</td>
+  <td>畜牧业已有成熟品种，宠物化扩展空间有限</td>
+</tr>
+</tbody>
+</table>
+
+<h3>6.2 关键结论</h3>
+
+<div class="insight-box">
+  <strong>三大黄金蓝海：</strong>肾病管理、猫泌尿保健、情绪镇定——这三个方向获批品种极少，但临床刚需极强，是最具战略价值的卡位方向。
+</div>
+
+<div class="insight-box">
+  <strong>政策窗口期：</strong>农业农村部610号公告打开了人用中药转宠物药的绿色通道，大量经过人用临床验证的安全有效中药品种可简化注册进入宠物市场。先发者将建立显著竞争壁垒。
+</div>
+
+<div class="insight-box">
+  <strong>猫经济崛起：</strong>猫数量连续4年超过犬，猫消费增速（+10.7%）远快于犬（+4.6%）。猫用中药产品——尤其是泌尿保健、肾脏保养、情绪管理——是需求正在加速放量的方向。
+</div>
+
+<!-- ========== 第七章 风险 ========== -->
+<h2>七、行业瓶颈与风险提示</h2>
+
+<table>
+<thead>
+<tr>
+  <th>维度</th>
+  <th>具体问题</th>
+  <th>影响程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>标准缺失</strong></td>
+  <td>缺乏针对宠物生理特点的给药剂量标准和疗效评价体系</td>
+  <td>高</td>
+</tr>
+<tr>
+  <td><strong>人才断层</strong></td>
+  <td>全国中兽医专业高校不足10所，年毕业生仅数百人</td>
+  <td>高</td>
+</tr>
+<tr>
+  <td><strong>研发薄弱</strong></td>
+  <td>新兽药研发到获批需5—8年，多数企业研发费用率不足5%</td>
+  <td>中</td>
+</tr>
+<tr>
+  <td><strong>产品同质化</strong></td>
+  <td>保健品和洗护领域配方、功效宣称、包装高度相似</td>
+  <td>中</td>
+</tr>
+<tr>
+  <td><strong>功效争议</strong></td>
+  <td>中药多成分复杂性导致作用机理不明确，缺乏高质量宠物临床研究</td>
+  <td>中</td>
+</tr>
+<tr>
+  <td><strong>国际巨头威胁</strong></td>
+  <td>硕腾+勃林格合计占70%高端份额，一旦布局天然药物赛道将快速建壁垒</td>
+  <td>中（长期）</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+<p style="text-align:center;color:#999;font-size:12px;">数据来源：《2026年中国宠物中草药行业市场研究报告》（2026年6月） &nbsp;|&nbsp; 仅供研究参考，不构成投资建议</p>
+
+</div>
+
+<script>
+// Chart 1: 市场增长趋势堆叠柱状图
+new Chart(document.getElementById('marketTrend'), {
+  type: 'bar',
+  data: {
+    labels: ['2023', '2024', '2025', '2026(预)', '2027(预)', '2028(预)'],
+    datasets: [
+      { label: '中药保健品', data: [6.4, 10, 13.5, 19, 27, 40], backgroundColor: '#ED93B1', borderColor: '#D4537E', borderWidth: 1, borderRadius: 2 },
+      { label: '中药药品', data: [21, 23, 27.5, 33, 42, 62], backgroundColor: '#AFA9EC', borderColor: '#534AB7', borderWidth: 1, borderRadius: 2 },
+      { label: '中药洗护', data: [3.2, 4.8, 6.5, 8.5, 11, 15], backgroundColor: '#5DCAA5', borderColor: '#1D9E75', borderWidth: 1, borderRadius: 2 },
+      { label: '功能性添加剂', data: [1.6, 2, 4, 5, 7, 9], backgroundColor: '#EF9F27', borderColor: '#BA7517', borderWidth: 1, borderRadius: 2 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 }, padding: 16, usePointStyle: true, pointStyle: 'rectRounded' } },
+      tooltip: { callbacks: { label: function(ctx) { return ctx.dataset.label + ': ' + ctx.raw + '亿元'; } } }
+    },
+    scales: {
+      x: { stacked: true, ticks: { font: { size: 11 } }, grid: { display: false } },
+      y: { stacked: true, beginAtZero: true, title: { display: true, text: '市场规模 (亿元)', font: { size: 11 } }, ticks: { font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+
+// Chart 2: 慢性病发病率对比
+new Chart(document.getElementById('diseaseChart'), {
+  type: 'bar',
+  data: {
+    labels: ['慢性肾病', '关节炎/骨关节', '心脏病', '皮肤病(慢性)', '泌尿系统疾病', '消化系统疾病', '肿瘤/癌症', '糖尿病', '慢性呼吸道', '情绪/焦虑问题'],
+    datasets: [
+      { label: '犬', data: [70, 30, 15, 25, 8, 20, 12, 5, 10, 18], backgroundColor: '#AFA9EC', borderColor: '#534AB7', borderWidth: 1, borderRadius: 3 },
+      { label: '猫', data: [40, 10, 8, 20, 15, 15, 15, 8, 12, 22], backgroundColor: '#F0997B', borderColor: '#D85A30', borderWidth: 1, borderRadius: 3 }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 }, padding: 16, usePointStyle: true, pointStyle: 'rectRounded' } },
+      tooltip: { callbacks: { label: function(ctx) { return ctx.dataset.label + ': 约' + ctx.raw + '% (老年宠物)'; } } }
+    },
+    scales: {
+      x: { beginAtZero: true, max: 80, title: { display: true, text: '发病率 (%)', font: { size: 11 } }, ticks: { font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { ticks: { font: { size: 11 }, autoSkip: false }, grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
