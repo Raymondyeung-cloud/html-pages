@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金塘玉水老母鸡饲养数据分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #059669;
+    --primary-light: #10B981;
+    --primary-bg: rgba(5,150,105,0.08);
+    --danger: #DC2626;
+    --danger-light: #EF4444;
+    --danger-bg: rgba(220,38,38,0.08);
+    --warning: #D97706;
+    --warning-light: #F59E0B;
+    --warning-bg: rgba(217,119,6,0.08);
+    --blue: #2563EB;
+    --blue-bg: rgba(37,99,235,0.08);
+    --purple: #7C3AED;
+    --purple-bg: rgba(124,58,237,0.08);
+    --bg: #F7FAF8;
+    --card-bg: #FFFFFF;
+    --text: #1E293B;
+    --text-secondary: #64748B;
+    --border: #E2E8F0;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  .report-header {
+    background: linear-gradient(135deg, #065F46 0%, #059669 50%, #10B981 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 40px 48px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .report-header h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+  .report-header .subtitle { font-size: 15px; opacity: 0.85; }
+  .report-header .meta { font-size: 13px; opacity: 0.6; margin-top: 12px; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
+  }
+  .kpi-card.danger { border-left-color: var(--danger); }
+  .kpi-card.warning { border-left-color: var(--warning); }
+  .kpi-card.blue { border-left-color: var(--blue); }
+  .kpi-card.purple { border-left-color: var(--purple); }
+  .kpi-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .kpi-value { font-size: 26px; font-weight: 700; }
+  .kpi-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .icon { font-size: 22px; }
+
+  .chart-container {
+    position: relative;
+    width: 100%;
+    max-height: 380px;
+    margin-bottom: 20px;
+  }
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th {
+    background: #F1F5F9;
+    padding: 10px 14px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: sticky;
+    top: 0;
+  }
+  th:first-child { text-align: left; }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #F1F5F9;
+    text-align: center;
+  }
+  td:first-child { text-align: left; font-weight: 600; }
+  tr:hover td { background: #F8FAF9; }
+  .table-wrap { max-height: 500px; overflow-y: auto; border-radius: 8px; border: 1px solid var(--border); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-red { background: #FEE2E2; color: #DC2626; }
+  .tag-green { background: #DCFCE7; color: #16A34A; }
+  .tag-yellow { background: #FEF3C7; color: #D97706; }
+  .tag-blue { background: #DBEAFE; color: #2563EB; }
+
+  .insight-box {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .insight-box.danger { background: #FEF2F2; border-left: 4px solid #FCA5A5; }
+  .insight-box.warning { background: #FFFBEB; border-left: 4px solid #FCD34D; }
+  .insight-box.success { background: #F0FDF4; border-left: 4px solid #86EFAC; }
+  .insight-box.info { background: #EFF6FF; border-left: 4px solid #93C5FD; }
+  .insight-box .label { font-weight: 700; margin-bottom: 6px; font-size: 14px; }
+  .insight-box.danger .label { color: #991B1B; }
+  .insight-box.warning .label { color: #92400E; }
+  .insight-box.success .label { color: #166534; }
+  .insight-box.info .label { color: #1E40AF; }
+  .insight-box ul { margin-top: 6px; padding-left: 20px; }
+  .insight-box li { margin-bottom: 4px; }
+
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .rec-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .rec-card h4 { font-size: 15px; margin-bottom: 6px; }
+  .rec-card p { font-size: 13px; color: var(--text-secondary); }
+  .rec-card ul { font-size: 13px; color: var(--text-secondary); margin-top: 6px; padding-left: 18px; }
+  .rec-card li { margin-bottom: 3px; }
+  .priority { font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
+  .priority-high { background: #FEE2E2; color: #DC2626; }
+  .priority-mid { background: #FEF3C7; color: #D97706; }
+
+  .trend-arrow { font-weight: 700; }
+  .trend-down { color: var(--danger); }
+  .trend-up { color: var(--primary); }
+
+  .highlight-red { color: var(--danger); font-weight: 700; }
+  .highlight-green { color: var(--primary); font-weight: 700; }
+  .highlight-yellow { color: var(--warning); font-weight: 700; }
+
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .shed-label {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .shed-4 { background: #DBEAFE; color: #1D4ED8; }
+  .shed-5 { background: #FEF3C7; color: #B45309; }
+
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .report-header { padding: 24px; }
+    .report-header h1 { font-size: 22px; }
+    .chart-row { grid-template-columns: 1fr; }
+    .section { padding: 20px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="report-header">
+  <h1>金塘玉水 · 老母鸡饲养数据分析报告</h1>
+  <div class="subtitle">4号棚 + 5号棚 | 6月1日-6月11日 共11天饲养数据全景</div>
+  <div class="meta">数据来源：微信老母鸡沟通群 | 生成时间：2026年6月12日</div>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">合计初始存栏</div>
+    <div class="kpi-value">890只</div>
+    <div class="kpi-sub">4号棚790 + 5号棚100</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">11天累计死淘</div>
+    <div class="kpi-value">55只</div>
+    <div class="kpi-sub">全部来自4号棚 <span class="highlight-red">7.0%</span></div>
+  </div>
+  <div class="kpi-card danger">
+    <div class="kpi-label">4号棚当前存栏</div>
+    <div class="kpi-value">747只</div>
+    <div class="kpi-sub">减少43只 <span class="trend-arrow trend-down">-5.4%</span></div>
+  </div>
+  <div class="kpi-card success">
+    <div class="kpi-label">5号棚当前存栏</div>
+    <div class="kpi-value">100只</div>
+    <div class="kpi-sub">零死淘 <span class="highlight-green">健康稳定</span></div>
+  </div>
+  <div class="kpi-card blue">
+    <div class="kpi-label">11天累计耗料</div>
+    <div class="kpi-value">1,840斤</div>
+    <div class="kpi-sub">4号棚1,620 + 5号棚220</div>
+  </div>
+  <div class="kpi-card purple">
+    <div class="kpi-label">11天累计产蛋</div>
+    <div class="kpi-value">1,807枚</div>
+    <div class="kpi-sub">4号棚1,583 + 5号棚224</div>
+  </div>
+</div>
+
+<!-- Section 1: Daily Records -->
+<div class="section">
+  <div class="section-title"><span class="icon">📋</span> 每日饲养记录明细</div>
+
+  <span class="shed-label shed-4">4号棚</span>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>日期</th><th>存栏(只)</th><th>死淘(只)</th><th>死淘率</th><th>耗料(斤)</th><th>产蛋(枚)</th><th>产蛋率</th><th>只均日耗料(斤)</th><th>只均日产蛋(枚)</th>
+      </tr>
+      <tr><td>6月1日</td><td>790</td><td class="highlight-red">13</td><td class="highlight-red">1.65%</td><td>110</td><td>108</td><td>13.7%</td><td>0.139</td><td>0.137</td></tr>
+      <tr><td>6月2日</td><td>787</td><td>3</td><td>0.38%</td><td>160</td><td>210</td><td>26.7%</td><td>0.203</td><td>0.267</td></tr>
+      <tr><td>6月3日</td><td>785</td><td>2</td><td>0.25%</td><td>150</td><td>173</td><td>22.0%</td><td>0.191</td><td>0.220</td></tr>
+      <tr><td>6月4日</td><td>780</td><td class="highlight-yellow">5</td><td>0.64%</td><td>150</td><td>182</td><td>23.3%</td><td>0.192</td><td>0.233</td></tr>
+      <tr><td>6月5日</td><td>774</td><td class="highlight-yellow">6</td><td>0.77%</td><td>150</td><td>179</td><td>23.1%</td><td>0.194</td><td>0.231</td></tr>
+      <tr><td>6月6日</td><td>766</td><td class="highlight-red">8</td><td class="highlight-red">1.04%</td><td>150</td><td>178</td><td>23.2%</td><td>0.196</td><td>0.232</td></tr>
+      <tr><td>6月7日</td><td>760</td><td class="highlight-yellow">6</td><td>0.78%</td><td>150</td><td>183</td><td>24.1%</td><td>0.197</td><td>0.241</td></tr>
+      <tr><td>6月8日</td><td>756</td><td>4</td><td>0.53%</td><td>150</td><td>121</td><td>16.0%</td><td>0.198</td><td>0.160</td></tr>
+      <tr><td>6月9日</td><td>751</td><td>4</td><td>0.53%</td><td>150</td><td>125</td><td>16.6%</td><td>0.200</td><td>0.166</td></tr>
+      <tr><td>6月10日</td><td>749</td><td>2</td><td>0.27%</td><td>150</td><td>120</td><td>16.0%</td><td>0.200</td><td>0.160</td></tr>
+      <tr><td>6月11日</td><td>747</td><td>2</td><td>0.27%</td><td>150</td><td>104</td><td class="highlight-red">13.9%</td><td>0.201</td><td>0.139</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <span class="shed-label shed-5">5号棚</span>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>日期</th><th>存栏(只)</th><th>死淘(只)</th><th>死淘率</th><th>耗料(斤)</th><th>产蛋(枚)</th><th>产蛋率</th><th>只均日耗料(斤)</th><th>只均日产蛋(枚)</th>
+      </tr>
+      <tr><td>6月1日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>38</td><td>38.0%</td><td>0.200</td><td>0.380</td></tr>
+      <tr><td>6月2日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>31</td><td>31.0%</td><td>0.200</td><td>0.310</td></tr>
+      <tr><td>6月3日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>20</td><td>20.0%</td><td>0.200</td><td>0.200</td></tr>
+      <tr><td>6月4日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>22</td><td>22.0%</td><td>0.200</td><td>0.220</td></tr>
+      <tr><td>6月5日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>26</td><td>26.0%</td><td>0.200</td><td>0.260</td></tr>
+      <tr><td>6月6日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>23</td><td>23.0%</td><td>0.200</td><td>0.230</td></tr>
+      <tr><td>6月7日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>18</td><td>18.0%</td><td>0.200</td><td>0.180</td></tr>
+      <tr><td>6月8日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td class="highlight-red">6</td><td class="highlight-red">6.0%</td><td>0.200</td><td>0.060</td></tr>
+      <tr><td>6月9日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>18</td><td>18.0%</td><td>0.200</td><td>0.180</td></tr>
+      <tr><td>6月10日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td>12</td><td>12.0%</td><td>0.200</td><td>0.120</td></tr>
+      <tr><td>6月11日</td><td>100</td><td class="highlight-green">0</td><td class="highlight-green">0%</td><td>20</td><td class="highlight-red">10</td><td class="highlight-red">10.0%</td><td>0.200</td><td>0.100</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Section 2: Egg Production Trend -->
+<div class="section">
+  <div class="section-title"><span class="icon">🥚</span> 产蛋趋势分析</div>
+  <div class="chart-container"><canvas id="eggTrend"></canvas></div>
+  <div class="chart-row">
+    <div class="chart-container"><canvas id="eggRate"></canvas></div>
+    <div class="chart-container"><canvas id="feedPerEgg"></canvas></div>
+  </div>
+
+  <div class="insight-box danger">
+    <div class="label">⚠️ 关键发现：两个棚的产蛋率都在持续下降</div>
+    <ul>
+      <li><strong>4号棚</strong>：产蛋率从6月2日峰值<strong>26.7%</strong>跌至6月11日<strong>13.9%</strong>，降幅48%。特别是6月8日出现断崖式下跌（从24.1%骤降至16.0%），可能是热应激、换羽或疾病因素。</li>
+      <li><strong>5号棚</strong>：产蛋率从首日<strong>38.0%</strong>跌至末尾<strong>10.0%</strong>，降幅73.7%，下跌更加剧烈。6月8日仅产6枚蛋（6.0%），可能同批次鸡已过产蛋高峰期。</li>
+      <li>两个棚在<strong>6月8日</strong>同时出现产蛋低谷，提示可能存在共同环境因素（如高温天气）。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 3: Mortality -->
+<div class="section">
+  <div class="section-title"><span class="icon">💀</span> 死淘分析</div>
+  <div class="chart-row">
+    <div class="chart-container"><canvas id="mortalityBar"></canvas></div>
+    <div class="chart-container"><canvas id="mortalityCum"></canvas></div>
+  </div>
+
+  <div class="insight-box warning">
+    <div class="label">⚠️ 4号棚死淘率偏高</div>
+    <ul>
+      <li>11天累计死淘<strong>55只</strong>，日均5只，总死淘率<strong>7.0%</strong></li>
+      <li>6月1日首日死淘<strong>13只</strong>（1.65%），远超正常范围，可能为搬迁/入棚应激</li>
+      <li>6月4-7日连续4天每天死淘5-8只，形成<strong>死淘高峰期</strong></li>
+      <li>后4天（8-11日）降至日均2-4只，有趋缓迹象但仍需关注</li>
+      <li><strong>5号棚零死淘</strong>，形成鲜明对比，说明管理方式或鸡群状态差异较大</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 4: Feed Efficiency -->
+<div class="section">
+  <div class="section-title"><span class="icon">🌾</span> 饲料效率分析</div>
+  <div class="chart-container"><canvas id="feedTrend"></canvas></div>
+  <div class="chart-row">
+    <div class="chart-container"><canvas id="feedPerBird"></canvas></div>
+    <div class="chart-container"><canvas id="costEfficiency"></canvas></div>
+  </div>
+
+  <table>
+    <tr><th>指标</th><th>4号棚</th><th>5号棚</th><th>合计</th></tr>
+    <tr><td>累计耗料</td><td>1,620斤</td><td>220斤</td><td>1,840斤</td></tr>
+    <tr><td>累计产蛋</td><td>1,583枚</td><td>224枚</td><td>1,807枚</td></tr>
+    <tr><td>料蛋比（斤料/枚蛋）</td><td>1.02</td><td>0.98</td><td>1.02</td></tr>
+    <tr><td>折合料蛋比（斤料/斤蛋）</td><td>~20.4</td><td>~19.6</td><td>~20.2</td></tr>
+    <tr><td>日均只均耗料</td><td>0.191斤</td><td>0.200斤</td><td>0.193斤</td></tr>
+    <tr><td>日均只均产蛋</td><td>0.184枚</td><td>0.204枚</td><td>0.187枚</td></tr>
+  </table>
+
+  <div class="insight-box info">
+    <div class="label">📊 饲料效率评估</div>
+    <ul>
+      <li>5号棚料蛋比（0.98斤/枚）优于4号棚（1.02斤/枚），说明5号棚饲料转化效率更高</li>
+      <li>但注意：5号棚产蛋率下降更剧烈，料蛋比优势会随产蛋率下降而缩小</li>
+      <li>4号棚只均日耗料从0.139斤（首日偏低）逐步升至0.200斤并稳定，符合正常采食量恢复过程</li>
+      <li>参考标准：散养土鸡正常产蛋期料蛋比约18-22斤/斤蛋，当前水平在合理区间</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 5: Comparison -->
+<div class="section">
+  <div class="section-title"><span class="icon">⚖️</span> 两棚综合对比</div>
+  <div class="chart-container"><canvas id="compareRadar"></canvas></div>
+  <table>
+    <tr><th>对比维度</th><th>4号棚</th><th>5号棚</th><th>评价</th></tr>
+    <tr><td>鸡群规模</td><td>790→747（大群）</td><td>100（小群）</td><td><span class="tag tag-blue">规模差异大</span></td></tr>
+    <tr><td>死淘率</td><td class="highlight-red">7.0%（55只）</td><td class="highlight-green">0%（0只）</td><td><span class="tag tag-red">4号棚严重偏高</span></td></tr>
+    <tr><td>日均产蛋率</td><td>20.0%</td><td>20.4%</td><td><span class="tag tag-yellow">基本持平</span></td></tr>
+    <tr><td>产蛋率稳定性</td><td>13.7%-26.7%</td><td>6.0%-38.0%</td><td><span class="tag tag-red">5号棚波动更大</span></td></tr>
+    <tr><td>料蛋比</td><td>1.02斤/枚</td><td>0.98斤/枚</td><td><span class="tag tag-green">5号棚略优</span></td></tr>
+    <tr><td>日均耗料总量</td><td>150斤（稳定）</td><td>20斤（稳定）</td><td><span class="tag tag-green">投喂均稳定</span></td></tr>
+    <tr><td>产蛋趋势</td><td>先稳后降（6月8日起）</td><td>持续下降</td><td><span class="tag tag-red">均在恶化</span></td></tr>
+  </table>
+</div>
+
+<!-- Section 6: 6月8 Event -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔍</span> 异常事件分析：6月8日产蛋骤降</div>
+  <div class="chart-row">
+    <div class="chart-container"><canvas id="eventEgg"></canvas></div>
+    <div class="chart-container"><canvas id="eventTemp"></canvas></div>
+  </div>
+
+  <div class="insight-box danger">
+    <div class="label">🔴 6月8日：两棚同步产蛋断崖</div>
+    <table style="margin-top:8px;">
+      <tr><th>棚号</th><th>6月7日产蛋</th><th>6月8日产蛋</th><th>跌幅</th></tr>
+      <tr><td>4号棚</td><td>183枚（24.1%）</td><td>121枚（16.0%）</td><td class="highlight-red">-33.9%</td></tr>
+      <tr><td>5号棚</td><td>18枚（18.0%）</td><td>6枚（6.0%）</td><td class="highlight-red">-66.7%</td></tr>
+    </table>
+    <ul style="margin-top:8px;">
+      <li>两个棚同时暴跌，<strong>排除群体健康问题</strong>（因5号棚无死淘），更可能是<strong>环境因素</strong></li>
+      <li>6月初正值<strong>夏季高温初期</strong>，热应激是产蛋下降最常见原因</li>
+      <li>产蛋率在之后几天（6月9-11日）未恢复，说明<strong>影响持续</strong>而非单日波动</li>
+      <li>建议检查：鸡棚通风、饮水、温度记录，以及是否有饲料变更</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 7: Recommendations -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> 饲养管理建议</div>
+
+  <div class="rec-grid">
+    <div class="rec-card">
+      <span class="priority priority-high">P0 紧急</span>
+      <h4>🩺 4号棚死淘控制</h4>
+      <p>55只/11天死淘严重偏高，特别是连续4天5-8只的死淘高峰。</p>
+      <ul>
+        <li>排查死因：观察死淘鸡是否有呼吸道症状、消化道症状</li>
+        <li>检查鸡棚卫生：通风、湿度、氨气浓度</li>
+        <li>首日13只死淘可能是入棚应激，后续死淘需重点排查</li>
+        <li>必要时请兽医现场诊断</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="priority priority-high">P0 紧急</span>
+      <h4>🌡️ 高温应激应对</h4>
+      <p>6月8日起两棚同步产蛋骤降，高度怀疑热应激。</p>
+      <ul>
+        <li>增加通风设备（风扇、打开所有通风口）</li>
+        <li>确保饮水充足清凉，可在饮水中添加维生素C/E</li>
+        <li>调整喂料时间至清晨和傍晚凉爽时段</li>
+        <li>鸡棚屋顶如有条件可加装遮阳网</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="priority priority-mid">P1 重要</span>
+      <h4>📊 建立系统记录</h4>
+      <p>当前数据存在少量不一致（如存栏数与死淘数不匹配），建议规范化。</p>
+      <ul>
+        <li>每日固定时间记录，统一格式</li>
+        <li>增加气温、饮水量的记录</li>
+        <li>记录饲料品牌和配方变更</li>
+        <li>建议使用小程序/表格模板自动校验数据</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="priority priority-mid">P1 重要</span>
+      <h4>🥚 5号棚产蛋管理</h4>
+      <p>5号棚产蛋率从38%跌至10%，降幅极大且零死淘，可能是产蛋周期尾声。</p>
+      <ul>
+        <li>确认鸡群日龄，评估是否处于产蛋后期</li>
+        <li>如确认过高峰期，考虑淘汰低产鸡</li>
+        <li>检查光照时间是否充足（14-16小时/天）</li>
+        <li>评估蛋品质变化（蛋重、蛋壳厚度）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="section" style="background: linear-gradient(135deg, #065F46 0%, #059669 50%, #10B981 100%); color: #fff;">
+  <div class="section-title" style="color:rgba(255,255,255,0.9);border-bottom-color:rgba(255,255,255,0.2);">
+    <span class="icon">📋</span> 诊断总结
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div>
+      <h4 style="margin-bottom:10px;color:#FCA5A5;">🔴 需立即处理</h4>
+      <ol style="font-size:14px;line-height:2;padding-left:20px;">
+        <li>排查4号棚死淘原因，特别是6月4-7日高峰期</li>
+        <li>应对高温应激：加强通风、保障饮水、调整饲喂时间</li>
+        <li>持续监测6月8日之后的产蛋恢复情况</li>
+      </ol>
+    </div>
+    <div>
+      <h4 style="margin-bottom:10px;color:#93C5FD;">🔵 近期跟进</h4>
+      <ol style="font-size:14px;line-height:2;padding-left:20px;">
+        <li>建立标准化每日记录模板</li>
+        <li>评估5号棚鸡群日龄，制定换群/淘汰计划</li>
+        <li>两棚饲喂方案差异化优化</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const C = {
+  primary: '#059669', primaryLight: '#10B981', primaryBg: 'rgba(5,150,105,0.1)',
+  danger: '#DC2626', dangerBg: 'rgba(220,38,38,0.1)',
+  warning: '#D97706', warningBg: 'rgba(217,119,6,0.1)',
+  blue: '#2563EB', blueBg: 'rgba(37,99,235,0.1)',
+  purple: '#7C3AED',
+  gray: '#94A3B8',
+};
+
+const days = ['6/1','6/2','6/3','6/4','6/5','6/6','6/7','6/8','6/9','6/10','6/11'];
+
+const defaults = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { labels: { font: { size: 11 }, usePointStyle: true, pointStyle: 'circle' } } },
+  scales: {
+    y: { grid: { color: '#E2E8F0' }, ticks: { font: { size: 10 } } },
+    x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+  }
+};
+
+// 1. Egg Trend
+new Chart(document.getElementById('eggTrend'), {
+  type: 'bar',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚产蛋(枚)', data: [108,210,173,182,179,178,183,121,125,120,104], backgroundColor: C.blue, borderRadius: 4 },
+      { label: '5号棚产蛋(枚)', data: [38,31,20,22,26,23,18,6,18,12,10], backgroundColor: C.warning, borderRadius: 4 }
+    ]
+  },
+  options: defaults
+});
+
+// 2. Egg Rate
+new Chart(document.getElementById('eggRate'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚产蛋率', data: [13.7,26.7,22.0,23.3,23.1,23.2,24.1,16.0,16.6,16.0,13.9], borderColor: C.blue, backgroundColor: C.blueBg, fill: true, tension: 0.4 },
+      { label: '5号棚产蛋率', data: [38.0,31.0,20.0,22.0,26.0,23.0,18.0,6.0,18.0,12.0,10.0], borderColor: C.warning, backgroundColor: C.warningBg, fill: true, tension: 0.4 }
+    ]
+  },
+  options: { ...defaults, scales: { ...defaults.scales, y: { ...defaults.scales.y, ticks: { ...defaults.scales.y.ticks, callback: v => v + '%' } } } }
+});
+
+// 3. Feed per egg (斤/枚)
+const s4feedPerEgg = [110/108, 160/210, 150/173, 150/182, 150/179, 150/178, 150/183, 150/121, 150/125, 150/120, 150/104].map(v => +v.toFixed(3));
+const s5feedPerEgg = [20/38, 20/31, 20/20, 20/22, 20/26, 20/23, 20/18, 20/6, 20/18, 20/12, 20/10].map(v => +v.toFixed(3));
+new Chart(document.getElementById('feedPerEgg'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚 斤/枚', data: s4feedPerEgg, borderColor: C.blue, tension: 0.4 },
+      { label: '5号棚 斤/枚', data: s5feedPerEgg, borderColor: C.warning, tension: 0.4 }
+    ]
+  },
+  options: defaults
+});
+
+// 4. Mortality Bar
+new Chart(document.getElementById('mortalityBar'), {
+  type: 'bar',
+  data: {
+    labels: days,
+    datasets: [{
+      label: '4号棚每日死淘',
+      data: [13,3,2,5,6,8,6,4,4,2,2],
+      backgroundColor: [13,3,2,5,6,8,6,4,4,2,2].map(v => v >= 6 ? C.danger : v >= 4 ? C.warning : C.primary),
+      borderRadius: 4,
+    }]
+  },
+  options: { ...defaults, plugins: { ...defaults.plugins, legend: { display: false } } }
+});
+
+// 5. Cumulative mortality
+new Chart(document.getElementById('mortalityCum'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [{
+      label: '4号棚累计死淘',
+      data: [13,16,18,23,29,37,43,47,51,53,55],
+      borderColor: C.danger,
+      backgroundColor: C.dangerBg,
+      fill: true,
+      tension: 0.3,
+      pointRadius: 3,
+    }]
+  },
+  options: { ...defaults, plugins: { ...defaults.plugins, legend: { display: false } } }
+});
+
+// 6. Feed Trend
+new Chart(document.getElementById('feedTrend'), {
+  type: 'bar',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚(斤)', data: [110,160,150,150,150,150,150,150,150,150,150], backgroundColor: C.blue, borderRadius: 4 },
+      { label: '5号棚(斤)', data: [20,20,20,20,20,20,20,20,20,20,20], backgroundColor: C.warning, borderRadius: 4 }
+    ]
+  },
+  options: { ...defaults, scales: { ...defaults.scales, y: { ...defaults.scales.y, beginAtZero: true } } }
+});
+
+// 7. Feed per bird
+const s4fpb = [110/790,160/787,150/785,150/780,150/774,150/766,150/760,150/756,150/751,150/749,150/747].map(v => +v.toFixed(4));
+new Chart(document.getElementById('feedPerBird'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚 只均日耗(斤)', data: s4fpb, borderColor: C.blue, backgroundColor: C.blueBg, fill: true, tension: 0.4 },
+      { label: '5号棚 只均日耗(斤)', data: Array(11).fill(0.200), borderColor: C.warning, borderDash: [4,2], tension: 0 }
+    ]
+  },
+  options: defaults
+});
+
+// 8. Cost efficiency (只均产蛋 vs 只均耗料)
+const s4eggPerBird = [108/790,210/787,173/785,182/780,179/774,178/766,183/760,121/756,125/751,120/749,104/747].map(v => +v.toFixed(4));
+const s5eggPerBird = [38/100,31/100,20/100,22/100,26/100,23/100,18/100,6/100,18/100,12/100,10/100].map(v => +v.toFixed(4));
+new Chart(document.getElementById('costEfficiency'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚 只均产蛋', data: s4eggPerBird, borderColor: C.blue, tension: 0.4 },
+      { label: '5号棚 只均产蛋', data: s5eggPerBird, borderColor: C.warning, tension: 0.4 }
+    ]
+  },
+  options: defaults
+});
+
+// 9. Compare Radar
+new Chart(document.getElementById('compareRadar'), {
+  type: 'radar',
+  data: {
+    labels: ['零死淘', '产蛋率', '料蛋比', '产蛋稳定性', '存栏规模'],
+    datasets: [
+      { label: '4号棚', data: [0, 80, 65, 75, 90], borderColor: C.blue, backgroundColor: 'rgba(37,99,235,0.15)', pointBackgroundColor: C.blue },
+      { label: '5号棚', data: [100, 82, 75, 40, 30], borderColor: C.warning, backgroundColor: 'rgba(217,119,6,0.15)', pointBackgroundColor: C.warning }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { r: { beginAtZero: true, max: 100, ticks: { stepSize: 20, font: { size: 10 } }, pointLabels: { font: { size: 12 } } } },
+    plugins: { legend: { labels: { font: { size: 12 }, usePointStyle: true } } }
+  }
+});
+
+// 10. Event: Egg around June 8
+new Chart(document.getElementById('eventEgg'), {
+  type: 'bar',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚', data: [108,210,173,182,179,178,183,121,125,120,104],
+        backgroundColor: days.map((d,i) => i===7 ? C.danger : (i>=8 ? '#FCA5A5' : C.blue)),
+        borderRadius: 4 },
+      { label: '5号棚', data: [38,31,20,22,26,23,18,6,18,12,10],
+        backgroundColor: days.map((d,i) => i===7 ? C.danger : (i>=8 ? '#FCA5A5' : C.warning)),
+        borderRadius: 4 }
+    ]
+  },
+  options: defaults
+});
+
+// 11. Egg rate highlight for event
+new Chart(document.getElementById('eventTemp'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label: '4号棚产蛋率', data: [13.7,26.7,22.0,23.3,23.1,23.2,24.1,16.0,16.6,16.0,13.9], borderColor: C.blue, tension: 0.4, pointRadius: days.map((d,i) => i===7 ? 8 : 3), pointBackgroundColor: days.map((d,i) => i===7 ? C.danger : C.blue) },
+      { label: '5号棚产蛋率', data: [38.0,31.0,20.0,22.0,26.0,23.0,18.0,6.0,18.0,12.0,10.0], borderColor: C.warning, tension: 0.4, pointRadius: days.map((d,i) => i===7 ? 8 : 3), pointBackgroundColor: days.map((d,i) => i===7 ? C.danger : C.warning) }
+    ]
+  },
+  options: { ...defaults, scales: { ...defaults.scales, y: { ...defaults.scales.y, ticks: { ...defaults.scales.y.ticks, callback: v => v + '%' } } } }
+});
+</script>
+</body>
+</html>
