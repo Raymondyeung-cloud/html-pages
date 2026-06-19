@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命动力液 BA+GO | 澳门版产品说明书</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A961;
+            --gold-light: #E8D5A3;
+            --dark: #1a1a1a;
+            --dark-brown: #2D2420;
+            --cream: #FAF7F2;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --border-color: #ddd;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-brown) 50%, #3D2F28 100%);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A961' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+        .brand-badge {
+            display: inline-block;
+            background: rgba(201, 169, 97, 0.15);
+            border: 1px solid var(--gold);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+        }
+
+        .product-name-en {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(201,169,97,0.3);
+            margin-bottom: 10px;
+        }
+
+        .product-name-cn {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+        }
+
+        .product-slogan {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        .hero-decoration {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero-decoration span {
+            width: 40px; height: 2px;
+            background: var(--gold);
+            opacity: 0.5;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Section */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 12px auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 45px;
+        }
+
+        /* Product Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .overview-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 3px solid var(--gold);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Product Spec Table */
+        .spec-section {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .spec-table th {
+            background: linear-gradient(135deg, var(--dark), var(--dark-brown));
+            color: #fff;
+            font-weight: 500;
+            padding: 16px 24px;
+            text-align: left;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .spec-table td {
+            padding: 14px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .spec-table tr:last-child td { border-bottom: none; }
+        .spec-table tr:hover td { background: #fafafa; }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+            min-width: 140px;
+        }
+
+        .badge-inline {
+            display: inline-block;
+            background: rgba(201,169,97,0.12);
+            color: #8B6914;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        /* Awards Section */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .award-card {
+            background: linear-gradient(145deg, #fff, #f8f5ef);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(201,169,97,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(201,169,97,0.08), transparent 70%);
+        }
+
+        .award-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .award-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .award-detail {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* Mechanism Section */
+        .mechanism-box {
+            background: linear-gradient(135deg, var(--dark-brown), var(--dark));
+            border-radius: 16px;
+            padding: 50px 45px;
+            color: #fff;
+            margin-top: 40px;
+        }
+
+        .mechanism-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .mechanism-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mechanism-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.8;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .mechanism-list li:last-child { border-bottom: none; }
+
+        .mechanism-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        /* Usage Section */
+        .usage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .usage-grid { grid-template-columns: 1fr; }
+        }
+
+        .usage-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+        }
+
+        .usage-card h3 {
+            font-size: 17px;
+            color: var(--dark);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+
+        .usage-list {
+            list-style: none;
+        }
+
+        .usage-list li {
+            padding: 8px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .usage-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 10px;
+        }
+
+        /* Founder Quote */
+        .quote-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin-top: 40px;
+            text-align: center;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+        }
+
+        .quote-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 19px;
+            color: var(--dark);
+            line-height: 2;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .quote-author strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 13px;
+        }
+
+        footer a { color: var(--gold); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 50px 15px; }
+            .product-name-en { font-size: 36px; letter-spacing: 4px; }
+            .product-name-cn { font-size: 24px; }
+            section { padding: 45px 0; }
+            .container { padding: 0 18px; }
+            .mechanism-box { padding: 30px 20px; }
+            .quote-section { padding: 30px 20px; }
+            .quote-text { font-size: 16px; }
+        }
+
+        /* Tagline Banner */
+        .tagline-banner {
+            background: var(--gold);
+            color: var(--dark);
+            text-align: center;
+            padding: 20px;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-content">
+        <div class="brand-badge">ENERGY CELL · 活力基團</div>
+        <div class="product-name-en">BA + GO</div>
+        <div class="product-name-cn">御鑑 · 動力生命源</div>
+        <div class="product-slogan">「馬上踏上復元之路」On the Path of Recovery</div>
+        <div class="hero-decoration">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</div>
+
+<div class="tagline-banner">多功能型生物活化與基因優化調控劑</div>
+
+<!-- Product Overview -->
+<section id="overview">
+    <div class="container">
+        <h2 class="section-title">產品概覽</h2>
+        <p class="section-subtitle">融合東方智慧與現代生物科技的頂級健康產品</p>
+        
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="card-icon">🧬</div>
+                <div class="card-title">核心定位</div>
+                <div class="card-text">
+                    多功能型<strong>生物能激活劑</strong> + <strong>基因優化調控劑</strong><br>
+                    Multifunctional Bioenergy Activator + Gene Optimization Regulator<br><br>
+                    應用於各類細胞受損傷修復人群
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">🏛️</div>
+                <div class="card-title">品牌溯源</div>
+                <div class="card-text">
+                    <strong>品牌：</strong>ENERGY CELL 活力基團<br>
+                    <strong>產地：</strong>中國澳門特別行政區<br>
+                    <strong>發明人：</strong>金日光教授（朝鮮族）<br>
+                    國際知名學者、多項專利擁有者<br><br>
+                    <strong style="color:var(--dark);">監製：</strong>北京群子生命動力技術研究所<br>
+                    <strong style="color:var(--dark);">生產：</strong>澳門澳研康保健食品廠<br>
+                    <strong style="color:var(--dark);">製造：</strong>澳門活力藥業有限公司<br><br>
+                    <span style="font-size:12px; color:var(--text-secondary);">三方協作 · 京澳聯動</span>
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">📜</div>
+                <div class="card-title">文化內涵</div>
+                <div class="card-text">
+                    包裝融匯中國傳統建築元素與丹頂鶴祥瑞圖案，象徵「復元」與「長壽」之意。<br><br>
+                    「御鑑」之名彰顯皇室品質標準。
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">🎁</div>
+                <div class="card-title">規格配置</div>
+                <div class="card-text">
+                    <strong>包裝形式：</strong>精裝禮盒（對開式）<br>
+                    <strong>每盒數量：</strong>30支 / 盒<br>
+                    <strong>單支容量：</strong>口服液劑型<br>
+                    <strong>配件：</strong>附手提袋、診斷書、說明書
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Specifications -->
+<section id="specs" style="background: #f5f2ed;">
+    <div class="container">
+        <h2 class="section-title">產品規格詳情</h2>
+        <p class="section-subtitle">權威認證 · 品質保證</p>
+        
+        <div class="spec-section">
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">項目</th>
+                        <th>詳情</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="spec-label">產品名稱（中）</td>
+                        <td>多功能型生物活化和基因優化調控劑（動力生命源）</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">產品名稱（英）</td>
+                        <td>Multifunctional BA+GO Bioenergy Activator + Gene Optimization Regulator</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">品牌名稱</td>
+                        <td>ENERGY CELL 活力基團</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">系列名稱</td>
+                        <td>御鑑 · 動力源（御鑑 · 生命動力源）</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">產地</td>
+                        <td><span class="badge-inline">MACAU</span> 中國澳門特別行政區</td>
+                    </tr>
+                    <tr style="background: #fffbf0;">
+                        <td class="spec-label">監製單位</td>
+                        <td><strong>北京群子生命動力技術研究所</strong><br><span style="font-size:12px; color:#8B6914;">位於北京 · 負責產品配方研發與品質監督</span></td>
+                    </tr>
+                    <tr style="background: #f0fff4;">
+                        <td class="spec-label">生產商</td>
+                        <td><strong>澳門澳研康保健食品廠</strong><br><span style="font-size:12px; color:#276749;">位於中國澳門 · 負責產品生產製造</span></td>
+                    </tr>
+                    <tr style="background: #ebf8ff;">
+                        <td class="spec-label">製造商 / 委託方</td>
+                        <td><strong>澳門活力藥業有限公司</strong><br><span style="font-size:12px; color:#2a5280;">位於中國澳門 · 產品品牌持有方與市場運營方</span></td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">發明人</td>
+                        <td>金日光 教授（ Prof. Jin Riguang ）— 產品研發人、國際知名學者</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">產品形態</td>
+                        <td>深色磨砂玻璃瓶裝口服液（ BA+GO 標識瓶身）</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">包裝規格</td>
+                        <td>精裝對開式禮盒，內含 30 支，配絲綢手提袋</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">監管認證</td>
+                        <td>
+                            <span class="badge-inline">FDA REGISTERED</span>
+                            美國 FDA 註冊產品
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">專利編號</td>
+                        <td>國家發明專利 ZL 02 1 30825.X（中國）</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">適用人群</td>
+                        <td>應用於各類細胞受損傷修復之人群</td>
+                    </tr>
+                    <tr>
+                        <td class="spec-label">服用注意</td>
+                        <td>服用期間請減少攝取糖分或澱粉類食物；遵醫囑或指導使用</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Awards & Certifications -->
+<section id="awards">
+    <div class="container">
+        <h2 class="section-title">榮譽與認證</h2>
+        <p class="section-subtitle">國際殊榮 · 權威背書</p>
+        
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-icon">🏆</div>
+                <div class="award-title">尤里卡世界發明金獎</div>
+                <div class="award-detail">
+                    <strong>Eureka World Invention Golden Award 2005</strong><br>
+                    英國伯明翰 · 斯普林斯 (Birmingham, United Kingdom)<br><br>
+                    該獎項為全球最具影響力的發明創新獎項之一，
+                    標誌着本產品的技術創新性獲得國際權威機構的高度認可。<br><br>
+                    禮盒內嵌金屬名牌：「榮譽產品」
+                </div>
+            </div>
+            
+            <div class="award-card">
+                <div class="award-icon">📋</div>
+                <div class="award-title">美國 FDA 註冊</div>
+                <div class="award-detail">
+                    <strong>FDA Registered</strong><br><br>
+                    產品已通過美國食品藥物管理局（FDA）註冊程序，
+                    符合國際安全與品質標準。<br><br>
+                    包裝正面右上角明確標示「FDA REGISTERED」字樣。
+                </div>
+            </div>
+            
+            <div class="award-card">
+                <div class="award-icon">📜</div>
+                <div class="award-title">國家發明專利</div>
+                <div class="award-detail">
+                    <strong>中國國家發明專利</strong><br>
+                    專利號：<strong>ZL 02 1 30825.X</strong><br><br>
+                    獲得中華人民共和國國家知識產權局頒發的
+                    發明專利授權，技術獨佔性受法律保護。<br><br>
+                    禮盒側面及說明書均有標示。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mechanism of Action -->
+<section id="mechanism" style="background: #f5f2ed;">
+    <div class="container">
+        <h2 class="section-title">作用機理</h2>
+        <p class="section-subtitle">從細胞層面啟動人體自癒能力</p>
+        
+        <div class="mechanism-box">
+            <h3 class="mechanism-title">⚡ 生物能激活（Bioenergy Activation）+ 基因優化調控（Gene Optimization Regulation）</h3>
+            <ul class="mechanism-list">
+                <li><strong>生物能激活：</strong>透過獨特的配方體系，提升人體細胞層面的能量代謝水平，增強細胞活性與功能效率。</li>
+                <li><strong>基因優化調控：</strong>在基因表達層面進行正向調節，促進人體自身修復機制的有效運作。</li>
+                <li><strong>細胞受損修復：</strong>針對因疾病、衰老或環境因素導致的細胞功能衰退，提供系統性的調控支持。</li>
+                <li><strong>整體復元理念：</strong>不僅僅針對症狀，而是以「復元之路」（Path of Recovery）為核心哲學，強調全身性的健康恢復。</li>
+                <li><strong>雙重作用模式：</strong>「BA」（Bioenergy Activator）負責能量激活，「GO」（Gene Optimization）負責基因層面的優化調控，二者協同作用。</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Usage Guide -->
+<section id="usage">
+    <div class="container">
+        <h2 class="section-title">服用指南</h2>
+        <p class="section-subtitle">科學服用 · 最佳效果</p>
+        
+        <div class="usage-grid">
+            <div class="usage-card">
+                <h3>📋 服用方法</h3>
+                <ul class="usage-list">
+                    <li>每日按醫生建議劑量服用固定支數</li>
+                    <li>建議定時定量，持續服用</li>
+                    <li>口服方式，開瓶即飲</li>
+                    <li>每盒 30 支，可根據療程需求配備</li>
+                </ul>
+            </div>
+            <div class="usage-card">
+                <h3>⚠️ 注意事項</h3>
+                <ul class="usage-list">
+                    <li>服用期間請<strong>避免或減少</strong>糖分及澱粉類食物攝取</li>
+                    <li>請在專業人士指導下使用</li>
+                    <li>孕婦、兒童等特殊人群請諮詢醫生意見</li>
+                    <li>置於陰涼乾燥處保存，遠離兒童</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founder & Endorsement -->
+<section id="founder" style="background: #f5f2ed;">
+    <div class="container">
+        <h2 class="section-title">發明人與推薦</h2>
+        <p class="section-subtitle">權威學者親筆背書</p>
+        
+        <div class="quote-section">
+            <div class="quote-text">
+                「我們祝福您，在復元之路上，一切順利。最好的慰問，同候。」
+            </div>
+            <div class="quote-author">
+                —— <strong>金日光 教授</strong><br>
+                Prof. Jin Riguang & EnergyCell<br>
+                活力基團 · 產品研發人 / 發明人
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; max-width: 750px; margin-left: auto; margin-right: auto;">
+            <div style="background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 3px 15px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 16px; color: var(--dark); margin-bottom: 15px;">📝 金日光教授其人</h3>
+                <ul class="usage-list">
+                    <li>國際知名學者，朝鮮族人</li>
+                    <li>世界範圍內首批將量子物理學與中醫藥理論相結合的先驅研究者之一</li>
+                    <li>長期致力於中醫現代化與生物能研究，著作等身</li>
+                    <li>其研究成果被多個國家和地區的學術界廣泛引用</li>
+                    <li>為本產品的配方原理提供堅實的理論基礎</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Packaging Design -->
+<section id="packaging">
+    <div class="container">
+        <h2 class="section-title">包裝設計語言</h2>
+        <p class="section-subtitle">東方美學 · 皇家氣韻</p>
+        
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="card-icon">🎨</div>
+                <div class="card-title">視覺風格</div>
+                <div class="card-text">
+                    採用<strong>黑金色調</strong>為主色系，營造高端、神祕、專業的品牌形象。<br>
+                    磨砂質感瓶身搭配銀色蓋帽，極簡而富有科技感。
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">🏯</div>
+                <div class="card-title">文化符號</div>
+                <div class="card-text">
+                    外包裝融入<strong>中國傳統宮殿建築線稿</strong>（太和殿式樣），<br>
+                    配合<strong>丹頂鶴</strong>飛翔圖案，傳達「復元」、「長壽」、「吉祥」的文化寓意。<br>
+                    「御鑑」印章強調皇室品質。
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">🎁</div>
+                <div class="card-title">禮盒體驗</div>
+                <div class="card-text">
+                    <strong>對開式精裝禮盒</strong>設計，猶如翻閱古籍，<br>
+                    左側陳列產品，右側展示資料（說明書、診斷書）。<br>
+                    附帶高級絲綢手提袋，適合贈送與收藏。
+                </div>
+            </div>
+            
+            <div class="overview-card">
+                <div class="card-icon">✍️</div>
+                <div class="card-title">人文細節</div>
+                <div class="card-text">
+                    內附由<strong>金日光教授親筆簽署的診斷/推薦函</strong>（中英對照），<br>
+                    根據個人診斷結果填寫用量，體現個性化健康管理理念。<br>
+                    紅色印章加簽日期，儀式感十足。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Summary -->
+<section id="summary" style="background: linear-gradient(135deg, var(--dark-brown), var(--dark)); color: #fff; padding: 70px 0;">
+    <div class="container" style="text-align: center;">
+        <h2 style="font-family: 'Noto Serif SC', serif; font-size: 28px; color: var(--gold); margin-bottom: 20px;">產品亮點總結</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 800px; margin: 0 auto;">
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🏆 尤里卡金獎</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">📋 FDA 註冊</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">📜 國家發明專利</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🧬 基因優化調控</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">⚡ 生物能激活</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🎓 權威學者研發</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🇲🇴 澳門正品</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🎁 御鑑禮盒</span>
+            <span style="background: rgba(201,169,97,0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; border: 1px solid rgba(201,169,97,0.3);">🏭 京澳三方聯動</span>
+        </div>
+        <p style="margin-top: 35px; font-family: 'Noto Serif SC', serif; font-size: 20px; color: var(--gold-light); letter-spacing: 2px;">
+            BA+GO — 馬上踏上復元之路
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p>本文件基於產品實物圖片整理撰寫 · 仅供參考 · 具體以產品實物與官方說明為準</p>
+    <p style="margin-top: 8px;">Energy Cell 活力基團 © BA+GO 御鑑 · 動力生命源 | Made with precision</p>
+</footer>
+
+</body>
+</html>
