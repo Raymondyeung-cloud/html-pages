@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广东省宠物博主KOL调研报告 · 小红书×抖音</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{--green:#2d6a4f;--green-l:#52b788;--green-d:#1b4332;--red:#c0392b;--red-l:#e74c3c;
+--gold:#b08968;--gold-l:#ddb892;--blue:#2980b9;--blue-l:#5dade2;
+--pink:#e84393;--pink-l:#fd79a8;--bg:#faf8f3;--card:#fff;--ink:#2d3436;--muted:#6c757d;
+--line:#e9ecef;--soft:#f1f5f4;--shadow:0 6px 22px rgba(27,67,50,.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px}
+a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(27,67,50,.96);
+backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;
+justify-content:space-between;padding:.6rem 1.2rem}
+.topbar .brand{color:#fff;font-weight:700;font-size:1rem;letter-spacing:.5px}
+.topbar .brand small{font-weight:400;opacity:.8;font-size:.76rem;margin-left:.4rem}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap}
+.nav-links a{color:rgba(255,255,255,.82);font-size:.78rem;padding:.35rem .5rem;
+border-radius:6px;transition:.2s}
+.nav-links a:hover{background:rgba(255,255,255,.15);color:#fff;text-decoration:none}
+.menu-btn{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.2rem}
+
+.cover{position:relative;color:#fff;overflow:hidden;
+background:linear-gradient(135deg,#1b4332 0%,#2d6a4f 45%,#40916c 80%,var(--green-l) 100%);
+padding:3.6rem 1.2rem 3rem}
+.cover::before{content:"";position:absolute;inset:0;opacity:.07;
+background-image:radial-gradient(circle at 15% 25%,#fff 0,transparent 45%),
+radial-gradient(circle at 85% 75%,#fff 0,transparent 35%)}
+.cover-inner{position:relative;max-width:950px;margin:0 auto;text-align:center}
+.cover .tag{display:inline-block;background:rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.3);padding:.3rem 1rem;border-radius:20px;
+font-size:.82rem;margin-bottom:1.2rem;letter-spacing:1px}
+.cover h1{font-size:2.4rem;line-height:1.3;font-weight:800;margin-bottom:.8rem;
+text-shadow:0 2px 12px rgba(0,0,0,.2)}
+.cover .sub{font-size:1rem;opacity:.92;margin-bottom:1.6rem}
+.cover-meta{display:flex;justify-content:center;gap:1.6rem;flex-wrap:wrap;
+font-size:.88rem;opacity:.92}
+.cover-meta span b{display:block;font-size:1.2rem;font-weight:700;color:var(--gold-l)}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;
+max-width:900px;margin:2rem auto 0}
+.kpi{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+border-radius:12px;padding:.9rem .7rem;text-align:center;backdrop-filter:blur(4px)}
+.kpi .num{font-size:1.6rem;font-weight:800;color:var(--gold-l);line-height:1.1}
+.kpi .lbl{font-size:.74rem;opacity:.88;margin-top:.25rem}
+
+section.chapter{padding:2.8rem 0 1.2rem;scroll-margin-top:65px}
+.ch-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.ch-num{flex:0 0 auto;width:44px;height:44px;border-radius:12px;
+background:linear-gradient(135deg,var(--green),var(--green-d));
+color:#fff;font-weight:800;font-size:1.2rem;display:flex;align-items:center;
+justify-content:center;box-shadow:var(--shadow)}
+.ch-num.red{background:linear-gradient(135deg,var(--red),var(--red-l))}
+.ch-title{font-size:1.6rem;font-weight:800;color:var(--green-d)}
+.ch-title small{display:block;font-size:.8rem;font-weight:400;color:var(--muted);margin-top:.12rem}
+
+h3.sub{font-size:1.15rem;font-weight:700;color:var(--green);margin:1.8rem 0 .8rem;
+padding-left:.8rem;border-left:4px solid var(--green-l)}
+p{margin-bottom:1rem}ul{margin:0 0 1rem 1.2rem}li{margin-bottom:.4rem}
+
+.callout{background:linear-gradient(135deg,#eaf4ec,#f5faf6);border-left:4px solid var(--green-l);
+border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.2rem 0}
+.callout.gold{background:linear-gradient(135deg,#fbf3ec,#fdf9f4);border-left-color:var(--gold)}
+.callout.red{background:linear-gradient(135deg,#fde8e8,#fef5f5);border-left-color:var(--red)}
+.callout b{color:var(--green-d)}
+
+.table-cap{font-weight:700;color:var(--green-d);margin:1.6rem 0 .5rem;font-size:1rem;
+display:flex;align-items:center;gap:.5rem}
+.table-cap::before{content:"";width:6px;height:18px;border-radius:3px}
+.table-cap.xhs::before{background:var(--red)}
+.table-cap.dy::before{background:var(--blue)}
+.table-cap.sum::before{background:var(--gold)}
+
+.tbl-wrap{overflow-x:auto;margin-bottom:1.2rem;border-radius:10px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:.88rem;min-width:560px}
+thead th{padding:.8rem .6rem;text-align:left;font-weight:600;white-space:nowrap;font-size:.84rem}
+thead.xhs th{background:linear-gradient(135deg,var(--red),#a93226);color:#fff}
+thead.dy th{background:linear-gradient(135deg,var(--blue),#1a5276);color:#fff}
+thead.sum th{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff}
+tbody td{padding:.65rem .6rem;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even){background:var(--soft)}
+tbody tr:hover{background:#e9f5ee}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.rank{font-weight:800;font-size:.92rem;color:var(--green-d);text-align:center;width:32px}
+.rank.top3{color:var(--gold);font-size:1rem}
+.tag-city{display:inline-block;font-size:.72rem;padding:.15rem .5rem;border-radius:4px;
+background:#e9f5ee;color:var(--green);margin-left:.2rem;white-space:nowrap}
+.tag-pending{background:#fde8e8;color:var(--red)}
+.fans{font-weight:700;color:var(--green);font-size:.92rem}
+.fans.big{font-size:1.05rem;color:var(--gold)}
+.content-text{font-size:.82rem;color:var(--muted);line-height:1.5}
+.note{font-size:.76rem;color:var(--muted);line-height:1.4}
+
+.chart-box{background:var(--card);border-radius:12px;padding:1rem;box-shadow:var(--shadow);margin:1.2rem 0}
+.chart-box .ct{font-weight:700;color:var(--green-d);margin-bottom:.4rem;font-size:.96rem}
+.chart{width:100%;height:360px}
+
+.grid{display:grid;gap:1rem;margin:1.2rem 0}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border-radius:12px;padding:1.1rem;box-shadow:var(--shadow)}
+.card h4{font-size:1rem;margin-bottom:.5rem;color:var(--green-d)}
+.card .big{font-size:1.7rem;font-weight:800;color:var(--green);margin:.2rem 0}
+.card p{font-size:.86rem;color:var(--muted);margin:0}
+
+footer{background:var(--green-d);color:rgba(255,255,255,.8);text-align:center;
+padding:2rem 1.2rem;margin-top:2.5rem;font-size:.86rem}
+
+@media(max-width:780px){
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;
+background:var(--green-d);flex-direction:column;padding:.5rem;gap:0}
+.nav-links.open{display:flex}.nav-links a{padding:.5rem}.menu-btn{display:block}
+.cover h1{font-size:1.7rem}.kpi-row{grid-template-columns:repeat(2,1fr)}
+.g2,.g3{grid-template-columns:1fr}.ch-title{font-size:1.2rem}
+}
+@media print{.topbar,.menu-btn{display:none}body{background:#fff}
+.chart-box{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+
+<nav class="topbar"><div class="topbar-inner">
+<div class="brand">🐾 广东宠物KOL调研 <small>小红书 × 抖音</small></div>
+<button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+<div class="nav-links">
+<a href="#overview">总览</a>
+<a href="#xhs-supply">小红书·宠物用品</a>
+<a href="#xhs-raise">小红书·宠物饲养</a>
+<a href="#xhs-treat">小红书·宠物治疗</a>
+<a href="#dy-supply">抖音·宠物用品</a>
+<a href="#dy-raise">抖音·宠物饲养</a>
+<a href="#dy-treat">抖音·宠物治疗</a>
+<a href="#summary">汇总分析</a>
+</div>
+</div></nav>
+
+<header class="cover"><div class="cover-inner">
+<span class="tag">KOL调研报告 · 2026年6月</span>
+<h1>广东省宠物博主KOL调研报告<br>小红书 × 抖音 三领域排名</h1>
+<p class="sub">宠物用品 · 宠物饲养 · 宠物治疗 — 两大平台广东省前十博主全扫描</p>
+<div class="cover-meta">
+<span>调研时间<b>2026年6月</b></span>
+<span>覆盖平台<b>小红书 + 抖音</b></span>
+<span>覆盖领域<b>3大细分赛道</b></span>
+<span>博主数量<b>约60位</b></span>
+</div>
+<div class="kpi-row">
+<div class="kpi"><div class="num">1368万</div><div class="lbl">抖音最高粉丝(果冻是只可爱猫)</div></div>
+<div class="kpi"><div class="num">300万+</div><div class="lbl">小红书最高粉丝(安静的布丁妹妹)</div></div>
+<div class="kpi"><div class="num">103万</div><div class="lbl">抖音宠物医生最高粉丝</div></div>
+<div class="kpi"><div class="num">6方向</div><div class="lbl">2平台×3领域全覆盖</div></div>
+</div>
+</div></header>
+
+<div class="wrap">
+
+<!-- ===== 总览 ===== -->
+<section class="chapter" id="overview">
+<div class="ch-head"><div class="ch-num">总</div><div class="ch-title">调研总览<small>Overview & Methodology</small></div></div>
+<div class="callout">
+<b>调研范围：</b>小红书 + 抖音两大平台，宠物用品 / 宠物饲养 / 宠物治疗三个领域，广东省（广州、深圳、东莞、佛山、揭阳等）前十博主/KOL。<br>
+<b>排名依据：</b>以粉丝量为主要排名指标。<br>
+<b>数据来源：</b>宠业家百大宠物KOL盘点（2024/2025）、八点红人榜（8hr.cn）、飞瓜数据、蝉妈妈、热浪数据、百度百科、抖音IP属地、企查查/天眼查等多方交叉验证。<br>
+<b>数据时效：</b>2025年10月—2026年6月可获取的最新公开数据。
+</div>
+<div class="callout gold">
+<b>⚠️ 数据局限性说明：</b><br>
+① 小红书不公开博主地理位置，需通过抖音IP属地、商标注册地址、百科词条等交叉验证，部分博主标注"地区待确认"<br>
+② 粉丝量具有时效性，不同数据平台统计口径存在差异，已标注数据来源和时间<br>
+③ 宠物治疗/医疗属小众赛道，博主粉丝量普遍在万级到十万级，远低于萌宠日常类<br>
+④ 千瓜数据/新红数据等小红书专业平台的地区细分排名需付费查看，本次调研基于公开信息<br>
+⑤ 抖音IP属地仅显示省份，具体城市需通过其他渠道确认
+</div>
+
+<div class="chart-box"><div class="ct">广东省宠物博主粉丝量级分布（小红书 vs 抖音）</div><div class="chart" id="c-fans"></div></div>
+</section>
+
+<!-- ===== 小红书·宠物用品 ===== -->
+<section class="chapter" id="xhs-supply">
+<div class="ch-head"><div class="ch-num red">1</div><div class="ch-title">小红书 · 宠物用品<small>广东省前十博主排名</small></div></div>
+
+<div class="table-cap xhs">小红书·宠物用品·广东省前十博主排名</div>
+<div class="tbl-wrap"><table>
+<thead class="xhs"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>安静的布丁妹妹</td><td class="fans big">300万+</td><td>揭阳市<span class="tag-city">揭阳</span></td><td class="content-text">宠物用品店企业号，以泰迪犬"布丁"为主角分享狗狗日常和营养餐制作。几乎篇篇爆文，结合潮汕美食创意内容，兼具用品推荐与带货属性</td><td class="note">揭阳市布丁妹妹文化传媒有限公司；自有品牌"卟叮宠物食品"；2023年2月小红书宠物涨粉榜TOP1</td></tr>
+<tr><td class="rank top3">2</td><td>一只鱼蛋仔</td><td class="fans big">292.9万</td><td>广州·海珠区<span class="tag-city">广州</span></td><td class="content-text">以猫咪"鱼蛋"为主的日常记录博主，内容温馨治愈，记录猫咪成长和趣味互动，笔记579篇更新频繁</td><td class="note">MCN：优凝文化；金冠薯头部达人；商务V:Ynwh0001</td></tr>
+<tr><td class="rank top3">3</td><td>旖旖小虎</td><td class="fans">296.9万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">以流浪猫"虎虎"为核心，记录日常喂养与互动；倡导流浪动物救助和适龄绝育，融合宠物行为解读科普</td><td class="note">未签约MCN；2025年涨粉74.9万；蓝氏猫粮品牌合作；硕士在读</td></tr>
+<tr><td class="rank">4</td><td>一只钝钝少爷</td><td class="fans">200万+</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">猫咪日常博主，以拟人化剧情和趣味互动为主，与鱼蛋仔等互为"兄弟"账号</td><td class="note">2024年新晋200万+梯队；抖音IP属地为广东</td></tr>
+<tr><td class="rank">5</td><td>奥利奥不知道</td><td class="fans">200万+</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">以小体比熊犬"奥利奥"为主角，展现猫狗双全家庭日常，涵盖宠物迷惑行为和好物推荐</td><td class="note">百科标注"广东宠物领域创作者"；2025年新晋200万+</td></tr>
+<tr><td class="rank">6</td><td>果冻是只可爱猫</td><td class="fans">197.3万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">英短蓝猫"果冻"及"福福"为主角，10只猫多猫家庭日常，以拟人化剧情和治愈风格为特色</td><td class="note">抖音1368万粉丝；卫仕猫粮、蓝氏猫粮品牌合作</td></tr>
+<tr><td class="rank">7</td><td>矮脚菠萝包</td><td class="fans">约70-100万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">以矮脚猫"菠萝包"为主角，幽默搞笑风格，聚焦猫咪日常生活趣事和迷惑行为</td><td class="note">与鱼蛋仔为"兄弟"账号矩阵；抖音117万粉丝</td></tr>
+<tr><td class="rank">8</td><td>不秃头的小扶蝶</td><td class="fans">约70-100万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">以拿破仑猫"小扶蝶"为主角，展示猫咪与主人暖心互动，风格治愈可爱</td><td class="note">与鱼蛋仔为"兄弟"账号矩阵；抖音190万粉丝</td></tr>
+<tr><td class="rank">9</td><td>猫奴十三</td><td class="fans">100-200万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text"><b>饲养知识科普属性最强</b>——专注猫咪行为学解读与科学养猫方法，新手养猫指南、产品评测，《家有恶猫》第二季猫行为学达人</td><td class="note">快手142万、抖音237万粉丝；标签"猫咪知识分享者"</td></tr>
+<tr><td class="rank">10</td><td>社畜养猫</td><td class="fans">约82万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">以"社畜上班族养猫"为主题，分享都市养猫实用经验与日常护理，聚焦新手养猫痛点</td><td class="note">2025年涨粉19.8万；纯小红书原生创作者</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 小红书·宠物饲养 ===== -->
+<section class="chapter" id="xhs-raise">
+<div class="ch-head"><div class="ch-num red">2</div><div class="ch-title">小红书 · 宠物饲养<small>广东省前十博主排名</small></div></div>
+
+<div class="callout">宠物饲养领域偏重<b>知识科普和经验分享</b>（养猫养狗方法、喂养知识、日常护理、繁育知识），与纯萌宠日常有重叠但有区别。头部博主多为"萌宠日常+饲养知识"混合型。</div>
+
+<div class="table-cap xhs">小红书·宠物饲养·广东省前十博主排名</div>
+<div class="tbl-wrap"><table>
+<thead class="xhs"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>安静的布丁妹妹</td><td class="fans big">300万+</td><td>揭阳市<span class="tag-city">揭阳</span></td><td class="content-text">多宠家庭（4狗2猫）核心，分享<b>自制宠物美食</b>（"早餐配饭"系列播放2.7亿）、<b>老年犬护理</b>（14岁布丁保养专题）、宠物旅行记录，饲养经验与情感陪伴兼具</td><td class="note">自有品牌"卟叮宠物食品"；饲养知识属性强</td></tr>
+<tr><td class="rank top3">2</td><td>一只鱼蛋仔</td><td class="fans big">292.9万</td><td>广州·海珠区<span class="tag-city">广州</span></td><td class="content-text">猫咪"鱼蛋"成长记录与护理技巧分享，风格轻松治愈，含日常喂养与互动经验</td><td class="note">MCN：优凝文化；金冠薯；笔记579篇</td></tr>
+<tr><td class="rank top3">3</td><td>旖旖小虎</td><td class="fans">296.9万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">流浪猫"虎虎"日常喂养与行为科普，倡导<b>流浪救助和适龄绝育</b>，已收养13猫1狗均绝育，融合行为解读科普</td><td class="note">未签约MCN；蓝氏猫粮合作；饲养科普属性突出</td></tr>
+<tr><td class="rank">4</td><td>果冻是只可爱猫</td><td class="fans">197.3万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">10只猫多猫家庭日常，展示猫咪洗澡护理、喂养互动等饲养场景</td><td class="note">抖音1368万粉丝；多平台头部</td></tr>
+<tr><td class="rank">5</td><td>一只钝钝少爷</td><td class="fans">200万+</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">猫咪"钝钝"日常饲养与趣味短剧，融合手工DIY与猫咪互动，记录多猫家庭生活</td><td class="note">与鱼蛋仔等为矩阵账号</td></tr>
+<tr><td class="rank">6</td><td>奥利奥不知道</td><td class="fans">200万+</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">比熊犬"奥利奥"家庭养狗日常，分享比熊<b>造型护理</b>、猫狗双全饲养经验</td><td class="note">百科标注"广东宠物领域创作者"</td></tr>
+<tr><td class="rank">7</td><td>猫奴十三</td><td class="fans">100-200万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text"><b>饲养知识科普型代表</b>——专注猫咪行为学解读与科学养猫方法，新手养猫指南、产品评测，《家有恶猫》第二季达人</td><td class="note">抖音237万；快手142万；纯知识科普型博主</td></tr>
+<tr><td class="rank">8</td><td>矮脚菠萝包</td><td class="fans">约70-100万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">矮脚猫"菠萝包"日常饲养与趣味互动，展示曼基康猫护理日常</td><td class="note">与鱼蛋仔为矩阵账号</td></tr>
+<tr><td class="rank">9</td><td>不秃头的小扶蝶</td><td class="fans">约70-100万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">拿破仑猫"小扶蝶"日常护理、<b>流浪猫救助知识</b>、新手养猫注意事项</td><td class="note">矩阵账号；抖音190万</td></tr>
+<tr><td class="rank">10</td><td>社畜养猫</td><td class="fans">约82万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">上班族养猫实用经验与日常护理技巧，聚焦<b>新手养猫痛点</b>解决方案</td><td class="note">2025年涨粉19.8万；纯小红书原生创作者</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 小红书·宠物治疗 ===== -->
+<section class="chapter" id="xhs-treat">
+<div class="ch-head"><div class="ch-num red">3</div><div class="ch-title">小红书 · 宠物治疗<small>广东省前十博主排名</small></div></div>
+
+<div class="callout red">宠物治疗/医疗属<b>高度小众赛道</b>，博主粉丝量普遍在万级到十万级，远低于萌宠日常类。目前公开的小红书宠物KOL榜单以"萌宠"大类排名，没有"宠物医疗"细分排名。以下为尽力搜集的结果。</div>
+
+<div class="table-cap xhs">小红书·宠物治疗·广东省博主排名（可搜集范围内）</div>
+<div class="tbl-wrap"><table>
+<thead class="xhs"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>宠医杨斌</td><td class="fans">约7万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">宠物医疗科普类内容创作者，涵盖宠物健康知识、疾病防治等</td><td class="note">百度百科收录；身份为执业宠医；地区待确认</td></tr>
+<tr><td class="rank top3">2</td><td>兽医小小康（林贤康）</td><td class="fans">小红书未公开获取；B站5.4万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">临床兽医硕士（华南农业大学），<b>广州平等家动物医院院长</b>，国内首批认证兽医影像专科医生。以影像学结合内科解决疑难病例，分享猫狗健康科普</td><td class="note">2026年1月带队参加广州塔大湾区宠物年货节义诊；B站标注"坐标广州"</td></tr>
+<tr><td class="rank top3">3</td><td>宠物健康管家亚当</td><td class="fans">约4万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text">宠物健康管理类内容，聚焦宠物健康知识科普与养护指导</td><td class="note">百度百科收录；地区未确认</td></tr>
+<tr><td class="rank">4</td><td>兽医舒姐姐</td><td class="fans">小红书未公开获取；互动增量22万+</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text"><b>8年从业经验兽医师</b>，擅长皮肤科、预防保健。从专业兽医角度解读宠物行为与健康，代表内容获14万+点赞</td><td class="note">2024年6月小红书宠物圈潜力博主互动增量第2名；多平台运营</td></tr>
+<tr><td class="rank">5</td><td>宠医陈翔</td><td class="fans">约3万</td><td>福州市<span class="tag-pending tag-city">福州(非广东)</span></td><td class="content-text">广州立德宠物医院院长（实为<b>福州立德</b>）、兽医硕士、欧洲ISVPS认证医师</td><td class="note">⚠️ 医院实位于福州，非广东；仅供参考</td></tr>
+<tr><td class="rank">6</td><td>大胡子宠医QMAN</td><td class="fans">小红书未公开获取</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">广州宠物医生，以"经常和主人吵架的宠物医生"风格走红，分享犬猫常见疾病、手术记录、安乐死等真实医院故事</td><td class="note">抖音为主平台，单条获赞4.4万-10.2万；2026年4月起快速增长</td></tr>
+<tr><td class="rank">7</td><td>张兽医（张兽医-长居广州）</td><td class="fans">小红书未公开获取</td><td>广州（医院在深圳）<span class="tag-city">广州/深圳</span></td><td class="content-text">执业兽医，微博ID"张兽医-长居广州"，分享宠物临床案例、医疗知识、养宠科普</td><td class="note">深圳百维动物医院院长；微博28.9万粉丝</td></tr>
+<tr><td class="rank">8</td><td>新瑞鹏健康星球</td><td class="fans">小红书未公开获取</td><td>广州/深圳为重点<span class="tag-city">广深</span></td><td class="content-text">新瑞鹏集团官方科普账号，推荐旗下专科兽医，分享宠物医疗知识（麻醉、口腔、皮肤病等）</td><td class="note">企业号；瑞鹏1998年成立于深圳；广东省内分院密集</td></tr>
+<tr><td class="rank">9</td><td>莫庆强</td><td class="fans">小红书数据未获取</td><td>深圳市<span class="tag-city">深圳</span></td><td class="content-text">资深宠物医生，2017年起投身临床诊疗，近8年行业经验，在深圳地区深受宠主信赖</td><td class="note">2025年百家号报道；小红书是否有账号待确认</td></tr>
+<tr><td class="rank">10</td><td>深圳宠物医生推荐（社区型）</td><td class="fans">UGC帖子（非单一博主）</td><td>深圳市<span class="tag-city">深圳</span></td><td class="content-text">小红书上多个"深圳宠物医生推荐"主题笔记，由宠主整理推荐各专科医生（眼科胡祖洪、猫科王琳琳等）</td><td class="note">属于社区UGC推荐帖而非医生本人KOL账号</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 抖音·宠物用品 ===== -->
+<section class="chapter" id="dy-supply">
+<div class="ch-head"><div class="ch-num">4</div><div class="ch-title">抖音 · 宠物用品<small>广东省前十博主排名</small></div></div>
+
+<div class="callout">抖音宠物用品领域的博主通常具有<b>较强的带货属性</b>，通过直播电商和短视频内容实现产品推荐与销售转化。</div>
+
+<div class="table-cap dy">抖音·宠物用品·广东省前十博主排名</div>
+<div class="tbl-wrap"><table>
+<thead class="dy"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>果冻是只可爱猫</td><td class="fans big">1368万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">英短蓝猫"果冻"日常互动，擅长"猫咪皮肤换装"创意视频，风格治愈搞笑。广东省宠物领域<b>断层式头部</b></td><td class="note">抖音号GuoDong168168；宠业家千万级俱乐部；近一年涨粉194万</td></tr>
+<tr><td class="rank top3">2</td><td>邓峰萌萌摔肿了</td><td class="fans big">约490万</td><td>深圳市<span class="tag-city">深圳</span></td><td class="content-text">稀有色英短英长猫繁育日常+宠物食品品牌创始人，直播带货以人猫互动场景化展示为特色</td><td class="note">WCF世界冠军猫舍"金故GOLDENTALES"；<b>2024年8月抖音宠物带货成交金额第1名（1474.2万元）</b></td></tr>
+<tr><td class="rank top3">3</td><td>安静的布丁妹妹</td><td class="fans big">400万</td><td>揭阳市<span class="tag-city">揭阳</span></td><td class="content-text">4狗2猫多宠家庭日常+宠物美食制作系列（播放2.7亿）+旅行记录，自有宠物食品品牌</td><td class="note">自有品牌"卟叮宠物食品"；抖音号BD20151001；2020年全平台带货榜第7</td></tr>
+<tr><td class="rank">4</td><td>花花与三猫CatLive</td><td class="fans">约400万</td><td>广东省（IP广东）<span class="tag-city">广东</span></td><td class="content-text">5只猫咪日常Vlog、互动游戏挑战、吃播系列，推广"领养代替购买"理念</td><td class="note">B站2018年度UP主、2019百大；全网粉丝超1100万</td></tr>
+<tr><td class="rank">5</td><td>亨特训犬</td><td class="fans">约180-226万</td><td>佛山市·南海区<span class="tag-city">佛山</span></td><td class="content-text">专业训犬教学视频，涵盖行为纠正（暴冲、分离焦虑等）、拉布拉多繁殖、领养代替购买公益内容</td><td class="note">飞瓜佛山月榜第4；带货口碑4.8；周末免费暴冲纠正课</td></tr>
+<tr><td class="rank">6</td><td>不秃头的小扶蝶</td><td class="fans">约172万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">拿破仑猫"小扶蝶"暖心粘人系列（合集播放2401万），展示猫咪与主人互动场景</td><td class="note">抖音号fudie2021；获赞1559万；作品461个</td></tr>
+<tr><td class="rank">7</td><td>矮脚菠萝包</td><td class="fans">约50-82万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">矮脚猫"菠萝包"日常生活记录，幽默风格展示猫咪迷惑行为，代表作获471.2万点赞</td><td class="note">粉丝量有波动；"菠萝包奇幻小剧场"合集超千万播放</td></tr>
+<tr><td class="rank">8</td><td>花花的日常生活</td><td class="fans">约42万</td><td>东莞市<span class="tag-city">东莞</span></td><td class="content-text">猫咪日常内容创作，捕捉猫咪生动瞬间展现趣味性格，代表作获72.5万点赞</td><td class="note">东莞达人排行前列；作品约4100个（更新频率极高）</td></tr>
+<tr><td class="rank">9</td><td>啸天犬工作室</td><td class="fans">约30万</td><td>东莞市<span class="tag-city">东莞</span></td><td class="content-text">训犬技巧教学，自称"天然训练法创始人"，提供训犬培训及行为纠正服务，涉及IGP犬赛</td><td class="note">运营者为东莞46岁男性；存在争议</td></tr>
+<tr><td class="rank">10</td><td>小雪养猫狗</td><td class="fans">约22万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text"><b>宠粮测评型博主</b>——8猫4狗家庭，10年铲屎官+宠物营养师，已测评500+款宠粮，风格"不恰烂饭，好坏都说"</td><td class="note">宠物营养师资质；实地探厂；知识性强</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 抖音·宠物饲养 ===== -->
+<section class="chapter" id="dy-raise">
+<div class="ch-head"><div class="ch-num">5</div><div class="ch-title">抖音 · 宠物饲养<small>广东省前十博主排名</small></div></div>
+
+<div class="table-cap dy">抖音·宠物饲养·广东省前十博主排名</div>
+<div class="tbl-wrap"><table>
+<thead class="dy"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>果冻是只可爱猫</td><td class="fans big">1368万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">英短蓝猫"果冻"及"福福"日常互动、饲养护理、拟人化皮肤视频，广东省<b>断层式头部</b></td><td class="note">近一年涨粉194万；代表作获623.8万点赞</td></tr>
+<tr><td class="rank top3">2</td><td>邓峰萌萌摔肿了</td><td class="fans big">约490万</td><td>深圳市<span class="tag-city">深圳</span></td><td class="content-text">稀有色英短英长猫<b>繁育日常</b>+猫主人互动分享，WCF世界冠军猫舍运营经验</td><td class="note">宠物食品品牌创始人；繁育知识属性突出</td></tr>
+<tr><td class="rank top3">3</td><td>安静的布丁妹妹</td><td class="fans big">400万</td><td>揭阳市<span class="tag-city">揭阳</span></td><td class="content-text">多宠家庭日常分享，以<b>宠物美食制作</b>和<b>老年犬护理</b>为核心特色，涵盖旅行记录</td><td class="note">自有品牌"卟叮宠物食品"；饲养知识属性强</td></tr>
+<tr><td class="rank">4</td><td>花花与三猫CatLive</td><td class="fans">约400万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">5只猫咪日常Vlog+互动游戏挑战+吃播系列，推广<b>领养代替购买</b>理念</td><td class="note">B站四大萌宠天王之一；全网粉丝超1100万</td></tr>
+<tr><td class="rank">5</td><td>亨特训犬</td><td class="fans">约180-226万</td><td>佛山市·南海区<span class="tag-city">佛山</span></td><td class="content-text"><b>训犬饲养垂直领域代表</b>——专业训犬教学（行为纠正、暴冲训练等）、拉布拉多繁殖经验分享</td><td class="note">佛山月榜第4；训犬+饲养知识高度垂直</td></tr>
+<tr><td class="rank">6</td><td>不秃头的小扶蝶</td><td class="fans">约172万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">拿破仑猫"小扶蝶"日常护理与暖心互动记录</td><td class="note">合集播放2401万</td></tr>
+<tr><td class="rank">7</td><td>矮脚菠萝包</td><td class="fans">约50-82万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text">矮脚猫日常饲养与趣味互动，展示曼基康猫护理日常</td><td class="note">粉丝量有波动</td></tr>
+<tr><td class="rank">8</td><td>花花的日常生活</td><td class="fans">约42万</td><td>东莞市<span class="tag-city">东莞</span></td><td class="content-text">猫咪日常捕捉与趣味性格展示，更新频率极高（约4100作品）</td><td class="note">东莞达人排行前列</td></tr>
+<tr><td class="rank">9</td><td>啸天犬工作室</td><td class="fans">约30万</td><td>东莞市<span class="tag-city">东莞</span></td><td class="content-text">训犬技巧教学+IGP犬赛内容，"天然训练法创始人"</td><td class="note">东莞46岁男性运营；训犬垂直领域</td></tr>
+<tr><td class="rank">10</td><td>小雪养猫狗</td><td class="fans">约22万</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text"><b>饲养知识科普型</b>——8猫4狗家庭，10年铲屎官+宠物营养师，宠粮测评（500+款）、实地探厂、养宠知识科普</td><td class="note">宠物营养师资质；"不恰烂饭"风格</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 抖音·宠物治疗 ===== -->
+<section class="chapter" id="dy-treat">
+<div class="ch-head"><div class="ch-num">6</div><div class="ch-title">抖音 · 宠物治疗<small>广东省前十博主排名</small></div></div>
+
+<div class="callout red">抖音宠物医疗赛道同样属<b>高度小众</b>。36氪/新榜数据显示抖音兽医相关账号约4047个，百万粉以上仅6个。广东省粉丝量最高的是<b>宠物医生董轶博士</b>（约103万），属全国级头部。</div>
+
+<div class="table-cap dy">抖音·宠物治疗·广东省博主排名</div>
+<div class="tbl-wrap"><table>
+<thead class="dy"><tr><th style="width:32px">排名</th><th>账号名</th><th class="num" style="width:90px">粉丝量</th><th style="width:100px">所在城市</th><th>主要传播内容</th><th style="width:160px">备注</th></tr></thead>
+<tbody>
+<tr><td class="rank top3">1</td><td>宠物医生董轶博士</td><td class="fans big">约103万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text"><b>动物眼科专家</b>，临床兽医博士，专注白内障、青光眼等眼科疾病诊治，科普严谨细致</td><td class="note">抖音号dongyi1972；中国兽医协会宠物诊疗分会副秘书长；<b>芭比堂动物医院创始人/新瑞鹏集团副总</b></td></tr>
+<tr><td class="rank top3">2</td><td>宠物医生吴仲恒博士</td><td class="fans">约19万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text"><b>兽医外科博士</b>（华南农业大学），广州博仕动物医院执业兽医师。专注小动物骨科，擅长髌骨脱位、髋关节置换等骨科手术科普</td><td class="note">中国兽医协会骨科首批专科医师；微博19.3万粉丝</td></tr>
+<tr><td class="rank top3">3</td><td>大胡子宠医QMAN</td><td class="fans">约20万+</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">广州宠物医生，以<b>"经常和主人吵架的宠物医生"</b>风格走红，内容幽默接地气，涵盖犬猫常见疾病、手术记录、安乐死等真实医院故事</td><td class="note">视频获赞常超10万+；个人IP鲜明；2026年4月起快速增长</td></tr>
+<tr><td class="rank">4</td><td>兽医小小康（林贤康）</td><td class="fans">约5-8万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">临床兽医硕士，<b>广州平等家动物医院院长</b>，国内首批认证兽医影像专科医生。深入浅出科普猫狗健康知识</td><td class="note">华南农业大学毕业；B站5.4万粉丝；2026年1月广州塔义诊</td></tr>
+<tr><td class="rank">5</td><td>张兽医（张文奎）</td><td class="fans">万级（微博28.9万）</td><td>广州/深圳<span class="tag-city">广深</span></td><td class="content-text">深圳<b>百维动物医院院长</b>，兽医学博士。科普猫狗用药剂量计算、肥厚性心肌病治疗等专业内容</td><td class="note">微博ID"张兽医-长居广州"但医院在深圳；可做猫心肌肥厚消融手术</td></tr>
+<tr><td class="rank">6</td><td>宠物医生闫中山</td><td class="fans">万级</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text"><b>神经科、外科专科医师</b>，华南农业大学兽医外科硕士，擅长骨科与神经科</td><td class="note">广州爱诺百思动物医院；中国兽医协会神经专科委员会副主任委员；AOVET会员</td></tr>
+<tr><td class="rank">7</td><td>兽医老麦（麦嘉迅）</td><td class="fans">约4,615</td><td>广东省<span class="tag-city">广东</span></td><td class="content-text"><b>影像专科、神经专科兽医</b>，专注CT/MRI影像判读诊疗，华南农业大学教学动物医院探店</td><td class="note">32岁；兽医影像远程诊断与培训</td></tr>
+<tr><td class="rank">8</td><td>广州博仕动物医院（机构号）</td><td class="fans">约1万</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">博仕动物医院官方账号，展示<b>吴仲恒医生主刀手术案例</b>（髋关节置换等）、CT/彩超影像中心内容</td><td class="note">抖音号Vet_doctor；机构号</td></tr>
+<tr><td class="rank">9</td><td>宠医陈宏武</td><td class="fans">较小</td><td>广州市<span class="tag-city">广州</span></td><td class="content-text">华南农业大学兽医学院高级兽医师，宠物<b>骨科专家</b></td><td class="note">IP属地广东；粉丝量较小但专业度高</td></tr>
+<tr><td class="rank">10</td><td>中兽医守门人</td><td class="fans">约10万</td><td>地区待确认<span class="tag-pending tag-city">待确认</span></td><td class="content-text"><b>中兽医知识传播</b>与宠物健康科普，分享宠物疾病诊疗经验（心脏病、皮肤病等）</td><td class="note">⚠️ IP属地未确认广东；截至2025年3月获赞60万；列入需备注</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<!-- ===== 汇总分析 ===== -->
+<section class="chapter" id="summary">
+<div class="ch-head"><div class="ch-num">总</div><div class="ch-title">汇总分析<small>Cross-Platform Insights</small></div></div>
+
+<h3 class="sub">1. 跨平台粉丝量对比（广东省头部宠物博主）</h3>
+<div class="chart-box"><div class="ct">广东省头部宠物博主：小红书 vs 抖音粉丝量对比</div><div class="chart" id="c-compare"></div></div>
+
+<h3 class="sub">2. 广东省宠物博主城市分布</h3>
+<div class="chart-box"><div class="ct">广东省宠物博主城市分布（已确认城市的博主数量）</div><div class="chart" id="c-city"></div></div>
+
+<h3 class="sub">3. 三领域博主特征对比</h3>
+<div class="table-cap sum">宠物用品 vs 宠物饲养 vs 宠物治疗 — 博主特征对比</div>
+<div class="tbl-wrap"><table>
+<thead class="sum"><tr><th>维度</th><th>宠物用品</th><th>宠物饲养</th><th>宠物治疗</th></tr></thead>
+<tbody>
+<tr><td><b>头部粉丝量级</b></td><td>300万+（小红书）/ 1368万（抖音）</td><td>300万+（小红书）/ 1368万（抖音）</td><td>7万（小红书）/ 103万（抖音）</td></tr>
+<tr><td><b>博主身份</b></td><td>萌宠博主+宠物用品店/品牌创始人</td><td>萌宠博主+科学养宠科普达人</td><td>执业兽医/宠物医院院长/专科医生</td></tr>
+<tr><td><b>内容风格</b></td><td>治愈搞笑+产品推荐+带货直播</td><td>日常记录+喂养知识+护理技巧</td><td>专业科普+临床案例+疾病防治</td></tr>
+<tr><td><b>变现模式</b></td><td>电商带货为主（直播+短视频）</td><td>品牌合作+内容种草</td><td>线下引流+专业信任背书</td></tr>
+<tr><td><b>赛道规模</b></td><td>大众赛道，博主数量多</td><td>大众赛道，与用品重叠度高</td><td>小众赛道，博主数量少</td></tr>
+<tr><td><b>广东城市分布</b></td><td>广州>深圳>揭阳>佛山>东莞</td><td>广州>深圳>揭阳>佛山>东莞</td><td>广州为核心，华南农业大学为人才来源</td></tr>
+<tr><td><b>关键发现</b></td><td>邓峰萌萌摔肿了2024年8月抖音宠物带货第1名；果冻是只可爱猫断层式头部</td><td>猫奴十三和小雪养猫狗为饲养知识科普型代表；安静布丁妹老年犬护理特色突出</td><td>董轶博士全国级头部（103万）；广东宠物医生以骨科和眼科为优势专科</td></tr>
+</tbody>
+</table></div>
+
+<h3 class="sub">4. 账号矩阵效应</h3>
+<div class="callout gold">
+<b>广州"兄弟账号"矩阵：</b>一只鱼蛋仔、一只钝钝少爷、矮脚菠萝包、不秃头的小扶蝶四个账号互为"兄弟"，可能由同一团队运营，形成了<b>广州地区的宠物博主矩阵</b>。四个账号覆盖了猫咪日常、拟人化剧情、矮脚猫特色、暖心互动等多个内容角度，在小红书和抖音均有布局。
+</div>
+
+<h3 class="sub">5. 广东宠物博主生态地图</h3>
+<div class="grid g3">
+<div class="card"><h4>🏙 广州</h4><p>绝对核心城市。果冻是只可爱猫（抖音1368万）为全省头部；兽医小小康、董轶博士、大胡子宠医QMAN、吴仲恒博士等兽医博主集中于此。华南农业大学为重要人才输出源。</p></div>
+<div class="card"><h4>🏢 深圳</h4><p>邓峰萌萌摔肿了（490万）为带货型头部；花花与三猫CatLive（400万）为内容型头部；张兽医（百维动物医院）为医疗代表。深圳宠物医疗博主抖音活跃度相对较低。</p></div>
+<div class="card"><h4>🏭 佛山/东莞/揭阳</h4><p>佛山：亨特训犬（训犬垂直领域代表）；东莞：花花的日常生活+啸天犬工作室；揭阳：安静的布丁妹妹（全省小红书粉丝最高300万+）。二三线城市各有特色垂直博主。</p></div>
+</div>
+
+<h3 class="sub">6. 对御鉴/TCM宠物药项目的启示</h3>
+<div class="callout">
+<b>① 宠物治疗赛道虽小众但专业壁垒高</b>——广东省宠物医生博主以广州为核心、华南农业大学为人才来源，骨科和眼科为优势专科。中兽药方向暂无头部KOL，<b>中兽医守门人</b>（约10万粉丝）是唯一中兽医方向博主但地区待确认，说明<b>中兽药科普赛道存在明显空白</b>。<br>
+<b>② 小红书1万粉丝≈抖音50万粉丝的变现价值</b>——宠物医疗类博主虽粉丝量低，但专业信任背书强，适合御鉴产品做<b>专业KOL深度合作</b>而非广撒种。<br>
+<b>③ 广州"兄弟账号"矩阵模式可参考</b>——多账号覆盖不同内容角度的矩阵运营策略，适合TCM宠物药项目构建<b>中药保健品+中药洗护+中兽医科普</b>多账号矩阵。<br>
+<b>④ 宠物用品/饲养领域的头部博主是品牌种草首选</b>——安静的布丁妹妹（老年犬护理）、猫奴十三（科学养猫）、小雪养猫狗（宠粮测评）等饲养知识型博主，与中药保健品"治未病"理念天然契合。
+</div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+<div style="max-width:800px;margin:0 auto 1rem;opacity:.85;line-height:1.7;border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:1rem">
+<b>数据说明：</b>本报告基于公开信息和多方交叉验证编制，粉丝量数据具有时效性，不同数据平台统计口径存在差异。小红书博主地理位置需通过抖音IP属地、百科词条等间接推断，部分标注"地区待确认"。宠物治疗/医疗属小众赛道，可搜集的博主数量有限。如需获取更精确数据，建议使用千瓜数据/飞瓜数据等专业平台的付费服务。
+</div>
+<p>调研时间：2026年6月 ｜ 覆盖平台：小红书 + 抖音 ｜ 覆盖领域：宠物用品·饲养·治疗</p>
+</footer>
+
+<script>
+const C={green:'#2d6a4f',greenL:'#52b788',greenD:'#1b4332',red:'#c0392b',redL:'#e74c3c',
+gold:'#b08968',blue:'#2980b9',blueL:'#5dade2',pink:'#e84393'};
+const base={fontFamily:'PingFang SC,Microsoft YaHei,sans-serif'};
+const grid={left:60,right:30,top:50,bottom:40};
+
+function init(id,opt){const el=document.getElementById(id);if(el&&window.echarts)echarts.init(el).setOption(opt);}
+
+// 粉丝量级分布
+init('c-fans',{
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+  legend:{top:10,textStyle:base},
+  grid:grid,
+  xAxis:{type:'category',data:['100万以下','10-50万','50-100万','100-200万','200-300万','300万以上','1000万以上'],axisLabel:{...base,fontSize:11}},
+  yAxis:{type:'value',name:'博主数量',axisLabel:base},
+  series:[
+    {name:'小红书',type:'bar',barWidth:'38%',itemStyle:{borderRadius:[5,5,0,0],color:C.red},
+      data:[3,1,2,2,1,3,0]},
+    {name:'抖音',type:'bar',barWidth:'38%',itemStyle:{borderRadius:[5,5,0,0],color:C.blue},
+      data:[3,1,1,1,0,3,1]}
+  ]
+});
+
+// 跨平台对比
+init('c-compare',{
+  tooltip:{trigger:'axis'},
+  legend:{top:10,textStyle:base},
+  grid:{left:80,right:80,top:50,bottom:40},
+  xAxis:{type:'category',data:['安静的布丁妹妹','一只鱼蛋仔','果冻是只可爱猫','奥利奥不知道','邓峰萌萌摔肿了','花花与三猫CatLive','亨特训犬','不秃头的小扶蝶','矮脚菠萝包'],axisLabel:{...base,fontSize:10,interval:0,rotate:15}},
+  yAxis:[
+    {type:'value',name:'小红书粉丝(万)',axisLabel:{...base,formatter:function(v){return v>=1000?(v/1000)+'千万':v+'万'}}},
+    {type:'value',name:'抖音粉丝(万)',axisLabel:{...base,formatter:function(v){return v>=1000?(v/1000)+'千万':v+'万'}}}
+  ],
+  series:[
+    {name:'小红书粉丝',type:'bar',yAxisIndex:0,barWidth:'35%',
+      itemStyle:{borderRadius:[5,5,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:C.redL},{offset:1,color:C.red}])},
+      data:[300,293,197,200,null,null,null,null,null]},
+    {name:'抖音粉丝',type:'bar',yAxisIndex:1,barWidth:'35%',
+      itemStyle:{borderRadius:[5,5,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:C.blueL},{offset:1,color:C.blue}])},
+      data:[400,null,1368,40,490,400,200,172,80]}
+  ]
+});
+
+// 城市分布
+init('c-city',{
+  color:[C.green,C.greenL,C.gold,C.red,C.blue],
+  tooltip:{trigger:'item',formatter:'{b}: {c}位博主 ({d}%)'},
+  legend:{top:'bottom',textStyle:base},
+  series:[{
+    type:'pie',radius:['35%','65%'],center:['50%','45%'],
+    avoidLabelOverlap:true,
+    itemStyle:{borderColor:'#fff',borderWidth:2},
+    label:{formatter:'{b}\n{c}位',fontSize:11},
+    data:[
+      {value:8,name:'广州'},
+      {value:3,name:'深圳'},
+      {value:2,name:'揭阳'},
+      {value:2,name:'佛山'},
+      {value:2,name:'东莞'}
+    ]
+  }]
+});
+
+window.addEventListener('resize',function(){
+  document.querySelectorAll('.chart').forEach(function(el){
+    var inst=echarts.getInstanceByDom(el);if(inst)inst.resize();
+  });
+});
+</script>
+</body>
+</html>
