@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年6月报销统计表</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f5f6fa; padding: 30px; color: #2d3436; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 28px; color: #2d3436; margin-bottom: 8px; text-align: center; }
+  .subtitle { text-align: center; color: #636e72; font-size: 14px; margin-bottom: 30px; }
+  .company-info { background: #fff; border-radius: 12px; padding: 16px 24px; margin-bottom: 20px; display: flex; gap: 30px; font-size: 14px; color: #636e72; }
+  .company-info span { color: #2d3436; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  thead th { background: #0984e3; color: #fff; padding: 14px 16px; font-size: 14px; text-align: center; font-weight: 600; }
+  thead th:first-child { text-align: left; }
+  tbody td { padding: 13px 16px; font-size: 14px; border-bottom: 1px solid #eef0f2; text-align: center; }
+  tbody td:first-child { text-align: left; }
+  tbody tr:hover { background: #f0f7ff; }
+  .category-row td { background: #eef6fd; font-weight: 600; color: #0984e3; text-align: left !important; }
+  .total-row td { background: #dfe6e9; font-weight: 700; font-size: 15px; color: #2d3436; }
+  .subtotal-row td { background: #f0f3f5; font-weight: 600; color: #636e72; }
+  .amount { font-weight: 600; color: #d63031; }
+  .amount-green { font-weight: 600; color: #00b894; }
+  .note { font-size: 12px; color: #b2bec3; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-right: 4px; }
+  .tag-transport { background: #ffeaa7; color: #d35400; }
+  .tag-hotel { background: #dfe6e9; color: #636e72; }
+  .tag-air { background: #81ecec; color: #0984e3; }
+  .tag-express { background: #fab1a0; color: #e17055; }
+  .summary-box { background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+  .summary-item { text-align: center; }
+  .summary-label { font-size: 13px; color: #636e72; margin-bottom: 6px; }
+  .summary-value { font-size: 24px; font-weight: 700; color: #d63031; }
+  .summary-value-sub { font-size: 18px; font-weight: 600; color: #00b894; }
+  .footer { text-align: center; color: #b2bec3; font-size: 12px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>2026年6月报销统计表</h1>
+  <p class="subtitle">北京中科云脉健康科技有限公司 · 家里报销</p>
+
+  <div class="company-info">
+    <div>纳税人识别号：<span>91110111MAEKDL818Q</span></div>
+    <div>发票月份：<span>2026年6月</span></div>
+    <div>发票数量：<span>7张</span></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>开票日期</th>
+        <th>费用类别</th>
+        <th>项目名称</th>
+        <th>金额（¥）</th>
+        <th>税额（¥）</th>
+        <th>税率</th>
+        <th>价税合计（¥）</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 住宿费分类行 -->
+      <tr class="category-row">
+        <td colspan="9">🏨 住宿费</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2026-06-11</td>
+        <td><span class="tag tag-hotel">住宿</span></td>
+        <td>住宿费</td>
+        <td class="amount">1,140.59</td>
+        <td class="amount-green">11.41</td>
+        <td>1%</td>
+        <td class="amount">1,152.00</td>
+        <td>3天 · 北京桃丝主题酒店</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>2026-06-17</td>
+        <td><span class="tag tag-hotel">住宿</span></td>
+        <td>代订住宿费</td>
+        <td class="amount">388.53</td>
+        <td class="amount-green">23.31</td>
+        <td>6%</td>
+        <td class="amount">411.84</td>
+        <td>携程订单尾号8626</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>2026-06-22</td>
+        <td><span class="tag tag-hotel">住宿</span></td>
+        <td>代订住宿费</td>
+        <td class="amount">312.26</td>
+        <td class="amount-green">18.74</td>
+        <td>6%</td>
+        <td class="amount">331.00</td>
+        <td>携程订单尾号7422</td>
+      </tr>
+      <tr class="subtotal-row">
+        <td colspan="4">住宿费小计</td>
+        <td>¥1,841.38</td>
+        <td>¥53.46</td>
+        <td>—</td>
+        <td>¥1,894.84</td>
+        <td></td>
+      </tr>
+
+      <!-- 机票分类行 -->
+      <tr class="category-row">
+        <td colspan="9">✈️ 机票费</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>2026-06-22</td>
+        <td><span class="tag tag-air">机票</span></td>
+        <td>代订机票产品</td>
+        <td class="amount">980.19</td>
+        <td class="amount-green">58.81</td>
+        <td>6%</td>
+        <td class="amount">1,039.00</td>
+        <td>4/29 北京→广州 杨帆</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>2026-06-22</td>
+        <td><span class="tag tag-air">机票</span></td>
+        <td>代订机票产品</td>
+        <td class="amount">752.74</td>
+        <td class="amount-green">45.16</td>
+        <td>6%</td>
+        <td class="amount">797.90</td>
+        <td>6/8 广州→北京 杨帆</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>2026-06-22</td>
+        <td><span class="tag tag-air">机票</span></td>
+        <td>代订机票产品</td>
+        <td class="amount">764.15</td>
+        <td class="amount-green">45.85</td>
+        <td>6%</td>
+        <td class="amount">810.00</td>
+        <td>6/11 北京→广州 杨帆</td>
+      </tr>
+      <tr class="subtotal-row">
+        <td colspan="4">机票费小计</td>
+        <td>¥2,497.08</td>
+        <td>¥149.82</td>
+        <td>—</td>
+        <td>¥2,646.90</td>
+        <td></td>
+      </tr>
+
+      <!-- 快递分类行 -->
+      <tr class="category-row">
+        <td colspan="9">📦 快递费</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>2026-06-24</td>
+        <td><span class="tag tag-express">快递</span></td>
+        <td>收派服务费</td>
+        <td class="amount">92.17</td>
+        <td class="amount-green">5.53</td>
+        <td>6%</td>
+        <td class="amount">97.70</td>
+        <td>顺丰速运</td>
+      </tr>
+      <tr class="subtotal-row">
+        <td colspan="4">快递费小计</td>
+        <td>¥92.17</td>
+        <td>¥5.53</td>
+        <td>—</td>
+        <td>¥97.70</td>
+        <td></td>
+      </tr>
+
+      <!-- 总合计行 -->
+      <tr class="total-row">
+        <td colspan="4">本月合计</td>
+        <td>¥4,430.63</td>
+        <td>¥208.81</td>
+        <td>—</td>
+        <td>¥4,639.44</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 分类汇总 -->
+  <div class="summary-box">
+    <h3 style="margin-bottom:16px; color:#2d3436;">📊 分类汇总</h3>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-label">🏨 住宿费</div>
+        <div class="summary-value">¥1,894.84</div>
+        <div class="summary-label" style="margin-top:4px;">3笔 · 占40.9%</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">✈️ 机票费</div>
+        <div class="summary-value">¥2,646.90</div>
+        <div class="summary-label" style="margin-top:4px;">3笔 · 占56.8%</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">📦 快递费</div>
+        <div class="summary-value">¥97.70</div>
+        <div class="summary-label" style="margin-top:4px;">1笔 · 占2.1%</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">💰 本月报销总计</div>
+        <div class="summary-value" style="font-size:28px;">¥4,639.44</div>
+        <div class="summary-label" style="margin-top:4px;">不含税 ¥4,430.63 · 税额 ¥208.81</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer">统计日期：2026年6月25日 · 数据来源：桌面/2026年报销/2026年6月报销/</p>
+</div>
+</body>
+</html>
