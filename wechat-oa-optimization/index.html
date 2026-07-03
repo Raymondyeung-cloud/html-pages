@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微信公众号运营优化策略方案</title>
+<style>
+  :root {
+    --primary: #09B83E;
+    --primary-dark: #07892f;
+    --primary-light: #e8f9ee;
+    --accent: #185FA5;
+    --accent-light: #E6F1FB;
+    --warm: #BA7517;
+    --warm-light: #FAEEDA;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --gray-50: #f8f9fa;
+    --gray-100: #f1f3f5;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-500: #868e96;
+    --gray-700: #495057;
+    --gray-900: #212529;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #fff;
+    color: var(--gray-900);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #09B83E 0%, #07892f 100%);
+    color: #fff;
+    padding: 60px 24px 50px;
+    border-radius: 0 0 24px 24px;
+    margin-bottom: 40px;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
+  .hero .subtitle { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+  .hero .meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hero .meta-item { display: flex; align-items: center; gap: 8px; font-size: 14px; opacity: 0.85; }
+  .hero .meta-item span { font-size: 20px; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    width: 32px; height: 32px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-desc { color: var(--gray-500); font-size: 14px; margin-bottom: 24px; padding-left: 42px; }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .card-title { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: var(--gray-900); }
+  .card-title .icon { margin-right: 8px; }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 680px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* Diagnosis Table */
+  .diag-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .diag-table th {
+    background: var(--gray-100);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-300);
+  }
+  .diag-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 14px;
+  }
+  .diag-table tr:hover { background: var(--gray-50); }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .badge-red { background: #fce8e8; color: #c0392b; }
+  .badge-yellow { background: #fef9e7; color: #b7950b; }
+  .badge-green { background: #e8f9ee; color: #1e8449; }
+
+  /* 60/30/10 Visual */
+  .ratio-bar {
+    display: flex;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .ratio-bar .seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .ratio-60 { background: var(--primary); flex: 60; }
+  .ratio-30 { background: var(--accent); flex: 30; }
+  .ratio-10 { background: var(--coral); flex: 10; }
+  .ratio-legend { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+  .ratio-legend .item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-700); }
+  .ratio-legend .dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* Content Pillar */
+  .pillar {
+    border-left: 4px solid var(--primary);
+    padding: 16px 20px;
+    background: var(--primary-light);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 12px;
+  }
+  .pillar.blue { border-left-color: var(--accent); background: var(--accent-light); }
+  .pillar.warm { border-left-color: var(--warm); background: var(--warm-light); }
+  .pillar.coral { border-left-color: var(--coral); background: var(--coral-light); }
+  .pillar h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .pillar p { font-size: 13px; color: var(--gray-700); }
+  .pillar .tags { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .pillar .tag { background: rgba(255,255,255,0.7); padding: 2px 10px; border-radius: 10px; font-size: 12px; color: var(--gray-700); }
+
+  /* Calendar */
+  .cal-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  .cal-table th { background: var(--primary); color: #fff; padding: 10px; text-align: center; font-weight: 500; font-size: 13px; }
+  .cal-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+  .cal-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+  .cal-table td { padding: 10px; border: 1px solid var(--gray-200); text-align: center; }
+  .cal-table .day { font-weight: 600; color: var(--gray-700); }
+  .cal-table .content-type { font-size: 12px; padding: 4px 8px; border-radius: 6px; display: inline-block; }
+  .ct-value { background: var(--primary-light); color: var(--primary-dark); }
+  .ct-interact { background: var(--accent-light); color: var(--accent); }
+  .ct-promo { background: var(--coral-light); color: var(--coral); }
+  .ct-rest { color: var(--gray-500); }
+
+  /* Menu Architecture */
+  .menu-preview {
+    background: var(--gray-900);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .menu-preview .menu-bar {
+    display: flex;
+    justify-content: space-around;
+    background: #fff;
+    border-radius: var(--radius-sm);
+    padding: 0;
+    overflow: hidden;
+  }
+  .menu-preview .menu-item {
+    flex: 1;
+    text-align: center;
+    padding: 14px 8px;
+    font-size: 14px;
+    color: var(--gray-700);
+    border-right: 1px solid var(--gray-200);
+    cursor: pointer;
+    position: relative;
+  }
+  .menu-preview .menu-item:last-child { border-right: none; }
+  .menu-preview .menu-item .sub-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    padding: 8px;
+    font-size: 13px;
+    color: var(--gray-700);
+  }
+  .menu-preview .sub-item {
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .menu-preview .sub-item:last-child { border-bottom: none; }
+
+  /* KPI */
+  .kpi-card {
+    text-align: center;
+    padding: 20px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-200);
+  }
+  .kpi-card .kpi-value { font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .kpi-card .kpi-label { font-size: 13px; color: var(--gray-500); }
+  .kpi-card .kpi-desc { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
+
+  /* Action Plan */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .timeline-item .time { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+  .timeline-item .content { font-size: 14px; color: var(--gray-900); }
+  .timeline-item .detail { font-size: 13px; color: var(--gray-500); margin-top: 4px; }
+
+  /* Title Templates */
+  .title-template {
+    padding: 12px 16px;
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-left: 3px solid var(--primary);
+  }
+  .title-template .label { font-size: 11px; color: var(--gray-500); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    font-size: 14px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+  }
+  .checklist li .highlight { color: var(--primary-dark); font-weight: 600; }
+
+  /* Funnel */
+  .funnel { margin: 16px 0; }
+  .funnel-step {
+    text-align: center;
+    padding: 14px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 auto 4px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+  }
+  .funnel-step .rate { font-size: 12px; font-weight: 400; opacity: 0.85; }
+  .fs-1 { background: var(--primary); width: 100%; }
+  .fs-2 { background: var(--accent); width: 80%; }
+  .fs-3 { background: var(--warm); width: 60%; }
+  .fs-4 { background: var(--coral); width: 40%; }
+
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    margin-top: 40px;
+    border: 1px solid var(--gray-200);
+  }
+  .cta-box h3 { font-size: 20px; margin-bottom: 12px; }
+  .cta-box p { color: var(--gray-700); font-size: 14px; margin-bottom: 20px; }
+
+  /* Auto-reply flow */
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .flow-step .step-num {
+    width: 28px; height: 28px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .flow-step .step-content { flex: 1; }
+  .flow-step .step-content h5 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .flow-step .step-content p { font-size: 13px; color: var(--gray-500); }
+
+  /* Highlight box */
+  .highlight-box {
+    background: #fffde7;
+    border: 1px solid #fff9c4;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--gray-700);
+  }
+  .highlight-box strong { color: var(--warm); }
+
+  /* Tab */
+  .tab-bar { display: flex; gap: 0; margin-bottom: 16px; border-bottom: 2px solid var(--gray-200); }
+  .tab-bar .tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    font-weight: 500;
+  }
+  .tab-bar .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+  .footnote { font-size: 12px; color: var(--gray-500); text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--gray-200); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>微信公众号运营优化策略方案</h1>
+  <p class="subtitle">从诊断到执行，四维驱动公众号阅读量与粉丝活跃度全面提升</p>
+  <div class="meta">
+    <div class="meta-item"><span>01</span> 诊断分析</div>
+    <div class="meta-item"><span>02</span> 内容策略</div>
+    <div class="meta-item"><span>03</span> 互动运营</div>
+    <div class="meta-item"><span>04</span> 转化变现</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. 诊断分析 -->
+  <div class="section">
+    <div class="section-title"><div class="num">1</div> 公众号低阅读量诊断分析</div>
+    <p class="section-desc">阅读量低不是单一原因，先找准病因才能对症下药</p>
+
+    <table class="diag-table">
+      <thead>
+        <tr>
+          <th>症状</th>
+          <th>可能原因</th>
+          <th>严重度</th>
+          <th>优化方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>打开率低（&lt;10%）</td>
+          <td>标题缺乏吸引力、推送时间不匹配、封面图不吸睛</td>
+          <td><span class="badge badge-red">严重</span></td>
+          <td>标题AB测试、匹配粉丝活跃时段、封面图优化</td>
+        </tr>
+        <tr>
+          <td>完读率低（&lt;30%）</td>
+          <td>内容过长无结构、开头不抓人、排版密集无留白</td>
+          <td><span class="badge badge-red">严重</span></td>
+          <td>金字塔结构写作、前三段设置钩子、增加视觉节奏</td>
+        </tr>
+        <tr>
+          <td>分享转发率低</td>
+          <td>内容缺乏社交货币属性、没有情感共鸣点</td>
+          <td><span class="badge badge-yellow">中等</span></td>
+          <td>增加可分享价值点、设置转发引导、制造话题感</td>
+        </tr>
+        <tr>
+          <td>粉丝增长停滞</td>
+          <td>缺乏引流入口、内容未触达目标人群、无裂变机制</td>
+          <td><span class="badge badge-yellow">中等</span></td>
+          <td>多渠道引流、设计裂变活动、优化SEO关键词</td>
+        </tr>
+        <tr>
+          <td>互动留言少</td>
+          <td>未设置互动引导、话题不接地气、回复不及时</td>
+          <td><span class="badge badge-yellow">中等</span></td>
+          <td>文末设置话题讨论、48小时内回复留言、策划互动活动</td>
+        </tr>
+        <tr>
+          <td>取关率偏高</td>
+          <td>推送频率过高/过低、内容质量不稳定、广告过多</td>
+          <td><span class="badge badge-green">关注</span></td>
+          <td>控制推送频率2-3次/周、稳定内容质量、推广比例控制10%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-title">诊断自检清单</div>
+      <ul class="checklist">
+        <li>公众号定位是否清晰？能否一句话说清楚<span class="highlight">"给谁看、看什么、有什么用"</span></li>
+        <li>最近10篇文章标题是否包含<span class="highlight">具体数字、疑问句、痛点词、反常识</span>至少之一</li>
+        <li>推送时间是否与粉丝<span class="highlight">活跃高峰时段</span>（早7-9点/午12-13点/晚20-22点）匹配</li>
+        <li>文章排版是否做到<span class="highlight">3屏以内有小标题、图片或引用框</span>打断视觉疲劳</li>
+        <li>每篇文章是否有明确的<span class="highlight">CTA（行动号召）</span>引导读者下一步动作</li>
+        <li>自定义菜单是否在<span class="highlight">3秒内</span>让用户找到核心内容或服务</li>
+        <li>新关注粉丝是否收到<span class="highlight">有价值的欢迎语</span>而非默认回复</li>
+        <li>是否有<span class="highlight">固定栏目/系列内容</span>让粉丝形成阅读期待</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. 内容策略 -->
+  <div class="section">
+    <div class="section-title"><div class="num">2</div> 内容策略：60/30/10黄金配比</div>
+    <p class="section-desc">内容是公众号的根基，配比决定粉丝的打开习惯</p>
+
+    <div class="card">
+      <div class="card-title">60/30/10 内容配比模型</div>
+      <p style="font-size:14px;color:var(--gray-700);margin-bottom:8px;">每月推送内容的黄金比例，确保粉丝持续获得价值而非广告轰炸</p>
+      <div class="ratio-bar">
+        <div class="seg ratio-60">60% 价值内容</div>
+        <div class="seg ratio-30">30% 互动内容</div>
+        <div class="seg ratio-10">10% 推广内容</div>
+      </div>
+      <div class="ratio-legend">
+        <div class="item"><span class="dot" style="background:var(--primary)"></span> 价值内容：干货知识、行业洞察、实用教程</div>
+        <div class="item"><span class="dot" style="background:var(--accent)"></span> 互动内容：话题讨论、投票征集、粉丝故事</div>
+        <div class="item"><span class="dot" style="background:var(--coral)"></span> 推广内容：产品介绍、活动促销、服务推荐</div>
+      </div>
+      <div class="highlight-box">
+        <strong>核心原则：</strong>粉丝关注你不是为了看广告。60%的内容要让粉丝觉得"关注这个号真值"，30%让粉丝"想参与讨论"，10%的推广才会被接受甚至期待。
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:18px;margin-top:32px;margin-bottom:16px;">四大内容支柱体系</div>
+
+    <div class="pillar">
+      <h4>支柱一：知识干货类（占比 30%）</h4>
+      <p>系统性输出行业知识、实操教程、专业解读，建立专业权威形象</p>
+      <div class="tags">
+        <span class="tag">系列教程</span>
+        <span class="tag">行业报告解读</span>
+        <span class="tag">避坑指南</span>
+        <span class="tag">FAQ合集</span>
+      </div>
+    </div>
+
+    <div class="pillar blue">
+      <h4>支柱二：案例故事类（占比 20%）</h4>
+      <p>用真实案例、客户故事、使用场景传递价值，增强代入感和信任感</p>
+      <div class="tags">
+        <span class="tag">客户案例</span>
+        <span class="tag">使用前后对比</span>
+        <span class="tag">创业故事</span>
+        <span class="tag">行业标杆</span>
+      </div>
+    </div>
+
+    <div class="pillar warm">
+      <h4>支柱三：行业动态类（占比 20%）</h4>
+      <p>紧跟行业热点、政策变化、市场趋势，成为粉丝获取行业信息的首选渠道</p>
+      <div class="tags">
+        <span class="tag">热点解读</span>
+        <span class="tag">政策速递</span>
+        <span class="tag">趋势预判</span>
+        <span class="tag">数据盘点</span>
+      </div>
+    </div>
+
+    <div class="pillar coral">
+      <h4>支柱四：互动话题类（占比 30%）</h4>
+      <p>发起讨论、征集意见、投票互动，让粉丝从"读者"变成"参与者"</p>
+      <div class="tags">
+        <span class="tag">每周话题</span>
+        <span class="tag">粉丝问答</span>
+        <span class="tag">投票调研</span>
+        <span class="tag">UGC征集</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 标题优化 -->
+  <div class="section">
+    <div class="section-title"><div class="num">3</div> 标题优化：打开率提升的核心</div>
+    <p class="section-desc">标题决定了80%的打开率，好的标题让阅读量翻3-5倍</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">六大标题公式</div>
+        <div class="title-template">
+          <div class="label">数字型</div>
+          <strong>3个方法让你的XX效率提升200%</strong>
+        </div>
+        <div class="title-template">
+          <div class="label">痛点型</div>
+          <strong>为什么你的XX总是做不好？问题出在这里</strong>
+        </div>
+        <div class="title-template">
+          <div class="label">反常识型</div>
+          <strong>越努力越失败？90%的人忽略了这个关键</strong>
+        </div>
+        <div class="title-template">
+          <div class="label">悬念型</div>
+          <strong>看完这个才知道，原来XX可以这样玩</strong>
+        </div>
+        <div class="title-template">
+          <div class="label">利益型</div>
+          <strong>收藏！2026年最全XX攻略（附模板）</strong>
+        </div>
+        <div class="title-template">
+          <div class="label">共鸣型</div>
+          <strong>做XX三年，我踩过的坑你不必再踩</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">标题AB测试对照</div>
+        <table class="diag-table">
+          <thead>
+            <tr><th>修改前</th><th>修改后</th><th>效果</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>产品使用说明</td>
+              <td>用了3个月才发现，这个功能太强了</td>
+              <td><span class="badge badge-green">+280%</span></td>
+            </tr>
+            <tr>
+              <td>行业趋势分析报告</td>
+              <td>2026年行业5大变化，第3个90%的人没注意到</td>
+              <td><span class="badge badge-green">+195%</span></td>
+            </tr>
+            <tr>
+              <td>客户案例分享</td>
+              <td>从亏损到盈利，他只做对了这一件事</td>
+              <td><span class="badge badge-green">+320%</span></td>
+            </tr>
+            <tr>
+              <td>新品上线通知</td>
+              <td>等了半年终于来了！首批用户已省下XX元</td>
+              <td><span class="badge badge-green">+210%</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box">
+          <strong>标题长度建议：</strong>14-22字最佳，关键信息前置，避免标题党（内容要兑现标题承诺）
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 发布日历 -->
+  <div class="section">
+    <div class="section-title"><div class="num">4</div> 周发布日历模板</div>
+    <p class="section-desc">固定节奏、固定栏目，培养粉丝阅读期待</p>
+
+    <table class="cal-table">
+      <thead>
+        <tr>
+          <th>周一</th>
+          <th>周二</th>
+          <th>周三</th>
+          <th>周四</th>
+          <th>周五</th>
+          <th>周六</th>
+          <th>周日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="day">早 7:30</div><div class="content-type ct-value">干货教程</div></td>
+          <td class="ct-rest">休</td>
+          <td><div class="day">晚 20:00</div><div class="content-type ct-interact">话题互动</div></td>
+          <td class="ct-rest">休</td>
+          <td><div class="day">午 12:00</div><div class="content-type ct-value">行业解读</div></td>
+          <td class="ct-rest">休</td>
+          <td><div class="day">晚 21:00</div><div class="content-type ct-promo">精选推荐</div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;font-weight:700;color:var(--primary);">3次/周</div>
+        <div style="font-size:13px;color:var(--gray-500);">推荐发布频率</div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:4px;">不过度打扰，保持存在感</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;font-weight:700;color:var(--accent);">固定时段</div>
+        <div style="font-size:13px;color:var(--gray-500);">培养阅读习惯</div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:4px;">粉丝知道什么时候该等你</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-size:24px;font-weight:700;color:var(--warm);">固定栏目</div>
+        <div style="font-size:13px;color:var(--gray-500);">建立内容品牌</div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:4px;">如"周三话题""周五干货"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 菜单架构 -->
+  <div class="section">
+    <div class="section-title"><div class="num">5</div> 菜单架构与自动回复体系</div>
+    <p class="section-desc">菜单是公众号的"导航栏"，3秒内让用户找到想要的内容</p>
+
+    <div class="card">
+      <div class="card-title">自定义菜单设计（三栏架构）</div>
+      <div class="menu-preview">
+        <div class="menu-bar">
+          <div class="menu-item">
+            精选内容
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px;">往期干货</div>
+          </div>
+          <div class="menu-item">
+            产品服务
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px;">了解购买</div>
+          </div>
+          <div class="menu-item">
+            关于我们
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px;">联系合作</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="diag-table" style="margin-top:16px;">
+        <thead>
+          <tr><th>菜单</th><th>子菜单建议</th><th>功能定位</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>精选内容</strong></td>
+            <td>新手必读 / 热门文章 / 系列专栏 / 行业报告</td>
+            <td>降低新粉丝了解成本，沉淀优质内容</td>
+          </tr>
+          <tr>
+            <td><strong>产品服务</strong></td>
+            <td>产品介绍 / 在线咨询 / 预约体验 / 小程序入口</td>
+            <td>缩短转化路径，直连服务</td>
+          </tr>
+          <tr>
+            <td><strong>关于我们</strong></td>
+            <td>品牌故事 / 加入社群 / 商务合作 / 联系方式</td>
+            <td>建立信任，开放合作入口</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">自动回复体系设计</div>
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h5>关注回复：给新粉一个留下来的理由</h5>
+          <p>"欢迎关注！回复【新手】获取入门指南，回复【福利】领取专属礼包。我们每周三五更新干货，不想错过就置顶我们吧~"</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h5>关键词回复：覆盖高频问题</h5>
+          <p>设置20-30个核心关键词自动回复，如：价格、地址、预约、售后、案例等，减少人工回复压力</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h5>默认回复：兜底引导</h5>
+          <p>"您的问题已收到，小助手会在24小时内回复~ 也可以点击底部菜单【在线咨询】快速联系哦"</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h5>定期推送回复：引导深度互动</h5>
+          <p>每周设置一个互动话题关键词，如回复"本周话题"参与讨论，优质留言下期上墙</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 粉丝活跃度 -->
+  <div class="section">
+    <div class="section-title"><div class="num">6</div> 粉丝活跃度提升方案</div>
+    <p class="section-desc">从被动阅读到主动参与，把粉丝变成社区成员</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">互动机制设计</div>
+        <ul style="list-style:none;font-size:14px;">
+          <li style="padding:6px 0;border-bottom:1px solid var(--gray-100);">
+            <strong style="color:var(--primary);">每周话题</strong>：文末抛出有争议性话题，引导留言讨论
+          </li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--gray-100);">
+            <strong style="color:var(--primary);">投票调研</strong>：用小程序发起产品/内容方向投票
+          </li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--gray-100);">
+            <strong style="color:var(--primary);">UGC征集</strong>：征集粉丝使用故事，优质内容上墙+奖励
+          </li>
+          <li style="padding:6px 0;border-bottom:1px solid var(--gray-100);">
+            <strong style="color:var(--primary);">答疑专栏</strong>：每周收集粉丝问题，统一解答
+          </li>
+          <li style="padding:6px 0;">
+            <strong style="color:var(--primary);">限时福利</strong>：文末隐藏福利口令，增加完读率
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">粉丝分层运营</div>
+        <table class="diag-table">
+          <thead>
+            <tr><th>粉丝类型</th><th>运营策略</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>新粉丝</strong><br><span style="font-size:12px;color:var(--gray-500);">关注7天内</span></td>
+              <td>推送入门指南、热门文章合集、专属欢迎福利</td>
+            </tr>
+            <tr>
+              <td><strong>活跃粉丝</strong><br><span style="font-size:12px;color:var(--gray-500);">近30天有互动</span></td>
+              <td>深度内容、优先体验、社群邀请、UGC征集</td>
+            </tr>
+            <tr>
+              <td><strong>沉默粉丝</strong><br><span style="font-size:12px;color:var(--gray-500);">60天无互动</span></td>
+              <td>推送爆款回顾、限时福利唤醒、问卷调研需求</td>
+            </tr>
+            <tr>
+              <td><strong>高价值粉丝</strong><br><span style="font-size:12px;color:var(--gray-500);">已转化/高频互动</span></td>
+              <td>VIP社群、新品内测、专属优惠、1v1服务</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 转化路径 -->
+  <div class="section">
+    <div class="section-title"><div class="num">7</div> 转化路径设计</div>
+    <p class="section-desc">从阅读到转化，每一步都要有明确的引导</p>
+
+    <div class="card">
+      <div class="card-title">粉丝转化漏斗</div>
+      <div class="funnel">
+        <div class="funnel-step fs-1">
+          看到推送 <span class="rate">100%</span>
+        </div>
+        <div class="funnel-step fs-2">
+          打开阅读 <span class="rate">目标 30%+</span>
+        </div>
+        <div class="funnel-step fs-3">
+          完成阅读 <span class="rate">目标 50%+</span>
+        </div>
+        <div class="funnel-step fs-4">
+          互动转化 <span class="rate">目标 2-5%</span>
+        </div>
+      </div>
+
+      <table class="diag-table">
+        <thead>
+          <tr><th>转化阶段</th><th>关键动作</th><th>CTA设计</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>阅读 → 互动</td>
+            <td>留言、点赞、在看、收藏</td>
+            <td>文末"你怎么看？留言区聊聊" / "觉得有用点个在看"</td>
+          </tr>
+          <tr>
+            <td>互动 → 关注</td>
+            <td>引导非粉丝关注</td>
+            <td>分享卡片引导关注 / 文末二维码</td>
+          </tr>
+          <tr>
+            <td>关注 → 留存</td>
+            <td>置顶公众号、加入社群</td>
+            <td>欢迎语引导置顶 / 社群入口</td>
+          </tr>
+          <tr>
+            <td>留存 → 转化</td>
+            <td>咨询、体验、购买</td>
+            <td>菜单直连服务 / 文末限时优惠 / 小程序入口</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 8. KPI体系 -->
+  <div class="section">
+    <div class="section-title"><div class="num">8</div> KPI监控体系</div>
+    <p class="section-desc">用数据说话，每周复盘，持续迭代</p>
+
+    <div class="grid-4">
+      <div class="kpi-card">
+        <div class="kpi-value">30%+</div>
+        <div class="kpi-label">打开率</div>
+        <div class="kpi-desc">行业均值 20-25%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">50%+</div>
+        <div class="kpi-label">完读率</div>
+        <div class="kpi-desc">反映内容质量</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">5%+</div>
+        <div class="kpi-label">分享率</div>
+        <div class="kpi-desc">社交传播力</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">10-20%</div>
+        <div class="kpi-label">月增粉率</div>
+        <div class="kpi-desc">有机增长</div>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top:12px;">
+      <div class="kpi-card">
+        <div class="kpi-value">95%+</div>
+        <div class="kpi-label">留存率</div>
+        <div class="kpi-desc">低取关率</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">20%+</div>
+        <div class="kpi-label">菜单点击率</div>
+        <div class="kpi-desc">周活跃使用</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">2-5%</div>
+        <div class="kpi-label">转化率</div>
+        <div class="kpi-desc">粉丝→客户</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">3%+</div>
+        <div class="kpi-label">互动率</div>
+        <div class="kpi-desc">留言+在看+赞</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">每周复盘维度</div>
+      <table class="diag-table">
+        <thead>
+          <tr><th>复盘维度</th><th>关键指标</th><th>优化动作</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>标题效果</td>
+            <td>各文章打开率对比</td>
+            <td>找出高打开率标题规律，形成标题库</td>
+          </tr>
+          <tr>
+            <td>内容质量</td>
+            <td>完读率、收藏率、分享率</td>
+            <td>分析高完读率文章结构，复制成功模式</td>
+          </tr>
+          <tr>
+            <td>粉丝增长</td>
+            <td>新增、取关、净增</td>
+            <td>分析取关原因，优化推送频率和内容</td>
+          </tr>
+          <tr>
+            <td>互动表现</td>
+            <td>留言数、在看数、点赞数</td>
+            <td>提升互动引导话术，增加话题感</td>
+          </tr>
+          <tr>
+            <td>转化效果</td>
+            <td>菜单点击、咨询量、成交</td>
+            <td>优化转化路径，缩短决策链路</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 9. 90天行动计划 -->
+  <div class="section">
+    <div class="section-title"><div class="num">9</div> 90天行动落地计划</div>
+    <p class="section-desc">分阶段执行，每30天一个迭代周期</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title" style="color:var(--primary);">第一阶段（1-30天）</div>
+        <div style="font-size:13px;color:var(--gray-500);margin-bottom:12px;">基础建设 · 快速止血</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">第1周</div>
+            <div class="content">完成公众号诊断自检</div>
+            <div class="detail">对照诊断清单逐项检查，标记问题优先级</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">第2周</div>
+            <div class="content">优化菜单和自动回复</div>
+            <div class="detail">三栏菜单上线，关注回复+关键词回复配置</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">第3-4周</div>
+            <div class="content">标题优化+发布节奏调整</div>
+            <div class="detail">AB测试标题，固定每周3次推送时间</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color:var(--accent);">第二阶段（31-60天）</div>
+        <div style="font-size:13px;color:var(--gray-500);margin-bottom:12px;">内容升级 · 活跃提升</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time" style="color:var(--accent);">第5周</div>
+            <div class="content">建立4大内容支柱</div>
+            <div class="detail">按60/30/10配比规划月度内容</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time" style="color:var(--accent);">第6-7周</div>
+            <div class="content">上线固定栏目和系列内容</div>
+            <div class="detail">如"周三话题""周五干货"等栏目</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time" style="color:var(--accent);">第8周</div>
+            <div class="content">启动互动机制</div>
+            <div class="detail">话题讨论、UGC征集、投票活动</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color:var(--warm);">第三阶段（61-90天）</div>
+        <div style="font-size:13px;color:var(--gray-500);margin-bottom:12px;">转化优化 · 规模增长</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time" style="color:var(--warm);">第9周</div>
+            <div class="content">粉丝分层运营</div>
+            <div class="detail">新粉/活跃/沉默分层触达策略</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time" style="color:var(--warm);">第10-11周</div>
+            <div class="content">转化路径优化</div>
+            <div class="detail">AB测试CTA，优化菜单转化入口</div>
+          </div>
+          <div class="timeline-item">
+            <div class="time" style="color:var(--warm);">第12周</div>
+            <div class="content">90天复盘+下阶段规划</div>
+            <div class="detail">全量数据分析，固化成功模式</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>立即开始优化</h3>
+    <p>建议从第一阶段"诊断自检"开始，先找准问题再动手。优化是一个持续迭代的过程，坚持数据复盘，3个月即可看到显著提升。</p>
+    <p style="font-size:13px;">需要针对您的公众号做具体诊断，或需要内容代写、标题优化等服务，随时沟通。</p>
+  </div>
+
+  <div class="footnote">
+    微信公众号运营优化策略方案 · 2026年7月 · 持续迭代中
+  </div>
+
+</div>
+</body>
+</html>
