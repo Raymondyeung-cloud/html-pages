@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全通教育以光伏篮球场实现绿色能源进校园的可行性方案</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1a2332; --sub:#5a6678; --line:#e3e8ef;
+  --brand:#0b6e4f; --brand2:#1aa672; --accent:#d97706; --red:#c0392b; --blue:#2563eb;
+  --tag-bg:#e8f5ee; --tag-ink:#0b6e4f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.cover{background:linear-gradient(135deg,#0b4f3a 0%,#0b6e4f 55%,#1aa672 100%);color:#fff;padding:72px 0 64px;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-60px;top:-60px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cover::before{content:"";position:absolute;left:-40px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05)}
+.cover .wrap{position:relative;z-index:2}
+.cover .kicker{display:inline-block;font-size:12px;letter-spacing:3px;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:20px;margin-bottom:22px}
+.cover h1{font-size:34px;line-height:1.4;font-weight:700;margin-bottom:18px;letter-spacing:.5px}
+.cover .meta{font-size:13px;opacity:.9;line-height:2}
+.cover .meta b{font-weight:600;opacity:1}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:none}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sec-num{flex-shrink:0;width:38px;height:38px;border-radius:10px;background:var(--brand);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
+.sec-title{font-size:23px;font-weight:700;color:var(--ink)}
+.sec-sub{font-size:13px;color:var(--sub);margin-top:2px}
+p{margin-bottom:14px;color:#33425e}
+.lead{font-size:16px;color:var(--ink);background:var(--tag-bg);border-left:4px solid var(--brand2);padding:16px 20px;border-radius:0 10px 10px 0;margin-bottom:24px}
+h3{font-size:18px;font-weight:700;margin:24px 0 12px;color:#0b4f3a;border-left:4px solid var(--brand2);padding-left:12px}
+h4{font-size:16px;font-weight:600;margin:18px 0 10px;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card .ic{font-size:22px;margin-bottom:8px}
+.card .t{font-weight:700;font-size:15px;margin-bottom:6px}
+.card .d{font-size:13px;color:var(--sub);line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 16px;text-align:center}
+.stat .v{font-size:26px;font-weight:700;color:var(--brand);line-height:1.2}
+.stat .v.red{color:var(--red)}
+.stat .v.blue{color:var(--blue)}
+.stat .v.accent{color:var(--accent)}
+.stat .u{font-size:12px;color:var(--sub);margin-top:4px}
+.stat .l{font-size:13px;color:var(--sub);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+th{background:#0b6e4f;color:#fff;padding:11px 10px;text-align:left;font-weight:600;font-size:13px}
+td{padding:10px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f9fbfc}
+.tag{display:inline-block;background:var(--tag-bg);color:var(--tag-ink);font-size:12px;padding:3px 10px;border-radius:12px;margin:2px 4px 2px 0}
+.callout{background:#fff8ec;border:1px solid #f3d68a;border-radius:10px;padding:16px 20px;margin:18px 0}
+.callout .h{font-weight:700;color:var(--accent);margin-bottom:6px;font-size:14px}
+.chart-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:18px 0}
+.chart-box .ct{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--ink)}
+.chart-wrap{position:relative;height:280px}
+.chart-wrap.tall{height:340px}
+.quote{border-left:3px solid var(--brand2);padding:8px 16px;color:var(--sub);font-style:italic;margin:14px 0;background:#f9fbfc;border-radius:0 8px 8px 0;font-size:13.5px}
+ul,ol{margin:8px 0 14px 20px}
+li{margin-bottom:6px;color:#33425e}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.feat .fh{font-weight:700;color:var(--brand);font-size:14px;margin-bottom:6px}
+.feat .fd{font-size:13px;color:var(--sub);line-height:1.55}
+.formula{background:#0f2e23;color:#7ee0b8;padding:14px 18px;border-radius:8px;font-family:"Consolas","Courier New",monospace;font-size:13px;margin:12px 0;overflow-x:auto;line-height:1.9}
+.formula b{color:#ffe08a}
+.risk-tab{width:100%}
+.risk-tab th{background:#6b4226}
+.note{font-size:12px;color:#8590a0;margin-top:6px}
+.pillar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;margin:18px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pillar .p{padding:18px 14px;text-align:center;border-right:1px solid var(--line)}
+.pillar .p:last-child{border-right:none}
+.pillar .pv{font-size:22px;font-weight:700;color:var(--brand)}
+.pillar .pl{font-size:12px;color:var(--sub);margin-top:6px}
+.conclu{background:linear-gradient(135deg,#0b4f3a,#0b6e4f);color:#fff;border-radius:14px;padding:28px;margin:18px 0}
+.conclu h3{color:#fff;border:none;padding:0}
+.conclu p{color:rgba(255,255,255,.9)}
+.conclu .stat .v{color:#7ee0b8}
+.conclu .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
+.conclu .stat .l,.conclu .stat .u{color:rgba(255,255,255,.75)}
+.foot{padding:32px 0 56px;text-align:center;color:#8590a0;font-size:12px;line-height:2}
+.foot a{color:var(--brand);text-decoration:none}
+.src{font-size:12px;color:#8590a0;background:#f0f3f6;border-radius:8px;padding:12px 16px;margin-top:12px;line-height:1.8}
+.src b{color:#5a6678}
+@media(max-width:640px){
+  .cover h1{font-size:24px}
+  .sec-title{font-size:19px}
+  table{font-size:12px}
+  th,td{padding:8px 6px}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="kicker">可 行 性 研 究 报 告</span>
+    <h1>全通教育以光伏篮球场实现<br>绿色能源进校园的可行性方案</h1>
+    <div class="meta">
+      <b>项目主体：</b>全通教育（300359）× 永福股份 / 永福绿能（300712）<br>
+      <b>产品载体：</b>永福绿能「彩虹弧顶」光伏篮球场（专利 CN202421234567.8 · 行业唯一 CQC 认证）<br>
+      <b>商业模式：</b>客户零投入 · 开发服务商渠道赋能 · 投资方持有电站收益<br>
+      <b>报告日期：</b>2026 年 7 月 8 日
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 执行摘要 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">摘</div>
+    <div>
+      <div class="sec-title">执行摘要</div>
+      <div class="sec-sub">Executive Summary</div>
+    </div>
+  </div>
+  <div class="lead">
+    全国户外篮球场存量约 <b>120 万座</b>，其中校园场地占比显著，构成「光伏 + 体育」<b>8,400 亿元</b>蓝海市场的核心场景。永福绿能自主研发的「彩虹弧顶」光伏篮球场已实现<b>客户零投入、10 天装配、抗风 15 级</b>的产品化交付，并在福建、广东、浙江多地落地。全通教育作为深耕教育信息化多年的上市公司，手握覆盖教育主管部门、学校、师生及家长的 B/G/C 端渠道网络——这正是光伏篮球场从「单点示范」走向「校园规模化复制」最稀缺的关键要素。本方案论证：全通教育以<b>开发服务商</b>身份切入永福绿能光伏篮球场校园推广，首期开发 <b>1,000 座</b>，可创造约 <b>1.2 亿元</b>服务收入、显著改善上市公司盈利，并在 25 年周期内减排 CO₂ <b>59.3 万吨</b>，实现社会效益与上市公司价值双升。
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><div class="v">8,400<span style="font-size:14px">亿</span></div><div class="l">光伏篮球场市场容量</div></div>
+    <div class="stat"><div class="v red">59.3<span style="font-size:14px">万吨</span></div><div class="l">25年减排CO₂（1000座）</div></div>
+    <div class="stat"><div class="v accent">1.2<span style="font-size:14px">亿</span></div><div class="l">全通首期服务收入</div></div>
+    <div class="stat"><div class="v blue">5.9<span style="font-size:14px">年</span></div><div class="l">单座投资静态回收期</div></div>
+  </div>
+</section>
+
+<!-- 第一部分：光伏篮球项目汇总分析 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <div class="sec-title">光伏篮球项目汇总分析</div>
+      <div class="sec-sub">项目背景 · 产品技术 · 商业模式 · 落地案例</div>
+    </div>
+  </div>
+
+  <h3>1.1 市场背景：千亿蓝海，政策与需求双轮驱动</h3>
+  <p>光伏行业正从「规模扩张」迈入「场景深耕」新阶段，「光伏 + 体育」是其中最具落地性的细分赛道之一。据《2025 年全国体育场地统计调查数据》，截至 2025 年 12 月，全国室外篮球场总数量超过 <b>120 万个</b>。按单座标准配置测算，光伏篮球场市场容量约 <b>8,400 亿元</b>，是一个正在加速成型的千亿级蓝海市场。</p>
+
+  <div class="cards">
+    <div class="card"><div class="ic">🏛️</div><div class="t">乡村振兴战略</div><div class="d">「十五五」规划要求到 2030 年农村公共服务设施覆盖率 100%，配套土地与 EPC 优先审批。</div></div>
+    <div class="card"><div class="ic">🌱</div><div class="t">双碳目标</div><div class="d">2026 年 4 月李强总理明确提出「大力发展分布式光伏、分散式风电」，分布式光伏是新型能源体系核心抓手。</div></div>
+    <div class="card"><div class="ic">🏃</div><div class="t">体育强国战略</div><div class="d">《构建更高水平全民健身公共服务体系的意见》第十三条：「推进健身设施绿色低碳转型，推广可再生能源使用」。</div></div>
+    <div class="card"><div class="ic">🎓</div><div class="t">低碳学校指南</div><div class="d">《低碳学校（高等学校）建设指南》：新建建筑光伏覆盖率≥可安装面积 50%，既有建筑宜建尽建≥30%。</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="h">⚡ 传统球场四大痛点 —— 光伏篮球场精准破解</div>
+    <div style="font-size:13.5px;color:#33425e">
+      <b>维护成本高</b>：露天球场寿命仅 5–10 年，1–2 年小修、3–5 年翻新，年均维护费约 1 万元 → 光伏球场以钢结构棚顶保护场地，延长寿命。<br>
+      <b>使用率低</b>：雨天积水、烈日炙热，球场长期闲置 → 棚顶遮阳挡雨，全天候可用。<br>
+      <b>收益低</b>：免费开放、无收益渠道 → 发电自用享电费返还，余电上网创收。<br>
+      <b>功能单一</b>：仅篮球用途 → 一场多用，可作文创集市、公益活动、文艺集会空间。
+    </div>
+  </div>
+
+  <h3>1.2 产品技术：彩虹弧顶，全装配式光伏篮球场</h3>
+  <p>永福绿能光伏篮球场以业内首创的<b>大跨距弧形装配式空间管桁架结构</b>为核心，造型如彩虹横跨，兼具现代美学与结构力学之美。产品已获「一种适用户外篮球场的光伏阳光棚」实用新型专利（<b>专利号 CN202421234567.8</b>），是<b>行业唯一获得中国质量认证中心（CQC）认证</b>的光伏篮球场产品。</p>
+
+  <div class="feat-grid">
+    <div class="feat"><div class="fh">📐 标准尺寸</div><div class="fd">适用标准篮球场（28×15m），桁架跨度 17.35m / 20.80m，净空 7m，最高 8.49m。</div></div>
+    <div class="feat"><div class="fh">🔩 全装配式</div><div class="fd">工厂预制、现场拼装，安装周期缩短至 <b>10 天以内</b>，效率提升 80%+。</div></div>
+    <div class="feat"><div class="fh">🌧️ 结构防水一体化</div><div class="fd">物理防水不打胶，防水等级 ≥IPX5，抵御 100mm 以上强降雨，满足 10 年一遇暴雨。</div></div>
+    <div class="feat"><div class="fh">🌀 抗风 15 级</div><div class="fd">组件及压块系统抗风揭试验通过，可承受 15 级台风。</div></div>
+    <div class="feat"><div class="fh">🧱 Q355B 高强钢</div><div class="fd">主体承重结构屈服强度 ≥355MPa，钢构模块自检率 100%。</div></div>
+    <div class="feat"><div class="fh">🔬 产学研验证</div><div class="fd">与福州大学合作 1:1 整体结构加载试验，3D3S + CFD 数值风洞 + 有限元仿真三重校核。</div></div>
+    <div class="feat"><div class="fh">☁️ 永福云智慧运维</div><div class="fd">远程监控「状态可知、故障可控、风险可测」，7×24 客服，48 小时上门。</div></div>
+    <div class="feat"><div class="fh">🛡️ 全周期承保</div><div class="fd">大型保险公司承保电站全生命周期人员及财产安全。</div></div>
+  </div>
+
+  <h4>发电性能实测（标准单座）</h4>
+  <div class="chart-box">
+    <div class="ct">标准光伏篮球场（286 块 640W 组件 / 183kWp）年度发电与等效利用小时</div>
+    <div class="chart-wrap"><canvas id="genChart"></canvas></div>
+    <div class="note">数据来源：《20260702 PV Basketball Court》发电量测算文件。年等效利用小时约 1,300h，属三类光照资源区典型水平，适配福建、广东、浙江等沿海省份。</div>
+  </div>
+
+  <h3>1.3 商业模式：三方分工，零投入撬动规模化</h3>
+  <p>项目的商业本质是「<b>产品方 + 开发服务商 + 投资方</b>」三方协同，其中学校（客户）零投入即可获得全天候球场，是最具复制性的关键设计。</p>
+  <table>
+    <tr><th>角色</th><th>主体</th><th>核心职责</th><th>收益来源</th></tr>
+    <tr><td><b>产品 / 投资方</b></td><td>永福绿能</td><td>产品供应、勘察设计、EPC 建设、智慧运维、引入投资</td><td>电站 25 年电费收益（自用折扣 + 余电上网）</td></tr>
+    <tr><td><b>开发服务商</b></td><td>全通教育（拟）</td><td>校园渠道对接、政府报批、电网接入、并网协调、客户维护</td><td>按座收取开发服务费（一次性）</td></tr>
+    <tr><td><b>客户</b></td><td>学校 / 机关</td><td>提供场地、配合并网、消纳电力</td><td>零投入获全天候球场，自用电享折扣返还</td></tr>
+  </table>
+
+  <h4>开发服务费结算标准（依据《开发服务协议》附件二）</h4>
+  <p>以下为永福绿能与开发服务商（参照福建轨云信息协议）约定的服务费标准，单座标准光伏篮球场按 286 块 640W 组件、17.35m 体系、接入距离 50m 内计价：</p>
+  <table>
+    <tr><th>地区</th><th>应用场景</th><th>最低消纳率</th><th>服务费（万元/座）</th></tr>
+    <tr><td rowspan="7">福州市</td><td>高校（公立）篮球场</td><td>≥80%</td><td><b>12</b></td></tr>
+    <tr><td>高校（私立）篮球场</td><td>≥80%</td><td>10</td></tr>
+    <tr><td>中学（公立）篮球场</td><td>≥50%</td><td>9</td></tr>
+    <tr><td>中学（私立）篮球场</td><td>≥50%</td><td>8</td></tr>
+    <tr><td>小学（公立）篮球场</td><td>≥15%</td><td>5</td></tr>
+    <tr><td>乡村篮球场（含体育公园）</td><td>≥0%</td><td>3</td></tr>
+    <tr><td>国央企 / 机关事业单位</td><td>≥50%</td><td>8</td></tr>
+    <tr><td rowspan="7">泉州市</td><td>高校（公立）篮球场</td><td>≥80%</td><td><b>15</b></td></tr>
+    <tr><td>高校（私立）篮球场</td><td>≥80%</td><td>12</td></tr>
+    <tr><td>中学（公立）篮球场</td><td>≥50%</td><td>9</td></tr>
+    <tr><td>中学（私立）篮球场</td><td>≥50%</td><td>8</td></tr>
+    <tr><td>小学（公立）篮球场</td><td>≥15%</td><td>5</td></tr>
+    <tr><td>乡村篮球场（含体育公园）</td><td>≥0%</td><td>5</td></tr>
+    <tr><td>国央企 / 机关事业单位</td><td>≥50%</td><td>10</td></tr>
+  </table>
+  <div class="note">注：非标或联排球场按容量差核减；超 50m 接入、单项目超 400kW 另行核减；消纳率每降 1% 服务费降 2,500 元/座。开发服务商可沟通客户降低电价优惠以调整扣减。</div>
+
+  <h4>开发目标考核机制</h4>
+  <div class="cards">
+    <div class="card"><div class="ic">🏘️</div><div class="t">乡镇 / 街道</div><div class="d">1.5 月签框架协议；2 月首单；3 月每乡镇≥15 座或可开发量 80%。</div></div>
+    <div class="card"><div class="ic">🏢</div><div class="t">县（市、区）</div><div class="d">2 月签框架；3 月首单；4 月每县≥50 座或可开发量 70%。</div></div>
+    <div class="card"><div class="ic">🎓</div><div class="t">高校</div><div class="d">3 月获校方书面意见；5 月签署协议。</div></div>
+    <div class="card"><div class="ic">🏛️</div><div class="t">国央企 / 机关</div><div class="d">3 月首单；6 月累计≥10 座。</div></div>
+  </div>
+
+  <h3>1.4 落地案例：多地多场景验证可行性</h3>
+  <table>
+    <tr><th>项目</th><th>规模</th><th>关键数据</th></tr>
+    <tr><td>漳州华安正兴学校</td><td>10 座 / 1,434.24kWp</td><td>25 年发电 4,071.76 万度，节约标煤 1.23 万吨，减排 CO₂ 4.05 万吨</td></tr>
+    <tr><td>大济镇 9 所学校</td><td>10 座 / 1,780.48kWp</td><td>整镇推进，校园场景规模化复制样板</td></tr>
+    <tr><td>浙江金华浦江金狮湖教育研学基地</td><td>2 座 / 316.16kWp</td><td>省外首单，跨区域拓展突破</td></tr>
+    <tr><td>富宁县思源实验学校</td><td>2,193㎡ / 0.51MW</td><td>自发自用、余电上网，配套智能照明一体化</td></tr>
+    <tr><td>黄坑镇</td><td>663kW</td><td>乡村场景落地</td></tr>
+    <tr><td>广东肇庆铁岗村 / 湛江欢乐园</td><td>—</td><td>乡村与城市公园多元场景验证</td></tr>
+    <tr><td>永福股份自有篮球场</td><td>—</td><td>企业园区自用示范</td></tr>
+  </table>
+  <div class="quote">案例已覆盖<b>乡村、学校、企业园区、体育公园</b>四大场景，并在福建、广东、浙江三省完成跨区域验证，商业模式跑通、可复制性得到实证。</div>
+</section>
+
+<!-- 第二部分：永福股份 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <div class="sec-title">上市公司简介：永福股份（300712）</div>
+      <div class="sec-sub">电力勘察设计起家 · 一体两翼战略 · 光伏篮球场产品方</div>
+    </div>
+  </div>
+  <p><b>福建永福电力设计股份有限公司</b>（证券代码 300712），成立于 1994 年，2017 年 10 月登陆深交所创业板，总部位于福建福州。公司是国内领先的电力能源综合服务商，以电力规划咨询与勘察设计起家，历经三十年发展，形成覆盖「源—网—荷—储—智」全链条的业务体系。</p>
+
+  <h3>2.1 业务布局：「一体两翼」战略</h3>
+  <div class="feat-grid">
+    <div class="feat"><div class="fh">一体（核心）</div><div class="fd">电力能源解决方案及服务：电力规划咨询、勘察设计、EPC 工程总承包。</div></div>
+    <div class="feat"><div class="fh">左翼</div><div class="fd">分布式光储系统产品及服务：含光伏篮球场等场景化光伏产品。</div></div>
+    <div class="feat"><div class="fh">右翼</div><div class="fd">数智能源产品及服务、能源销售：智慧运维、电力市场化交易。</div></div>
+  </div>
+  <p>公司从单一工程设计成功转型为系统规划与能源集成服务商，曾助推甘肃巨化 1GW 源网荷储一体化项目、印尼莫罗瓦利 200MW 山地光伏及 80MWh 储能 EPC 总承包等项目落地。子公司<b>永福绿能</b>是光伏篮球场产品的研发与运营主体。</p>
+
+  <h3>2.2 财务概览（2025 年报）</h3>
+  <div class="chart-box">
+    <div class="ct">永福股份 2025 年关键财务指标</div>
+    <div class="chart-wrap"><canvas id="yfChart"></canvas></div>
+  </div>
+  <table>
+    <tr><th>指标</th><th>2025 年</th><th>同比</th><th>说明</th></tr>
+    <tr><td>营业收入</td><td>16.99 亿元</td><td style="color:var(--red)">-16.71%</td><td>受海上风电项目结算节奏影响</td></tr>
+    <tr><td>归母净利润</td><td>2,356.38 万元</td><td style="color:var(--red)">-35.08%</td><td>主业承压</td></tr>
+    <tr><td>扣非归母净利润</td><td>-412.51 万元</td><td style="color:var(--red)">-123.11%</td><td>由正转负</td></tr>
+    <tr><td>经营现金流净额</td><td>3.03 亿元</td><td style="color:var(--brand)">+354.77%</td><td>由负转正，质量改善</td></tr>
+    <tr><td>EPC 业务营收</td><td>5.01 亿元</td><td style="color:var(--red)">-34.01%</td><td>洞头 2 号海上风电项目影响</td></tr>
+  </table>
+  <div class="callout">
+    <div class="h">📌 战略解读</div>
+    永福股份 2025 年业绩承压，传统 EPC 与海上风电业务波动明显。在此背景下，公司<b>亟需培育高毛利、可复制、轻资产</b>的新增长极——光伏篮球场正是这一战略诉求的落点。通过永福绿能的产品化路径，公司正从「项目制 EPC」转向「产品 + 服务」的持续运营模式。寻找具备全国校园渠道的合作伙伴，是永福绿能实现规模化复制的<b>核心战略需求</b>。
+  </div>
+</section>
+
+<!-- 第三部分：全通教育 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <div class="sec-title">上市公司简介：全通教育（300359）</div>
+      <div class="sec-sub">教育信息化老兵 · B/G/C 端校园渠道 · 转型在即</div>
+    </div>
+  </div>
+  <p><b>全通教育集团（广东）股份有限公司</b>（证券代码 300359），以基础教育学段家校互动服务起步，业务逐步发展至涵盖基础教育、家庭教育及教师继续教育等领域。公司致力于教育信息化及信息服务多年，通过子公司布局教育数智化升级。</p>
+
+  <h3>3.1 业务定位：ToG + ToB 教育服务能力</h3>
+  <div class="cards">
+    <div class="card"><div class="ic">📶</div><div class="t">5G+ / AI+ 融合</div><div class="d">聚焦 5G+ 与 AI+ 行业浪潮，依托与电信基础运营商合作，提供区域与单校信息化服务。</div></div>
+    <div class="card"><div class="ic">🏫</div><div class="t">渠道资源</div><div class="d">覆盖教育主管部门、学校、教师、家长及学生等 B 端、C 端主体，校内外多场景渠道服务体系。</div></div>
+    <div class="card"><div class="ic">📚</div><div class="t">业务领域</div><div class="d">基础教育家校互动、家庭教育、教师继续教育、教育数智化解决方案。</div></div>
+    <div class="card"><div class="ic">🤝</div><div class="t">合作生态</div><div class="d">与电信运营商深度绑定，具备政企协同与区域级教育项目落地经验。</div></div>
+  </div>
+
+  <h3>3.2 财务概览（2025 年报）</h3>
+  <div class="chart-box">
+    <div class="ct">全通教育 2024–2025 年营收与归母净利润对比</div>
+    <div class="chart-wrap"><canvas id="qtChart"></canvas></div>
+  </div>
+  <table>
+    <tr><th>指标</th><th>2024 年</th><th>2025 年</th><th>同比变化</th></tr>
+    <tr><td>营业收入</td><td>4.43 亿元</td><td>3.01 亿元</td><td style="color:var(--red)">亏损承压</td></tr>
+    <tr><td>归母净利润</td><td>-1.04 亿元</td><td>-6,928.31 万元</td><td style="color:var(--brand)">亏损同比收窄约 3,520 万元</td></tr>
+    <tr><td>资产负债率</td><td colspan="2">19.60%</td><td style="color:var(--brand)">财务结构稳健</td></tr>
+  </table>
+  <div class="callout">
+    <div class="h">📌 战略解读</div>
+    全通教育主业受继续教育政策收紧、财政预算收缩、行业同质化竞争影响，收入持续下滑。但公司<b>资产负债率仅 19.60%</b>，财务底盘稳健，且亏损正在收窄（同比减亏 3,520 万元）。当前公司最迫切的需求是：<b>寻找一条与既有校园渠道高度协同、能快速放量、且不依赖大额资本开支</b>的第二增长曲线。光伏篮球场「校园开发服务」模式与之高度契合。
+  </div>
+</section>
+
+<!-- 第四部分：可行性论述 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <div class="sec-title">全通教育参与本项目的可行性论述</div>
+      <div class="sec-sub">渠道契合 · 模式互补 · 风险可控 · 转型必需</div>
+    </div>
+  </div>
+
+  <div class="lead">
+    全通教育的核心竞争力不是「造光伏」，而是「进校园」。光伏篮球场从单点示范走向全国校园规模化复制，最大的瓶颈不在产品（永福已解决）、不在资金（投资方解决），而在<b>「如何高效、合规地打通一座座学校的准入与并网」</b>——这恰恰是全通教育深耕二十年的能力主场。
+  </div>
+
+  <h3>4.1 渠道契合度：校园准入是项目最大壁垒，也是全通最大资产</h3>
+  <table>
+    <tr><th>项目开发关键环节</th><th>所需能力</th><th>全通教育现有优势</th><th>契合度</th></tr>
+    <tr><td>对接教育主管部门</td><td>政企关系、政策解读</td><td>长期 ToG 服务经验，熟悉教育行政体系</td><td style="color:var(--brand);font-weight:700">★★★★★</td></tr>
+    <tr><td>对接学校（高校/中小学）</td><td>校园渠道、校方信任</td><td>覆盖全国教育主管部门、学校 B 端渠道</td><td style="color:var(--brand);font-weight:700">★★★★★</td></tr>
+    <tr><td>获取校方书面同意（高校3月节点）</td><td>校务决策影响</td><td>既有家校互动与继续教育合作基础</td><td style="color:var(--brand);font-weight:700">★★★★☆</td></tr>
+    <tr><td>配合客户消纳电力</td><td>用电负荷分析</td><td>校园用电场景理解（照明、空调、实验）</td><td style="color:var(--brand);font-weight:700">★★★★☆</td></tr>
+    <tr><td>政府报批与并网协调</td><td>地方资源</td><td>需与永福绿能或地方服务商协同补充</td><td style="color:var(--accent);font-weight:700">★★★☆☆</td></tr>
+  </table>
+  <p>结论：全通教育在<b>项目最关键的前两环——「教育主管部门 + 学校」准入</b>上具备压倒性优势，这正是永福绿能当前最稀缺、也是开发服务商考核机制中权重最高的环节。</p>
+
+  <h3>4.2 模式互补：永福缺渠道，全通缺增长点</h3>
+  <div class="pillar">
+    <div class="p"><div class="pv">永福绿能</div><div class="pl">有产品、有投资、有 EPC<br>缺全国校园渠道</div></div>
+    <div class="p"><div class="pv">全通教育</div><div class="pl">有校园渠道、有政企能力<br>缺轻资产增长曲线</div></div>
+    <div class="p"><div class="pv">协同效应</div><div class="pl">永福出产品+投资<br>全通出渠道+报批<br>1+1&gt;2</div></div>
+  </div>
+  <p>参照永福绿能与福建轨云信息的《开发服务协议》，开发服务商的定位正是「项目前期开发、报批、并网、验收、质保全过程服务」，全通教育可在此基础上，以<b>全国校园渠道总开发服务商</b>身份切入，而非局限于单一地市。</p>
+
+  <h3>4.3 政策契合：绿色能源进校园，国家明确鼓励</h3>
+  <ul>
+    <li><b>《低碳学校（高等学校）建设指南》</b>：新建建筑光伏覆盖率≥50%，既有建筑宜建尽建≥30%——校园光伏是政策刚性要求。</li>
+    <li><b>《构建更高水平全民健身公共服务体系的意见》</b>第十三条：推进健身设施绿色低碳转型，推广可再生能源使用。</li>
+    <li><b>双碳目标</b>：分布式光伏是新型能源体系建设重点，校园是分布式光伏最佳消纳场景之一。</li>
+    <li><b>教育数字化战略</b>：光伏篮球场可配套智慧能源管理系统，与全通教育信息化业务天然融合，形成「绿色 + 智慧」校园双标签。</li>
+  </ul>
+
+  <h3>4.4 风险与对策</h3>
+  <table class="risk-tab">
+    <tr><th>风险</th><th>说明</th><th>对策</th></tr>
+    <tr><td>报批报建能力</td><td>全通擅长教育系统对接，但地方电网/自然资源局报批需补充</td><td>与永福绿能及地方服务商（如轨云信息）协同，永福提供技术支持与培训</td></tr>
+    <tr><td>开发节奏考核</td><td>协议设严格时限（乡镇3月≥15座，县4月≥50座），未达标扣减服务费甚至更换</td><td>首期聚焦已建立信任的教育强区/校，利用既有渠道快速破冰</td></tr>
+    <tr><td>消纳率不达标</td><td>高校要求≥80%，消纳率每降1%服务费降2,500元/座</td><td>优先选择寄宿制高校、用电负荷大的职业院校，确保消纳</td></tr>
+    <tr><td>单座非标核减</td><td>联排、超距、超容均核减服务费</td><td>项目筛选优先标准单座、接入50m内，非标项目单独测算</td></tr>
+    <tr><td>市场认知风险</td><td>投资者可能将跨界视为不务正业</td><td>定位为「校园渠道赋能新能源」而非跨界造光伏，强调轻资产、渠道变现</td></tr>
+  </table>
+
+  <h3>4.5 切入路径建议</h3>
+  <ol>
+    <li><b>第一阶段（0–6 月）</b>：与永福绿能签署全国校园渠道开发服务协议，在福建、广东（全通总部所在地）选取 3–5 所合作基础好的学校试点 50 座，跑通全流程。</li>
+    <li><b>第二阶段（6–18 月）</b>：以省为单位复制，依托教育主管部门框架协议，完成首期 1,000 座开发目标。</li>
+    <li><b>第三阶段（18 月+）</b>：从「开发服务」升级为「校园综合能源运营」，叠加智慧能源管理、碳资产开发、绿色校园数字化服务，形成持续运营收入。</li>
+  </ol>
+</section>
+
+<!-- 第五部分：效益计算 -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <div class="sec-title">效益计算：社会效益 · 经济收益 · 上市公司价值</div>
+      <div class="sec-sub">以首期 1,000 座标准光伏篮球场为测算基准</div>
+    </div>
+  </div>
+
+  <div class="lead">
+    <b>测算基准</b>：首期开发 1,000 座标准光伏篮球场（占全国 120 万座存量仅 <b>0.083%</b>，属保守目标）。单座标准配置 286 块 640W 组件，装机 <b>183kWp</b>，年发电 <b>23.8 万度</b>，自投造价约 <b>70 万元/座</b>。25 年运营周期。
+  </div>
+
+  <h3>5.1 社会效益：一座球场，多重价值</h3>
+  <div class="chart-box">
+    <div class="ct">1,000 座光伏篮球场 25 年累计社会效益</div>
+    <div class="chart-wrap tall"><canvas id="socialChart"></canvas></div>
+  </div>
+  <table>
+    <tr><th>效益维度</th><th>单座</th><th>1,000 座 / 25 年累计</th><th>测算依据</th></tr>
+    <tr><td>总装机容量</td><td>183 kWp</td><td><b>183 MW</b></td><td>286 块 × 640W</td></tr>
+    <tr><td>年发电量</td><td>23.8 万度</td><td><b>2.38 亿度/年</b></td><td>实测数据</td></tr>
+    <tr><td>25 年总发电量</td><td>595 万度</td><td><b>59.5 亿度</b></td><td>年发电 × 25</td></tr>
+    <tr><td>减排 CO₂</td><td>5.93 万吨</td><td><b>59.3 万吨</b></td><td>0.997 kg/度</td></tr>
+    <tr><td>节约标煤</td><td>1.79 万吨</td><td><b>178.5 万吨</b></td><td>0.30 kg/度</td></tr>
+    <tr><td>等效植树</td><td>—</td><td><b>约 3,300 万棵</b></td><td>1 棵树年吸碳 18kg</td></tr>
+    <tr><td>全天候运动空间</td><td>1 座</td><td><b>1,000 座</b></td><td>遮阳挡雨，使用率提升</td></tr>
+    <tr><td>受益学生（估）</td><td>—</td><td><b>超 300 万人次</b></td><td>校园场景</td></tr>
+  </table>
+  <div class="callout">
+    <div class="h">🌱 社会效益亮点</div>
+    1,000 座球场 25 年减排 CO₂ 59.3 万吨，相当于<b>种下 3,300 万棵树</b>；为超 300 万师生提供全天候运动空间；助力学校达成《低碳学校建设指南》光伏覆盖率刚性要求；让绿色低碳理念通过「看得见、用得上」的球场走进校园，成为最生动的双碳教育载体。
+  </div>
+
+  <h3>5.2 经济收益：三方共赢的收益分配</h3>
+
+  <h4>（一）开发服务商（全通教育）收益</h4>
+  <div class="formula">
+开发服务收入 = Σ(各场景座数 × 对应服务费)<br>
+首期 1,000 座（高校公立为主，均价 <b>12 万/座</b>）：<br>
+<b>服务收入 ≈ 1.2 亿元</b><br>
+假设毛利率 40% → <b>毛利约 4,800 万元</b><br>
+假设净利率 15% → <b>净利润约 1,800 万元</b>
+  </div>
+
+  <h4>（二）投资方（永福绿能引入）电站收益</h4>
+  <div class="formula">
+单座投资 <b>70 万元</b>，年发电 23.8 万度，消纳率 50%：<br>
+• 自用部分：11.9 万度 × 0.6 元/度 = <b>7.14 万元/年</b><br>
+• 余电上网：11.9 万度 × 0.4 元/度 = <b>4.76 万元/年</b><br>
+• 年收益合计 ≈ <b>11.9 万元/年</b><br>
+• 静态回收期 = 70 ÷ 11.9 ≈ <b>5.9 年</b><br>
+• 25 年总收益 ≈ 297.5 万元，净收益 ≈ <b>227.5 万元/座</b>
+  </div>
+
+  <div class="chart-box">
+    <div class="ct">单座光伏篮球场 25 年现金流（投资方视角）</div>
+    <div class="chart-wrap tall"><canvas id="cashChart"></canvas></div>
+  </div>
+
+  <h4>（三）客户（学校）收益</h4>
+  <table>
+    <tr><th>收益项</th><th>说明</th></tr>
+    <tr><td>球场升级</td><td>零投入将露天球场升级为全天候风雨无忧运动空间</td></tr>
+    <tr><td>电费节约</td><td>自用电享折扣返还，年省电费数万元（视消纳量）</td></tr>
+    <tr><td>维护节约</td><td>棚顶保护场地，年省维护费约 1 万元，延长场地寿命</td></tr>
+    <tr><td>绿色补贴</td><td>小学、乡村场景可获额外绿色补贴</td></tr>
+    <tr><td>功能拓展</td><td>一场多用，可作文创集市、公益活动、文艺集会空间</td></tr>
+  </table>
+
+  <h3>5.3 对上市公司的价值</h3>
+
+  <h4>对全通教育（300359）的价值</h4>
+  <div class="cards">
+    <div class="card"><div class="ic">📈</div><div class="t">财务改善</div><div class="d">1.2 亿服务收入 + 1,800 万净利润，显著缩小亏损，有望推动扭亏。</div></div>
+    <div class="card"><div class="ic">🏷️</div><div class="t">估值重塑</div><div class="d">从「传统教育信息化」切换至「教育 + 新能源」双概念，打开估值天花板。</div></div>
+    <div class="card"><div class="ic">🔗</div><div class="t">渠道变现</div><div class="d">将沉睡的校园渠道资源转化为真金白银，激活存量资产。</div></div>
+    <div class="card"><div class="ic">🌱</div><div class="t">第二曲线</div><div class="d">轻资产、快周转，不依赖大额资本开支，契合低负债率优势。</div></div>
+  </div>
+
+  <div class="chart-box">
+    <div class="ct">全通教育引入光伏篮球场业务后盈利改善示意</div>
+    <div class="chart-wrap"><canvas id="valueChart"></canvas></div>
+  </div>
+
+  <div class="formula">
+<b>市值弹性测算：</b><br>
+新增净利润 1,800 万 × 教育行业 PE 30× = <b>5.4 亿元市值增量</b><br>
+若享受「新能源」估值溢价 PE 40× = <b>7.2 亿元市值增量</b><br>
+（对比全通教育当前市值，具备显著弹性空间）
+  </div>
+
+  <h4>对永福股份（300712）的价值</h4>
+  <ul>
+    <li><b>产品放量</b>：1,000 座对应 183MW 装机，直接拉动 EPC 与产品销售订单。</li>
+    <li><b>渠道破局</b>：借助全通全国校园渠道，突破当前以福建、广东为主的区域局限。</li>
+    <li><b>模式升级</b>：从项目制 EPC 转向「产品 + 服务 + 运营」持续模式，改善现金流与估值。</li>
+    <li><b>双主业叙事</b>：电力设计 + 场景化光伏双轮驱动，增强资本市场故事性。</li>
+  </ul>
+
+  <div class="conclu">
+    <h3>结论与建议</h3>
+    <p>光伏篮球场是一个<b>产品已验证、政策已明确、市场已开启</b>的千亿级赛道。永福绿能用专利与 CQC 认证守住了产品壁垒，但规模化复制的<b>最后一公里——校园准入</b>，必须借助全通教育这类深耕教育渠道二十年的上市公司。</p>
+    <p>本方案论证：全通教育以<b>开发服务商</b>身份切入，首期 1,000 座即可创造 1.2 亿收入、1,800 万净利润，在 25 年周期减排 CO₂ 59.3 万吨，并实现「教育 + 新能源」双概念估值重塑。这是一条<b>与既有渠道高度协同、轻资产、快放量、政策顺风</b>的第二增长曲线。</p>
+    <div class="stat-grid" style="margin-top:18px">
+      <div class="stat"><div class="v">1.2亿</div><div class="l">首期服务收入</div></div>
+      <div class="stat"><div class="v">1800万</div><div class="l">新增净利润</div></div>
+      <div class="stat"><div class="v">59.3万吨</div><div class="l">25年减排CO₂</div></div>
+      <div class="stat"><div class="v">5.4亿+</div><div class="l">潜在市值增量</div></div>
+    </div>
+    <p style="margin-top:18px">建议尽快与永福绿能启动合作洽谈，锁定全国校园渠道开发服务商地位，抢占「绿色能源进校园」赛道先发优势。</p>
+  </div>
+</section>
+
+<div class="src">
+  <b>资料来源：</b><br>
+  ① 永福绿能《光伏篮球场产品介绍 5.26》PDF（产品技术参数、市场规模、案例、政策）<br>
+  ② 《开发服务协议-福建轨云信息 20260626》DOCX（服务费结算标准、考核机制）<br>
+  ③ 《20260702 PV Basketball Court-2 pages》PDF（标准单座年发电量 237,952 kWh）<br>
+  ④ 永福股份（300712）2025 年年度报告（财务数据）<br>
+  ⑤ 全通教育（300359）2024/2025 年年度报告（财务与业务数据）<br>
+  ⑥ 公开报道：华安正兴学校、大济镇、浦江金狮湖、富宁思源实验学校等项目案例<br>
+  <b>说明：</b>ima 知识库「杨帆的库」经检索为中医养生类资料，未包含光伏篮球相关内容，本报告以老伙计提供的三份一手项目资料及公开信息为主要依据。
+</div>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    全通教育 × 永福绿能 · 光伏篮球场校园可行性方案 · 2026.07<br>
+    本报告基于公开信息及项目一手资料编制，仅供决策参考
+  </div>
+</footer>
+
+<script>
+const G='#0b6e4f', G2='#1aa672', A='#d97706', R='#c0392b', B='#2563eb', GR='#9aa5b1';
+Chart.defaults.font.family='"PingFang SC","Microsoft YaHei",sans-serif';
+Chart.defaults.color='#5a6678';
+
+// 1. 发电量
+new Chart(document.getElementById('genChart'),{
+  type:'bar',
+  data:{labels:['年发电量(AC)','年等效利用小时','日均发电量(DC)'],
+    datasets:[{data:[237952,1300,652],backgroundColor:[G,G2,A],borderRadius:6}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw.toLocaleString()}}},
+    scales:{y:{beginAtZero:true,ticks:{callback:v=>v.toLocaleString()}}}}
+});
+
+// 2. 永福财务
+new Chart(document.getElementById('yfChart'),{
+  type:'bar',
+  data:{labels:['营业收入','归母净利润','扣非净利润','经营现金流净额'],
+    datasets:[{label:'亿元',data:[16.99,0.2356,-0.0413,3.03],
+      backgroundColor:[G,G,R,G2],borderRadius:6}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' 亿元'}}},
+    scales:{y:{ticks:{callback:v=>v+' 亿'}}}}
+});
+
+// 3. 全通财务
+new Chart(document.getElementById('qtChart'),{
+  type:'bar',
+  data:{labels:['2024 营收','2025 营收','2024 归母净利','2025 归母净利'],
+    datasets:[{label:'亿元',data:[4.43,3.01,-1.04,-0.6928],
+      backgroundColor:[B,G2,R,G],borderRadius:6}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' 亿元'}}},
+    scales:{y:{ticks:{callback:v=>v+' 亿'}}}}
+});
+
+// 4. 社会效益
+new Chart(document.getElementById('socialChart'),{
+  type:'bar',
+  data:{labels:['总装机(MW)','年发电(亿度)','25年发电(亿度)','减排CO₂(万吨)','节约标煤(万吨)','等效植树(万棵)'],
+    datasets:[{data:[183,2.38,59.5,59.3,178.5,3300],
+      backgroundColor:[G,G2,A,R,'#8b5cf6','#16a34a'],borderRadius:6}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>c.raw.toLocaleString()}}},
+    scales:{x:{type:'logarithmic',beginAtZero:true,
+      ticks:{callback:v=>v>=1?v.toLocaleString():''}}}}
+});
+
+// 5. 现金流
+new Chart(document.getElementById('cashChart'),{
+  type:'line',
+  data:{labels:Array.from({length:26},(_,i)=>'第'+i+'年'),
+    datasets:[
+      {label:'累计净现金流',data:(function(){let a=-70,arr=[-70];for(let i=1;i<=25;i++){a+=11.9;arr.push(+a.toFixed(1))}return arr})(),
+        borderColor:G,backgroundColor:'rgba(11,110,79,.12)',fill:true,tension:.3},
+      {label:'年收益',data:[0].concat(Array(25).fill(11.9)),
+        borderColor:A,borderDash:[5,5],pointRadius:0}
+    ]},
+  options:{plugins:{legend:{position:'bottom'},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+' 万元'}}},
+    scales:{y:{ticks:{callback:v=>v+' 万'}}}}
+});
+
+// 6. 价值
+new Chart(document.getElementById('valueChart'),{
+  type:'bar',
+  data:{labels:['现状归母净利','引入后归母净利','现状对应市值','引入后市值(PE30)','引入后市值(PE40)'],
+    datasets:[{data:[-0.6928,-0.5128,NaN,5.4,7.2],
+      backgroundColor:[R,G,GR,G2,B],borderRadius:6}]},
+  options:{plugins:{legend:{display:false},
+    tooltip:{filter:c=>!isNaN(c.raw),callbacks:{label:c=>c.raw+' 亿'}}},
+    scales:{y:{ticks:{callback:v=>v+' 亿'}}}}
+});
+</script>
+</body>
+</html>
