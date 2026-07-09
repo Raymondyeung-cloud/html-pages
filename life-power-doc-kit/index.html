@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生命动力液延伸产品 · 全套文案包（鼻通保健液 / 草本臻养美颜精华保健液）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #0d904f;
+    --green-d: #1a5f2a;
+    --gold: #c8a030;
+    --blue: #1a73e8;
+    --ink: #1a1a2e;
+    --text: #333;
+    --muted: #666;
+    --bg: #f4f6f3;
+    --card: #fff;
+    --line: #e2e8e2;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.85;
+  }
+  /* 顶部 */
+  .topbar {
+    background: linear-gradient(135deg, #1a5f2a 0%, #11998e 100%);
+    color: #fff; padding: 44px 24px 36px; text-align: center;
+  }
+  .topbar h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: 1px; }
+  .topbar .sub { margin-top: 10px; font-size: 0.95rem; opacity: 0.92; }
+  .topbar .pill {
+    display: inline-block; margin-top: 16px; background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;
+  }
+  /* 导航 */
+  .nav {
+    position: sticky; top: 0; z-index: 50; background: #fff;
+    border-bottom: 1px solid var(--line); display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 6px; padding: 10px 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .nav a {
+    text-decoration: none; color: var(--ink); font-size: 0.9rem; font-weight: 600;
+    padding: 8px 16px; border-radius: 22px; transition: .2s;
+  }
+  .nav a:hover { background: var(--bg); }
+  .nav a.active { background: var(--green); color: #fff; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 18px 60px; }
+  section.block { margin-top: 34px; }
+  .block-head {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+    padding-bottom: 12px; border-bottom: 3px solid var(--gold);
+  }
+  .block-head .num {
+    width: 38px; height: 38px; border-radius: 10px; background: var(--green);
+    color: #fff; font-size: 1.1rem; font-weight: 800; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .block-head h2 { font-size: 1.4rem; color: var(--ink); }
+  /* 产品卡 */
+  .prod {
+    background: var(--card); border-radius: 16px; padding: 26px 26px 30px;
+    margin: 18px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid var(--line);
+  }
+  .prod-title {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .prod-title .tag {
+    background: var(--green); color: #fff; font-size: 0.78rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 6px;
+  }
+  .prod-title .tag.blue { background: var(--blue); }
+  .prod-title h3 { font-size: 1.25rem; color: var(--ink); }
+  .prod-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 18px; }
+  h4.sec { color: var(--green-d); font-size: 1.05rem; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; color: #444; }
+  ul.li { padding-left: 22px; }
+  ul.li li { margin-bottom: 7px; color: #444; }
+  .kv { display: grid; grid-template-columns: 110px 1fr; gap: 8px 14px; margin: 12px 0; }
+  .kv dt { font-weight: 700; color: var(--green-d); }
+  .kv dd { color: #444; }
+  /* 表格 */
+  table.t {
+    width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9rem;
+    overflow: hidden; border-radius: 10px;
+  }
+  table.t th {
+    background: var(--green-d); color: #fff; padding: 11px 13px; text-align: left;
+    font-weight: 600; font-size: 0.85rem;
+  }
+  table.t td { padding: 11px 13px; border-bottom: 1px solid var(--line); }
+  table.t tr:nth-child(even) td { background: #f8faf7; }
+  table.t .em { font-weight: 700; color: var(--ink); }
+  /* 价格条 */
+  .price-flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .pf {
+    flex: 1; min-width: 150px; border-radius: 12px; padding: 14px 16px;
+    border-left: 5px solid;
+  }
+  .pf.r { background: #fdf8e8; border-color: var(--gold); }
+  .pf.g { background: #f0faf4; border-color: var(--green); }
+  .pf.b { background: #f0f4ff; border-color: var(--blue); }
+  .pf.k { background: #fafafa; border-color: #ccc; }
+  .pf .n { font-size: 0.82rem; font-weight: 700; color: #555; }
+  .pf .v { font-size: 1.5rem; font-weight: 900; color: var(--ink); margin: 4px 0; }
+  .pf .d { font-size: 0.78rem; color: var(--muted); }
+  /* 卖点格 */
+  .sell { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }
+  .sell .c {
+    background: #f8faf7; border: 1px solid var(--line); border-radius: 12px; padding: 16px;
+  }
+  .sell .c .h { font-weight: 800; color: var(--green-d); margin-bottom: 6px; }
+  /* 痛点 */
+  .pain { background: #fff4f0; border-left: 4px solid #e8743b; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+  .pain b { color: #c0491f; }
+  /* 话术框 */
+  .copy { background: #f0f4ff; border: 1px dashed var(--blue); border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+  .copy .t1 { font-weight: 800; color: var(--blue); margin-bottom: 6px; }
+  /* 招商亮点 */
+  .hl { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 16px 0; }
+  .hl .h {
+    background: linear-gradient(135deg,#f8f8fa,#f0faf4); border-radius: 12px; padding: 18px 14px;
+    text-align: center; border: 1px solid var(--line);
+  }
+  .hl .h .v { font-size: 1.5rem; font-weight: 900; color: var(--ink); }
+  .hl .h .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  /* 合规 */
+  .legal { background: #fff8e8; border: 1px solid #e8d8a8; border-radius: 10px; padding: 14px 18px; margin: 14px 0; font-size: 0.88rem; color: #7a5e10; }
+  .step { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .step .s { flex: 1; min-width: 130px; background: #f8faf7; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid var(--line); }
+  .step .s .no { width: 26px; height: 26px; border-radius: 50%; background: var(--green); color:#fff; font-weight:800; display:inline-flex; align-items:center; justify-content:center; margin-bottom: 8px; }
+  .step .s .t { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+  .footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 30px 20px; }
+  @media (max-width: 680px) {
+    .sell, .hl { grid-template-columns: 1fr; }
+    .kv { grid-template-columns: 96px 1fr; }
+    .topbar h1 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>生命动力液延伸产品 · 全套文案包</h1>
+  <div class="sub">毕格迅品牌 · 两款外用喷剂保健液 · 基于金日光教授生命动力学科技</div>
+  <div class="pill">鼻通保健液（15ml）｜ 草本臻养美颜精华保健液（30ml）</div>
+</div>
+
+<nav class="nav">
+  <a href="#m1">① 产品说明书</a>
+  <a href="#m2">② 电商详情页文案</a>
+  <a href="#m3">③ 招商推介材料</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ 模块一：产品说明书 ============ -->
+<section class="block" id="m1">
+  <div class="block-head"><div class="num">1</div><h2>产品说明书</h2></div>
+  <p style="color:var(--muted);font-size:0.92rem;">本说明书依据两款产品的成分科技、规格参数及合规要求撰写，可作为产品包装内页、备案资料及客服答疑的基准文本。</p>
+
+  <!-- 产品一：鼻通 -->
+  <div class="prod">
+    <div class="prod-title">
+      <span class="tag">产品一</span>
+      <h3>鼻通保健液（外用喷剂）</h3>
+    </div>
+    <div class="prod-sub">商品名：鼻通保健液 ｜ 产品系列：生命动力素鼻敏感喷剂 ｜ 规格：15ml/瓶 ｜ 品类：妆字号外用保健液</div>
+
+    <h4 class="sec">一、产品概述</h4>
+    <p>鼻通保健液是以<strong>生命动力素原液</strong>为核心成分的外用鼻腔护理喷剂。依托第四统计力学 JRC 群子理论，将含 d 轨道电子的生命动力元素经特殊提能工艺制成高活性团粒水结构，喷涂于鼻腔后可舒缓鼻腔敏感、改善通气状态，是过敏性鼻炎、鼻塞人群日常护理的便捷方案。</p>
+
+    <h4 class="sec">二、核心成分与作用机理</h4>
+    <ul class="li">
+      <li><strong>生命动力素原液</strong>：含人体必需的 27 种微量元素及 11 种生命动力元素，分子呈 6 个水分子络合 1 个动力元素的正八面体团粒结构，O17NMR 半幅宽度 52Hz，接近细胞生物液最佳状态。</li>
+      <li><strong>生态氧释放</strong>：与鼻黏膜接触后产生生态氧，起到杀菌、消炎、舒缓作用。</li>
+      <li><strong>远红外波作用</strong>：过渡元素受体温激发释放高渗透力远红外线，促进鼻腔局部微循环。</li>
+      <li><strong>物理净化</strong>：团粒结构直径仅为细胞直径 0.1%~1%，可深入鼻黏膜皱褶，辅助清除附着刺激物。</li>
+    </ul>
+
+    <h4 class="sec">三、主要功效</h4>
+    <ul class="li">
+      <li>舒缓鼻腔敏感，减轻鼻痒、喷嚏等不适；</li>
+      <li>改善鼻塞，帮助恢复通畅呼吸；</li>
+      <li>辅助维护鼻黏膜健康，降低换季、粉尘、花粉等刺激带来的不适；</li>
+      <li>便携喷剂设计，随时可用，适合日常鼻腔护理。</li>
+    </ul>
+
+    <h4 class="sec">四、适用人群</h4>
+    <p>鼻腔敏感者、易鼻塞人群、换季/花粉/粉尘过敏者、长期处于空调或干燥环境者，以及关注鼻腔日常护理的所有人群（儿童、孕妇及严重鼻部疾病患者建议咨询专业人士后使用）。</p>
+
+    <h4 class="sec">五、使用方法</h4>
+    <dl class="kv">
+      <dt>使用前</dt><dd>摇匀，头微前倾。</dd>
+      <dt>喷涂</dt><dd>将喷头对准鼻孔，每侧轻喷 1~2 下，每日 2~3 次，或依需使用。</dd>
+      <dt>使用后</dt><dd>轻按鼻翼帮助吸收，避免立即用力擤鼻。</dd>
+      <dt>周期</dt><dd>单次使用即感舒爽，建议作为日常护理长期备用，复购周期约 20~30 天。</dd>
+    </dl>
+
+    <h4 class="sec">六、规格与参数</h4>
+    <div class="kv">
+      <dt>净含量</dt><dd>15ml / 瓶</dd>
+      <dt>剂型</dt><dd>外用喷雾剂</dd>
+      <dt>品类</dt><dd>妆字号外用保健液</dd>
+      <dt>保质期</dt><dd>未开封 2 年；开封后建议 30 天内用完，冷藏保存更佳。</dd>
+      <dt>贮存</dt><dd>置阴凉干燥处，避免阳光直射及高温；置于儿童不易触及处。</dd>
+    </div>
+
+    <h4 class="sec">七、注意事项</h4>
+    <ul class="li">
+      <li>本品为外用喷剂，<strong>切勿吞服</strong>，避免接触眼睛；</li>
+      <li>鼻腔有破损、出血或急性感染期暂停使用；</li>
+      <li>使用后出现不适请停用并咨询专业人士；</li>
+      <li>对成分过敏者禁用。</li>
+    </ul>
+    <div class="legal">⚠️ 合规提示：本品为妆字号外用保健液，用于鼻腔日常护理，<strong>不替代药品，不宣称治疗功效</strong>。鼻部症状严重或持续者请及时就医。</div>
+  </div>
+
+  <!-- 产品二：美颜 -->
+  <div class="prod">
+    <div class="prod-title">
+      <span class="tag blue">产品二</span>
+      <h3>草本臻养美颜精华保健液（外用喷剂）</h3>
+    </div>
+    <div class="prod-sub">商品名：草本臻养美颜精华保健液 ｜ 产品系列：生命动力液面部精华 ｜ 规格：30ml/瓶 ｜ 品类：妆字号外用保健液</div>
+
+    <h4 class="sec">一、产品概述</h4>
+    <p>草本臻养美颜精华保健液是以<strong>生命动力液原液</strong>为核心、复配草本养肤成分的面部护理喷剂。生命动力液在自身催化与激活作用下，可生成生态氧并直接向皮层细胞供氧，从而提升皮肤弹性、舒缓肌肤、改善肤质，是日常面部补水、修护与抗初老的护理新方式。</p>
+
+    <h4 class="sec">二、核心成分与作用机理</h4>
+    <ul class="li">
+      <li><strong>生命动力液原液</strong>：同具 27 种微量元素、11 种生命动力元素及 52Hz 团粒水结构，渗透力强，可将有益元素带入皮肤深层。</li>
+      <li><strong>生态氧供给</strong>：与皮下饱和脂肪作用生成生态氧，杀菌、消毒、消炎，同时增加皮肤弹性。</li>
+      <li><strong>草本复配</strong>：添加草本养肤精华，协同舒缓、保湿、提亮。</li>
+      <li><strong>团粒结构渗透</strong>：极小络合结构易带水渗透，帮助溶解面部附着刺激物、平衡肤质。</li>
+    </ul>
+
+    <h4 class="sec">三、主要功效</h4>
+    <ul class="li">
+      <li>补水保湿，改善面部干燥、紧绷；</li>
+      <li>舒缓肌肤，减轻泛红、敏感等不适；</li>
+      <li>提升皮肤弹性，辅助淡化细纹、优化肤质；</li>
+      <li>喷雾形态，上脸清爽不黏腻，适合妆前打底或随时补喷。</li>
+    </ul>
+
+    <h4 class="sec">四、适用人群</h4>
+    <p>关注面部补水保湿者、肌肤易敏感泛红者、初老肌与细纹困扰者、长期带妆或处于空调环境者，以及追求天然草本护肤理念的所有人群。</p>
+
+    <h4 class="sec">五、使用方法</h4>
+    <dl class="kv">
+      <dt>清洁后</dt><dd>洁面后，距离面部 15~20cm 均匀喷 2~3 下。</dd>
+      <dt>按摩</dt><dd>用手轻拍至吸收，或向上推搓帮助新老细胞更替、减少皱纹。</dd>
+      <dt>频次</dt><dd>每日早晚各一次；亦可妆前打底或随时补喷。</dd>
+      <dt>周期</dt><dd>建议长期坚持，复购周期约 30~45 天。</dd>
+    </dl>
+
+    <h4 class="sec">六、规格与参数</h4>
+    <div class="kv">
+      <dt>净含量</dt><dd>30ml / 瓶</dd>
+      <dt>剂型</dt><dd>外用喷雾剂</dd>
+      <dt>品类</dt><dd>妆字号外用保健液</dd>
+      <dt>保质期</dt><dd>未开封 2 年；开封后建议 30 天内用完，冷藏保存更佳。</dd>
+      <dt>贮存</dt><dd>置阴凉干燥处，避免阳光直射及高温；置于儿童不易触及处。</dd>
+    </div>
+
+    <h4 class="sec">七、注意事项</h4>
+    <ul class="li">
+      <li>本品为外用喷剂，<strong>切勿吞服</strong>，避免接触眼睛；</li>
+      <li>皮肤破损、严重痤疮或急性炎症期暂停使用；</li>
+      <li>使用后出现不适请停用并咨询专业人士；</li>
+      <li>对成分过敏者禁用；首次使用建议耳后局部试用。</li>
+    </ul>
+    <div class="legal">⚠️ 合规提示：本品为妆字号外用保健液，用于面部日常护理，<strong>不替代药品，不宣称治疗功效</strong>。皮肤问题严重或持续者请及时就医。</div>
+  </div>
+</section>
+
+<!-- ============ 模块二：电商详情页文案 ============ -->
+<section class="block" id="m2">
+  <div class="block-head"><div class="num">2</div><h2>电商详情页文案</h2></div>
+  <p style="color:var(--muted);font-size:0.92rem;">以下文案可直接用于天猫/京东/抖音/拼多多等平台详情页，含主标题、卖点、痛点场景与转化话术，按两款产品分别撰写。</p>
+
+  <!-- 鼻通 电商 -->
+  <div class="prod">
+    <div class="prod-title"><span class="tag">产品一 · 鼻通保健液</span><h3>电商详情页文案（15ml）</h3></div>
+
+    <h4 class="sec">主标题 & Slogan</h4>
+    <div class="copy">
+      <div class="t1">▎主标题</div>
+      鼻通保健液 · 一喷通鼻腔，呼吸更轻畅（生命动力素外用喷剂）
+      <div class="t1" style="margin-top:10px;">▎Slogan</div>
+      "小小一瓶随身带，换季过敏不再怕"
+    </div>
+
+    <h4 class="sec">用户痛点场景</h4>
+    <div class="pain">
+      <b>痛点 1：</b>一到换季、花粉、粉尘天就鼻痒喷嚏不停，纸巾用到鼻子破皮。<br>
+      <b>痛点 2：</b>空调房待久了鼻腔干到出血，通气不畅整个人昏沉沉。<br>
+      <b>痛点 3：</b>传统滴鼻类产品刺激大、怕依赖，想找温和的日常护理方式。
+    </div>
+
+    <h4 class="sec">核心卖点提炼</h4>
+    <div class="sell">
+      <div class="c"><div class="h">① 生命动力素科技</div>金日光教授监制，27 微量元素 + 11 生命动力元素，52Hz 团粒水结构。</div>
+      <div class="c"><div class="h">② 一喷即舒</div>喷雾设计，对准鼻孔轻喷 1~2 下，通鼻腔、缓鼻痒。</div>
+      <div class="c"><div class="h">③ 温和不刺激</div>外用保健液配方，无强刺激，日常可长期备用。</div>
+      <div class="c"><div class="h">④ 便携随身</div>15ml 口袋装，办公、出差、旅行随手带。</div>
+    </div>
+
+    <h4 class="sec">详情页分屏正文（建议顺序）</h4>
+    <ul class="li">
+      <li><strong>屏 1 首屏：</strong>「呼吸不畅？这支喷剂帮你」+ 产品主图 + 首发体验价。</li>
+      <li><strong>屏 2 科技：</strong>生命动力素是什么？团粒水结构、生态氧、远红外波三大机理图解。</li>
+      <li><strong>屏 3 场景：</strong>换季过敏 / 空调干燥 / 粉尘环境 / 睡前护理 四大场景配图。</li>
+      <li><strong>屏 4 用法：</strong>三步使用动图（摇匀→轻喷→按压吸收）。</li>
+      <li><strong>屏 5 口碑：</strong>用户真实反馈 + 复购数据（约 20~30 天复购周期）。</li>
+      <li><strong>屏 6 保障：</strong>妆字号合规、6 个月退换保障、品牌方技术支持。</li>
+    </ul>
+
+    <h4 class="sec">转化话术 / 促销</h4>
+    <div class="copy">
+      <div class="t1">▎活动话术</div>
+      「首发体验价 ¥58（日常 ¥68），3 瓶套装仅 ¥188，平均 ¥62.7/瓶，一次备足换季用量！」
+      <div class="t1" style="margin-top:8px;">▎转化钩子</div>
+      「呼吸是每天的事，鼻腔护理也该每天做。今天拍下，明天鼻子就轻松。」
+    </div>
+  </div>
+
+  <!-- 美颜 电商 -->
+  <div class="prod">
+    <div class="prod-title"><span class="tag blue">产品二 · 美颜精华</span><h3>电商详情页文案（30ml）</h3></div>
+
+    <h4 class="sec">主标题 & Slogan</h4>
+    <div class="copy">
+      <div class="t1">▎主标题</div>
+      草本臻养美颜精华保健液 · 一喷补水，养出弹润光（生命动力液面部精华）
+      <div class="t1" style="margin-top:10px;">▎Slogan</div>
+      "细胞级补水，喷雾里的抗初老"
+    </div>
+
+    <h4 class="sec">用户痛点场景</h4>
+    <div class="pain">
+      <b>痛点 1：</b>脸干到起皮、上妆卡粉，补水喷雾喷完更干。<br>
+      <b>痛点 2：</b>换季泛红敏感，护肤品种草一堆却越用越脆弱。<br>
+      <b>痛点 3：</b>初老细纹悄悄爬上脸，想抗老又怕太刺激。
+    </div>
+
+    <h4 class="sec">核心卖点提炼</h4>
+    <div class="sell">
+      <div class="c"><div class="h">① 生命动力液原液</div>同款 52Hz 团粒水结构，生态氧直供皮层细胞。</div>
+      <div class="c"><div class="h">② 草本复配养肤</div>天然草本精华协同舒缓、保湿、提亮。</div>
+      <div class="c"><div class="h">③ 喷雾即渗透</div>上脸清爽不黏腻，妆前打底 / 随时补喷。</div>
+      <div class="c"><div class="h">④ 弹润抗初老</div>提升皮肤弹性，辅助淡化细纹、优化肤质。</div>
+    </div>
+
+    <h4 class="sec">详情页分屏正文（建议顺序）</h4>
+    <ul class="li">
+      <li><strong>屏 1 首屏：</strong>「脸干、泛红、细纹？一支喷雾全管」+ 产品主图 + 尝鲜价。</li>
+      <li><strong>屏 2 科技：</strong>生命动力液如何给皮肤「供氧」？生态氧 + 团粒渗透机理图解。</li>
+      <li><strong>屏 3 成分：</strong>27 微量元素 + 草本养肤矩阵，成分党可读的透明配方。</li>
+      <li><strong>屏 4 场景：</strong>晨间唤醒 / 妆前打底 / 空调补喷 / 夜间修护 四场景。</li>
+      <li><strong>屏 5 对比：</strong>普通喷雾 vs 生命动力液精华喷雾 的渗透力差异。</li>
+      <li><strong>屏 6 口碑：</strong>前后对比图 + 复购数据（约 30~45 天复购周期）。</li>
+    </ul>
+
+    <h4 class="sec">转化话术 / 促销</h4>
+    <div class="copy">
+      <div class="t1">▎活动话术</div>
+      「上市尝鲜价 ¥98（日常 ¥128），老客复购价 ¥108。大促限时 ¥98，错过等半年！」
+      <div class="t1" style="margin-top:8px;">▎转化钩子</div>
+      「护肤的第一步是让细胞喝饱水。今天入手，28 天后镜子里见分晓。」
+    </div>
+  </div>
+</section>
+
+<!-- ============ 模块三：招商推介材料 ============ -->
+<section class="block" id="m3">
+  <div class="block-head"><div class="num">3</div><h2>招商推介材料</h2></div>
+  <p style="color:var(--muted);font-size:0.92rem;">基于既有价格体系整理，含项目亮点、两款产品利润对比、代理政策、价格管控与加盟流程，可直接用于代理商招募宣讲。</p>
+
+  <h4 class="sec">项目亮点</h4>
+  <div class="hl">
+    <div class="h"><div class="v">尤里卡金奖</div><div class="l">金日光教授监制<br>国家发明专利</div></div>
+    <div class="h"><div class="v">双品类</div><div class="l">鼻护 + 面护<br>渠道互补</div></div>
+    <div class="h"><div class="v">~40%</div><div class="l">代理毛利率<br>利润充足</div></div>
+    <div class="h"><div class="v">快复购</div><div class="l">20~45天<br>复购周期</div></div>
+  </div>
+
+  <h4 class="sec">两款产品利润结构对比（每瓶）</h4>
+  <table class="t">
+    <thead><tr><th>对比项</th><th>草本臻养美颜精华（30ml）</th><th>鼻通保健液（15ml）</th></tr></thead>
+    <tbody>
+      <tr><td class="em">生产成本</td><td>¥40 / 瓶</td><td>¥15 / 瓶</td></tr>
+      <tr><td class="em">统一零售价</td><td>¥128</td><td>¥68</td></tr>
+      <tr><td class="em">一级代理价</td><td>¥77（约 6 折）</td><td>¥41（约 6 折）</td></tr>
+      <tr><td class="em">代理毛利 / 瓶</td><td>¥51（39.8%）</td><td>¥27（39.7%）</td></tr>
+      <tr><td class="em">品牌出厂价</td><td>¥55</td><td>¥28</td></tr>
+      <tr><td class="em">品牌方毛利 / 瓶</td><td>¥15（11.7%）</td><td>¥13（19.1%）</td></tr>
+      <tr><td class="em">复购周期</td><td>30~45 天（美容护肤）</td><td>20~30 天（鼻炎刚需）</td></tr>
+      <tr><td class="em">主力渠道</td><td>美容院 / 电商 / 百货</td><td>药店 / 社区店 / 电商</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sec">价格传递链（扁平化 · 仅一级代理）</h4>
+  <div class="price-flow">
+    <div class="pf r"><div class="n">终端零售价</div><div class="v">¥128 / ¥68</div><div class="d">统一零售价，电商/实体店执行</div></div>
+    <div class="pf g"><div class="n">一级代理价</div><div class="v">¥77 / ¥41</div><div class="d">代理商唯一进货价（约 6 折）</div></div>
+    <div class="pf b"><div class="n">品牌出厂价</div><div class="v">¥55 / ¥28</div><div class="d">品牌方出货价</div></div>
+    <div class="pf k"><div class="n">生产成本</div><div class="v">¥40 / ¥15</div><div class="d">原液+包材+代工+合规</div></div>
+  </div>
+
+  <h4 class="sec">一级代理商政策</h4>
+  <table class="t">
+    <thead><tr><th>政策项</th><th>草本臻养美颜精华（30ml）</th><th>鼻通保健液（15ml）</th></tr></thead>
+    <tbody>
+      <tr><td class="em">代理价</td><td>¥77 / 瓶</td><td>¥41 / 瓶</td></tr>
+      <tr><td class="em">首批门槛</td><td>¥20,000（约 260 瓶）</td><td>¥10,000（约 244 瓶）</td></tr>
+      <tr><td class="em">单次补货最低</td><td>¥5,000（约 65 瓶）</td><td>¥2,000（约 49 瓶）</td></tr>
+      <tr><td class="em">代理区域</td><td>地级市独家</td><td>县级独家</td></tr>
+      <tr><td class="em">年采购任务</td><td>¥120,000（约 1,560 瓶）</td><td>¥60,000（约 1,463 瓶）</td></tr>
+      <tr><td class="em">完成 100% 续约优惠</td><td>次年代理价降至 ¥75</td><td>次年代理价降至 ¥40</td></tr>
+      <tr><td class="em">超额返利</td><td colspan="2">完成 120% 返利 2%；150% 返利 5% + 广告补贴 20%（上限 ¥8,000~10,000）</td></tr>
+      <tr><td class="em">退换货保障</td><td colspan="2">首批进货 6 个月内可退换未售出商品的 15%</td></tr>
+      <tr><td class="em">品牌方支持</td><td colspan="2">培训资料 / 电商素材包 / 价格维护 / 广告补贴 / 季节促销协同</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sec">价格管控规则</h4>
+  <table class="t">
+    <thead><tr><th>规则项</th><th>美颜精华</th><th>鼻通保健液</th><th>违规处理</th></tr></thead>
+    <tbody>
+      <tr><td class="em">统一零售价</td><td>¥128</td><td>¥68</td><td>—</td></tr>
+      <tr><td class="em">最低售价</td><td>¥108（85 折）</td><td>¥58（85 折）</td><td>—</td></tr>
+      <tr><td class="em">大促限时价</td><td>¥98（618/双11）</td><td>¥58（需报备）</td><td>—</td></tr>
+      <tr><td class="em">乱价处罚</td><td colspan="2">低于最低价销售（非授权大促）</td><td>警告→罚款→取消资格（阶梯处罚）</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sec">上市价格节奏</h4>
+  <div class="price-flow">
+    <div class="pf k"><div class="n">阶段一（1~2 月）</div><div class="v">¥98 / ¥58</div><div class="d">尝鲜/体验价，品牌方补贴快速积口碑</div></div>
+    <div class="pf g"><div class="n">阶段二（第 3 月起）</div><div class="v">¥128 / ¥68</div><div class="d">恢复统一正价，复购接受度高</div></div>
+    <div class="pf r"><div class="n">旺季 / 大促</div><div class="v">¥98 / ¥58</div><div class="d">过敏季、618、双11 限时促销</div></div>
+    <div class="pf b"><div class="n">复购锁定</div><div class="v">3 瓶套装</div><div class="d">¥188（鼻喷）/ 等效优惠（精华）</div></div>
+  </div>
+
+  <h4 class="sec">加盟流程</h4>
+  <div class="step">
+    <div class="s"><div class="no">1</div><div class="t">咨询了解</div></div>
+    <div class="s"><div class="no">2</div><div class="t">区域确认</div></div>
+    <div class="s"><div class="no">3</div><div class="t">签约打款</div></div>
+    <div class="s"><div class="no">4</div><div class="t">培训授权</div></div>
+    <div class="s"><div class="no">5</div><div class="t">首批发货</div></div>
+    <div class="s"><div class="no">6</div><div class="t">动销支持</div></div>
+  </div>
+  <div class="legal">说明：以上价格、门槛与政策均取自品牌方既有价格体系最终执行版（2026.06），实际招商以品牌方最新授权书及合同为准。两款产品可单独代理或组合代理，组合代理享渠道与素材共享支持。</div>
+</section>
+
+</div>
+
+<div class="footer">
+  毕格迅 · 生命动力液延伸产品全套文案包 ｜ 鼻通保健液（15ml）· 草本臻养美颜精华保健液（30ml）<br>
+  本文件为内部营销与招商基准资料，对外发布前请完成妆字号备案与合规审核。
+</div>
+
+</body>
+</html>
