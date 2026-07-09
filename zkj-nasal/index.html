@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中科灵境®鼻通保健液 | 产品介绍</title>
+    <style>
+        :root {
+            --primary: #1a8a5c;
+            --primary-light: #2fa876;
+            --primary-dark: #0d5c3d;
+            --accent: #f0a500;
+            --bg: #f8faf9;
+            --card-bg: #ffffff;
+            --text: #1a2e23;
+            --text-light: #5a6b62;
+            --border: #e0e8e4;
+            --shadow: 0 2px 12px rgba(26, 138, 92, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            color: #fff;
+            padding: 80px 20px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .hero .tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .hero-meta span {
+            background: rgba(255,255,255,0.12);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+        /* Container */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Section */
+        .section {
+            padding: 50px 0;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 32px; }
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        /* Quote box */
+        .quote-box {
+            background: linear-gradient(135deg, #e8f5ee 0%, #d4ebe0 100%);
+            border-left: 4px solid var(--primary);
+            padding: 24px 30px;
+            border-radius: 0 12px 12px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 30px 0;
+        }
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+        /* USP grid */
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .usp-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.2s;
+        }
+        .usp-item:hover { transform: translateY(-4px); }
+        .usp-item .emoji { font-size: 36px; margin-bottom: 12px; }
+        .usp-item h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .usp-item p { font-size: 14px; color: var(--text-light); }
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        th {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) td { background: #f4f9f6; }
+        tr:hover td { background: #eaf5ee; }
+        /* Component group */
+        .component-group {
+            margin-bottom: 30px;
+        }
+        .component-group h3 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            padding-left: 12px;
+            border-left: 4px solid var(--accent);
+        }
+        /* Usage steps */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .step {
+            flex: 1;
+            min-width: 130px;
+            background: linear-gradient(135deg, #e8f5ee, #f0faf4);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .step .num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .step p { font-size: 13px; color: var(--text); }
+        /* Feelings */
+        .feelings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .feel-item {
+            background: #f8fdfa;
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 3px solid var(--primary);
+        }
+        .feel-item strong { color: var(--primary-dark); }
+        .feel-item span { font-size: 14px; color: var(--text-light); }
+        /* Spec box */
+        .spec-box {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            border-radius: 16px;
+            padding: 36px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .spec-box .spec-value {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .spec-box .spec-label { font-size: 16px; opacity: 0.9; }
+        .spec-box .spec-desc { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+        /* Warning */
+        .warning {
+            background: #fff8e1;
+            border: 2px solid #ffe082;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .warning h3 { color: #e65100; margin-bottom: 12px; }
+        .warning ul { padding-left: 20px; }
+        .warning li { margin-bottom: 6px; font-size: 14px; }
+        /* Marketing */
+        .marketing-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+        }
+        .marketing-card .label {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .marketing-card p { font-size: 15px; color: var(--text); font-style: italic; }
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.85);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer h3 { color: #fff; margin-bottom: 12px; }
+        .footer .disclaimer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        /* Promise badges */
+        .promise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .promise-item {
+            text-align: center;
+            padding: 20px;
+            background: #f4f9f6;
+            border-radius: 12px;
+        }
+        .promise-item .check { color: var(--primary); font-size: 24px; margin-bottom: 8px; }
+        .promise-item p { font-size: 14px; font-weight: 600; color: var(--primary-dark); }
+        /* Target people */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .people-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-bottom: 3px solid var(--primary-light);
+        }
+        .people-card .emoji { font-size: 32px; margin-bottom: 8px; }
+        .people-card h4 { font-size: 15px; color: var(--primary-dark); margin-bottom: 6px; }
+        .people-card p { font-size: 13px; color: var(--text-light); }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            .section-title { font-size: 22px; }
+            .spec-box .spec-value { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-badge">中科灵境® · 草本科技</div>
+    <h1>鼻通保健液</h1>
+    <p class="tagline">14味道地草本 · 专攻鼻腔亚健康 · 让每一次呼吸都自由畅快</p>
+    <div class="hero-meta">
+        <span>规格：15mL / 瓶</span>
+        <span>总经销：百佳创新（北京）科技有限公司</span>
+        <span>认证：豫中医促会标〔2025〕488号</span>
+        <span>标准：T/HARACM 0008-2024</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 品牌 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🌟</span> 品牌故事</div>
+        <div class="section-subtitle">中科灵境 — 草本科技，守护呼吸</div>
+        <div class="card">
+            <p><strong>中科灵境</strong>是河南润灵药业有限公司旗下专注草本健康护理的高端品牌，秉承"传承中医智慧，融合现代科技"的品牌理念，将千年本草经验与当代萃取工艺完美结合。</p>
+            <br>
+            <table>
+                <tr><td style="width:30%;font-weight:600;">总经销</td><td>百佳创新（北京）科技有限公司</td></tr>
+                <tr><td style="font-weight:600;">生产企业</td><td>河南润灵药业有限公司</td></tr>
+                <tr><td style="font-weight:600;">生产基地</td><td>汝州市产业集聚区霍阳大道东侧</td></tr>
+                <tr><td style="font-weight:600;">权威认证</td><td>豫中医促会标〔2025〕488号</td></tr>
+                <tr><td style="font-weight:600;">执行标准</td><td>T/HARACM 0008-2024 团体标准</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 产品是什么 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🔍</span> 产品是什么？</div>
+        <div class="quote-box">不是药物，胜似呵护 —— 安全、温和、无依赖</div>
+        <div class="card">
+            <p><strong>中科灵境®鼻通保健液</strong>是一款专为鼻腔不适人群研发的<strong>外用草本喷雾型保健液</strong>。采用"君臣佐使"中医配伍理论，精选苍耳子、辛夷、白芷、鹅不食草等14味传统通窍名方药材，通过现代超临界萃取技术提取有效活性成分，直达鼻腔黏膜深层，快速缓解多种鼻腔不适症状。</p>
+        </div>
+    </div>
+
+    <!-- 核心卖点 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">✨</span> 核心卖点（USP）</div>
+        <div class="section-subtitle">五大核心优势，打造差异化竞争力</div>
+        <div class="usp-grid">
+            <div class="usp-item">
+                <div class="emoji">🌿</div>
+                <h3>14味古方精粹</h3>
+                <p>苍耳子+辛夷+鹅不食草+细辛+薄荷脑等经典通窍组合</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">🔬</div>
+                <h3>现代喷雾技术</h3>
+                <p>微米级雾化，直达鼻腔深处，吸收快、不刺激</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">✅</div>
+                <h3>权威机构认证</h3>
+                <p>河南省中医药研究促进会评审通过</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">🚫</div>
+                <h3>无激素无依赖</h3>
+                <p>纯植萃配方，不含麻黄碱类成分</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">👨‍👩‍👧</div>
+                <h3>全家适用</h3>
+                <p>成人、儿童均可使用（婴幼儿及孕妇除外）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心成分 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🌿</span> 核心成分解析</div>
+        <div class="section-subtitle">14味道地草本，君臣佐使科学配伍</div>
+
+        <div class="component-group">
+            <h3>【君药】—— 通窍主力军</h3>
+            <table>
+                <tr><th>成分</th><th>功效</th><th>传统地位</th></tr>
+                <tr><td><strong>苍耳子</strong></td><td>散风除湿、通窍止痛</td><td>《本草备要》："善发汗，散风湿，上通脑顶"</td></tr>
+                <tr><td><strong>辛夷（玉兰蕾）</strong></td><td>散风寒、通鼻窍</td><td>《神农本草经》上品，"主五脏身体寒热"</td></tr>
+                <tr><td><strong>鹅不食草</strong></td><td>通鼻窍、解毒消肿</td><td>民间称其"治鼻塞神药"，《本草纲目》载之</td></tr>
+            </table>
+        </div>
+
+        <div class="component-group">
+            <h3>【臣药】—— 协同增效组</h3>
+            <table>
+                <tr><th>成分</th><th>功效</th></tr>
+                <tr><td><strong>野菊花</strong></td><td>清热解毒、疏风散热</td></tr>
+                <tr><td><strong>黄芩</strong></td><td>清热燥湿、泻火解毒</td></tr>
+                <tr><td><strong>白芷</strong></td><td>祛风排脓、活血止痛</td></tr>
+                <tr><td><strong>辛夷</strong></td><td>温肺通窍、散寒止痛</td></tr>
+            </table>
+        </div>
+
+        <div class="component-group">
+            <h3>【佐使药】—— 调和增效</h3>
+            <table>
+                <tr><th>成分</th><th>功效</th></tr>
+                <tr><td><strong>金银花</strong></td><td>清热解毒、抗炎抗菌</td></tr>
+                <tr><td><strong>桔梗</strong></td><td>宣肺利咽、祛痰排脓</td></tr>
+                <tr><td><strong>甘草</strong></td><td>调和诸药、缓急止痛</td></tr>
+                <tr><td><strong>赤芍</strong></td><td>清热凉血、散瘀止痛</td></tr>
+                <tr><td><strong>薄荷脑</strong></td><td>疏风清热、清凉止痒</td></tr>
+                <tr><td><strong>当归</strong></td><td>补血活血、润肠通便</td></tr>
+                <tr><td><strong>细辛</strong></td><td>祛风散寒、通窍止痛</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 目标客群 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">👥</span> 谁需要它？</div>
+        <div class="section-subtitle">七大目标客群，覆盖广泛鼻腔不适场景</div>
+        <div class="people-grid">
+            <div class="people-card">
+                <div class="emoji">🤧</div>
+                <h4>过敏性鼻炎患者</h4>
+                <p>换季打喷嚏、流清涕</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">😷</div>
+                <h4>慢性鼻炎困扰者</h4>
+                <p>长期鼻塞、嗅觉减退</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">💻</div>
+                <h4>空调房上班族</h4>
+                <p>鼻干鼻痒、呼吸不畅</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">📚</div>
+                <h4>学生党/备考族</h4>
+                <p>鼻塞影响注意力集中</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">🌸</div>
+                <h4>花粉/粉尘敏感者</h4>
+                <p>接触过敏原后鼻部不适</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">🤒</div>
+                <h4>感冒初期人群</h4>
+                <p>鼻塞流涕、头昏脑涨</p>
+            </div>
+            <div class="people-card">
+                <div class="emoji">👴</div>
+                <h4>中老年群体</h4>
+                <p>鼻腔功能退化、易感染</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用体验 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🎁</span> 使用体验</div>
+        <div class="section-subtitle">简单六步，轻松通窍</div>
+
+        <div class="card">
+            <h3 style="margin-bottom:16px;color:var(--primary-dark);">使用方法</h3>
+            <div class="steps">
+                <div class="step"><div class="num">1</div><p>清洁鼻腔<br>纸巾擦拭鼻孔</p></div>
+                <div class="step"><div class="num">2</div><p>取出瓶身<br>揭开防尘盖</p></div>
+                <div class="step"><div class="num">3</div><p>头微后仰<br>对准鼻孔</p></div>
+                <div class="step"><div class="num">4</div><p>按压喷头<br>每侧1-2喷</p></div>
+                <div class="step"><div class="num">5</div><p>轻轻吸气<br>液体自然分布</p></div>
+                <div class="step"><div class="num">6</div><p>自然低头<br>避免吞咽</p></div>
+            </div>
+            <p style="text-align:center;color:var(--text-light);margin-top:16px;">每日3次，或按需使用</p>
+        </div>
+
+        <h3 style="margin:30px 0 16px;color:var(--primary-dark);">使用感受</h3>
+        <div class="feelings">
+            <div class="feel-item"><strong>⚡ 30秒起效</strong><br><span>喷入即感清凉通透</span></div>
+            <div class="feel-item"><strong>❄️ 清凉舒适</strong><br><span>薄荷脑带来天然冰爽感</span></div>
+            <div class="feel-item"><strong>💧 滋润保湿</strong><br><span>不干燥、不刺痛、不呛喉</span></div>
+            <div class="feel-item"><strong>🔄 可长期用</strong><br><span>不产生耐药性或依赖性</span></div>
+            <div class="feel-item"><strong>🎒 随身必备</strong><br><span>15mL精巧设计，出差旅行、办公室、车内常备无忧</span></div>
+        </div>
+
+        <div class="spec-box">
+            <div class="spec-label">产品规格</div>
+            <div class="spec-value">15mL</div>
+            <div class="spec-desc">便携喷雾装 · 口袋/包包随时取用</div>
+        </div>
+    </div>
+
+    <!-- 竞品对比 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🏆</span> 为什么选中科灵境？</div>
+        <div class="section-subtitle">与市面同类产品全面对比</div>
+        <div class="card">
+            <table>
+                <tr><th>维度</th><th>中科灵境®鼻通保健液</th><th>普通鼻炎喷雾</th><th>西药类鼻喷剂</th></tr>
+                <tr><td><strong>成分来源</strong></td><td>14味纯植萃</td><td>化学合成/单方</td><td>激素/血管收缩剂</td></tr>
+                <tr><td><strong>安全性</strong></td><td>★★★★★ 天然安全</td><td>★★★☆☆ 一般</td><td>★★☆☆☆ 有副作用风险</td></tr>
+                <tr><td><strong>是否成瘾</strong></td><td>不成瘾</td><td>视配方而定</td><td>可能产生依赖</td></tr>
+                <tr><td><strong>适用时长</strong></td><td>可长期日常使用</td><td>短期缓解</td><td>限时限次使用</td></tr>
+                <tr><td><strong>副作用</strong></td><td>几乎无</td><td>少数人不适</td><td>干燥、出血风险</td></tr>
+                <tr><td><strong>价格区间</strong></td><td>亲民实惠</td><td>中等</td><td>较高（处方）</td></tr>
+                <tr><td><strong>购买便利度</strong></td><td>非处方，随处可购</td><td>超市药店有售</td><td>需凭医嘱</td></tr>
+            </table>
+        </div>
+
+        <h3 style="margin:30px 0 16px;color:var(--primary-dark);">我们的承诺</h3>
+        <div class="promise-grid">
+            <div class="promise-item"><div class="check">✅</div><p>真材实料<br><span style="font-weight:400;font-size:12px;color:var(--text-light);">每批次可追溯原料产地</span></p></div>
+            <div class="promise-item"><div class="check">✅</div><p>权威背书<br><span style="font-weight:400;font-size:12px;color:var(--text-light);">省级中医药标准化评审通过</span></p></div>
+            <div class="promise-item"><div class="check">✅</div><p>品质保证<br><span style="font-weight:400;font-size:12px;color:var(--text-light);">GMP标准生产环境</span></p></div>
+            <div class="promise-item"><div class="check">✅</div><p>售后无忧<br><span style="font-weight:400;font-size:12px;color:var(--text-light);">不满意支持退换</span></p></div>
+        </div>
+    </div>
+
+    <!-- 注意事项 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">⚠️</span> 重要提示</div>
+        <div class="warning">
+            <h3>⛔ 不适合以下人群使用</h3>
+            <ul>
+                <li>对本品任一成分<strong>过敏者</strong></li>
+                <li><strong>皮肤高度敏感者</strong></li>
+                <li><strong>皮肤破损者</strong>（鼻腔黏膜损伤）</li>
+                <li><strong>婴幼儿</strong>（建议6岁以上儿童在成人监护下使用）</li>
+                <li><strong>孕妇及哺乳期女性</strong></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 style="margin-bottom:12px;color:#e65100;">⚠️ 使用注意</h3>
+            <ol style="padding-left:20px;font-size:14px;">
+                <li>本品为<strong>外用产品</strong>，严禁口服！</li>
+                <li>请置于<strong>儿童不易接触处</strong>保存</li>
+                <li><strong>首次使用</strong>建议先在一侧少量试用，观察有无异常反应</li>
+                <li>使用期间如出现<strong>红肿、瘙痒、灼烧感</strong>，立即停用并咨询医师</li>
+                <li>本品为<strong>健康用品</strong>，不可替代药品和医疗器械</li>
+                <li>如症状持续加重或未见好转，请及时就医</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 营销话术 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">📢</span> 营销话术参考</div>
+        <div class="section-subtitle">覆盖消费者、代理商、药店三大场景</div>
+        <div class="marketing-card">
+            <span class="label">面向消费者</span>
+            <p>"换季鼻子又遭罪了？试试中科灵境鼻通保健液——14味草本精华，一喷就通，不激素不依赖，全家都能安心用！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向代理商/渠道商</span>
+            <p>"中科灵境®鼻通保健液，河南省中医药研究促进会权威评审认证，正规合规、品质过硬、利润空间可观，是您拓展大健康品类的优质选择！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向药店/诊所</span>
+            <p>"一款可以放心推荐给顾客的草本鼻护产品——非药品属性降低经营门槛，真实功效赢得回头客口碑。"</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <h3>📞 联系我们</h3>
+    <p>品牌：中科灵境 &nbsp;|&nbsp; 总经销：百佳创新（北京）科技有限公司</p>
+    <p>生产企业：河南润灵药业有限公司</p>
+    <p style="margin-top:12px;font-style:italic;">让每一次呼吸都成为享受</p>
+    <div class="disclaimer">
+        本产品介绍仅供市场推广使用，具体以实物标签说明书为准<br>
+        最终解释权归河南省中医药研究促进会团体标准评审中心所有
+    </div>
+</div>
+
+</body>
+</html>

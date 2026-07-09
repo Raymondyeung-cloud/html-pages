@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中科灵境®草本精华保健液 | 产品介绍</title>
+    <style>
+        :root {
+            --primary: #6b4c9a;
+            --primary-light: #8b6bbf;
+            --primary-dark: #4a3370;
+            --accent: #d4a017;
+            --gold: #c9a96e;
+            --bg: #faf7fc;
+            --card-bg: #ffffff;
+            --text: #2a1e3a;
+            --text-light: #6b5d7a;
+            --border: #ebe4f0;
+            --shadow: 0 2px 12px rgba(107, 76, 154, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            color: #fff;
+            padding: 80px 20px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -40%;
+            right: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 160, 23, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .hero .tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .hero-meta span {
+            background: rgba(255,255,255,0.12);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section { padding: 50px 0; }
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 32px; }
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        .quote-box {
+            background: linear-gradient(135deg, #f0e6f8 0%, #e4d4f0 100%);
+            border-left: 4px solid var(--primary);
+            padding: 24px 30px;
+            border-radius: 0 12px 12px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 30px 0;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .usp-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.2s;
+        }
+        .usp-item:hover { transform: translateY(-4px); }
+        .usp-item .emoji { font-size: 36px; margin-bottom: 12px; }
+        .usp-item h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .usp-item p { font-size: 14px; color: var(--text-light); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        th {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) td { background: #f8f5fb; }
+        tr:hover td { background: #f0eaf5; }
+        /* Four White system */
+        .four-white {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .white-card {
+            background: linear-gradient(135deg, #fff, #faf5fd);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            border: 2px solid var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .white-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+        }
+        .white-card .num {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .white-card h4 { font-size: 18px; color: var(--primary-dark); margin-bottom: 6px; }
+        .white-card .nick { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+        .white-card p { font-size: 13px; color: var(--text-light); }
+        .white-card .ancient { font-size: 12px; color: var(--primary); margin-top: 8px; font-style: italic; }
+        /* Precious ingredients */
+        .precious-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .precious-item {
+            background: linear-gradient(135deg, #fff, #f8f2fc);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+            box-shadow: var(--shadow);
+        }
+        .precious-item .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .precious-item h4 { font-size: 17px; color: var(--primary-dark); }
+        .precious-item .alias { font-size: 12px; color: var(--gold); font-style: italic; }
+        .precious-item .value { font-size: 14px; color: var(--text); margin-bottom: 6px; }
+        .precious-item .rarity { font-size: 12px; color: var(--text-light); }
+        /* Modern ingredients */
+        .modern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+        .modern-item {
+            background: #f8f5fb;
+            border-radius: 10px;
+            padding: 16px;
+            border-bottom: 3px solid var(--primary-light);
+        }
+        .modern-item h4 { font-size: 15px; color: var(--primary-dark); margin-bottom: 4px; }
+        .modern-item p { font-size: 13px; color: var(--text-light); }
+        .modern-item .tech { font-size: 12px; color: var(--gold); margin-top: 4px; }
+        /* Target scenarios */
+        .scenario-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        .scenario-card .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .scenario-card .emoji { font-size: 28px; }
+        .scenario-card h4 { font-size: 17px; color: var(--primary-dark); }
+        .scenario-card .detail {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        .scenario-card .detail strong { color: var(--primary-dark); }
+        .scenario-card .solution {
+            background: #f4eff8;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--primary-dark);
+        }
+        /* Usage steps */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .step {
+            flex: 1;
+            min-width: 130px;
+            background: linear-gradient(135deg, #f0e6f8, #f8f5fb);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .step .num {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .step p { font-size: 13px; color: var(--text); }
+        /* Spec box */
+        .spec-box {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            border-radius: 16px;
+            padding: 36px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .spec-box .spec-value {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .spec-box .spec-label { font-size: 16px; opacity: 0.9; }
+        .spec-box .spec-desc { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+        /* Combo table */
+        .combo-table th { background: var(--gold); }
+        /* Comparison */
+        .compare-table th:nth-child(2) { background: var(--primary-dark); }
+        /* Warning */
+        .warning {
+            background: #fff8e1;
+            border: 2px solid #ffe082;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .warning h3 { color: #e65100; margin-bottom: 12px; }
+        .warning ul { padding-left: 20px; }
+        .warning li { margin-bottom: 6px; font-size: 14px; }
+        /* Marketing */
+        .marketing-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+        }
+        .marketing-card .label {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .marketing-card p { font-size: 15px; color: var(--text); font-style: italic; }
+        /* Advantages */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 20px;
+            background: #f4eff8;
+            border-radius: 12px;
+        }
+        .advantage-item .num { color: var(--gold); font-size: 24px; margin-bottom: 8px; font-weight: 700; }
+        .advantage-item p { font-size: 14px; font-weight: 600; color: var(--primary-dark); }
+        .advantage-item span { font-size: 12px; color: var(--text-light); }
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.85);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer h3 { color: #fff; margin-bottom: 12px; }
+        .footer .disclaimer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        /* Param table */
+        .param-table td:first-child { font-weight: 600; color: var(--primary-dark); width: 30%; }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; }
+            .section-title { font-size: 22px; }
+            .spec-box .spec-value { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-badge">中科灵境® · 东方美肤</div>
+    <h1>草本精华保健液</h1>
+    <p class="tagline">四白养肤 · 名贵加持 —— 一瓶唤醒肌肤原生光彩，让美丽从草本中自然绽放</p>
+    <div class="hero-meta">
+        <span>规格：30g（约30mL）/ 瓶</span>
+        <span>总经销：百佳创新（北京）科技有限公司</span>
+        <span>认证：豫中医促会标〔2025〕983号</span>
+        <span>标准：T/HARACM 0008-2024</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 品牌 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🌟</span> 品牌故事</div>
+        <div class="section-subtitle">中科灵境 — 东方美肤，草本焕颜</div>
+        <div class="card">
+            <p><strong>中科灵境</strong>是河南润灵药业有限公司旗下高端草本护肤品牌，根植于中华五千年本草文化，以"古法今用，科技赋美"为核心理念，将传统中医"以白养白""内调外养"的美肤智慧与现代植物萃取科技深度融合，为现代都市人群提供安全、高效、天然的肌肤护理方案。</p>
+            <br>
+            <table>
+                <tr><td style="width:30%;font-weight:600;">总经销</td><td>百佳创新（北京）科技有限公司</td></tr>
+                <tr><td style="font-weight:600;">生产企业</td><td>河南润灵药业有限公司</td></tr>
+                <tr><td style="font-weight:600;">生产基地</td><td>汝州市产业集聚区霍阳大道东侧</td></tr>
+                <tr><td style="font-weight:600;">权威认证</td><td>豫中医促会标〔2025〕983号</td></tr>
+                <tr><td style="font-weight:600;">执行标准</td><td>T/HARACM 0008-2024 团体标准</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 产品是什么 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🔍</span> 产品是什么？</div>
+        <div class="quote-box">不是化妆品，胜似保养品 —— 天然植萃，温和高效</div>
+        <div class="card">
+            <p><strong>中科灵境®草本精华保健液</strong>是一款面向肌肤亚健康人群的高端<strong>外用草本养肤液</strong>。产品独创<strong>"四白养肤体系"</strong>（白及+白蔹+白芷+白芍/白术），融合藏红花、红景天、当归等珍稀滋补成分，辅以黄瓜提取物、黄原胶等现代保湿成分，实现<strong>滋润保湿、提亮肤色、细腻平滑、舒缓修护</strong>四重功效合一。</p>
+        </div>
+    </div>
+
+    <!-- 核心卖点 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">✨</span> 核心卖点（USP）</div>
+        <div class="section-subtitle">六大核心优势，打造高端草本护肤标杆</div>
+        <div class="usp-grid">
+            <div class="usp-item">
+                <div class="emoji">⚪</div>
+                <h3>独创"四白养肤"</h3>
+                <p>白及+白蔹+白芷+白芍/白术，古代宫廷美肤秘方复刻</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">💎</div>
+                <h3>名贵成分加持</h3>
+                <p>藏红花+红景天+当归+三七，抗氧化+活血化瘀双重升级</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">🔬</div>
+                <h3>古方+科技双驱动</h3>
+                <p>中医配伍理论 + 现代超临界萃取技术</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">✅</div>
+                <h3>权威机构认证</h3>
+                <p>河南省中医药研究促进会评审通过</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">🚫</div>
+                <h3>零激素零添加</h3>
+                <p>无激素、无重金属、无有害防腐剂</p>
+            </div>
+            <div class="usp-item">
+                <div class="emoji">👩</div>
+                <h3>广谱适用</h3>
+                <p>多种肤质、多年龄段均可使用</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四白养肤体系 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">⚪</span> 四白养肤体系 — 品牌核心配方</div>
+        <div class="section-subtitle">"四白"者，中医美白养颜四大名贵药材也，自古即为宫廷御用美容圣品</div>
+        <div class="four-white">
+            <div class="white-card">
+                <div class="num">1</div>
+                <h4>白及</h4>
+                <div class="nick">"美白仙草"</div>
+                <p>收敛止血、消肿生肌、促进细胞再生</p>
+                <p style="margin-top:6px;">富含白及多糖和黏液质，形成天然保护膜，修护受损肌肤屏障</p>
+                <div class="ancient">《本草纲目》："主痈肿恶疮败疽"</div>
+            </div>
+            <div class="white-card">
+                <div class="num">2</div>
+                <h4>白蔹</h4>
+                <div class="nick">"清肌卫士"</div>
+                <p>清热解毒、消痈散结、敛疮生肌</p>
+                <p style="margin-top:6px;">针对痘印、炎症性色斑有显著改善作用</p>
+            </div>
+            <div class="white-card">
+                <div class="num">3</div>
+                <h4>白芷</h4>
+                <div class="nick">"驻颜之宝"</div>
+                <p>祛风排脓、活血止痛、燥湿止带</p>
+                <p style="margin-top:6px;">含香豆素类化合物，具有天然防晒辅助作用</p>
+                <div class="ancient">《神农本草经》："长肌肉，润泽颜色，可做面脂"</div>
+            </div>
+            <div class="white-card">
+                <div class="num">4</div>
+                <h4>白芍 / 白术</h4>
+                <div class="nick">"气血双调"</div>
+                <p>白芍：养血柔肝、调节面部血液循环</p>
+                <p style="margin-top:6px;">白术：健脾益气、燥湿利水</p>
+                <div class="ancient">《药性论》："主面光悦，驻颜去皯"</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 名贵成分 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">💎</span> 名贵滋补组 — 珍稀成分矩阵</div>
+        <div class="section-subtitle">六味珍稀药材，抗氧化+活血化瘀+滋补养颜三重赋能</div>
+        <div class="precious-grid">
+            <div class="precious-item">
+                <div class="header"><h4>藏红花</h4><span class="alias">"红色黄金"</span></div>
+                <p class="value">活血化瘀、改善微循环、提亮肤色</p>
+                <p class="rarity">稀缺度：★★★★★ 极珍贵</p>
+            </div>
+            <div class="precious-item">
+                <div class="header"><h4>红景天</h4><span class="alias">"高原仙草"</span></div>
+                <p class="value">抗氧化之王（SOD活性极高）、清除自由基</p>
+                <p class="rarity">稀缺度：★★★★☆ 高海拔生长</p>
+            </div>
+            <div class="precious-item">
+                <div class="header"><h4>当归</h4><span class="alias">"十方九归"</span></div>
+                <p class="value">补血活血、调理气色、改善面色萎黄</p>
+                <p class="rarity">稀缺度：★★★★☆ 传统名贵</p>
+            </div>
+            <div class="precious-item">
+                <div class="header"><h4>三七</h4><span class="alias">"金不换"</span></div>
+                <p class="value">活血化瘀、促进肌肤新陈代谢</p>
+                <p class="rarity">稀缺度：★★★★☆ 道地云南产</p>
+            </div>
+            <div class="precious-item">
+                <div class="header"><h4>茯苓</h4><span class="alias">"四时神药"</span></div>
+                <p class="value">利水渗湿、健脾宁心、《神农》上品</p>
+                <p class="rarity">稀缺度：★★★☆☆ 常年可用</p>
+            </div>
+            <div class="precious-item">
+                <div class="header"><h4>菊花</h4><span class="alias">"花中君子"</span></div>
+                <p class="value">平肝明目、清热解毒、镇静舒缓</p>
+                <p class="rarity">稀缺度：★★☆☆☆ 易得但优质少</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 现代护肤协同 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🧪</span> 现代护肤协同组 — 科技赋能</div>
+        <div class="section-subtitle">传统草本与现代护肤科技完美融合</div>
+        <div class="modern-grid">
+            <div class="modern-item">
+                <h4>🥒 黄瓜提取物</h4>
+                <p>富含维生素C + 黄瓜酶，深层补水、收敛毛孔、晒后修复</p>
+                <div class="tech">冷压萃取保留活性</div>
+            </div>
+            <div class="modern-item">
+                <h4>🧴 黄原胶</h4>
+                <p>天然高分子多糖，形成透气保护膜，长效锁水</p>
+                <div class="tech">微生物发酵技术</div>
+            </div>
+            <div class="modern-item">
+                <h4>💧 甘油</h4>
+                <p>强效吸湿剂，保持角质层水分平衡</p>
+                <div class="tech">医药级纯度</div>
+            </div>
+            <div class="modern-item">
+                <h4>🔬 水杨酸</h4>
+                <p>BHA成分，温和去角质、疏通毛孔、改善粗糙</p>
+                <div class="tech">控释技术降低刺激性</div>
+            </div>
+            <div class="modern-item">
+                <h4>⚗️ 乙醇</h4>
+                <p>促进活性成分透皮吸收、杀菌消毒</p>
+                <div class="tech">食用级酒精</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 目标客群 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">👥</span> 谁需要它？</div>
+        <div class="section-subtitle">六大场景精准覆盖，总有一款适合你</div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">👩‍💻</span>
+                <h4>场景一：熬夜暗沉党</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>长期加班熬夜 → 面色蜡黄、肤色不均、无光泽</p>
+            <p class="detail"><strong>需求：</strong>快速提亮、恢复好气色</p>
+            <div class="solution">💡 解决方案：早晚各一次，2周可见明显改善</div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">👩</span>
+                <h4>场景二：初抗老轻熟肌</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>25岁+ → 细纹浮现、胶原蛋白流失、弹性下降</p>
+            <p class="detail"><strong>需求：</strong>抗氧化、延缓衰老、紧致肌肤</p>
+            <div class="solution">💡 解决方案：配合按摩手法，加强吸收</div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">😣</span>
+                <h4>场景三：敏感脆弱肌</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>换季泛红、易受刺激、屏障受损</p>
+            <p class="detail"><strong>需求：</strong>舒缓修护、强韧屏障</p>
+            <div class="solution">💡 解决方案：薄涂频次增加，减少用量单次</div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">🧴</span>
+                <h4>场景四：油痘印残留者</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>痘痘消退后留下色素沉淀、毛孔粗大</p>
+            <p class="detail"><strong>需求：</strong>淡化痘印、平滑肌肤</p>
+            <div class="solution">💡 解决方案：局部重点涂抹+轻柔打圈按摩</div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">☀️</span>
+                <h4>场景五：户外工作者</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>长期日晒 → 色斑加深、光老化加速</p>
+            <p class="detail"><strong>需求：</strong>对抗自由基、修复光损伤</p>
+            <div class="solution">💡 解决方案：晚间厚敷使用，作为晒后修复步骤</div>
+        </div>
+
+        <div class="scenario-card">
+            <div class="scenario-header">
+                <span class="emoji">👵</span>
+                <h4>场景六：送礼/孝敬长辈</h4>
+            </div>
+            <p class="detail"><strong>痛点：</strong>熟龄肌肤干燥粗糙、缺乏专业护理产品</p>
+            <p class="detail"><strong>需求：</strong>安全有效、操作简单的养肤方案</p>
+            <div class="solution">💡 解决方案：30g标准瓶装，使用方便、性价比高</div>
+        </div>
+    </div>
+
+    <!-- 使用体验 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🎁</span> 使用体验指南</div>
+        <div class="section-subtitle">五步养肤，轻松焕颜</div>
+
+        <div class="card">
+            <h3 style="margin-bottom:16px;color:var(--primary-dark);">标准使用流程</h3>
+            <div class="steps">
+                <div class="step"><div class="num">1</div><p>洁面清洁<br>温水洗脸擦干</p></div>
+                <div class="step"><div class="num">2</div><p>取适量本品<br>约1-2泵</p></div>
+                <div class="step"><div class="num">3</div><p>均匀涂抹<br>由内向外轻拍</p></div>
+                <div class="step"><div class="num">4</div><p>重点按摩<br>T区、眼周加强</p></div>
+                <div class="step"><div class="num">5</div><p>完全吸收<br>约1-2分钟</p></div>
+            </div>
+            <p style="text-align:center;color:var(--text-light);margin-top:16px;">每日早晚各1次，或按需增加频次</p>
+        </div>
+
+        <h3 style="margin:30px 0 16px;color:var(--primary-dark);">进阶搭配建议</h3>
+        <div class="card">
+            <table class="combo-table">
+                <tr><th>使用时机</th><th>搭配方式</th><th>效果加成</th></tr>
+                <tr><td><strong>晨间护肤</strong></td><td>洁面 → 本品（打底）→ 乳液/霜 → 防晒</td><td>提亮+防护全天候</td></tr>
+                <tr><td><strong>夜间修护</strong></td><td>卸妆→洁面→爽肤水→本品（厚敷）→睡眠面膜</td><td>深度滋养一夜回春</td></tr>
+                <tr><td><strong>妆前急救</strong></td><td>上妆前5分钟薄涂全脸</td><td>妆容更服帖持久</td></tr>
+                <tr><td><strong>身体护理</strong></td><td>沐浴后涂抹颈部、手肘、膝盖</td><td>全身匀净透亮</td></tr>
+                <tr><td><strong>面膜伴侣</strong></td><td>敷面膜前打底或敷后锁住营养</td><td>吸收率提升30%+</td></tr>
+            </table>
+        </div>
+
+        <div class="spec-box">
+            <div class="spec-label">产品规格</div>
+            <div class="spec-value">30g</div>
+            <div class="spec-desc">约30mL / 瓶 · 标准瓶装 · 约1个月用量</div>
+        </div>
+    </div>
+
+    <!-- 竞品对比 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">🏆</span> 为什么选中科灵境？</div>
+        <div class="section-subtitle">与国际大牌护肤品全面对比</div>
+        <div class="card">
+            <table class="compare-table">
+                <tr><th>维度</th><th>中科灵境®草本精华保健液</th><th>国际大牌护肤品</th></tr>
+                <tr><td><strong>品牌底蕴</strong></td><td>中华5000年草本智慧传承</td><td>西方化学护肤体系</td></tr>
+                <tr><td><strong>核心配方</strong></td><td>四白养肤+名贵中药复方</td><td>化学合成/单一提取物</td></tr>
+                <tr><td><strong>安全性</strong></td><td>★★★★★ 天然温和低敏</td><td>★★★☆☆ 含防腐剂/香精</td></tr>
+                <tr><td><strong>功效深度</strong></td><td>内调外养、标本兼治</td><td>表层作用为主</td></tr>
+                <tr><td><strong>适用范围</strong></td><td>广谱多肤质通用</td><td>分肤质专用（限制多）</td></tr>
+                <tr><td><strong>性价比</strong></td><td>★★★★★ 国货之光</td><td>★★☆☆☆ 品牌溢价高</td></tr>
+                <tr><td><strong>文化认同感</strong></td><td>东方美学生活方式</td><td>西方审美标准</td></tr>
+                <tr><td><strong>合规背书</strong></td><td>省级中医药标准化认证</td><td>常规备案即可</td></tr>
+            </table>
+        </div>
+
+        <h3 style="margin:30px 0 16px;color:var(--primary-dark);">我们的核心优势</h3>
+        <div class="advantage-grid">
+            <div class="advantage-item">
+                <div class="num">📜</div>
+                <p>正规合规</p>
+                <span>通过省级权威评审，合法上市销售</span>
+            </div>
+            <div class="advantage-item">
+                <div class="num">🌱</div>
+                <p>纯天然</p>
+                <span>0激素0重金属0有害添加</span>
+            </div>
+            <div class="advantage-item">
+                <div class="num">🔬</div>
+                <p>科学配比</p>
+                <span>遵循"君臣佐使"理论配伍</span>
+            </div>
+            <div class="advantage-item">
+                <div class="num">💰</div>
+                <p>价格亲民</p>
+                <span>用大牌十分之一的价格享受名贵成分</span>
+            </div>
+            <div class="advantage-item">
+                <div class="num">🇨🇳</div>
+                <p>文化自信</p>
+                <span>支持国货，传承东方美学</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注意事项 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">⚠️</span> 安全须知 & 使用禁忌</div>
+        <div class="warning">
+            <h3>⛔ 不适合以下人群</h3>
+            <ul>
+                <li>对本品任一成分<strong>过敏者</strong></li>
+                <li><strong>皮肤高度敏感者</strong>（建议先皮试）</li>
+                <li><strong>皮肤有开放性伤口/破损者</strong></li>
+                <li><strong>婴幼儿</strong></li>
+                <li><strong>孕妇及哺乳期女性</strong></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 style="margin-bottom:12px;color:#e65100;">⚠️ 使用注意</h3>
+            <ol style="padding-left:20px;font-size:14px;">
+                <li><strong>外用专用</strong>，严禁口服！请置于儿童接触不到的地方</li>
+                <li><strong>首次必做皮试</strong>：取少量涂抹于耳后或手腕内侧，观察24小时</li>
+                <li>如出现<strong>红疹、刺痒、灼热感等不适</strong>，立即停用并咨询医师</li>
+                <li>存储过程中如有少量<strong>沉淀属正常现象</strong>（天然植物特性），摇匀即可</li>
+                <li>请在<strong>保质期内使用完毕</strong></li>
+                <li>本品为<strong>健康用品</strong>，不能替代药品或医疗器械</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 营销话术 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">📢</span> 营销话术参考</div>
+        <div class="section-subtitle">覆盖C端消费者、B端代理商、专业渠道、礼品市场四大场景</div>
+        <div class="marketing-card">
+            <span class="label">面向终端消费者（C端）</span>
+            <p>"脸色暗沉没光泽？试试中科灵境草本精华保健液！四白养肤配方+藏红花名贵成分，一瓶搞定保湿提亮修护，国货之光，效果说话！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向终端消费者（C端）</span>
+            <p>"别再花大钱买大牌了！中科灵境把白及、藏红花、红景天这些名贵药材做成护肤品，效果不输千元面霜，价格只要零头！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向代理商/经销商（B端）</span>
+            <p>"中科灵境®草本精华保健液——河南省中医药权威评审认证、正规合规可上架、利润空间可观、复购率高！抢占草本护肤蓝海赛道的好机会！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向药店/美容院/养生馆</span>
+            <p>"一款自带'中医药认证光环'的养肤神器——既有专业背书又有真实功效，帮您拓展客户群、提升客单价、增强客户粘性的爆款单品！"</p>
+        </div>
+        <div class="marketing-card">
+            <span class="label">面向礼品/企业采购市场</span>
+            <p>"送什么都不如送健康！中科灵境礼盒装——高端大气有面子、实实在在有效果，企业福利、商务伴手礼的最佳选择！"</p>
+        </div>
+    </div>
+
+    <!-- 产品参数 -->
+    <div class="section">
+        <div class="section-title"><span class="icon">📋</span> 产品参数速查表</div>
+        <div class="card">
+            <table class="param-table">
+                <tr><td>产品名称</td><td>草本精华保健液</td></tr>
+                <tr><td>品牌</td><td>中科灵境®</td></tr>
+                <tr><td>总经销</td><td>百佳创新（北京）科技有限公司</td></tr>
+                <tr><td>生产企业</td><td>河南润灵药业有限公司</td></tr>
+                <tr><td>生产地址</td><td>汝州市产业集聚区霍阳大道东侧</td></tr>
+                <tr><td>产品规格</td><td>30g（约30mL）/ 瓶</td></tr>
+                <tr><td>产品类型</td><td>外用液体保健用品</td></tr>
+                <tr><td>主要成分</td><td>白及、白蔹、白芷、白术、茯苓、藏红花、红景天、当归、菊花、三七、黄瓜提取物、黄原胶、甘油、水杨酸、乙醇等</td></tr>
+                <tr><td>执行标准</td><td>T/HARACM 0008-2024 团体标准</td></tr>
+                <tr><td>评审编号</td><td>豫中医促会标〔2025〕983号</td></tr>
+                <tr><td>评审机构</td><td>河南省中医药研究促进会团体标准评审中心</td></tr>
+                <tr><td>评审日期</td><td>2025年9月</td></tr>
+                <tr><td>使用方法</td><td>外用，均匀涂抹于不适处，轻揉按摩至充分吸收即可</td></tr>
+                <tr><td>存储条件</td><td>密封、置阴凉干燥处保存</td></tr>
+                <tr><td>保质期</td><td>见包装标注</td></tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <h3>📞 合作联系</h3>
+    <p>品牌：中科灵境 &nbsp;|&nbsp; 总经销：百佳创新（北京）科技有限公司</p>
+    <p>生产企业：河南润灵药业有限公司</p>
+    <p style="margin-top:12px;font-style:italic;">东方草本 · 自然之美 · 焕发光彩</p>
+    <div class="disclaimer">
+        本产品介绍仅供市场推广使用，具体以实物标签说明书为准<br>
+        最终解释权归河南省中医药研究促进会团体标准评审中心所有
+    </div>
+</div>
+
+</body>
+</html>
