@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目报告：HAVEN 疗愈酒店 & 康盈乐颐 — 与生命动力液合作可能性分析</title>
+<style>
+  :root {
+    --primary: #1a5c3a;
+    --primary-light: #2d8059;
+    --accent: #c9a227;
+    --accent-light: #e0c44a;
+    --bg: #faf9f6;
+    --card-bg: #ffffff;
+    --text: #2c2c2c;
+    --text-light: #666;
+    --border: #e0ddd5;
+    --danger: #c44;
+    --success: #2d7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, #0d3b24 0%, #1a5c3a 50%, #2d8059 100%);
+    color: #fff;
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(201,162,39,0.08) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+  .cover h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle {
+    font-size: 18px;
+    opacity: 0.85;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .cover .meta {
+    font-size: 14px;
+    opacity: 0.6;
+    position: relative;
+    margin-top: 24px;
+  }
+  .cover .divider {
+    width: 60px; height: 3px;
+    background: var(--accent);
+    margin: 24px auto;
+    position: relative;
+  }
+
+  /* Section */
+  section { padding: 56px 0; }
+  section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 32px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+  }
+  section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 20px 0 8px;
+  }
+  section p { margin-bottom: 12px; color: var(--text); }
+  section .lead {
+    font-size: 16px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+  .tag-green { background: #e8f5e9; color: #1b5e20; }
+  .tag-gold { background: #fff8e1; color: #f57f17; }
+  .tag-blue { background: #e3f2fd; color: #0d47a1; }
+  .tag-red { background: #fce4ec; color: #880e4f; }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 24px 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .card .icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 0;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  th {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f9f8f5; }
+
+  /* Comparison */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .compare-col.haven { border-top-color: #1a5c3a; }
+  .compare-col.kangying { border-top-color: #1565c0; }
+  .compare-col h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .compare-col .sub {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #f0f7f0, #e8f5e9);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .highlight-box.gold {
+    background: linear-gradient(135deg, #fffbeb, #fff8e1);
+    border-left-color: var(--accent);
+  }
+  .highlight-box.blue {
+    background: linear-gradient(135deg, #e8f0fe, #e3f2fd);
+    border-left-color: #1565c0;
+  }
+  .highlight-box h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .highlight-box.gold h4 { color: #b8860b; }
+  .highlight-box.blue h4 { color: #1565c0; }
+
+  /* Match matrix */
+  .match-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin: 16px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .match-cell {
+    padding: 16px 20px;
+    background: #fff;
+    font-size: 14px;
+  }
+  .match-cell.left { border-left: 4px solid #1a5c3a; }
+  .match-cell.right { border-left: 4px solid #1565c0; }
+  .match-cell.center {
+    background: linear-gradient(135deg, #fffbeb, #fff8e1);
+    border-left: 4px solid var(--accent);
+    font-weight: 600;
+  }
+  .match-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-size: 20px;
+    padding: 0 12px;
+  }
+  .match-cell h5 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--primary);
+  }
+
+  /* Score badge */
+  .score {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .score-high { background: #e8f5e9; color: #1b5e20; }
+  .score-mid { background: #fff8e1; color: #e65100; }
+  .score-low { background: #fce4ec; color: #880e4f; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--primary);
+  }
+  .timeline-item h5 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .timeline-item p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 0;
+  }
+
+  /* Strategy card */
+  .strategy-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    margin: 20px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .strategy-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+  .strategy-card .phase {
+    display: inline-block;
+    padding: 4px 16px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .strategy-card h4 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .strategy-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .strategy-card ul li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    font-size: 14px;
+  }
+  .strategy-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 6px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: linear-gradient(135deg, #0d3b24, #1a5c3a);
+    color: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+  }
+  .summary-box h3 {
+    color: var(--accent-light);
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+  }
+  .summary-box p { color: rgba(255,255,255,0.9); }
+  .summary-box strong { color: var(--accent-light); }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-light);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .compare-grid, .match-row { grid-template-columns: 1fr; }
+    .match-arrow { padding: 8px; }
+    .cover h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="container">
+    <h1>项目报告 & 合作可能性分析</h1>
+    <div class="divider"></div>
+    <div class="subtitle">HAVEN 疗愈酒店+康养社区 & 康盈乐颐一站式养老康养平台</div>
+    <div class="subtitle" style="opacity:0.7;font-size:15px;">与生命动力液产品的协同价值分析</div>
+    <div class="meta">2026年7月 | 阿布出品</div>
+  </div>
+</div>
+
+<!-- Executive Summary -->
+<section>
+  <div class="container">
+    <h2><span class="num">0</span>执行摘要</h2>
+    <p class="lead">本报告基于两份项目文件深度解读，分别梳理 HAVEN 疗愈酒店与康盈乐颐两个康养项目的核心信息，并从产品属性、客群匹配、渠道互补、商业模式四个维度，系统分析其与生命动力液产品的合作可能性。</p>
+
+    <div class="summary-box">
+      <h3>核心结论</h3>
+      <p>生命动力液与两个项目均存在<strong>高匹配度的合作空间</strong>。HAVEN 提供高端体验场景与零售渠道，康盈乐颐提供规模化分发网络与保险支付通道，生命动力液作为<strong>细胞级健康干预产品</strong>，可同时嵌入两条价值链，形成「高端体验 + 平台分发 + 保险支付」的三维合作矩阵。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Project 1: HAVEN -->
+<section style="background:#fff;">
+  <div class="container">
+    <h2><span class="num">1</span>HAVEN 疗愈酒店 + 康养社区</h2>
+    <p class="lead">由香港泛纳设计集团（PANORAMA）打造的疗愈酒店与康养社区品牌，定位为全球领先的都会疗愈度假酒店，面向 30-60 岁高净值人群提供科学化、个性化、可量化的康养体验。</p>
+
+    <h3>政策与市场背景</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">📋</div>
+        <h4>政策红利</h4>
+        <p>2026 年两会将康养疗愈纳入促消费重点领域，12 部门联合发布《促进健康消费专项行动方案》，疗愈型住宿、森林康养成为核心增长点。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏥</div>
+        <h4>慢病康复市场</h4>
+        <p>慢性病占中国总疾病负担 70%+，现有医疗体系在长期康复管理存在明显缺口，疗愈酒店承接「医院之外」的康复需求。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h4>精神疗愈市场</h4>
+        <p>中国精神障碍终身患病率 16.6%（约 1.75 亿人），广义心理亚健康人群 3-4 亿，精神卫生市场年复合增长率 15%-20%。</p>
+      </div>
+    </div>
+
+    <h3>三阶进化模型</h3>
+    <table>
+      <tr><th>阶段</th><th>核心逻辑</th><th>典型特征</th></tr>
+      <tr><td><strong>1.0 度假疗愈</strong></td><td>放松身心、体验文化</td><td>SPA、泰拳、太极、在地文化体验</td></tr>
+      <tr><td><strong>2.0 功能疗愈</strong></td><td>解决具体问题、改善生活方式</td><td>精准检测、饮食/运动/睡眠干扰、慢病管理</td></tr>
+      <tr><td><strong>3.0 医学疗愈</strong></td><td>精准诊断、医学干预、持续追踪</td><td>抗衰老医学、专科诊疗、康复治疗</td></tr>
+    </table>
+
+    <h3>六大核心模组（ESG Life Optimization）</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h4>能量医学与精准检测</h4>
+        <p>生物共振、能量场扫描与大数据分析，将「感觉」量化为「数据」，为干细胞或筋膜调整提供科学依据。</p>
+      </div>
+      <div class="card">
+        <div class="icon">💧</div>
+        <h4>大任碳酸泉水疗</h4>
+        <p>涵道聚焦分子级溶解技术，碳酸浓度高达 1300PPM，改善心血管、皮肤、代谢性疾病，24h 平均挥发比不超过 1.2%。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🦴</div>
+        <h4>APA 筋膜骨架调整</h4>
+        <p>针对高净值人群脊椎、骨盆及深层筋膜问题，进行精准力学修复与动力链维护，「保持年轻体态与步态」。</p>
+      </div>
+      <div class="card">
+        <div class="icon">💡</div>
+        <h4>R393 生物光学专利睡眠空间</h4>
+        <p>第五代生物光学方案，还原自然界光环境机制，促进内分泌平衡，改善生理节律和心理健康。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧬</div>
+        <h4>再生医学：外泌体与自体干细胞</h4>
+        <p>微生物泡囊外泌体用于皮肤再生、抗衰及抗炎；自体干细胞快速分离技术（1 小时），建立私人生物数据库。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h4>天愈农法 · 正能粮</h4>
+        <p>双专利 ESG 仿生农法，零污染、负碳排放耕作，提供具备生物能量（Bio-Photon）的食品，从细胞层面补充「燃料」。</p>
+      </div>
+    </div>
+
+    <h3>目标客群画像</h3>
+    <p>
+      <span class="tag tag-green">功效敏感型消费者</span>
+      <span class="tag tag-green">重视睡眠质量者</span>
+      <span class="tag tag-green">Z 世代新青年</span>
+      <span class="tag tag-gold">中老年退行性疾病与慢病患者</span>
+      <span class="tag tag-gold">急性创伤与术后修复者</span>
+      <span class="tag tag-blue">高压都市白领</span>
+      <span class="tag tag-blue">抗衰老与皮肤再生</span>
+      <span class="tag tag-red">亚健康及慢病人群</span>
+      <span class="tag tag-red">医美人群</span>
+      <span class="tag tag-blue">关注自我提升者</span>
+    </p>
+
+    <h3>竞争优势</h3>
+    <div class="highlight-box">
+      <h4>四大核心壁垒</h4>
+      <p><strong>专利科技：</strong>AI 健康管理系统、R393 生物光学、天愈仿生农法、NOYA 外泌体、APA 筋膜技术<br>
+      <strong>科学验证：</strong>与香港理工大学深度合作，通过 MRI 脑成像量化康养效果<br>
+      <strong>个性化服务：</strong>基于 AI 与 DNA 大数据的千人千面方案，动态调整<br>
+      <strong>长期价值：</strong>会员俱乐部 + 离店后健康追踪，LTV 远超传统酒店</p>
+    </div>
+
+    <h3>创始团队与专家</h3>
+    <table>
+      <tr><th>角色</th><th>姓名</th><th>核心背景</th></tr>
+      <tr><td>COO 营运总监</td><td>代娜玲</td><td>粤港澳康养产业协会副会长、香港庆楠护老院院长</td></tr>
+      <tr><td>CBO 品牌总监</td><td>潘鸿彬</td><td>香港理工大学设计学院实务副教授、泛纳设计集团创始人、国际设计大奖评委</td></tr>
+      <tr><td>CFO 财务总监</td><td>张楚翘</td><td>30 年跨国公司上市操盘经验，覆盖美英港台新多市场</td></tr>
+      <tr><td>健康管理顾问</td><td>林文泉</td><td>阳明交通大学医学院传统医药研究所，医药与跨国并购双栖操盘手</td></tr>
+      <tr><td>AI 技术顾问</td><td>林立杰</td><td>台湾人工智能产业协会理事长、IBM Watson 研究中心研究员</td></tr>
+      <tr><td>再生医学专利</td><td>戴念国</td><td>美亚健康长寿诊所院长、美国史丹佛大学访问学者、2023 IAE 再生医学教授</td></tr>
+      <tr><td>碳酸泉专利</td><td>云翔</td><td>大任生物科技 CEO，与广州中医药大学联合研究碳酸泉与中医结合</td></tr>
+    </table>
+
+    <h3>商业模式亮点</h3>
+    <div class="highlight-box gold">
+      <h4>疗愈零售：Restore & Revive Retail</h4>
+      <p>HAVEN 明确规划在酒店内设立「创新疗愈产品零售」区域，推广疗愈与康养相关产品，<strong>让离开酒店的客人持续进行自我疗愈</strong>——这是生命动力液最直接的嵌入点。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Project 2: 康盈乐颐 -->
+<section>
+  <div class="container">
+    <h2><span class="num">2</span>康盈乐颐 — 一站式养老康养综合服务平台</h2>
+    <p class="lead">深圳市康盈乐颐成立于 2023 年，依托母公司康盈大健康（2014 年起深耕康养行业），采用纯轻资产平台模式，高效连接 C 端用户、B 端康养机构与保险公司，定位为「中国首个一站式专业养老康养综合服务平台」。</p>
+
+    <h3>核心投资亮点</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">📈</div>
+        <h4>万亿老龄化赛道</h4>
+        <p>2025 年 60 岁以上人口达 3.23 亿（占比超 23%），银发经济总规模 8.8 万亿元，年复合增速 16%。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h4>成熟闭环交易场景</h4>
+        <p>集团公寓板块年 GMV 超 6000 万，业务模式经市场充分验证，盈利路径清晰。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🪶</div>
+        <h4>差异化轻资产模式</h4>
+        <p>以 SaaS 技术服务、保险 TPA 运营及平台结算佣金为核心收入，毛利率显著高于行业平均。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h4>头部保险长期锁定</h4>
+        <p>与国寿海外、平安、人保等头部险企签署长期战略合作，享有年度保底服务费。</p>
+      </div>
+      <div class="card">
+        <div class="icon">📊</div>
+        <h4>标准化行业壁垒</h4>
+        <p>自研《养老机构评估手册》著作权，建立高于国标的评估体系，手握大湾区核心独家资源。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🚪</div>
+        <h4>双路径退出保障</h4>
+        <p>中期产业并购（3-5 年）+ 长期港股 IPO，降低投资不确定性。</p>
+      </div>
+    </div>
+
+    <h3>融资概况</h3>
+    <table>
+      <tr><th>融资轮次</th><th>计划融资金额</th><th>出让股权</th><th>投后估值</th></tr>
+      <tr><td>Pre-A 轮</td><td>2000-3000 万元</td><td>15%-20%</td><td>1 亿元</td></tr>
+    </table>
+    <p style="font-size:14px;color:var(--text-light);">资金投向：40% 保险大客户渠道拓展、25% SaaS 系统迭代、20% B 端生态与团队基建、15% 市场规模化扩张。</p>
+
+    <h3>业务体系</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">🏠</div>
+        <h4>To C：个人养老方案订制</h4>
+        <p>机构养老智能撮合、居家一站式照护、医养协助服务，覆盖全生命周期养老需求。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏢</div>
+        <h4>To B：产业生态赋能</h4>
+        <p>保险 TPA 理赔直付、机构 SaaS 管理系统、康养公寓数字化结算，打造养老产业数字化基础设施。</p>
+      </div>
+      <div class="card">
+        <div class="icon">✈️</div>
+        <h4>第二增长曲线</h4>
+        <p>康养旅居度假、适老化产品创新与销售、智慧养老硬件，「服务+产品」双轮驱动。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌉</div>
+        <h4>特色布局</h4>
+        <p>大湾区跨境养老服务、安宁生命关怀服务、养老咨询师人才培养，轻量化切入高价值细分赛道。</p>
+      </div>
+    </div>
+
+    <h3>五大收入来源</h3>
+    <table>
+      <tr><th>收入类型</th><th>说明</th></tr>
+      <tr><td>平台交易佣金</td><td>基于平台交易流水按比例收取佣金</td></tr>
+      <tr><td>综合业务服务费</td><td>运营咨询、品牌赋能及营销策划等增值服务</td></tr>
+      <tr><td>SaaS 技术服务</td><td>康养数字化管理系统软件授权与技术运维</td></tr>
+      <tr><td>乐龄科技产品销售</td><td>甄选乐龄科技产品及科研成果转化产品</td></tr>
+      <tr><td>公寓结算服务费</td><td>为合作康养公寓提供资金结算与账目管理服务</td></tr>
+    </table>
+
+    <h3>核心运营数据</h3>
+    <table>
+      <tr><th>年度</th><th>营收</th><th>合作机构</th><th>核心客户</th><th>平台会员</th></tr>
+      <tr><td>2023</td><td>40 万</td><td>37 家</td><td>—</td><td>—</td></tr>
+      <tr><td>2024</td><td>500 万</td><td>180 家</td><td>恒安标准人寿、深圳大学</td><td>80 万+</td></tr>
+      <tr><td>2025</td><td>600 万</td><td>400 家</td><td>国寿海外、平安、人保</td><td>300 万+</td></tr>
+      <tr><td>2026（预计）</td><td>1060 万</td><td>600 家</td><td>健康 160 等</td><td>800 万+</td></tr>
+    </table>
+
+    <h3>财务预测</h3>
+    <table>
+      <tr><th>指标（万元）</th><th>2026</th><th>2027</th><th>2028</th><th>2029</th></tr>
+      <tr><td>合计营业收入</td><td>1,060</td><td>2,080</td><td>3,200</td><td>4,000</td></tr>
+      <tr><td>综合毛利率</td><td>36%</td><td>40%</td><td>44%</td><td>46%</td></tr>
+      <tr><td>年度净利润</td><td>-170</td><td>-40</td><td><strong>280</strong></td><td><strong>500</strong></td></tr>
+    </table>
+    <p style="font-size:14px;color:var(--text-light);">预计 2028 年实现盈亏平衡，进入规模化盈利周期。</p>
+
+    <h3>核心团队</h3>
+    <table>
+      <tr><th>角色</th><th>姓名</th><th>核心背景</th></tr>
+      <tr><td>创始人/董事长</td><td>陈颖</td><td>深圳大学管理学学士，中国福利与养老服务协会常务理事，十多年房地产开发经验，港铁、莱蒙集团高管</td></tr>
+      <tr><td>联合创始人</td><td>李连斌</td><td>资深医疗救援与健康产业投资人，搭建完整医疗服务合规体系</td></tr>
+      <tr><td>资本战略合伙人</td><td>江河</td><td>金融从业超 20 年，股权投资/IPO/私募基金经验丰富，与中信资本、国寿投资等密切合作</td></tr>
+      <tr><td>医疗大数据负责人</td><td>梁力中</td><td>中山大学博士，国家医保局 DIP 专家组成员，AI 向善框架下老年照护研究</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Two Projects Comparison -->
+<section style="background:#fff;">
+  <div class="container">
+    <h2><span class="num">3</span>两个项目对比</h2>
+    <p class="lead">HAVEN 与康盈乐颐虽然同处康养赛道，但定位、模式与客群差异显著，互补性强。</p>
+
+    <table>
+      <tr><th>对比维度</th><th>HAVEN 疗愈酒店</th><th>康盈乐颐</th></tr>
+      <tr><td><strong>定位</strong></td><td>高端疗愈度假酒店品牌</td><td>一站式养老康养服务平台</td></tr>
+      <tr><td><strong>模式</strong></td><td>重体验+专利技术驱动</td><td>轻资产 SaaS 平台+保险 TPA</td></tr>
+      <tr><td><strong>目标客群</strong></td><td>30-60 岁高净值人群</td><td>全龄段老年群体+保险公司+机构</td></tr>
+      <tr><td><strong>核心价值</strong></td><td>科学化、个性化康养体验</td><td>资源匹配、支付结算、数字化赋能</td></tr>
+      <tr><td><strong>收入模式</strong></td><td>住宿套餐+疗程+会员+零售</td><td>佣金+服务费+SaaS+产品销售</td></tr>
+      <tr><td><strong>覆盖范围</strong></td><td>酒店/社区物理空间</td><td>24 省 42 城 500+ 机构网络</td></tr>
+      <tr><td><strong>技术壁垒</strong></td><td>6 大专利模组（碳酸泉/干细胞/生物光学等）</td><td>SaaS 系统+评估标准+保险 TPA 闭环</td></tr>
+      <tr><td><strong>阶段</strong></td><td>概念/启动期</td><td>成长期（Pre-A 轮，已验证闭环）</td></tr>
+    </table>
+
+    <div class="highlight-box blue">
+      <h4>互补关系</h4>
+      <p>HAVEN 是<strong>「场景提供方」</strong>——高端物理空间+专利疗愈技术，吸引高净值客群体验；康盈乐颐是<strong>「渠道与支付方」</strong>——规模化机构网络+保险支付通道+数字化平台，覆盖大众市场。两者形成从「高端体验到日常使用」的完整闭环。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Collaboration Analysis -->
+<section>
+  <div class="container">
+    <h2><span class="num">4</span>与生命动力液合作可能性分析</h2>
+    <p class="lead">生命动力液是金日光教授监制的细胞级健康干预产品（含 27 种微量元素 + 11 种生命动力元素，团粒水结构 52Hz），具备分解致癌物、皮肤修复、免疫增强、帕金森/糖尿病/心血管辅助调理等 9 大功能。以下从四个维度系统分析合作空间。</p>
+
+    <h3>4.1 客群匹配度分析</h3>
+    <table>
+      <tr><th>生命动力液适用人群</th><th>HAVEN 目标客群</th><th>康盈乐颐目标客群</th><th>匹配度</th></tr>
+      <tr><td>慢性病患者（糖尿病/高血压/心血管/帕金森）</td><td>中老年退行性疾病与慢病患者</td><td>慢病管理与居家照护长者</td><td><span class="score score-high">●●● 高度匹配</span></td></tr>
+      <tr><td>皮肤修复与抗衰老需求者</td><td>抗衰老与皮肤再生、医美人群</td><td>适老化产品消费者</td><td><span class="score score-high">●●● 高度匹配</span></td></tr>
+      <tr><td>免疫力低下者</td><td>亚健康及慢病人群、术后修复者</td><td>居家一站式照护长者</td><td><span class="score score-high">●●● 高度匹配</span></td></tr>
+      <tr><td>青少年成长发育期</td><td>Z 世代新青年</td><td>家庭代际客户</td><td><span class="score score-mid">●● 中度匹配</span></td></tr>
+      <tr><td>追求健康长寿的中老年人</td><td>30-60 岁高净值人群</td><td>60 岁以上银发群体</td><td><span class="score score-high">●●● 高度匹配</span></td></tr>
+      <tr><td>减肥需求者</td><td>功效敏感型消费者</td><td>健康管理需求者</td><td><span class="score score-mid">●● 中度匹配</span></td></tr>
+    </table>
+
+    <h3>4.2 与 HAVEN 的合作空间</h3>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>HAVEN 模块</h5>
+        <p style="font-size:13px;">天愈农法 · 正能粮<br>饮食疗法与精准营养</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：功能饮品嵌入</h5>
+        <p style="font-size:13px;">生命动力液作为「正能粮」体系的高端功能饮品，纳入个性化营养方案，从细胞层面补充微量元素与生命动力元素。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">27 种微量元素<br>11 种生命动力元素<br>团粒水结构 52Hz</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>HAVEN 模块</h5>
+        <p style="font-size:13px;">再生医学：外泌体与干细胞<br>皮肤再生、抗衰、抗炎</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：内外协同抗衰方案</h5>
+        <p style="font-size:13px;">生命动力液的「生成生态氧、杀菌消毒、促进新细胞产生」功能与外泌体疗程形成内外协同——外泌体做细胞层再生，生命动力液做日常细胞层维护。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">面部喷涂促新细胞<br>提升皮肤弹性与修复<br>分解致癌物质</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>HAVEN 模块</h5>
+        <p style="font-size:13px;">碳酸泉水疗<br>改善微循环、美肌护肤</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：水疗体系互补</h5>
+        <p style="font-size:13px;">碳酸泉做外用水疗（经皮吸收改善循环），生命动力液做内服饮水（团粒结构直达细胞核），形成「外泡内饮」的水疗闭环。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">团粒结构渗透力强<br>直达细胞核 DNA 区<br>O17NMR 52Hz 最佳状态</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>HAVEN 模块</h5>
+        <p style="font-size:13px;">Restore & Revive Retail<br>创新疗愈产品零售</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：零售渠道直接嵌入</h5>
+        <p style="font-size:13px;">HAVEN 已明确规划「让离开酒店的客人持续进行自我疗愈」的零售区域，生命动力液作为居家可用的细胞级健康产品，是最自然的零售选品。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">居家可饮/可喷<br>每天早晚各 3ml<br>稀释/原液/低浓度灵活使用</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>HAVEN 模块</h5>
+        <p style="font-size:13px;">AI 健康管理系统<br>整合 DNA/生理/生活习惯数据</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：数据追踪与效果验证</h5>
+        <p style="font-size:13px;">HAVEN 的 AI 健康管理可追踪住客使用生命动力液前后的生理指标变化（血糖/血压/皮肤弹性等），为产品提供科学验证数据支撑。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">辅助调节血糖/血压<br>皮肤弹性提升<br>免疫指标改善</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h4>HAVEN 合作总结</h4>
+      <p>生命动力液可嵌入 HAVEN 的<strong>五大模组</strong>（正能粮、再生医学、碳酸泉水疗、零售、AI 健康管理），覆盖从住店体验到离店后持续使用的完整旅程。HAVEN 高净值客群（30-60 岁）与生命动力液适用人群高度重叠，且 HAVEN 已规划零售渠道，合作落地路径清晰。</p>
+      <p><span class="score score-high">合作匹配度：★★★★★ 高度契合</span></p>
+    </div>
+
+    <h3>4.3 与康盈乐颐的合作空间</h3>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>康盈乐颐模块</h5>
+        <p style="font-size:13px;">乐龄科技产品销售<br>科研成果转化产品出海平台</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：产品上架与分发</h5>
+        <p style="font-size:13px;">生命动力液作为「乐龄科技产品」直接上架康盈乐颐平台，面向 800 万+ 会员和 500+ 合作机构销售，获得规模化分发渠道。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">国家发明专利<br>尤里卡国际发明金奖<br>居家日常可用的健康产品</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>康盈乐颐模块</h5>
+        <p style="font-size:13px;">保险 TPA 直付网络<br>覆盖全国康养直付通道</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：保险支付通道</h5>
+        <p style="font-size:13px;">通过与险企合作，将生命动力液纳入保险健康管理产品目录，用户可通过保险 TPA 直付购买，降低消费者支付门槛，打通「保险+产品」闭环。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">慢病辅助调理功能<br>适合纳入健康管理方案<br>可与保险健康服务打包</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>康盈乐颐模块</h5>
+        <p style="font-size:13px;">SaaS 智能管理系统<br>机构数字化运营</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：使用追踪与效果数据</h5>
+        <p style="font-size:13px;">康盈乐颐的 SaaS 平台可记录机构内长者的生命动力液使用情况与健康指标变化，形成大规模真实世界数据，反哺产品效果验证。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">适合老年人日常饮用<br>辅助慢病管理<br>操作简便（稀释饮用）</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>康盈乐颐模块</h5>
+        <p style="font-size:13px;">居家一站式照护<br>适老化改造+慢病管理</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：居家健康管理方案</h5>
+        <p style="font-size:13px;">将生命动力液纳入康盈乐颐的居家照护套餐，作为慢病管理日常干预手段。护理人员上门时可指导使用，形成「产品+服务」组合。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">低浓度稀释饮用<br>每天可使用<br>辅助血糖/血压管理</p>
+      </div>
+    </div>
+
+    <div class="match-row">
+      <div class="match-cell left">
+        <h5>康盈乐颐模块</h5>
+        <p style="font-size:13px;">康养旅居度假<br>第二增长曲线</p>
+      </div>
+      <div class="match-arrow">→</div>
+      <div class="match-cell center">
+        <h5>合作点：旅居康养+产品体验</h5>
+        <p style="font-size:13px;">康盈乐颐的康养旅居业务可与 HAVEN 形成联动——长者在旅居期间体验生命动力液，回家后通过康盈乐颐平台持续购买，实现「体验→复购」转化。</p>
+      </div>
+      <div class="match-arrow">←</div>
+      <div class="match-cell right">
+        <h5>生命动力液</h5>
+        <p style="font-size:13px;">体验式消费<br>短期即可感受效果<br>适合旅居场景推广</p>
+      </div>
+    </div>
+
+    <div class="highlight-box gold">
+      <h4>康盈乐颐合作总结</h4>
+      <p>康盈乐颐为生命动力液提供<strong>三大核心价值</strong>：① 800 万+ 会员的规模化分发渠道；② 保险 TPA 直付通道降低用户支付门槛；③ SaaS 平台数据追踪形成真实世界证据。同时，生命动力液可丰富康盈乐颐的「乐龄科技产品」品类，增强平台对老年慢病人群的服务深度。</p>
+      <p><span class="score score-high">合作匹配度：★★★★☆ 高度契合</span></p>
+    </div>
+
+    <h3>4.4 三方协同矩阵</h3>
+    <p class="lead">生命动力液 + HAVEN + 康盈乐颐可形成「高端体验 + 平台分发 + 保险支付」的三维合作矩阵：</p>
+
+    <table>
+      <tr><th>合作维度</th><th>HAVEN 的角色</th><th>康盈乐颐的角色</th><th>生命动力液的角色</th></tr>
+      <tr><td><strong>场景体验</strong></td><td>高端酒店体验空间</td><td>康养旅居+居家照护</td><td>住店/居家均可使用的细胞级产品</td></tr>
+      <tr><td><strong>产品嵌入</strong></td><td>正能粮功能饮品+零售</td><td>乐龄科技产品销售</td><td>核心健康干预产品</td></tr>
+      <tr><td><strong>客群触达</strong></td><td>30-60 岁高净值人群</td><td>800 万+ 会员/500+ 机构</td><td>慢病/抗衰/免疫需求者</td></tr>
+      <tr><td><strong>支付通道</strong></td><td>住宿套餐内含</td><td>保险 TPA 直付</td><td>直接购买/保险覆盖</td></tr>
+      <tr><td><strong>数据验证</strong></td><td>AI 健康管理+MRI 验证</td><td>SaaS 平台使用追踪</td><td>提供干预产品+效果数据</td></tr>
+      <tr><td><strong>品牌背书</strong></td><td>香港理工大学科研合作</td><td>头部险企战略合作</td><td>金日光教授+国家专利</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Collaboration Strategy -->
+<section style="background:#fff;">
+  <div class="container">
+    <h2><span class="num">5</span>合作推进策略建议</h2>
+    <p class="lead">建议分三阶段推进，由浅入深、由点及面。</p>
+
+    <div class="strategy-card">
+      <span class="phase">第一阶段 · 试点验证（0-6 个月）</span>
+      <h4>产品嵌入与效果验证</h4>
+      <ul>
+        <li>在 HAVEN 酒店的「正能粮」饮食方案中嵌入生命动力液，作为高端功能饮品提供住客体验</li>
+        <li>在 HAVEN 零售区域上架生命动力液产品，测试购买转化率</li>
+        <li>在康盈乐颐的 3-5 家合作机构试点投放生命动力液，纳入居家照护套餐</li>
+        <li>利用 HAVEN 的 AI 健康管理系统和康盈乐颐的 SaaS 平台，同步追踪使用者健康指标变化</li>
+        <li>形成首批效果验证报告，为大规模推广提供数据支撑</li>
+      </ul>
+    </div>
+
+    <div class="strategy-card">
+      <span class="phase">第二阶段 · 渠道扩展（6-18 个月）</span>
+      <h4>规模化分发与品牌联动</h4>
+      <ul>
+        <li>生命动力液正式纳入 HAVEN 六大模组的配套产品体系，进入所有门店零售渠道</li>
+        <li>康盈乐颐平台全量上架生命动力液，面向 800 万+ 会员推广</li>
+        <li>推动与康盈乐颐合作的头部险企（国寿海外、平安、人保）将生命动力液纳入保险健康管理产品目录</li>
+        <li>HAVEN 与康盈乐颐联合举办生命动力液主题康养活动/旅居营，实现客群互导</li>
+        <li>联合香港理工大学等学术机构发表生命动力液在康养场景中的应用研究论文</li>
+      </ul>
+    </div>
+
+    <div class="strategy-card">
+      <span class="phase">第三阶段 · 深度融合（18-36 个月）</span>
+      <h4>生态共建与资本协同</h4>
+      <ul>
+        <li>生命动力液成为 HAVEN 康养社区的标准配置产品，纳入会员长期健康管理方案</li>
+        <li>康盈乐颐 SaaS 系统内建生命动力液使用追踪模块，形成行业首个「细胞级健康产品数字化管理」标准</li>
+        <li>三方联合申报国家级康养产品认证/标准，建立行业壁垒</li>
+        <li>探索生命动力液与 HAVEN 碳酸泉/干细胞技术的联合研发（如动力液+碳酸泉复合水疗方案）</li>
+        <li>借力康盈乐颐的 IPO 路径和 HAVEN 的国际化布局，推动生命动力液进入资本市场和国际市场</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Risk Analysis -->
+<section>
+  <div class="container">
+    <h2><span class="num">6</span>潜在风险与应对</h2>
+
+    <table>
+      <tr><th>风险类别</th><th>具体风险</th><th>应对策略</th></tr>
+      <tr>
+        <td><strong>产品合规</strong></td>
+        <td>生命动力液作为「高科技生物专利产品」，在不同场景下的宣传与使用需符合食品安全/保健食品/特殊医学用途食品等监管要求</td>
+        <td>聘请专业法律顾问审核产品资质；在 HAVEN 和康盈乐颐渠道的宣传中明确产品定位，避免夸大宣传</td>
+      </tr>
+      <tr>
+        <td><strong>效果验证</strong></td>
+        <td>生命动力液的 9 大功能需要有公信力的第三方验证，否则影响高端渠道（HAVEN/险企）的合作意愿</td>
+        <td>利用 HAVEN 与香港理工大学的科研合作通道，设计临床观察研究；利用康盈乐颐 SaaS 平台积累真实世界数据</td>
+      </tr>
+      <tr>
+        <td><strong>定价适配</strong></td>
+        <td>HAVEN 高端客群对价格不敏感但要求品质；康盈乐颐大众客群价格敏感度较高</td>
+        <td>设计差异化产品规格：HAVEN 渠道推高端原液装，康盈乐颐渠道推稀释/日常装，实现分层定价</td>
+      </tr>
+      <tr>
+        <td><strong>渠道协调</strong></td>
+        <td>HAVEN 与康盈乐颐的定位差异可能导致定价/品牌呈现不一致</td>
+        <td>建立统一的品牌管理规范；明确两个渠道的产品规格差异和价格区间；由生命动力液方统一管控品牌输出</td>
+      </tr>
+      <tr>
+        <td><strong>数据归属</strong></td>
+        <td>三方合作中产生的用户健康数据归属与使用权限需提前约定</td>
+        <td>签署数据合作协议，明确数据所有权、使用权和共享机制；符合《个人信息保护法》和数据安全相关法规</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- Final Summary -->
+<section style="background:#fff;">
+  <div class="container">
+    <h2><span class="num">7</span>总结</h2>
+
+    <div class="summary-box">
+      <h3>核心判断</h3>
+      <p style="margin-bottom:16px;">生命动力液与 HAVEN 疗愈酒店、康盈乐颐平台之间存在<strong>天然的互补关系</strong>：</p>
+      <p style="margin-bottom:12px;"><strong>· 产品契合：</strong>生命动力液的 9 大功能（免疫增强、慢病辅助调理、皮肤修复、抗衰老等）与两个项目的核心服务领域高度重叠。</p>
+      <p style="margin-bottom:12px;"><strong>· 客群互补：</strong>HAVEN 触达 30-60 岁高净值人群（体验端），康盈乐颐触达 800 万+ 大众老年群体（日常端），生命动力液覆盖全龄段健康需求者。</p>
+      <p style="margin-bottom:12px;"><strong>· 渠道互补：</strong>HAVEN 提供高端物理空间+零售渠道，康盈乐颐提供线上平台+保险支付通道，生命动力液获得「体验+分发+支付」的完整商业化路径。</p>
+      <p style="margin-bottom:12px;"><strong>· 技术协同：</strong>HAVEN 的 AI 健康管理+MRI 验证、康盈乐颐的 SaaS 数据追踪，可为生命动力液提供科学验证基础设施。</p>
+      <p style="margin-bottom:0;"><strong>· 品牌共振：</strong>金日光教授的学术权威（第四统计力学/JRG 群子理论/国家专利）+ HAVEN 的香港理工大学科研合作 + 康盈乐颐的头部险企背书，形成三方品牌互信。</p>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;">
+      <h4>建议优先级</h4>
+      <p><strong>第一优先：</strong>HAVEN 零售渠道嵌入 + 正能粮功能饮品试点 —— 落地最快、客群匹配度最高、客单价承受力最强<br>
+      <strong>第二优先：</strong>康盈乐颐平台产品上架 + 居家照护套餐嵌入 —— 覆盖面最广、可快速获得 800 万+ 会员触达<br>
+      <strong>第三优先：</strong>保险 TPA 直付通道建设 —— 价值最大但周期最长，需险企审批配合</p>
+    </div>
+
+    <div class="highlight-box gold" style="margin-top:16px;">
+      <h4>一句话结论</h4>
+      <p style="font-size:16px;">生命动力液是连接 HAVEN 疗愈酒店与康盈乐颐平台的<strong>理想健康产品载体</strong>——它既有科学理论深度（满足 HAVEN 的高端客群），又有日常使用便利性（满足康盈乐颐的大众市场），三方合作可构建从「高端体验到居家日常、从自费购买到保险支付」的完整康养产品生态。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>本报告基于 HAVEN 疗愈酒店+康养社区项目文件（27 页）与康盈乐颐商业计划书（31 页）分析整理。</p>
+    <p>生命动力液产品信息来源：生命动力液原理详解（最新 2.0 修正版）。</p>
+    <p>报告制作：阿布 | 2026 年 7 月</p>
+  </div>
+</footer>
+
+</body>
+</html>
