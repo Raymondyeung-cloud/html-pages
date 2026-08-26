@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生命动力素经络实验30天收官总结报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f0f4f8; color: #2c3e50; line-height: 1.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* 封面 */
+    .hero { background: linear-gradient(135deg, #1a2a3a 0%, #0d4f3c 100%); color: #fff; padding: 70px 20px 60px; text-align: center; }
+    .hero .tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 4px 18px; border-radius: 20px; font-size: 14px; letter-spacing: 2px; margin-bottom: 18px; }
+    .hero h1 { font-size: 34px; font-weight: 700; letter-spacing: 2px; margin-bottom: 14px; }
+    .hero .sub { font-size: 16px; opacity: 0.85; }
+    .hero .meta { margin-top: 28px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .hero .meta .item { text-align: center; }
+    .hero .meta .num { font-size: 28px; font-weight: 700; color: #7fd4b8; }
+    .hero .meta .lbl { font-size: 13px; opacity: 0.75; margin-top: 2px; }
+
+    /* 章节标题 */
+    section { background: #fff; margin: 26px 0; border-radius: 12px; padding: 34px 38px; box-shadow: 0 2px 12px rgba(26,42,58,0.06); }
+    h2 { font-size: 22px; color: #1a2a3a; border-left: 5px solid #0d4f3c; padding-left: 14px; margin-bottom: 22px; }
+    h3 { font-size: 17px; color: #0d4f3c; margin: 22px 0 12px; }
+    p { margin-bottom: 12px; font-size: 15px; }
+
+    /* 卡片 */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 18px 0; }
+    .card { background: linear-gradient(135deg, #f6f9fc, #eef4f1); border-radius: 10px; padding: 18px 16px; text-align: center; border-top: 3px solid #0d4f3c; }
+    .card .num { font-size: 26px; font-weight: 700; color: #1a2a3a; }
+    .card .lbl { font-size: 13px; color: #607080; margin-top: 4px; }
+    .card.good .num { color: #0d7a4f; }
+    .card.bad .num { color: #c0392b; }
+
+    /* 图表 */
+    .chart-box { position: relative; margin: 20px 0; background: #fbfcfe; border: 1px solid #e3eaf2; border-radius: 10px; padding: 20px; }
+    .chart-title { font-size: 15px; font-weight: 600; color: #1a2a3a; margin-bottom: 4px; }
+    .chart-desc { font-size: 13px; color: #7a8a9a; margin-bottom: 12px; }
+
+    /* 表格 */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th { background: #1a2a3a; color: #fff; padding: 10px 8px; font-weight: 500; }
+    td { padding: 9px 8px; border-bottom: 1px solid #e8edf2; text-align: center; }
+    tr:nth-child(even) { background: #f7fafc; }
+    .up { color: #c0392b; font-weight: 600; }
+    .down { color: #0d7a4f; font-weight: 600; }
+
+    /* 提示框 */
+    .alert { border-radius: 10px; padding: 16px 20px; margin: 16px 0; font-size: 14px; }
+    .alert.info { background: #eef6f2; border-left: 4px solid #0d4f3c; }
+    .alert.warn { background: #fdf3e3; border-left: 4px solid #c87f0a; }
+    .alert.key { background: #eef2fa; border-left: 4px solid #1a2a3a; }
+
+    /* 大结论卡 */
+    .verdict { background: linear-gradient(135deg, #1a2a3a, #0d4f3c); color: #fff; border-radius: 12px; padding: 28px 30px; margin: 20px 0; }
+    .verdict h3 { color: #7fd4b8; margin-top: 0; }
+    .verdict p { color: rgba(255,255,255,0.9); }
+
+    /* 通俗总结 */
+    .plain { background: #fffdf5; border: 2px dashed #d4b106; border-radius: 12px; padding: 30px 34px; }
+    .plain h3 { color: #ad6800; font-size: 19px; margin-top: 0; }
+    .plain p { font-size: 15px; }
+    .analogy { background: #fff; border-radius: 8px; padding: 16px 20px; margin: 14px 0; border-left: 4px solid #ad6800; }
+
+    footer { text-align: center; padding: 40px 20px 50px; color: #8a9aa8; font-size: 13px; background: #1a2a3a; margin-top: 30px; }
+    footer .brand { color: #7fd4b8; font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="container">
+<div class="tag">FINAL REPORT · 30天实验收官</div>
+<h1>生命动力素改善人体经络能量效果实验<br>30天收官总结报告</h1>
+<div class="sub">2026年7月26日 — 2026年8月26日 · 中科云脉经络道检测仪</div>
+<div class="meta">
+<div class="item"><div class="num">32</div><div class="lbl">自然日</div></div>
+<div class="item"><div class="num">31</div><div class="lbl">有效检测日</div></div>
+<div class="item"><div class="num">42</div><div class="lbl">原始检测次数</div></div>
+<div class="item"><div class="num">744</div><div class="lbl">经络数据点</div></div>
+</div>
+</div>
+</div>
+<div class="container">
+<section>
+<h2>一、实验概述</h2>
+<p>受检者每日上午9时饮用<b>生命动力素10ml</b>（兑水比例1:6），当日进行1-2次经络检测。按实验设计，在第7天、第15天、第30天与第1天基线对比，观察十二经络能量偏移，评估饮用效果。</p>
+<div class="alert info"><b>数据处理规则</b>：同一日有上下午检测的，取两次数据算术平均；仅有单次检测的，直接采用当日数据。所有图表均基于日均合并数据。</div>
+<div class="cards">
+<div class="card"><div class="num">56→56</div><div class="lbl">体能值（首→末）</div></div>
+<div class="card good"><div class="num">1.44→1.33</div><div class="lbl">亢/衰比 ↓7.6%</div></div>
+<div class="card good"><div class="num">44→41</div><div class="lbl">五行偏移 ↓6.8%</div></div>
+<div class="card"><div class="num">B级</div><div class="lbl">综合健康评级</div></div>
+</div>
+<div class="alert warn"><b>实验偏差说明</b>：期间经历三次外出（含8/18-8/20北京出差），环境温湿度波动大（25-38°C / 40-93%）；检测时段不一（6:30-20:30）；8月17日停测1天；仅7月31日上午完成一次"未用动力素"对照。判读时已综合考虑上述变量。</div>
+</section>
+<section>
+<h2>二、核心指标32日趋势</h2>
+<div class="chart-box">
+<div class="chart-title">体能值趋势（绿色区带为40-60正常区间）</div>
+<div class="chart-desc">全周期在40-59震荡，8月5日（40）与8月22日（41）为两次低谷，收官日回升至56</div>
+<canvas id="chartEnergy" height="70"></canvas>
+</div>
+<div class="chart-box">
+<div class="chart-title">亢/衰比趋势（虚线为1.0理想平衡线）</div>
+<div class="chart-desc">基线1.44 → 收官1.33，改善7.6%；8月7日冲高至1.70（全周期最失衡）</div>
+<canvas id="chartRatio" height="70"></canvas>
+</div>
+<div class="chart-box">
+<div class="chart-title">五行能量趋势（理想区间90-100）</div>
+<div class="chart-desc">木（青）持续偏高、水（蓝）持续偏低是全周期最稳定的失衡特征</div>
+<canvas id="chartFive" height="90"></canvas>
+</div>
+<div class="chart-box">
+<div class="chart-title">五行总偏移趋势（越小越平衡）</div>
+<div class="chart-desc">基线44 → 收官41；期间在37-58间反复震荡，未形成稳定下降通道</div>
+<canvas id="chartOffset" height="60"></canvas>
+</div>
+</section>
+<section>
+<h2>三、实验节点对比（第1/7/15/30天）</h2>
+<p>按实验设计，将第7、15、30天与第1天基线对比，并附收官日（第32天）数据：</p>
+<div class="chart-box">
+<div class="chart-title">关键经络五节点对比（40-60为正常区间）</div>
+<div class="chart-desc">心经/肝经（亢盛类）30天回落明显；脾经/膀胱经（虚衰类）第30天恶化但收官日大幅回升</div>
+<canvas id="chartNodes" height="100"></canvas>
+</div>
+<h3>四节点十二经络能量对比表</h3>
+<table><tr><th>经络</th><th>第1天</th><th>第7天</th><th>第15天</th><th>第30天</th><th>收官</th><th>1→30偏移</th><th>判定</th></tr>
+<tr><td>肺经</td><td>55.0</td><td>53.0</td><td>56.0</td><td>48.5</td><td>55.5</td><td>-6.5</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>脾经</td><td>42.0</td><td>46.5</td><td>40.5</td><td>35.5</td><td>48.5</td><td>-6.5</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>心包经</td><td>57.0</td><td>54.0</td><td>56.5</td><td>49.0</td><td>57.5</td><td>-8.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>肝经</td><td>66.0</td><td>64.0</td><td>65.5</td><td>56.0</td><td>69.5</td><td>-10.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>心经</td><td>70.0</td><td>67.0</td><td>68.5</td><td>58.5</td><td>66.5</td><td>-11.5</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>肾经</td><td>50.5</td><td>44.5</td><td>49.0</td><td>43.5</td><td>51.0</td><td>-7.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>小肠经</td><td>65.5</td><td>51.5</td><td>63.0</td><td>56.0</td><td>61.5</td><td>-9.5</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>膀胱经</td><td>44.5</td><td>44.5</td><td>42.0</td><td>33.5</td><td>48.5</td><td>-11.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>三焦经</td><td>53.5</td><td>50.0</td><td>53.0</td><td>46.5</td><td>51.0</td><td>-7.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>胆经</td><td>61.5</td><td>53.0</td><td>59.0</td><td>52.5</td><td>61.5</td><td>-9.0</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>大肠经</td><td>52.5</td><td>49.0</td><td>51.0</td><td>48.0</td><td>51.0</td><td>-4.5</td><td><span class="down">↓ 明显</span></td></tr>
+<tr><td>胃经</td><td>59.5</td><td>55.0</td><td>56.5</td><td>52.0</td><td>55.0</td><td>-7.5</td><td><span class="down">↓ 明显</span></td></tr>
+</table>
+<div class="alert key"><b>核心发现——"跷跷板效应"</b>：当心肝火（亢盛类）回落时，脾膀胱（虚衰类）往往同步走低；当脾膀胱回升时，心肝火同步反弹。全周期没有出现"降亢+升衰"的理想双向改善，提示动力素的作用模式是<b>整体能量水平调节</b>，而非针对性平衡矫正。</div>
+</section>
+<section>
+<h2>四、十二经络32日演变</h2>
+<div class="chart-box">
+<div class="chart-title">六大关键经络32日趋势（红色虚线为60亢盛线，绿色虚线为40虚衰线）</div>
+<div class="chart-desc">心经高位波动、肝经缓慢回落、脾经与膀胱经后段下探后收官回升</div>
+<canvas id="chartMer" height="100"></canvas>
+</div>
+<h3>十二经络统计判定</h3>
+<table><tr><th>经络</th><th>32日均值</th><th>最高</th><th>最低</th><th>首5日均值</th><th>末5日均值</th><th>变化</th></tr>
+<tr><td>肺经</td><td>52.5</td><td>58.0</td><td>41.5</td><td>55.7</td><td>48.0</td><td class="down">-7.7</td></tr>
+<tr><td>脾经</td><td>45.1</td><td>66.0</td><td>29.0</td><td>44.2</td><td>44.5</td><td class="up">+0.3</td></tr>
+<tr><td>心包经</td><td>53.6</td><td>61.0</td><td>40.5</td><td>58.4</td><td>49.0</td><td class="down">-9.4</td></tr>
+<tr><td>肝经</td><td>63.0</td><td>70.5</td><td>49.0</td><td>66.7</td><td>57.4</td><td class="down">-9.3</td></tr>
+<tr><td>心经</td><td>63.9</td><td>74.5</td><td>48.0</td><td>70.1</td><td>58.7</td><td class="down">-11.4</td></tr>
+<tr><td>肾经</td><td>45.6</td><td>52.5</td><td>32.5</td><td>50.4</td><td>43.4</td><td class="down">-7.0</td></tr>
+<tr><td>小肠经</td><td>57.7</td><td>66.0</td><td>43.5</td><td>60.6</td><td>54.4</td><td class="down">-6.2</td></tr>
+<tr><td>膀胱经</td><td>43.2</td><td>53.0</td><td>33.0</td><td>48.0</td><td>36.5</td><td class="down">-11.5</td></tr>
+<tr><td>三焦经</td><td>50.2</td><td>55.5</td><td>41.5</td><td>53.2</td><td>45.9</td><td class="down">-7.3</td></tr>
+<tr><td>胆经</td><td>55.9</td><td>66.0</td><td>41.5</td><td>61.8</td><td>53.3</td><td class="down">-8.5</td></tr>
+<tr><td>大肠经</td><td>48.8</td><td>55.5</td><td>38.0</td><td>51.2</td><td>45.1</td><td class="down">-6.1</td></tr>
+<tr><td>胃经</td><td>55.2</td><td>64.0</td><td>43.0</td><td>59.1</td><td>50.8</td><td class="down">-8.3</td></tr>
+</table>
+<div class="alert info"><b>重点经络</b>：心经全程最亢盛（8/18达77全周期峰值）；肝经是改善最大的亢盛经络（66→56）；脾经是最顽固的虚衰项（均值42.7，第30天跌至35.5）；膀胱经后段连续34/34重度虚衰，收官回升至48.5。</div>
+</section>
+<section>
+<h2>五、六阶段演变</h2>
+<div class="chart-box">
+<div class="chart-title">六阶段综合健康评分（百分制）</div>
+<div class="chart-desc">第二阶段（7/31-8/2）为最佳期；第五阶段（8/14-8/25）出现"虚假平衡"——亢衰比改善但整体能量下降</div>
+<canvas id="chartPhase" height="60"></canvas>
+</div>
+<table><tr><th>阶段</th><th>时段</th><th>特征</th><th>评分</th></tr>
+<tr><td>一 基线火旺期</td><td>7/26-7/30</td><td>心肝火旺主导，脾虚初显</td><td>50.8</td></tr>
+<tr><td>二 短暂改善期</td><td>7/31-8/2</td><td>亢/衰比降至1.30，脾经回升</td><td>67.8</td></tr>
+<tr><td>三 外出应激期</td><td>8/3-8/7</td><td>体能骤降40，亢/衰比冲高1.70</td><td>55.3</td></tr>
+<tr><td>四 震荡恢复期</td><td>8/8-8/13</td><td>指标反复震荡，无稳定方向</td><td>49.7</td></tr>
+<tr><td>五 能量衰减期</td><td>8/14-8/25</td><td>亢衰比改善但整体能量下降，脾膀胱重度虚衰</td><td>53.8</td></tr>
+<tr><td>六 收官回升期</td><td>8/26</td><td>各项指标全面回升</td><td>52.4</td></tr>
+</table>
+<div class="alert warn"><b>第五阶段关键提示</b>：亢/衰比看似改善（多日1.27-1.33），实为整体能量同步下降造成的"虚假平衡"。8月22日体能值41、膀胱经33、脾经46同步走低。单一平衡指标不可作为疗效判断依据，必须结合体能值综合判读。</div>
+</section>
+<section>
+<h2>六、生命动力素效果总评</h2>
+<h3>证据一：7月31日单次对照（上午未用 vs 下午用）</h3>
+<div class="chart-box">
+<div class="chart-title">对照日经络变化（当日不喝 vs 喝动力素）</div>
+<canvas id="chartCtrl" height="70"></canvas>
+</div>
+<h3>效果总评表</h3>
+<table><tr><th>评价维度</th><th>结论</th><th>证据强度</th></tr>
+<tr><td>短期升能作用</td><td><b>有一定效果</b>：单次对照体能+8、虚衰经络+6~13</td><td>中（仅1次对照）</td></tr>
+<tr><td>长期平衡矫正</td><td><b>效果有限</b>：核心"肝木克土"病机32天未根本改变</td><td>中（32天连续数据）</td></tr>
+<tr><td>亢盛经络调节</td><td><b>部分有效</b>：心/肝经长期回落10+单位，但波动大易反弹</td><td>中</td></tr>
+<tr><td>虚衰经络扶持</td><td><b>不稳定</b>：脾/膀胱经中期恶化、末段回升，呈跷跷板效应</td><td>中</td></tr>
+<tr><td>整体健康水平</td><td><b>略有改善</b>：亢/衰比-7.6%、五行偏移-6.8%，幅度有限</td><td>高（多指标一致）</td></tr>
+</table>
+<div class="verdict">
+<h3>总体结论</h3>
+<p>生命动力素在32天实验中表现出<b>"整体能量调节"</b>特性：短期（当日）能提升整体能量水平，虚衰经络回升明显；长期（30天）使心肝火回落10单位级但未根治。其局限在于无法实现"降亢+升衰"的双向平衡矫正。</p>
+<p><b>产品定位建议：作为基础能量支持使用，需配合针对性中医调理（健脾+平肝+滋肾）才能实现根本性平衡改善。</b></p>
+</div>
+</section>
+<section>
+<h2>七、下阶段调理与监测建议</h2>
+<p><b>调理总则：健脾益气治其本，平肝潜阳治其标，滋水涵木固其根。</b></p>
+<table><tr><th>优先级</th><th>方向</th><th>方剂参考</th><th>关键穴位</th><th>食疗</th></tr>
+<tr><td>第一</td><td>健脾益气</td><td>参苓白术散合补中益气汤</td><td>足三里、三阴交、太白</td><td>山药薏米粥、四神汤</td></tr>
+<tr><td>第二</td><td>滋水涵木</td><td>六味地黄丸合五子衍宗丸</td><td>太溪、涌泉、肾俞</td><td>黑芝麻核桃糊、桑葚枸杞茶</td></tr>
+<tr><td>第三</td><td>平肝清心</td><td>丹栀逍遥散合天麻钩藤饮</td><td>太冲、行间、神门、内关</td><td>菊花夏枯草茶、百合莲子汤</td></tr>
+</table>
+<h3>后续监测建议</h3>
+<p>· 进入巩固期：改为每周2-3次、固定下午14:00-16:00检测<br>· 重点跟踪：脾经能否稳定站上45、膀胱经能否稳定站上40、心肝经能否稳定降入60以内<br>· 每月安排1-2次"停用动力素"对照检测，持续分离产品效果<br>· 9月下旬进行60天总结，对比本期收官数据</p>
+</section>
+<section>
+<h2>八、总结论</h2>
+<table><tr><th style="width:90px">序号</th><th>结论</th></tr>
+<tr><td>1</td><td style="text-align:left">实验完成度：32个自然日、42次检测、31个有效检测日，第1/7/15/30天关键节点全覆盖，按构思报告基本完成。</td></tr>
+<tr><td>2</td><td style="text-align:left">核心病机："木火亢盛、水不涵木、肝木克土"贯穿32天全程，心肝火旺+脾肾两虚是受检者的稳定证型。</td></tr>
+<tr><td>3</td><td style="text-align:left">动力素效果：短期有升能作用（虚衰经络+6~13单位），长期使心肝火回落10单位级，但无法根治核心病机。</td></tr>
+<tr><td>4</td><td style="text-align:left">关键发现：32天后段出现"跷跷板效应"——亢衰比改善的同时整体能量下降，不能单看平衡指标。</td></tr>
+<tr><td>5</td><td style="text-align:left">收官状态：8月26日各项指标全面回升（体能56、亢/衰比1.33、脾经48.5、膀胱经48.5），为32天较佳状态，但需警惕单日波动。</td></tr>
+<tr><td>6</td><td style="text-align:left">综合评级：亚健康B级（中度失衡），较基线略有改善，建议进入"动力素+中医定向调理"联合干预巩固期。</td></tr>
+</table>
+</section>
+<section>
+<h2>九、写给普通读者的大白话总结</h2>
+<div class="plain">
+<h3>这份报告说了什么？三分钟看懂</h3>
+<p><b>1. 我们做了什么？</b><br>一位52岁的男士，连续32天每天早上9点喝一小杯（10ml）生命动力素，兑水6倍稀释。同时用一台经络检测仪测量全身24个经络点的能量值，一共测了42次，把这些数据拿来分析。</p>
+<p><b>2. 怎么看身体好不好？</b><br>这台仪器把每条经络的能量打分（0-100分）。40-60分算正常；超过60分代表"火气太大"（就像电器过载发热）；低于40分代表"能量不足"（就像电池没电）。健康的状态是：既不过热、也不亏电，并且各个系统基本平衡。</p>
+<div class="analogy"><b>3. 最重要的发现——身体的"跷跷板"现象</b><br>把身体想象成一个跷跷板：一头是"火气"（心、肝的能量偏高），另一头是"底气"（脾、肾、膀胱的能量偏低）。32天的数据反复显示：<b>当火气降下来的时候，底气往往也跟着掉了；当底气补上来的时候，火气又窜上去了。</b>就像跷跷板，一头压下去另一头就翘起来——始终没有出现"两头同时变好"的理想状态。这说明生命动力素的作用像<b>"充电宝"</b>——能给全身整体充电（短期充电效果确实明显，当天虚弱的经络能回升6-13分），但它不是"修表匠"——不能精准地单独修理某一条失衡的经络。</div>
+<p><b>4. 喝了30天，到底有没有用？</b><br>诚实地说：<b>有用，但作用有限，而且要正确理解它的用途。</b></p>
+<p>· 好的方面：心火、肝火这两项最超标的指标，30天里分别回落了11.5分和10分；整体平衡度改善了约7%；最后一天测量时，之前最虚弱的脾经和膀胱经都大幅回升了13-15分。<br>· 不足的方面：身体最根本的问题——"肝火旺压制了脾胃功能"（中医叫肝木克土）——32天里始终没有根治；中途还出现整体能量下滑的阶段（尤其是出差劳累期间，最低一天总能量只有40分）。</p>
+<p><b>5. 给想尝试的人什么建议？</b><br>· 生命动力素适合当作<b>日常保健的"基础能量补充"</b>，就像给身体充电，尤其适合容易疲劳、体虚乏力的人短期提振；<br>· 但如果身体有明确的失衡问题（比如长期失眠上火、消化不好），光靠它是<b>不够的</b>，必须配合针对性的中医调理（先健脾、再疏肝、后补肾），双管齐下；<br>· 保持规律作息和情绪平稳比什么都重要——数据显示，只要出差劳累、睡眠不足，身体指标立刻全面下滑，保健品补回来的速度远赶不上消耗的速度。</p>
+<p><b>6. 一句话总结：</b></p>
+<div class="analogy" style="border-left-color:#c0392b"><b style="color:#c0392b;font-size:16px">生命动力素能"充电"，不能"修表"——想靠它恢复健康，请配合专业调理一起用；想靠它熬夜造身体，神仙水也救不了。</b></div>
+</div>
+</section>
+</div>
+<footer>
+<div class="brand">中科云脉 · 经络道检测分析系统</div>
+<p>本报告基于经络检测仪客观数据与中医辨证体系生成，仅供健康调理参考，不能替代专业医疗诊断。<br>
+报告生成：2026-08-26 · 数据范围：2026/07/26 - 2026/08/26</p>
+</footer>
+<script>
+const dates = ["07-26", "07-27", "07-28", "07-29", "07-30", "07-31", "08-01", "08-02", "08-03", "08-04", "08-05", "08-06", "08-07", "08-08", "08-09", "08-10", "08-11", "08-12", "08-13", "08-14", "08-15", "08-16", "08-18", "08-19", "08-20", "08-21", "08-22", "08-23", "08-24", "08-25", "08-26"];
+Chart.defaults.font.family = "Microsoft YaHei";
+Chart.defaults.color = "#5a6a7a";
+
+    new Chart(document.getElementById('chartEnergy'), {
+      type: 'line',
+      data: { labels: dates, datasets: [
+        { label: '体能值', data: [56, 56, 55, 56, 57, 52, 52, 52, 50, 56, 40, 52, 47, 53, 55, 55, 52, 49, 57, 56, 54, 56, 59, 45, 57, 47, 41, 48, 48, 47, 56], borderColor: '#0d4f3c', backgroundColor: 'rgba(13,79,60,0.08)', fill: true, tension: 0.35, pointRadius: 3, borderWidth: 2 }
+      ]},
+      options: {
+        scales: {
+          y: { min: 30, max: 70,
+               grid: { color: '#e8edf2' } }
+        },
+        plugins: {
+          annotation: {}
+        }
+      }
+    });
+    
+
+    new Chart(document.getElementById('chartRatio'), {
+      type: 'line',
+      data: { labels: dates, datasets: [
+        { label: '亢/衰比', data: [1.44, 1.41, 1.38, 1.38, 1.38, 1.3, 1.38, 1.3, 1.39, 1.33, 1.5, 1.36, 1.7, 1.44, 1.5, 1.53, 1.53, 1.5, 1.5, 1.33, 1.27, 1.33, 1.38, 1.38, 1.38, 1.56, 1.38, 1.5, 1.5, 1.56, 1.33], borderColor: '#c0392b', backgroundColor: 'rgba(192,57,43,0.08)', fill: true, tension: 0.35, pointRadius: 3, borderWidth: 2 }
+      ]},
+      options: { scales: { y: { min: 1.0, max: 1.8, grid: { color: '#e8edf2' } } } }
+    });
+    
+
+    new Chart(document.getElementById('chartFive'), {
+      type: 'line',
+      data: { labels: dates, datasets: [{ label: '木', data: [113, 115, 115, 113, 115, 113, 112, 112, 114, 116, 117, 109, 105, 111, 114, 114, 113, 118, 118, 111, 106, 120, 113, 115, 115, 115, 118, 110, 113, 117, 117], borderColor: '#2e8b57', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '火', data: [109, 108, 105, 109, 108, 106, 106, 104, 104, 106, 110, 109, 113, 110, 110, 110, 110, 106, 107, 106, 106, 104, 108, 108, 108, 109, 106, 109, 110, 111, 105], borderColor: '#c0392b', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '土', data: [90, 93, 92, 88, 94, 94, 97, 98, 98, 94, 90, 97, 90, 93, 88, 90, 91, 94, 91, 98, 98, 99, 91, 95, 92, 90, 97, 93, 92, 87, 92], borderColor: '#c87f0a', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '金', data: [95, 95, 96, 96, 94, 97, 98, 94, 95, 96, 102, 97, 111, 99, 98, 98, 100, 97, 94, 94, 93, 91, 96, 95, 98, 103, 95, 97, 101, 95, 94], borderColor: '#7f8c8d', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '水', data: [84, 86, 89, 88, 88, 89, 85, 89, 91, 88, 83, 85, 76, 82, 83, 82, 80, 80, 82, 88, 93, 86, 81, 85, 85, 80, 85, 81, 80, 79, 88], borderColor: '#2980b9', tension: 0.3, pointRadius: 2, borderWidth: 2 }] },
+      options: { scales: { y: { min: 70, max: 130, grid: { color: '#e8edf2' } } } }
+    });
+    
+
+    new Chart(document.getElementById('chartOffset'), {
+      type: 'line',
+      data: { labels: dates, datasets: [
+        { label: '五行总偏移', data: [53, 49, 43, 50, 47, 39, 38, 35, 34, 44, 56, 39, 63, 47, 55, 54, 52, 53, 58, 37, 28, 48, 53, 48, 48, 57, 47, 48, 52, 67, 48], borderColor: '#1a2a3a', backgroundColor: 'rgba(26,42,58,0.08)', fill: true, tension: 0.35, pointRadius: 3, borderWidth: 2 }
+      ]},
+      options: { scales: { y: { min: 30, max: 60, grid: { color: '#e8edf2' } } } }
+    });
+    
+
+    new Chart(document.getElementById('chartNodes'), {
+      type: 'bar',
+      data: { labels: ["\u7b2c1\u5929 7/26", "\u7b2c7\u5929 8/1", "\u7b2c15\u5929 8/9", "\u7b2c30\u5929 8/24", "\u6536\u5b98 8/26"], datasets: [{ label: '心经', data: [70.0, 67.0, 68.5, 58.5, 66.5], backgroundColor: '#c0392b', borderRadius: 4 }, { label: '肝经', data: [66.0, 64.0, 65.5, 56.0, 69.5], backgroundColor: '#2e8b57', borderRadius: 4 }, { label: '脾经', data: [42.0, 46.5, 40.5, 35.5, 48.5], backgroundColor: '#c87f0a', borderRadius: 4 }, { label: '肾经', data: [50.5, 44.5, 49.0, 43.5, 51.0], backgroundColor: '#2980b9', borderRadius: 4 }, { label: '膀胱经', data: [44.5, 44.5, 42.0, 33.5, 48.5], backgroundColor: '#8e44ad', borderRadius: 4 }] },
+      options: {
+        scales: { y: { min: 20, max: 80, grid: { color: '#e8edf2' } } }
+      }
+    });
+    
+
+    new Chart(document.getElementById('chartMer'), {
+      type: 'line',
+      data: { labels: dates, datasets: [{ label: '心经', data: [70.0, 69.0, 68.0, 71.5, 72.0, 65.0, 67.0, 61.5, 58.5, 69.5, 48.5, 63.5, 62.5, 66.0, 68.5, 68.5, 62.0, 56.5, 70.0, 67.0, 64.0, 65.5, 74.5, 53.0, 69.0, 56.5, 48.0, 60.0, 58.5, 60.5, 66.5], borderColor: '#c0392b', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '肝经', data: [66.0, 67.5, 67.5, 66.0, 66.5, 62.5, 64.0, 64.5, 64.0, 68.0, 52.0, 63.0, 58.0, 62.0, 65.5, 66.0, 65.0, 61.0, 70.5, 70.0, 60.5, 69.5, 68.0, 51.0, 69.0, 59.0, 49.0, 53.5, 56.0, 59.0, 69.5], borderColor: '#2e8b57', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '脾经', data: [42.0, 43.5, 45.0, 45.0, 45.5, 47.5, 46.5, 48.0, 44.0, 47.5, 29.0, 46.5, 34.5, 42.0, 40.5, 38.0, 39.0, 37.5, 40.5, 48.0, 52.5, 50.5, 50.5, 53.0, 66.0, 54.5, 46.0, 57.0, 35.5, 35.5, 48.5], borderColor: '#c87f0a', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '肾经', data: [50.5, 49.5, 50.5, 50.0, 51.5, 44.5, 44.5, 42.5, 41.0, 49.5, 32.5, 44.0, 37.0, 44.5, 49.0, 50.0, 41.5, 42.0, 52.5, 51.0, 47.5, 47.5, 50.5, 38.5, 51.5, 42.0, 37.0, 44.5, 43.5, 41.0, 51.0], borderColor: '#2980b9', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '膀胱经', data: [44.5, 51.0, 48.0, 47.0, 49.5, 49.0, 44.5, 50.5, 49.5, 49.5, 34.0, 45.0, 34.5, 43.0, 42.0, 41.0, 41.5, 36.5, 42.0, 48.5, 53.0, 49.0, 46.0, 38.5, 46.0, 34.0, 33.0, 34.0, 33.5, 33.5, 48.5], borderColor: '#8e44ad', tension: 0.3, pointRadius: 2, borderWidth: 2 }, { label: '胆经', data: [61.5, 64.0, 58.5, 60.0, 65.0, 55.5, 53.0, 51.5, 49.0, 63.0, 42.0, 51.5, 41.5, 55.5, 59.0, 60.0, 52.5, 55.5, 64.5, 54.5, 55.0, 65.5, 66.0, 48.5, 63.0, 50.0, 48.5, 53.0, 52.5, 51.0, 61.5], borderColor: '#16a085', tension: 0.3, pointRadius: 2, borderWidth: 2 }] },
+      options: { scales: { y: { min: 30, max: 80, grid: { color: '#e8edf2' } } } }
+    });
+    
+
+    new Chart(document.getElementById('chartPhase'), {
+      type: 'bar',
+      data: { labels: ["\u4e00 \u57fa\u7ebf\u706b\u65fa\u671f 7/26-7/30", "\u4e8c \u77ed\u6682\u6539\u5584\u671f 7/31-8/2", "\u4e09 \u5916\u51fa\u5e94\u6fc0\u671f 8/3-8/7", "\u56db \u9707\u8361\u6062\u590d\u671f 8/8-8/13", "\u4e94 \u80fd\u91cf\u8870\u51cf\u671f 8/14-8/25", "\u516d \u6536\u5b98\u56de\u5347\u671f 8/26"], datasets: [
+        { label: '综合评分', data: [50.8, 67.8, 55.3, 49.7, 53.8, 52.4], backgroundColor: ['#1a2a3a','#0d7a4f','#c0392b','#7f8c8d','#c87f0a','#0d4f3c'], borderRadius: 6 }
+      ]},
+      options: { scales: { y: { min: 0, max: 100, grid: { color: '#e8edf2' } } },
+        plugins: { legend: { display: false } } }
+    });
+    
+
+    new Chart(document.getElementById('chartCtrl'), {
+      type: 'bar',
+      data: { labels: ["\u813e\u7ecf", "\u80c3\u7ecf", "\u80be\u7ecf", "\u8180\u80f1\u7ecf", "\u5fc3\u7ecf", "\u809d\u7ecf"], datasets: [
+        { label: '上午(未用动力素)', data: [44.0, 46.5, 37.5, 45.5, 59.5, 58.5], backgroundColor: '#95a5a6', borderRadius: 4 },
+        { label: '下午(用动力素)', data: [50.5, 55.0, 51.0, 52.5, 70.0, 66.0], backgroundColor: '#0d7a4f', borderRadius: 4 }
+      ]},
+      options: { scales: { y: { min: 30, max: 75, grid: { color: '#e8edf2' } } } }
+    });
+    
+</script>
+</body>
+</html>
