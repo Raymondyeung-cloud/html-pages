@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>药匣子 · 公司介绍 | 北京益方鼎科技有限公司</title>
+<style>
+:root{
+  --navy:#1a2a3a;--teal:#0d4f3c;--gold:#c9a961;--cream:#f7f3eb;--paper:#faf8f3;--line:#e5dfd2;
+  --text:#1a2a3a;--muted:#5b6770;--accent:#a83c3c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei','微软雅黑',-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB',sans-serif;background:var(--paper);color:var(--text);line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+
+/* ============ COVER ============ */
+.cover{min-height:100vh;background:linear-gradient(135deg,var(--navy) 0%,#0f1d2c 50%,var(--teal) 100%);color:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden;padding:60px 40px;text-align:center}
+.cover::before{content:'';position:absolute;top:-20%;left:-10%;width:60%;height:140%;background:radial-gradient(ellipse,rgba(201,169,97,0.15),transparent 70%);pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,var(--paper));pointer-events:none}
+.cover-brand{font-size:14px;letter-spacing:8px;color:var(--gold);margin-bottom:24px;text-transform:uppercase;font-weight:500}
+.cover-title{font-size:88px;font-weight:900;letter-spacing:12px;color:var(--cream);margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.cover-en{font-size:18px;letter-spacing:4px;color:rgba(247,243,235,0.7);margin-bottom:48px;font-style:italic}
+.cover-divider{width:80px;height:2px;background:var(--gold);margin:32px auto}
+.cover-tagline{font-size:24px;color:var(--cream);font-weight:300;letter-spacing:2px;margin-bottom:16px}
+.cover-tagline strong{color:var(--gold);font-weight:600}
+.cover-meta{margin-top:80px;font-size:14px;color:rgba(247,243,235,0.5);letter-spacing:2px}
+
+/* ============ PAGE WRAP ============ */
+.page{max-width:980px;margin:0 auto;padding:60px 60px;background:var(--paper)}
+.section{margin-bottom:80px}
+
+/* ============ HEADINGS ============ */
+h2.section-title{font-size:36px;color:var(--navy);font-weight:900;letter-spacing:2px;margin-bottom:24px;position:relative;padding-left:24px}
+h2.section-title::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:6px;background:linear-gradient(180deg,var(--gold),var(--teal));border-radius:3px}
+h2.section-title small{display:block;font-size:14px;color:var(--gold);letter-spacing:4px;font-weight:500;margin-bottom:8px;text-transform:uppercase}
+
+h3.sub-title{font-size:22px;color:var(--teal);font-weight:700;margin:36px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3.sub-title .num{display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;background:var(--teal);color:var(--cream);border-radius:50%;margin-right:12px;font-size:14px;font-weight:700;vertical-align:middle}
+
+/* ============ HERO DEFINITION ============ */
+.hero-def{background:linear-gradient(135deg,#fff8eb 0%,#f0e9d6 100%);border-left:6px solid var(--gold);padding:32px 40px;border-radius:8px;margin-bottom:40px;box-shadow:0 4px 20px rgba(26,42,58,0.06)}
+.hero-def .label{font-size:13px;color:var(--gold);letter-spacing:4px;font-weight:600;margin-bottom:12px;text-transform:uppercase}
+.hero-def .text{font-size:28px;color:var(--navy);font-weight:700;line-height:1.6}
+.hero-def .text em{color:var(--teal);font-style:normal;font-weight:900}
+.hero-def .note{font-size:15px;color:var(--muted);margin-top:16px;font-style:italic}
+
+/* ============ TEXT BLOCKS ============ */
+p{margin-bottom:16px;font-size:16px}
+strong{color:var(--teal);font-weight:700}
+em{color:var(--accent);font-style:normal;font-weight:600}
+
+/* ============ TABLE ============ */
+table{width:100%;border-collapse:collapse;margin:24px 0;background:#fff;box-shadow:0 2px 12px rgba(26,42,58,0.05);border-radius:6px;overflow:hidden;font-size:15px}
+th{background:var(--navy);color:var(--cream);padding:14px 16px;text-align:left;font-weight:600;letter-spacing:1px;font-size:14px}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fbf9f4}
+
+/* ============ THREE-CARD GRID ============ */
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin:32px 0}
+.card{background:#fff;padding:28px 24px;border-radius:8px;border-top:4px solid var(--gold);box-shadow:0 4px 16px rgba(26,42,58,0.06);transition:transform 0.2s}
+.card:hover{transform:translateY(-4px)}
+.card .icon{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--navy));color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin-bottom:16px}
+.card h4{font-size:18px;color:var(--navy);font-weight:700;margin-bottom:10px}
+.card p{font-size:14px;color:var(--muted);line-height:1.7;margin:0}
+.card .meta{font-size:13px;color:var(--gold);font-weight:600;margin-top:12px}
+
+/* ============ SECTION DIVIDER ============ */
+.divider-page{height:200px;background:linear-gradient(135deg,var(--teal),#0a3d2e);color:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;margin:80px -60px;text-align:center;position:relative;overflow:hidden}
+.divider-page::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' x='0' y='0' width='80' height='80' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='40' cy='40' r='1' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='80' height='80' fill='url(%23p)'/%3E%3C/svg%3E")}
+.divider-page .num{font-size:60px;font-weight:900;color:var(--gold);letter-spacing:6px;margin-bottom:8px;position:relative}
+.divider-page .label{font-size:18px;letter-spacing:8px;color:rgba(247,243,235,0.8);position:relative}
+
+/* ============ CALLOUT BOX ============ */
+.callout{background:linear-gradient(135deg,#fff8eb 0%,#faf3e0 100%);border:1px solid var(--gold);border-radius:8px;padding:24px 28px;margin:32px 0;position:relative}
+.callout::before{content:'⚑';position:absolute;top:-12px;left:24px;background:var(--gold);color:#fff;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:14px}
+.callout .title{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:10px;padding-left:32px}
+.callout .body{font-size:14px;color:var(--text);line-height:1.8;padding-left:32px}
+
+/* ============ RISK NOTE ============ */
+.risk{margin-top:60px;padding:32px;border:2px dashed var(--accent);border-radius:8px;background:#fef7f7;position:relative}
+.risk::before{content:'【风险备注】';position:absolute;top:-14px;left:32px;background:var(--paper);padding:0 12px;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:2px}
+.risk p{font-size:14px;line-height:1.85;color:var(--text);margin:0}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--navy);color:var(--cream);padding:48px 60px;text-align:center;margin-top:60px}
+.footer .logo{font-size:24px;letter-spacing:8px;color:var(--gold);font-weight:700;margin-bottom:8px}
+.footer .slogan{font-size:16px;color:rgba(247,243,235,0.7);letter-spacing:4px;margin-bottom:24px}
+.footer .contact{font-size:14px;color:rgba(247,243,235,0.6)}
+.footer .divider{width:60px;height:1px;background:var(--gold);margin:24px auto;opacity:0.6}
+
+/* ============ PRINT ============ */
+@media print{
+  body{background:#fff}
+  .page{padding:40px;max-width:100%}
+  .divider-page{margin:60px 0}
+  .footer{background:#1a2a3a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:768px){
+  .cover-title{font-size:48px;letter-spacing:6px}
+  .page{padding:32px 24px}
+  .cards{grid-template-columns:1fr}
+  .divider-page{margin:60px -24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="cover-brand">MEDICINE WELLS · 药匣子</div>
+  <h1 class="cover-title">药匣子</h1>
+  <div class="cover-en">MedicineWells · Company Profile</div>
+  <div class="cover-divider"></div>
+  <div class="cover-tagline">把<strong>"老中医开方"</strong>，变成<strong>"AI 一键开方"</strong></div>
+  <div class="cover-tagline" style="font-size:18px;color:rgba(247,243,235,0.7);margin-top:8px">传承千年中医智慧 · 引领数字健康未来</div>
+  <div class="cover-meta">北京益方鼎科技有限公司 · 2026 年投资人版</div>
+</section>
+
+<!-- ============ PAGE 1: 一句话定义 ============ -->
+<article class="page">
+
+<section class="section">
+  <div class="hero-def">
+    <div class="label">一句话定义</div>
+    <div class="text">药匣子是把<em>"老中医开方"</em>变成<em>"AI 一键开方"</em>的数字健康平台。</div>
+    <div class="note">不在中医与科技之间二选一。用十五年沉淀的诊疗数据、医生网络和供应链，把"望闻问切"装进 AI，把"好医、好药、好健康"交到用户手里。</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 01 · 公司主体</small>药匣子是谁</h2>
+  <p>"药匣子"是一个品牌，由三家公司共同构成，分工清晰：</p>
+  <table>
+    <thead><tr><th>主体</th><th>角色</th><th>核心资产</th></tr></thead>
+    <tbody>
+      <tr><td><strong>北京明思维科科技有限公司</strong><br>（2011）</td><td>运营主体 · 互联网医院</td><td>药匣子 APP、益草丰处方流转平台、昆仑专病专方平台、3.3 万㎡智慧药房</td></tr>
+      <tr><td><strong>北京益方鼎科技有限公司</strong><br>（2011，2016 启动）</td><td>战略与海外上市主体</td><td>"泛系唯象中医疑难病诊疗运算体系"、3 项发明专利+6 项实用新型、AI 中医大脑</td></tr>
+      <tr><td><strong>药匣子就势（北京）中医药文化有限公司</strong><br>（2023）</td><td>业务延伸主体</td><td>"小年食知"药食同源品牌、100 余款优选产品、科学家后勤合作落地</td></tr>
+    </tbody>
+  </table>
+  <p>关系：<strong>明思维科管"做"</strong>，<strong>益方鼎管"值钱"</strong>，<strong>药匣子就势管"延伸场景"</strong>。母公司（中科云脉）2026 年通过控股 40% 老股进入药匣子就势，把品牌版图延伸到科学家健康服务这条新主轴。</p>
+</section>
+
+</article>
+
+<!-- ============ DIVIDER 2 ============ -->
+<div class="divider-page"><div class="num">02</div><div class="label">WHY US</div></div>
+
+<!-- ============ PAGE 2: 三重护城河 ============ -->
+<article class="page">
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 02 · 三重护城河</small>凭什么能干成</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">数</div>
+      <h4>数据壁垒</h4>
+      <p>38.5 万医案、2420 本古籍、31.46 万知识节点、132.52 万知识关系。全行业最深的中医知识库。</p>
+      <div class="meta">赋能 3.4 万开方医生 · 服务 200 万+ 患者</div>
+    </div>
+    <div class="card">
+      <div class="icon">链</div>
+      <h4>产业链壁垒</h4>
+      <p>从 GAP 基地直采到 24 小时闪送，40 余家药企（同仁堂、华润三九），2.3 万㎡自营药事服务中心。</p>
+      <div class="meta">90% 城市 24h 闪送 · 全程区块链溯源</div>
+    </div>
+    <div class="card">
+      <div class="icon">证</div>
+      <h4>资质壁垒</h4>
+      <p>国家级"专精特新"+ 互联网医院 + 药品经营许可证（华北/西北/华中）三证齐全。</p>
+      <div class="meta">注册医生 7 万+ · 累计处方 1000 万+</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="title">一句话能算账的商业模式</div>
+    <div class="body">药匣子 = 互联网医院诊疗费 + 中药供应链毛利 + AI 订阅 + 专病专方授权 + 高端会员费。2024 年营收 1.3 亿，2026 年目标 3 亿，2028 年目标 5 亿。药费占总流水 <strong>57%-61%</strong>，净利率 2026 年转正，2028 年达 <strong>5%</strong>。规模效应正在显形。</div>
+  </div>
+</section>
+
+</article>
+
+<!-- ============ DIVIDER 3 ============ -->
+<div class="divider-page"><div class="num">03</div><div class="label">FOR WHOM</div></div>
+
+<!-- ============ PAGE 3: 客群 ============ -->
+<article class="page">
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 03 · 三个客群</small>给谁解决问题</h2>
+  <table>
+    <thead><tr><th>客群</th><th>痛点</th><th>药匣子给的东西</th></tr></thead>
+    <tbody>
+      <tr><td><strong>基层医生 / 诊所</strong></td><td>缺好药、缺辨证能力、缺数字化工具</td><td>益草丰 SaaS + 供应链代煎代配，单店年省 23 万运营成本</td></tr>
+      <tr><td><strong>慢性病人群</strong><br>（结节病、糖尿病、失眠等）</td><td>诊疗不精准、随访不持续、调理不系统</td><td>199 个专病专方专利、AI 中医大脑、月度复测提醒</td></tr>
+      <tr><td><strong>高净值 / 高知群体</strong><br>（科学家、企业高管）</td><td>缺专业背书、缺定制化方案、缺场景化产品</td><td>中自百佳合作（5 万科学家）、"小年食知"调理包、私域 1V1 顾问</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 04 · 三年节奏</small>下一步怎么干</h2>
+  <p>按"五行"增长引擎（金木水火土）同步推进：</p>
+  <table>
+    <thead><tr><th>引擎</th><th>抓手</th><th>2026 目标</th><th>2028 目标</th></tr></thead>
+    <tbody>
+      <tr><td><strong>金 · 学术培训</strong></td><td>"药匣子铁军"医生</td><td>100 人</td><td>1000 人</td></tr>
+      <tr><td><strong>木 · AI 健康助手</strong></td><td>数据闭环 + 用户粘性</td><td>Beta 上线</td><td>100 万用户</td></tr>
+      <tr><td><strong>水 · 新媒体矩阵</strong></td><td>全域引流</td><td>20 万粉</td><td>50 万粉</td></tr>
+      <tr><td><strong>火 · 心宅医馆</strong></td><td>"专病专方"实体医馆</td><td>3 家</td><td>30 家</td></tr>
+      <tr><td><strong>土 · 高端会员</strong></td><td>三级会员体系</td><td>1 万人</td><td>10 万人</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="title">退出路径</div>
+    <div class="body">Pre-IPO 2026 估值 <strong>80-120M USD</strong> → 2028 IPO 估值 <strong>300-500M USD</strong>（纳指 Small-Cap）→ 2030+ 冲击 <strong>2-5B USD</strong> 独角兽。</div>
+  </div>
+</section>
+
+</article>
+
+<!-- ============ DIVIDER 5 ============ -->
+<div class="divider-page"><div class="num">05</div><div class="label">TEAM & PARTNERS</div></div>
+
+<!-- ============ PAGE 5: 团队与合作 ============ -->
+<article class="page">
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 05 · 核心团队</small>谁在干这件事</h2>
+  <table>
+    <thead><tr><th>角色</th><th>人物</th><th>背景</th></tr></thead>
+    <tbody>
+      <tr><td>学术顾问</td><td><strong>卓同年</strong></td><td>加拿大卑诗省注册高级中医师、泛系唯象中医理论创始人、北京中医药大学首批临床特聘专家</td></tr>
+      <tr><td>创始人 / 董事长</td><td><strong>贾瑞明</strong></td><td>中医专家、泛系唯象传承人、中医药信息化专家、中国中医药信息研究会扶阳学派研究分会副会长</td></tr>
+      <tr><td>总经理</td><td><strong>卓同月</strong></td><td>产研融合型数智化领军人才、西北工业大学研究生、AI 大数据与产业数字化</td></tr>
+      <tr><td>CSO</td><td><strong>王正鸿</strong></td><td>前顺丰集团运作处副总监、前滴滴汽车资产管理中心负责人</td></tr>
+      <tr><td>COO</td><td><strong>周家玉</strong></td><td>管理学硕士、15 年企业管理咨询与投融资经验、心理咨询师</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 06 · 合作品伴</small>谁跟我们一起干</h2>
+  <table>
+    <thead><tr><th>领域</th><th>合作方</th></tr></thead>
+    <tbody>
+      <tr><td>学术</td><td>清华大学深圳研究院、中国中医科学院广安门医院</td></tr>
+      <tr><td>物流 / 支付</td><td>顺丰速运、京东健康、中国平安</td></tr>
+      <tr><td>AI</td><td>字节跳动/Magics（中医大 V 矩阵）、识因智能</td></tr>
+      <tr><td>最新合作</td><td>中自百佳（中科院自动化所直属，服务 5 万科学家）、广东省中药研究所、中科云脉</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2 class="section-title"><small>CHAPTER 07 · 风险备注</small>几个要先说的话</h2>
+  <div class="risk">
+    <p>公司目前处于"明思维科 / 益方鼎（业务层）+ 药匣子就势（延伸层）"三方架构并行阶段，对外披露与对外签约主体需明确区分，避免合作方与监管方对主体错位产生合规质疑。投后 12 个月内，建议完成三个动作：</p>
+    <p style="margin-top:12px"><strong>①</strong> 明思维科与药匣子就势签订独家业务授权协议；<br>
+    <strong>②</strong> 益方鼎与药匣子就势完成品牌使用授权备案；<br>
+    <strong>③</strong> 药匣子就势完成注册资本实缴规范化（原始股东 60 万出资义务已挂账）。</p>
+    <p style="margin-top:12px">任一动作未落地，IPO 申报前需补齐。</p>
+  </div>
+</section>
+
+</article>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="logo">药匣子 · MEDICINE WELLS</div>
+  <div class="slogan">好 医 · 好 药 · 好 健 康</div>
+  <div class="divider"></div>
+  <div class="contact">北京益方鼎科技有限公司 ｜ 联系人：附子 ｜ 电话：13696936688</div>
+</footer>
+
+</body>
+</html>
